@@ -8,3 +8,2057 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 35ms (Views: 8.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
 
 
+Started GET "/" for 127.0.0.1 at 2024-11-13 10:56:59 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.0ms | GC: 1.1ms)
+Completed 200 OK in 23ms (Views: 9.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 9.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-13 11:13:24 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/railties-7.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.2ms | GC: 1.7ms)
+Completed 200 OK in 40ms (Views: 14.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 22.8ms)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-13 17:33:01.935892', '2024-11-13 17:33:01.935896') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (0)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '92a1d10a9a4d0eec40e7dc7e5a2b30e03472ab9c', '2024-11-13 20:24:25.809546', '2024-11-13 20:24:25.809552') RETURNING "key"[0m
+  [1m[35m (10.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (0)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-13 20:24:25.859533', '2024-11-13 20:24:25.859536') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-13 20:24:25.865114' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '92a1d10a9a4d0eec40e7dc7e5a2b30e03472ab9c', '2024-11-13 20:24:25.867298', '2024-11-13 20:24:25.867302') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (46.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[35m (4.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'development', "updated_at" = '2024-11-13 20:24:58.436221' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-13 20:24:58.445304' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (43.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = '6a5f33bab9c4e824c0a89c619e85bab04f431ad9', "updated_at" = '2024-11-13 21:16:16.303941' WHERE "ar_internal_metadata"."key" = 'schema_sha1'[0m
+  [1m[35m (16.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'development', "updated_at" = '2024-11-13 21:16:16.404722' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-13 21:16:16.407991' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = '6a5f33bab9c4e824c0a89c619e85bab04f431ad9', "updated_at" = '2024-11-13 21:16:16.412872' WHERE "ar_internal_metadata"."key" = 'schema_sha1'[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = '501e73903ba8628208291a296842f46e18933140', "updated_at" = '2024-11-14 12:59:31.984909' WHERE "ar_internal_metadata"."key" = 'schema_sha1'[0m
+  [1m[35m (9.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'development', "updated_at" = '2024-11-14 12:59:32.022587' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (1.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-14 12:59:32.028163' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Update (2.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = '501e73903ba8628208291a296842f46e18933140', "updated_at" = '2024-11-14 12:59:32.034223' WHERE "ar_internal_metadata"."key" = 'schema_sha1'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20241113212416)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[35m (8.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "users" ("username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'development', "updated_at" = '2024-11-14 13:02:03.884073' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-14 13:02:03.887006' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20241113212416)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 13:05:09.036654', '2024-11-14 13:05:09.036660') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20241113212416)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241113212416') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddSessionTokenToUsers (20241113232226)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (19.9ms)[0m  [1m[35mALTER TABLE "users" ADD "session_token" varchar[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241113232226') RETURNING "version"[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20241113232348)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241113232348') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5cf75357d2b6443d50e2ef9e63a331349f2a2029', '2024-11-14 13:05:30.376838', '2024-11-14 13:05:30.376860') RETURNING "key"[0m
+  [1m[35m (4.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20241113232348)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20241113232226),
+(20241113212416);[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 13:05:30.415324', '2024-11-14 13:05:30.415329') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-14 13:05:30.418161' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '5cf75357d2b6443d50e2ef9e63a331349f2a2029', '2024-11-14 13:05:30.421071', '2024-11-14 13:05:30.421075') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-11-14 07:54:30 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 270ms (ActiveRecord: 4.2ms (1 query, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-14 07:54:30 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 07:54:30 -0600
+  
+NoMethodError (undefined method `skip_before_filter' for class SessionsController):
+  
+app/controllers/sessions_controller.rb:2:in `<class:SessionsController>'
+app/controllers/sessions_controller.rb:1:in `<main>'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 07:54:31 -0600
+  
+NoMethodError (undefined method `skip_before_filter' for class SessionsController):
+  
+app/controllers/sessions_controller.rb:2:in `<class:SessionsController>'
+app/controllers/sessions_controller.rb:1:in `<main>'
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-11-14 07:54:33 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-11-14 07:54:50 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:01:37 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:06:12 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:07:26 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:10:31 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:10:36 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2024-11-14 08:11:01 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 40ms (ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:11:01 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:15:11 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2024-11-14 08:19:28 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 42ms (ActiveRecord: 2.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-14 08:19:28 -0600
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:19:28 -0600
+Processing by ApplicationController#index as HTML
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 41ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Completed 406 Not Acceptable in 36ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:19:29 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:21:09 -0600
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:25:34 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 12ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:27:05 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 27ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:28:10 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+Completed 406 Not Acceptable in 30ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::MissingExactTemplate (SessionsController#new is missing a template for request formats: text/html):
+  
+actionpack (7.2.2) lib/action_controller/metal/implicit_render.rb:49:in `default_render'
+actionpack (7.2.2) lib/action_controller/metal/basic_implicit_render.rb:9:in `send_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:226:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rendering.rb:193:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+activesupport (7.2.2) lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2024-11-14 08:29:47 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 67ms (ActiveRecord: 2.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:29:48 -0600
+  
+SyntaxError (/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/sessions_controller.rb:28: syntax error, unexpected `end'):
+  
+app/controllers/sessions_controller.rb:28: syntax error, unexpected `end'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:30:08 -0600
+Processing by SessionsController#new as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 9.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:30:44 -0600
+Processing by SessionsController#new as HTML
+  Rendering text template
+  Rendered text template (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:31:12 -0600
+Processing by SessionsController#new as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+ActionView::MissingTemplate (Missing template sessions/new with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :haml, :jbuilder]}.
+
+Searched in:
+  * "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/views"
+  * "/home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/turbo-rails-2.0.11/app/views"
+  * "/home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/actiontext-7.2.2/app/views"
+  * "/home/ziad/.rbenv/versions/3.3.4/lib/ruby/gems/3.3.0/gems/actionmailbox-7.2.2/app/views"
+):
+  
+app/controllers/sessions_controller.rb:6:in `new'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:34:36 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 39.0ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 512.7ms | GC: 14.5ms)
+Completed 200 OK in 522ms (Views: 518.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 14.8ms)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:38:07 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+Completed 404 Not Found in 35ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 19.8ms)
+
+
+  
+AbstractController::ActionNotFound (The edit action could not be found for the :set_current_user
+callback on UsersController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:38:39 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 68.0ms | GC: 2.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 201.9ms | GC: 3.7ms)
+Completed 200 OK in 210ms (Views: 207.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.7ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:41:40 -0600
+Processing by UsersController#new as HTML
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The edit action could not be found for the :set_current_user
+callback on UsersController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:42:33 -0600
+Processing by UsersController#new as HTML
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The edit action could not be found for the :set_current_user
+callback on UsersController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:42:37 -0600
+Processing by UsersController#new as HTML
+Completed 404 Not Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+AbstractController::ActionNotFound (The edit action could not be found for the :set_current_user
+callback on UsersController, but it is listed in the controller's
+:only option.
+
+Raising for missing callback actions is a new default in Rails 7.1, if you'd
+like to turn this off you can delete the option from the environment configurations
+or set `config.action_controller.raise_on_missing_callback_actions` to `false`.
+):
+  
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:62:in `match?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:385:in `block in make_lambda'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `all?'
+activesupport (7.2.2) lib/active_support/callbacks.rb:178:in `call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `block in invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `each'
+activesupport (7.2.2) lib/active_support/callbacks.rb:559:in `invoke_before'
+activesupport (7.2.2) lib/active_support/callbacks.rb:119:in `block in run_callbacks'
+turbo-rails (2.0.11) lib/turbo-rails.rb:24:in `with_request_id'
+turbo-rails (2.0.11) app/controllers/concerns/turbo/request_id_tracking.rb:10:in `turbo_tracking_request_id'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+actiontext (7.2.2) lib/action_text/rendering.rb:25:in `with_renderer'
+actiontext (7.2.2) lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `instance_exec'
+activesupport (7.2.2) lib/active_support/callbacks.rb:130:in `block in run_callbacks'
+activesupport (7.2.2) lib/active_support/callbacks.rb:141:in `run_callbacks'
+actionpack (7.2.2) lib/abstract_controller/callbacks.rb:260:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/rescue.rb:27:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:77:in `block in process_action'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `block in instrument'
+activesupport (7.2.2) lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+activesupport (7.2.2) lib/active_support/notifications.rb:210:in `instrument'
+actionpack (7.2.2) lib/action_controller/metal/instrumentation.rb:76:in `process_action'
+actionpack (7.2.2) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.2.2) lib/active_record/railties/controller_runtime.rb:39:in `process_action'
+actionpack (7.2.2) lib/abstract_controller/base.rb:163:in `process'
+actionview (7.2.2) lib/action_view/rendering.rb:40:in `process'
+actionpack (7.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (7.2.2) lib/action_controller/metal.rb:335:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:67:in `dispatch'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:50:in `serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:53:in `block in serve'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:133:in `block in find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `each'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:126:in `find_routes'
+actionpack (7.2.2) lib/action_dispatch/journey/router.rb:34:in `serve'
+actionpack (7.2.2) lib/action_dispatch/routing/route_set.rb:896:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:43:20 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/new.html.haml within layouts/application (Duration: 63.8ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 65.9ms | GC: 0.1ms)
+Completed 500 Internal Server Error in 180ms (ActiveRecord: 2.8ms (0 queries, 0 cached) | GC: 22.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for an instance of User):
+
+Causes:
+NoMethodError (undefined method `name' for an instance of User)
+     6:         %li #{msg}
+     7: = form_tag users_path, :method => 'post' do
+     8:   = label :user, :name, 'Name'
+     9:   = text_field :user, 'name'
+    10:   = label :user, :email, 'Email'
+    11:   = text_field :user, 'email'
+    12:   = label :user, :password, 'Password'
+  
+app/views/users/new.html.haml:9
+app/views/users/new.html.haml:7
+Started GET "/signup" for 127.0.0.1 at 2024-11-14 08:44:42 -0600
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/new.html.haml within layouts/application (Duration: 48.7ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 227.2ms | GC: 59.8ms)
+Completed 200 OK in 283ms (Views: 233.3ms | ActiveRecord: 15.1ms (0 queries, 0 cached) | GC: 60.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2024-11-14 08:53:50 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+[31mUnpermitted parameter: :username. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x000074dcb8c92958>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account", "controller"=>"users", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 339ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+  
+NoMethodError (undefined method `name' for an instance of User):
+  
+app/controllers/users_controller.rb:18:in `create'
+Started POST "/users" for 127.0.0.1 at 2024-11-14 08:55:30 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+[31mUnpermitted parameter: :username. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x000074dcba851040>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account", "controller"=>"users", "action"=>"create"} }[0m
+Completed 500 Internal Server Error in 207ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+  
+NoMethodError (undefined method `name' for an instance of User):
+  
+app/controllers/users_controller.rb:18:in `create'
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20241113232348)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20241113232226),
+(20241113212416);[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 14:57:35.945556', '2024-11-14 14:57:35.945561') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '17dda9ff36ca74d071638c5428be69314943a440', '2024-11-14 14:57:35.953459', '2024-11-14 14:57:35.953463') RETURNING "key"[0m
+  [1m[35m (15.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20241113232348)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20241113232226),
+(20241113212416);[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 14:57:36.010242', '2024-11-14 14:57:36.010246') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-14 14:57:36.013900' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '17dda9ff36ca74d071638c5428be69314943a440', '2024-11-14 14:57:36.020047', '2024-11-14 14:57:36.020052') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20241113232348)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20241113232226),
+(20241113212416);[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 14:58:26.833618', '2024-11-14 14:58:26.833624') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '17dda9ff36ca74d071638c5428be69314943a440', '2024-11-14 14:58:26.842238', '2024-11-14 14:58:26.842245') RETURNING "key"[0m
+  [1m[35m (14.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "password_digest" varchar NOT NULL, "email" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "session_token" varchar)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20241113232348)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20241113232226),
+(20241113212416);[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-11-14 14:58:26.901622', '2024-11-14 14:58:26.901627') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Update (0.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2024-11-14 14:58:26.905067' WHERE "ar_internal_metadata"."key" = 'environment'[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '17dda9ff36ca74d071638c5428be69314943a440', '2024-11-14 14:58:26.911200', '2024-11-14 14:58:26.911205') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for 127.0.0.1 at 2024-11-14 08:58:49 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+[31mUnpermitted parameter: :username. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007a972859b2c8>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"ziad", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account", "controller"=>"users", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (11.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered users/new.html.haml within layouts/application (Duration: 170.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 350.1ms | GC: 0.0ms)
+Completed 200 OK in 899ms (Views: 407.2ms | ActiveRecord: 17.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2024-11-14 08:59:01 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"z", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "z"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-11-14 14:59:01.408330"], ["updated_at", "2024-11-14 14:59:01.408330"], ["session_token", "[FILTERED]"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 400ms (ActiveRecord: 8.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-14 08:59:01 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 18.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 34.5ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 39.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2024-11-14 08:59:10 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 339ms (ActiveRecord: 3.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-14 08:59:10 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 10.7ms | GC: 1.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 19.7ms | GC: 3.2ms)
+Completed 200 OK in 28ms (Views: 20.5ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 3.2ms)
+
+

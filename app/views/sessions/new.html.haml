@@ -1,0 +1,7 @@
+%h1 Sign In
+= form_tag sessions_path, method: 'post' do
+  = label :session, :email, 'Email'
+  = text_field :session, :email
+  = label :session, :password, 'Password'
+  = password_field :session, :password
+  = submit_tag 'Sign in'
