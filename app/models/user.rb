@@ -17,12 +17,33 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    find_or_create_by(provider: auth['provider'], uid: auth['uid']) do |user|
-      user.name = auth['info']['name']
-      user.email = auth['info']['email'] || "#{auth['uid']}@example.com"
-      user.password = 'ABcd1234**?'  # Assign a random password(user may not need it)
-      # Once user database done: Generate the password randomly and fullfill the password requirement
-      user.session_token = SecureRandom.hex(16)  # Generate a session token
+    user = find_by(uid: auth['uid']) || find_by(email: auth['info']['email'])
+
+    Rails.logger.debug "================= Debug User ================="
+    Rails.logger.debug "Auth UID: #{auth['uid']}"
+    Rails.logger.debug "Auth Email: #{auth['info']['email']}"
+    Rails.logger.debug "User found: #{user.inspect}"
+    Rails.logger.debug "============================================="
+
+    return user if user
+
+    begin
+      password = SecureRandom.base64(12)
+      user = self.create!(
+        uid: auth['uid'],
+        name: auth['info']['name'] || "Unknown User",
+        email: auth['info']['email'] || "#{auth['uid']}@google.com",
+        password: password,
+        password_confirmation: password,
+        session_token: SecureRandom.hex(16)
+      )
+      Rails.logger.debug "User created successfully: #{user.inspect}"
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.debug "User creation failed: #{e.message}"
+      return nil
     end
+
+    user
   end
+
 end

@@ -2997,3 +2997,1837 @@ Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms (0 queries, 0 c
 NoMethodError (undefined method `[]' for nil):
   
 app/controllers/sessions_controller.rb:10:in `create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:12:33 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:12:39 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=eaeb88ddf65c6075e104cd2a47a24615c776a2024db3015d&code=4%2F0AeanS0ZDYiU6zLORWnB_yEYnzv14iB5-DkdzI-jh9q8r7UFo8p2HhDlINBqiwZA8E8BTqA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:12:43 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#create as HTML
+  Parameters: {"state"=>"eaeb88ddf65c6075e104cd2a47a24615c776a2024db3015d", "code"=>"4/0AeanS0ZDYiU6zLORWnB_yEYnzv14iB5-DkdzI-jh9q8r7UFo8p2HhDlINBqiwZA8E8BTqA", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil):
+  
+app/controllers/sessions_controller.rb:10:in `create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:20:42 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+NoMethodError (undefined method `error' for nil):
+
+Causes:
+NoMethodError (undefined method `debug' for nil)
+  
+omniauth (2.1.2) lib/omniauth/strategy.rb:163:in `log'
+omniauth (2.1.2) lib/omniauth/strategy.rb:540:in `fail!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:199:in `rescue in call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:191:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:20:46 -0600
+  
+NoMethodError (undefined method `error' for nil):
+
+Causes:
+NoMethodError (undefined method `debug' for nil)
+  
+omniauth (2.1.2) lib/omniauth/strategy.rb:163:in `log'
+omniauth (2.1.2) lib/omniauth/strategy.rb:540:in `fail!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:199:in `rescue in call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:191:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:21:00 -0600
+  
+NoMethodError (undefined method `error' for nil):
+
+Causes:
+NoMethodError (undefined method `debug' for nil)
+  
+omniauth (2.1.2) lib/omniauth/strategy.rb:163:in `log'
+omniauth (2.1.2) lib/omniauth/strategy.rb:540:in `fail!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:199:in `rescue in call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:191:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2024-11-15 09:21:04 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 21.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 70.4ms | GC: 0.2ms)
+Completed 200 OK in 83ms (Views: 73.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:21:05 -0600
+  
+NoMethodError (undefined method `error' for nil):
+
+Causes:
+NoMethodError (undefined method `debug' for nil)
+  
+omniauth (2.1.2) lib/omniauth/strategy.rb:163:in `log'
+omniauth (2.1.2) lib/omniauth/strategy.rb:540:in `fail!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:199:in `rescue in call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:191:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2024-11-15 09:21:44 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 14.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 31.7ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 33.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:21:45 -0600
+  
+NoMethodError (undefined method `error' for nil):
+
+Causes:
+NoMethodError (undefined method `debug' for nil)
+  
+omniauth (2.1.2) lib/omniauth/strategy.rb:163:in `log'
+omniauth (2.1.2) lib/omniauth/strategy.rb:540:in `fail!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:199:in `rescue in call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:191:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:43:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/login" for ::1 at 2024-11-15 09:21:53 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 21.8ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 71.1ms | GC: 0.1ms)
+Completed 200 OK in 83ms (Views: 77.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:21:54 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=e9aa59b17f6548d4ede59a1608e4ad121c5c096a2eff6b45&code=4%2F0AeanS0aRddVCy4W-Jnyr2Z8FFPZJyokp3sGCkw4dT9SBj5bCt3MqMDmrU2FVFqb_mBmZjQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:22:00 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"e9aa59b17f6548d4ede59a1608e4ad121c5c096a2eff6b45", "code"=>"4/0AeanS0aRddVCy4W-Jnyr2Z8FFPZJyokp3sGCkw4dT9SBj5bCt3MqMDmrU2FVFqb_mBmZjQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?[0m  [["provider", "google_oauth2"], ["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.provider:
+SELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?
+                                    ^):
+
+Causes:
+SQLite3::SQLException (no such column: users.provider:
+SELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?
+                                    ^)
+  
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUidToUsers (20241115152600)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241115152600') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 09:27:30 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 23ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 09:27:30 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 17.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 63.8ms | GC: 0.0ms)
+Completed 200 OK in 70ms (Views: 69.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:27:32 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=bcba47c40d839e45b74486ed6b3c37d75db2ffa83c2199af&code=4%2F0AeanS0av_gL0Mrr7IS6s-DiFeMBtlZ88Fzcgmvqo_WKK7Tv9QxBKmQwJ0DoepOle_eGtQg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:27:36 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"bcba47c40d839e45b74486ed6b3c37d75db2ffa83c2199af", "code"=>"4/0AeanS0av_gL0Mrr7IS6s-DiFeMBtlZ88Fzcgmvqo_WKK7Tv9QxBKmQwJ0DoepOle_eGtQg", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+Completed 500 Internal Server Error in 315ms (ActiveRecord: 14.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Delete All (0.5ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token", "reset_digest", "reset_sent_at", "uid") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Test User"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-11-15 15:42:30.285100"], ["updated_at", "2024-11-15 15:42:30.285100"], ["session_token", "[FILTERED]"], ["reset_digest", nil], ["reset_sent_at", nil], ["uid", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/sessions" for ::1 at 2024-11-15 09:42:41 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 281ms (ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:42:41 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 16.1ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 29.4ms | GC: 1.3ms)
+Completed 200 OK in 41ms (Views: 36.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 5.3ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:42:52 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 5.6ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 9.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:42:54 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.6ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 5.7ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 09:42:56 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 20ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:42:56 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 5.5ms | GC: 0.5ms)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 09:42:59 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 12ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:42:59 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.5ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 09:43:01 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 6ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:43:01 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 09:43:02 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for ::1 at 2024-11-15 09:43:02 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 33.5ms | GC: 0.0ms)
+Completed 200 OK in 45ms (Views: 34.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 4.1ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 09:43:03 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/login
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 09:43:03 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 8.0ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.6ms | GC: 0.2ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:44:20 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac&code=4%2F0AeanS0aw1QLesIV55xJYF1nzgIAvfE_zOLFhuSaORSuvliYD9yd3ZkqJ3X8ZEgYWT22g-g&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:44:24 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac", "code"=>"4/0AeanS0aw1QLesIV55xJYF1nzgIAvfE_zOLFhuSaORSuvliYD9yd3ZkqJ3X8ZEgYWT22g-g", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+Completed 500 Internal Server Error in 310ms (ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.1ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac&code=4%2F0AeanS0ZsZWJn-8ZtxR-Ss2adtVEcTKdrrDZqHe5YYhFhvIEwGC3bIzwp4jcN-DxUB4m4ww&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:47:07 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac", "code"=>"4/0AeanS0ZsZWJn-8ZtxR-Ss2adtVEcTKdrrDZqHe5YYhFhvIEwGC3bIzwp4jcN-DxUB4m4ww", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+User created or found: #<User id: nil, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: nil, updated_at: nil, session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+Completed 500 Internal Server Error in 302ms (ActiveRecord: 3.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac&code=4%2F0AeanS0YhKL-H0Wh9YQRdQZuPhZDkj870g4ODOJJ644IA_eThDb7Vm_HoZyoThrkFHr20sQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:47:36 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"0076f95ea021f57d0504d8b8ecd59f208aa1d4ddb6004dac", "code"=>"4/0AeanS0YhKL-H0Wh9YQRdQZuPhZDkj870g4ODOJJ644IA_eThDb7Vm_HoZyoThrkFHr20sQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+User created or found: #<User id: nil, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: nil, updated_at: nil, session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+Completed 500 Internal Server Error in 313ms (ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 09:59:53 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 24ms (ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 09:59:53 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 18.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 67.3ms | GC: 0.0ms)
+Completed 200 OK in 75ms (Views: 73.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 09:59:55 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=08a9b3e0c008fa7966a8cb040588c6ef3a22891771730119&code=4%2F0AeanS0bXCo4i2h-Uwkb8t-vOj76HEqQjI-3dZSb6pCkjb8J5yGr49YF1gQXJiv-HA5uwTw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 09:59:59 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"08a9b3e0c008fa7966a8cb040588c6ef3a22891771730119", "code"=>"4/0AeanS0bXCo4i2h-Uwkb8t-vOj76HEqQjI-3dZSb6pCkjb8J5yGr49YF1gQXJiv-HA5uwTw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731689998 refresh_token="1//04u-m6T3YjgDzCgYIARAAGAQSNwF-L9IrPlkGrNDsGUimlPCTKP_Re-IBrU85ML1UyCqYt9sZlwN1UzC9_Hz87woaoryVqZ6BRr8" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZC-9x-2cFBdzZm-WF9XJUttMhahoe5eg4RpPa1xAF6qwk4JOeyI6QjxYNjL_uvhnh4NVx7AFJTJXJWTRR8iyrj7AqFlpgealfR_Rr-Mijg9kFTVpdnpWiarT4zGFPKbtw7bLf9RjuyFA4sWNa52pXwx0FDBgzxKonIHaCgYKAeYSARISFQHGX2Mi-DFn1Nl_efYZFduUf-oXvw0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="F3aXbgT52wTSzx-PQDIl-A" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731689999 family_name="wang" given_name="sheng" iat=1731686399 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJGM2FYYmdUNTJ3VFN6eC1QUURJbC1BIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg2Mzk5LCJleHAiOjE3MzE2ODk5OTl9.hhZ04_SVAz-u4UbIlIhByH_Zpoetboyy0aoLBJRhhWjXPrGHU5GR7r0OI4hNhSKxntlIkzlELnrny3NOxg6oNYPzHCMiEMVvAZQ_a8EBGl35J1V5xEpUlXJW5L8xON8XcoAlR1Yaa0QlknVfhilV5AgwX-wSi7v0ulowM0p3zD9Zp7XSj3FzAAvE4ubL1AR59vg2Ae5LUPOOTD4AkyuBY_VsKhycQe07OHO1u09MIxXuDGUn1lgn-u7irnPa9Ks48X_h8H88yX_FSiK-_P9vHp2dpRXuxvl93nr7AebPfX_Yzs_m6XzFxZkA2JpKB3vgBbn8KHDhBRLPklPiFpnqKw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:20:in `from_omniauth'
+User created or found: #<User id: nil, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: nil, updated_at: nil, session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+Completed 500 Internal Server Error in 317ms (ActiveRecord: 14.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:38:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 10:10:16 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 25ms (ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:10:16 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 18.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 63.2ms | GC: 0.0ms)
+Completed 200 OK in 70ms (Views: 69.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 10:10:19 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0aP8Bft828-DEOmFyHO4xG6dSAVr5OU0LkGPWXsiOn9A9QlFaCSPs1orUqRyZSXrQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:10:23 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0aP8Bft828-DEOmFyHO4xG6dSAVr5OU0LkGPWXsiOn9A9QlFaCSPs1orUqRyZSXrQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731690622 refresh_token="1//04G0glcLIE2-lCgYIARAAGAQSNwF-L9IrH0_WpQRSeADbuop7k55QVequeNsa4X5KtltyT7aIpUSHyEp9PtPUkf7Bwp5CJr51EGE" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDZoUdwTG8LlIk6CzY8ahz4CY9ahB6SJS-cF-ClCaahWD3RuK1vbZE2V-k9vonj7A6n5i7dEhNi14dNR4O2ozz3iRn0Y8ZZys_RClvsrNRXxlly1Wdl4NGgg96b7rBDvoUKERV0-5DncOcYGK13AjwgQN29r0ocFW1xaCgYKAbcSARISFQHGX2MisX7d8VmAy8CZ59D00_gI3w0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="wvuG5q7tB2avH1LsuU1FBg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731690623 family_name="wang" given_name="sheng" iat=1731687023 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ3dnVHNXE3dEIyYXZIMUxzdVUxRkJnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3MDIzLCJleHAiOjE3MzE2OTA2MjN9.LewK1RAAMuRHv5IF566LJNrCuYBb0CLfkz4rEHdoI0DG97F_XjFVjJD9ze8DXpLpBlZMUrzNY7oEkZBb9oozGiTyKu-4DOJN9G0yevmzHjd4Rdpmd8uVyDInh1KY8SnpCyG-KM5C787C3HM_VBRYiZklmDWxvRqOk0CH5ktaBE4DA4_a9GT2FIAtUcUz7sUM3m825wnJk7gt3ruxs-idl2my87DgT3Kocwg0Jy2SMXj-Ruc4XSUkP3_8S69GIJCEvQ43RB7XSjf3eNfynx4GWIhkUFvHF-YR_XKOD7FR6C5VX_GfDeUsLhJGEr9Z1Qm4m5MovJ7ZRLKyVki0QSkx3w" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?[0m  [["provider", "google_oauth2"], ["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.provider:
+SELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?
+                                    ^):
+
+Causes:
+SQLite3::SQLException (no such column: users.provider:
+SELECT "users".* FROM "users" WHERE "users"."provider" = ? AND "users"."uid" = ? LIMIT ?
+                                    ^)
+  
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0ZJWi2nMxv26YRCI39Y35yp7doB1kFNhzZimTtT-Sz7rgLnbgUJoddrWQasacOO-g&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:11:11 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0ZJWi2nMxv26YRCI39Y35yp7doB1kFNhzZimTtT-Sz7rgLnbgUJoddrWQasacOO-g", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731690671 refresh_token="1//04bbi-lO360MyCgYIARAAGAQSNwF-L9IrVbKwAkB_DYekesEofNzHHhBk18dbAqMPcFMdNL6woVq_yjVU0VKhvPDzdjCz3YPatfI" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZBRna4e3vBaN2x9pA8HA-rUoh8OnzIeuWKkpX3fn3PhK1Goef9tq81K8Gh9VVf2yV0I4WQoqk0iYyGGtESow4DWZmHgYa2OVHhnwz1ezSw8Opked3Ht9n1w51sFWYrwHVSgNMlizQUHlX0DBjhKAH959NEam-DMsXFUaCgYKAY8SARISFQHGX2MiqnodNAqlx65rmPqnIUGU0g0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="sf_r_pXEsotJjaR6F90XSA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731690672 family_name="wang" given_name="sheng" iat=1731687072 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJzZl9yX3BYRXNvdEpqYVI2RjkwWFNBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3MDcyLCJleHAiOjE3MzE2OTA2NzJ9.TYmyNXD8OCuHCrgUgwyRFL_Hb_3srsROagCkkxp5_gWDPAq2OqLdBogkFIpiFEV73nlwHtNihmHyHle0XGI3n5VyUWnE2NoZ7-pKDkg53nY4abgkAXC0AM58NUfMMsEN6JiKvOf8muhG_uLY9olQeTfdV62wYTvetC6z6XtBqwiRBShFZytNbJn9j40B5e4a2VONmuxkwEwnmnUvN4B6gFXohq71CL1Kp-iY3sFZ5yM83ZqBnvAE9TZQuDVwAEpW6AL70jFyD2no13136OLvH_d443-qJEd9teQfzKq8J4Q4jivDEgl2v7X0fBNJhbrNIp9sCOBmYdw6K3RTLP35KQ" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+Completed 500 Internal Server Error in 302ms (ActiveRecord: 6.3ms (3 queries, 0 cached) | GC: 10.9ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:38:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0YkF-mJ_NKC5wntO_f4tK6DsequTZWL6gNtbmlD22nUvboluZSYww2ol1Blmf0GaQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:13:10 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0YkF-mJ_NKC5wntO_f4tK6DsequTZWL6gNtbmlD22nUvboluZSYww2ol1Blmf0GaQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731690789 refresh_token="1//04Isgw2ClvG-zCgYIARAAGAQSNwF-L9Irjb9kMw7VrROQ3fL5yll6WlI__o3quX5oT7XypkO3BEGgGUwxPeIJ48VTjM7JCJ4IW78" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZBQRYO54UtxG0yyHnRiekmSVNgegIiWCRxdzvaT-VtTdTi0Ezq__7xtKGfEDPqQsgGoeFckdp2uURkTlb7rz3jotlmri68qzdY5j5KBE8lovGfPKngB8U7_lCZAr5zBW1dnbbLQytRr_BK8cnzwfEMd_9SMqyn3zg09aCgYKAf0SARISFQHGX2MiWSIxyfgN1MOU2oF2Nt2w-Q0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="bp7dqqxZ_4gMNScpkbVXLg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731690790 family_name="wang" given_name="sheng" iat=1731687190 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJicDdkcXF4Wl80Z01OU2Nwa2JWWExnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3MTkwLCJleHAiOjE3MzE2OTA3OTB9.qZ83ffzpEZHRPxsTm6e2762OOxjvqI7dOg76-6AVOSXlrZuC9-N_Nlw_zMJ6jFJ4nWeXwqxgK3XexfUh_fZnnpHzfgFcRGxH7wGFxhuWqCuN75Dc04CXnyLeV2ZRwzuhv3jLU6ejL1pdfPZrWZS89hHJGpA4wGjrb5_8mTbEXIDF1E5Yg0N8n41N8Bnx8VuoSQuPXAijDzHZ9ASI6KEyphqqQLvcG_LBBQ-7eHfeosRReHEVSVhTuhiOMyzTaKgPQ60w59Za7EXhK-B7HbK-CFBmy6jbdAUSlZfucPUFQhFBSS8clDNxYaq0UnneuBG_1tYQbJQBovLRI59krzqI1g" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+Completed 500 Internal Server Error in 346ms (ActiveRecord: 6.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:38:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0ZKbTGR3fONEiJSeODYKjkewmZiv-vILQBUyOKVIvyMt1D11qL2vo6xJEl-f0uf4A&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:17:28 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0ZKbTGR3fONEiJSeODYKjkewmZiv-vILQBUyOKVIvyMt1D11qL2vo6xJEl-f0uf4A", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731691048 refresh_token="1//04yEt_iGohMp9CgYIARAAGAQSNwF-L9IrQYro1I1__aU1AlQW7ouX-H-4C8NVB2RARqU0g72JG1mvEbD6bI_BgsHxfuCrWL-PGQ8" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDKxv4w9sLcxJl4QTterniAvp4HjsnQHhk_SIycqE2U2Zs2opXDJF-DfNKU5_oZZATArMMit117vtPsI3OMwPbk0xQU5mEyQlRFcbqTbGSZHMZvXG0cikZPr-TK89PTeIDwSbJ_EATAfzJtUhxKWn7eNHATqGJKhJfXaCgYKAVgSARISFQHGX2MiDi_6ENcYY2WL7NB8eTGAVg0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="PwlvN1yZ2rOB7mYs3WmK7A" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731691049 family_name="wang" given_name="sheng" iat=1731687449 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQd2x2TjF5WjJyT0I3bVlzM1dtSzdBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3NDQ5LCJleHAiOjE3MzE2OTEwNDl9.RjBgdERhxso9oY9_BWO38Mqq_8oJHFvxuuanxJERA_Q7vwh0H11i_xGKbEbWPDD8Vr-dDPzBwVfGZpXjL4dtrNYtfRLNsklOpI46C7oYc5KqzPo5-_aRATWBj6Fk_A9--iMZ-7q7H5G2e4GWeZPIqzrkceRkVw9pgnaZ6O6N3ZUVcYWmKSlWD4MbyvMVEnTsKupqaAWKyp3s3U2XpLqzovB3u2MvkNvfwU2F7zcKODEzgg6_t27sZjlHuah_eniKzCSzyjVng1dwBFkrvWWNZv6s_QlghCEdfdFdPBHwi5PbRY54KgqRFs1ahQtWhNEekbRPPByx8VJeAQCH0pXDfw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:23:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:23:in `from_omniauth'
+Completed 500 Internal Server Error in 360ms (ActiveRecord: 7.4ms (3 queries, 0 cached) | GC: 3.3ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:30:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0ZgM59NAetPNy7o0CdddHScQ9T0EnkPK4KUKb04IjzCIXVA2qAe-W3Q-zji5hZzHQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:18:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0ZgM59NAetPNy7o0CdddHScQ9T0EnkPK4KUKb04IjzCIXVA2qAe-W3Q-zji5hZzHQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731691088 refresh_token="1//04IhxYlvTPaIkCgYIARAAGAQSNwF-L9IrlgSTg5PAYt2KTvbsr1GwNaj-l3LicpJjgRkZE_7cMuowInNDuZ-63VZIrMHSbPC2hB4" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZABGVyLMBVT7_faP0prxl5dOZ5dsbLhHkaj5iaZBAmIXQNi9ZQkWe3_rouAsOCNJZSNb504J6woA6JUDFl-CbaVu62avoGiaAoXAYiDdlUq12tGMxnKxAFb3OawGVcIxtroPjse8FVnkgguFSV7E1VksrXJPXUdUOo2aCgYKASgSARISFQHGX2MiiLriMFTe2zqwmPQ08RtkKw0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="lKz2BcrYqQB-g3PHf5I0BA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731691089 family_name="wang" given_name="sheng" iat=1731687489 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJsS3oyQmNyWXFRQi1nM1BIZjVJMEJBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3NDg5LCJleHAiOjE3MzE2OTEwODl9.nu0ndH4ZSp8tsnEAbl1XEg58vAls7foycQ9VKGxd6rI0zoaRuF4NpRCh3VApKbHJhXilhiMBVE1X6Neit7dJkV9Bk5Sk8RaAsuTSkHfWvtc-Jxl5YX4lFNM0ouFNYdYZEOD42hd3yhB0m6qvEcm1M7eb7KJc58CyfjTcnx8QLy8dIdXO5kJDENWQoFLPh_MgBw3QfI-E97rmi3thNQxsjplhtzhf635u5EY2M3gqcOXjBCrQG5weLeiteZ3IaFxNsDI0t5pgxuWgHFrGwSosRvYcY_LNuMszamma3ASAAGVrkBfh3t9EyGCM9K0if9Viflc6lq8ctyq1ogjoYTiRaw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:24:in `from_omniauth'
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `from_omniauth'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:24:in `from_omniauth'
+Completed 500 Internal Server Error in 309ms (ActiveRecord: 6.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:31:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/auth/google_oauth2/callback?state=b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603&code=4%2F0AeanS0bEQDlz22_fD9w-t1N6-pgoai0FJImZYUEZ3tU62dXG5Vn2mdcODMbRl9FTgzUYDw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:19:16 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"b9ed6b86e51e26411a7c492720f6acee7f19fb8de00ea603", "code"=>"4/0AeanS0bEQDlz22_fD9w-t1N6-pgoai0FJImZYUEZ3tU62dXG5Vn2mdcODMbRl9FTgzUYDw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731691155 refresh_token="1//04CVWZwCQgCAUCgYIARAAGAQSNwF-L9IrPAlrmLlIiEnd6l6qJ9Z3zoyCRaoihh2ngJlmyzsRGWBQrt9pmJbSaM-fh4puv3mKdn0" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDH8p5072gwS8ykXUZbgNX-h6S7xBpOYjT-_8T-4pYYHmRtJA8wtoRGlt1AyyUkyRGIzX6SareSRKEqgP7icasqBQ6UI5JR_LqD4ra8CBjxYSEa1b_MzfD2KhiN2u9fRA0c23KpFepO9vQ_JtoI0LW-xT404FiZ-rfcaCgYKARASARISFQHGX2MiFpTp0fuWoVt8O5gdKtJmeQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="o5oHiYTvAzH_h7WtKRCeMw" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731691156 family_name="wang" given_name="sheng" iat=1731687556 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJvNW9IaVlUdkF6SF9oN1d0S1JDZU13IiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3NTU2LCJleHAiOjE3MzE2OTExNTZ9.XLBqNOqp5ifnH5LubrYmdExriDuYAXvcem-nayQ8q9hHjPazDYWGkm3HpQxTffodp_im8glrwdWZFJIfVlX2at2tn6Ep0l5ExBObuPp_3hQ-G-JXB9sK0zOShvNMqTaFtLZY_K3fyRi6oxJCIijk0maPsp9h_u076UYrW0bYiM-86aoPjrWKbuoHlEGvP_ZKq3cbE-iuy8qigkAbB97XEDfQoZNPp3ex-nkI8sBLBDmEDqXYmHep6bWAGLiZdKmZh_u9FdMfq7LsxQI9OusO0D5cNJmVux0f8uMT-3EVEgHJf4Acn1DaUFqMsl7i1tCB2CU608kmICp0071QBZdY2w" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:25:in `from_omniauth'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25:in `from_omniauth'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:25:in `from_omniauth'
+Completed 500 Internal Server Error in 310ms (ActiveRecord: 6.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:32:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTruncate Tables (1.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 10:21:58 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 24ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:21:58 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 17.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 65.5ms | GC: 0.0ms)
+Completed 200 OK in 72ms (Views: 71.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 10:22:00 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0ZtifH7VY9zX5BsBsuu5l8Atty52aOZah8lPnA-iEryDJlZicjoZkf-eYg2Esd2Ug&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:22:03 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0ZtifH7VY9zX5BsBsuu5l8Atty52aOZah8lPnA-iEryDJlZicjoZkf-eYg2Esd2Ug", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731691322 refresh_token="1//04Dcl3uMdusPDCgYIARAAGAQSNwF-L9Ir32MZoXIcPJ8xQ2fN2RFb8-1XOzR74fqS2hWz2vItpmOvBa_CccvkT3X1Q39PkHDBv2Q" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZA-tYYYXiXQtW62T8zgF3JsqlMMV9eDuIT8RDGqbFtLhuFjh6sJSGsEgWWUgcRIDkhk4ezPZvuwVQsFfZ5CViHnULG5q4RonSqdrkwdX3yhQNdBFw3Tigk5KNuz_ZOrE4rsOeYlG-7cer--Uds7KL-4RIdmkK1IuyMYaCgYKATESARISFQHGX2Mi_vIeq_4iHu-dyRqGQ4OWpQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="DoI_NUa6ERrg2oeJbUdCfQ" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731691323 family_name="wang" given_name="sheng" iat=1731687723 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJEb0lfTlVhNkVScmcyb2VKYlVkQ2ZRIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg3NzIzLCJleHAiOjE3MzE2OTEzMjN9.l3zNZUp9vQUgYA7PAiK6GJmIjWs-GSp0ENMH390ed9VQdOr93HAvOX9K22y_gID2EoCBAMWcr_I6EYg7NtUxfsZkFVvxOHoTHCaz-D1JzY5p9zoN1Pd9805ngV_BIEJGvAmStKMz63wSWV7qf8d5ElQspZ0tkq6n5CwyFjJTYTlSboNXs3_4Y27RA7uLfKDtDcwwxr-Ze-6ojzz7hoaLsjRNJNhGV6-TFAgSTc4xdqgv59a0taLIgQ9ttUJ45yTQj7HJLtTt3pmHXnp4Q2TXR6JrPn9tgw5cu_WrEzZwx3lgxMKF0tAtOYAU49-dAh7e9HYH7m8lpEkIfiqHd63LEw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (5.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:25:in `from_omniauth'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:25:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:25:in `from_omniauth'
+Completed 500 Internal Server Error in 318ms (ActiveRecord: 10.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:32:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0aICG-bys34IQyC9SuBfmfGoTCtBoaKq7xVwH3UCPyn9X4TCtfM9oZu2DCwyWwTaQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:36:48 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0aICG-bys34IQyC9SuBfmfGoTCtBoaKq7xVwH3UCPyn9X4TCtfM9oZu2DCwyWwTaQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692207 refresh_token="1//047RslatUGY5oCgYIARAAGAQSNwF-L9Irl0msURChW6RrpZePQXze8rawqIvtGjXstIgHnsutMFXluMy8VJ_LG481nBMxnUI3fec" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDcFZl5xf_C9PO3vC9J6Q8GUrcFla7RDEah6MDuuB7JC-hKjgRh3cYuMlNJ7TNUFEdKjAteXyE_NkyPjC4f9Ih0GfkpoRbgifOucLeDfe6kds-JoTS9KaGidXrM_-vm_rnbldtY7RE3iiy0TeXMkQ0YrFkZZQhRLA-AaCgYKATASARISFQHGX2MiCkIG7uAFRSUan_sJXHPoJw0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="-M5Oe2KQvowsB0a_GAibsg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692208 family_name="wang" given_name="sheng" iat=1731688608 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiItTTVPZTJLUXZvd3NCMGFfR0FpYnNnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg4NjA4LCJleHAiOjE3MzE2OTIyMDh9.xuo2C_F30Cztc3UHzso1KVNWyC_ErYRRLVYhgbXNNZqPu8mN3eahlL2bIbucWw35y7NbJx-KO4uah6p-G1QugqF91HGn5yYC9PSKYkmfsWMESPxduI8_nPImkx-mIs8TfzzKPgQ1GkqHKw8kkOJFFkwuyUZNu4i3LF7XJKRucoupHa6GjnGHUtPjZsFzRhzQOZkTWPgR_z15-p1CLAOW6xN2MBHkdIWh2zgIXTzUI5txlGYAAN-NG1MPiH4uXJmnWDb-bWfVTI6A533oMKXESYCgKUGPjwHYi0dm0dNxJDovb2p8HoK5Pqtvs2H3d5pgbtjniOVekCores1rhQeTDg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User: 
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+Completed 500 Internal Server Error in 304ms (ActiveRecord: 3.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:33:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0Ynk1tKwVazhtm4kVHt0SDcZiv5rWkTwcS1jayX1fpsqlmglkzyhMFd48Cwixa_pA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:37:25 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0Ynk1tKwVazhtm4kVHt0SDcZiv5rWkTwcS1jayX1fpsqlmglkzyhMFd48Cwixa_pA", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692244 refresh_token="1//04LROfczRnBDaCgYIARAAGAQSNwF-L9Ir-8EptrYXaSqvf7oQ3zM8-bhYwRco_pMUMu2Stb4uiyQAw__EBSoABXWgG2qlXyIkLgs" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZAU3U3CKmcQPtdYbjSGWbYC2rE6nHy_pSnj864qJBcl1_FSCtFvi9ZviD9OdtR5WXRze44rcI3GIEuO5DPuZFWbFfNg75IWqARJeRVpz33r2hQePwImEIxn6Sk1kYUcVnPA1YYgpBoO7bzV_S0cUvUo9kVEyP4Nys9gaCgYKAUESARISFQHGX2Mi5mb0km0tZoAw7qJR3fc4Cg0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="0rMQjvWhK92Eq3Hhl0ZkmA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692245 family_name="wang" given_name="sheng" iat=1731688645 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIwck1RanZXaEs5MkVxM0hobDBaa21BIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg4NjQ1LCJleHAiOjE3MzE2OTIyNDV9.t8KoRxCB9EpM2YnfrqXP3jR4_R0aBwzHVJwdLuFcjZK8RxXY-kM6xMNxFUP_g0JyCjzjuNBHO8xgOG1g_hLrOvdHwSLSd2BfAHiGUrOLznXXVTtHRiHXuYvknSYsp53u92pl8WG6u2k0GQqj0QKq_9uKZKiItBJgYKSbNQlk-_sWVU_F3qSYF6_wMsE-aNwEqdnRwbFKclozuLI41XZMEYWKpB7v6uYlWIOaKfPRhbFeslpnGU2uKtszIGksRPPTmZ7k0AfmmfkPeMSU2YPWL2eNxTElGLqjgjdCVZgrfsFClu4DWrWre1bronZfJxKZxaxUsSCjQEo__hvtxhFvQw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User: yzbtus3@gmail.com
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+Completed 500 Internal Server Error in 323ms (ActiveRecord: 4.7ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:33:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0a8P_VUW3hWiXnbtfzfS2FpAtsSzx4g9Jl3dOkW-o1OFKOUN3uanw7mownEsLSm8A&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:37:51 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0a8P_VUW3hWiXnbtfzfS2FpAtsSzx4g9Jl3dOkW-o1OFKOUN3uanw7mownEsLSm8A", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692271 refresh_token="1//04XlsUN4oXgI8CgYIARAAGAQSNwF-L9IrnMYXLCsdn6N-w-zmpPIeznH40NY4fy0NR_YnHrPDJAMcB3ZQ5ZbsHZmnfD3_P8gnd-0" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZBQRuIJJAVNkd45Yd82rsZrM608NDIgAMzZ2tssZDWn6OBebNXuI7y7iq1_FO8M0jCsZhsI8UzvSKf-RGM4oBnRV-Qnsv1SCH2FiFTaOiY4A4UXrcTNrv4YmANNoZWPOlixFG3ZZPv46LesMs6AAf83gd6WBah6v5WMaCgYKASkSARISFQHGX2MidJj3v895zu9j909WyT3sZA0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="XPVP1W-Dj6_SxHToEXBYhQ" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692272 family_name="wang" given_name="sheng" iat=1731688672 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJYUFZQMVctRGo2X1N4SFRvRVhCWWhRIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg4NjcyLCJleHAiOjE3MzE2OTIyNzJ9.CNADHms8xHGN0S0vWL5Drr5xOTMQtlFG114NNDQ3lyzpHYDpGsGV2U7Wrzj3SznD8bxt26cVkrBKYRXRoHknef9_zNtq6Lo61Jqo6Aakqe4rmFo_OWW_dy0W00mQ99FV9yMC2PIHo8foszbg1D-O8ucQiow6-KYkc1e1pWpwOYRWVNINlImEy2lWZXREevTLZnpbB-R0Zecj8RCTgpmaAMptdr7lqaf8gv7WqbkMyjE8tbYEia2UxPVeZfrPXyeNfaspYMG5AuidrOchssiX_jmCNGoeCDg-zTvuX3kidmHuXfTptVHMr6UkTE9eLwLyW_5XGQX0hyTRhLDqK7xcAg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+Completed 500 Internal Server Error in 330ms (ActiveRecord: 3.4ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+  
+NoMethodError (undefined method `save' for nil):
+  
+app/models/user.rb:33:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0ZX8ic-RDmqt2cGsSgAmdTeRGTsuL0d6nypa8QZw6n_7n3XY2IFFqFy-txqq9rcSQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:40:36 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0ZX8ic-RDmqt2cGsSgAmdTeRGTsuL0d6nypa8QZw6n_7n3XY2IFFqFy-txqq9rcSQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692435 refresh_token="1//04Od5e48v1N0uCgYIARAAGAQSNwF-L9IrcBAlxVvA9Kmqcki7GBK2lu2X16Jn4Xsq2Bs2jYdUfqfYoCstrcXJ72vIdyl_ITLNZL0" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZCuzkeXesjaPMoM4I49m8YsSGamtRqfKq6aPxGdSIIlmYzYuR05CaPUM0-WhWC2TmjzuB1AqSvjbCCbz5D5Lr77QxqTyQkFdkrTz1nET2i1o-qRxUIaMzUJaMMl5qKOK4WCsj3pl07q-9sfIuqtE9zMIwCkNwAEI9aQaCgYKAX0SARISFQHGX2MiIf5tb1J10HT7mP7Mxz16hg0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="CWq-1OQ_PBQOQ_vdONo6Bw" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692436 family_name="wang" given_name="sheng" iat=1731688836 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJDV3EtMU9RX1BCUU9RX3ZkT05vNkJ3IiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg4ODM2LCJleHAiOjE3MzE2OTI0MzZ9.jW-Qmo5VBOHg_hcdwA1LRg3ih-IfKI7zA3Mt1AGveoxxP1FQC1cY2aJOzlaDseTgizlyMaRkMoSgt7OBlZLAFLmpdm39NKH7BMcS3cT64GkJVMRAvcbGY2LIKWqAuFIWZx6Y0osZFyR2J6VTmNic9zucfh7B0Wymdx0e9BJYKCdboXa8W_j60Z72637XuYEwAXbXrsEkeBmwnHttJ3zdaTqEqG2gnQ5WZ9_M8FPZiis706-fgLT2l3zxwr1VIpbA-C9-tVnvNySP81BCmDzJKmiBG101KcUshHYd5WHLOf8gS5fXy3KFesqkFZFdG2knpziWf5OqDWu1U6UZG_oYkw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mUser Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+User get!
+Completed 500 Internal Server Error in 308ms (ActiveRecord: 5.7ms (3 queries, 0 cached) | GC: 18.7ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:38:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0acNU43om1TPX4l_mRZlKv-K2L3WO1S9wbCzmeBTgNjWdDxi-imFHg0WxGBuOqdpA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:42:24 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0acNU43om1TPX4l_mRZlKv-K2L3WO1S9wbCzmeBTgNjWdDxi-imFHg0WxGBuOqdpA", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692543 refresh_token="1//04GmBaoy75WkhCgYIARAAGAQSNwF-L9IrajNiLO-582ePSMDN-F95-Y1TOaPI2v3oj_J79WxiuA9oX4XqrwRvXFVV1st5vwfk-BU" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDTSzy1ANMJHZ2oQfE6W7POGUKE9E7SbL-BdrwJ369DCzrBE6BS3a4JjXs3cg_OBGMfQZXYMpd75oLY7q3bUk1ikOoy_Dvb0hiQjEIvfptrvNaYyO1AdGDn_P5DgOhvVVfmLqN_d5L0j9LtKaUcZ3gVuSHT8b99q0FPaCgYKAacSARISFQHGX2Mih_wASoMl-yjLhx4n7bFbHw0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="en8cuOv_iAXXuZmVSvPhRA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692544 family_name="wang" given_name="sheng" iat=1731688944 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJlbjhjdU92X2lBWFh1Wm1WU3ZQaFJBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg4OTQ0LCJleHAiOjE3MzE2OTI1NDR9.fr8_5SYbnSkJ8CA0SsPh1CffxiubbJY_D3dbTT77w7asemibr26BZVezGaJx2MKeAxlgC9WBpOsVPY1DlaC0xGYlBL6G094aGZnpLVmU_npDE_CEOKebfR4uT_FIJW5rY_mXH9K0eW3EkFlYixAeIxmEFZRTTJbu6bJHwSn0Prh5hHLIZ3jWylDre3hmIeHk0vVTrPQObEwo-4IqTX6DmjHsiMxbQ1LB5mrI8Qi6j2iNL7vllPRDQkFqCZ1QfJh7IpkHJ223W6gwDEFh9qh5nMK9BQW2srPapYbXxBOle_0StUbVZVNw4GyXayQdYkUXUeOLJxLTNDW6sQ-oLr0aLg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:26:in `from_omniauth'
+a!
+Completed 500 Internal Server Error in 296ms (ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:38:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0aFpW1WujdYmS4caghRKZdlKWV31JUE2tPq0EiyBbBHwF09lL0rk35qWEDhRBEPJw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:48:24 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0aFpW1WujdYmS4caghRKZdlKWV31JUE2tPq0EiyBbBHwF09lL0rk35qWEDhRBEPJw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692904 refresh_token="1//043T1uDnE9kSYCgYIARAAGAQSNwF-L9IrWDNKXfCkkCxvTNKh0gt4XKJMBC91yOKHkAWVp7pu1bxwzy-LSnZz3U6ZxV3K9rgb-hI" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZB6B8-9iNG65B4YGdq240ixms49d_1sZqYuUrsF_5ZEv8BxGLrF5i2ZM9D04MXiChipln8ol1LaM9gWY6YMUNoBsDpHHA3AvLQ-sJOlP3RI_McM0XgFjxIKgI6O8qIIqejXpOp4yzafbHf1a8QbcEvSLZyh5GYO_aqUaCgYKAaASARISFQHGX2Mi6IRnhzCU34veZoh6mvKT5g0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="2NYNaETZQhxgQKPlXoa80g" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692905 family_name="wang" given_name="sheng" iat=1731689305 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIyTllOYUVUWlFoeGdRS1BsWG9hODBnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg5MzA1LCJleHAiOjE3MzE2OTI5MDV9.cU4JheG4vVZdki065jmDcTut97nwPx82zqr_UV88lFOUhFfAYuXP0lbRrQfm_sbx0YNM1_khMAErY6HBFtpFAjOZF0eNPSnTFzJ5bkMbuNT2luvZeW4HYdfDeF9HjXwzu1y5TQAICSPSADJZTAXFOinSz29Gs8uPDneD-VvxQ51hZqnW3tRDk08OQfaAV4aTSHkHPX2Su0Pny2dWsE5gzVwzLhv6yI_Y0a0x4qLheWyWN4GyMuy3jLEGFIS35dze1EuQM0sps50KjF60bjtqmC0-cXx8-4Tx1ZKJN4e7zRvB4ZzjrS8H8zT-gF2wSys2Gx-pcwbjtlAMn52OmK830g" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+User object: nil
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:27:in `from_omniauth'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:27:in `from_omniauth'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:27:in `from_omniauth'
+Completed 500 Internal Server Error in 295ms (ActiveRecord: 2.0ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0Z1tGfHmvHNGvdneqEHCwpghqaA6BQpUCus6xdZyFfBczsqBBHZWU_eU6dB93i3CQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:49:53 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f4ab7aa93d341610282f50f71be7e43da7b3959244930310", "code"=>"4/0AeanS0Z1tGfHmvHNGvdneqEHCwpghqaA6BQpUCus6xdZyFfBczsqBBHZWU_eU6dB93i3CQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731692993 refresh_token="1//04k2ExfXr9suNCgYIARAAGAQSNwF-L9IrghN9Q8mx-mT2c66qlyOFTBnRFIqovxrtpqBXkyVnrtK3HllBTOfVOTmHmyFrcUa5DIM" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZCgyldSapunckQE87NbCaM-5YCL54ZkWjIJzcZlL6X69NQcCvELY5vj_ArMhP0N_Zlh2kumZRxJ74p1xvkg4OIg0iUV5zF-oZ0N_ZFd2ChD_JDXFtudDZHLE06JbylmQuQy3yw6tC9HX7qDJCIwNXVkuEw5SiF2i4WvaCgYKAcYSARISFQHGX2MiawaHnLy10m7RMxwpErYfdQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="PckpIr3gZKV7QaTHBdU5tg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731692994 family_name="wang" given_name="sheng" iat=1731689394 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQY2twSXIzZ1pLVjdRYVRIQmRVNXRnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg5Mzk0LCJleHAiOjE3MzE2OTI5OTR9.NWyVl_gjpgkgUvRezzx17TkKUkLxCOvAQV9BCi7GhIhN6U5Y_zl2Q9AaeQ95PL9aN9POUV9gx9DVXplr0TztYjU6TVsjL4TaTLdo0IFwk_VM7_bt-EDblTAzA23YakWvqrm0oPPXqHmKnV9_s1btNC0kD8icLpmu2s2DVXg7L59HJ2i3Boi4EV9KUYRdrxeDqe8Lg3UQACrqqy2NeoZCR6LJIxKIv_H_cpkd1RQ5jzlgIrcGsTxq8GePwF2WeW9FJKdqpAq2l6pi5vrmgZXXaHr6v3-MG9EU6AwDjVe-hjTDsThXOXcZcNIyioMfXMBxb8nF7oi10IVewgStnQGTBw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+User object: nil
+b!
+Redirected to http://localhost:3000/login
+Completed 302 Found in 14ms (ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:49:54 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 21.1ms | GC: 2.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 42.6ms | GC: 3.3ms)
+Completed 200 OK in 47ms (Views: 45.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.3ms)
+
+
+Started GET "/auth/google_oauth2/callback?state=f4ab7aa93d341610282f50f71be7e43da7b3959244930310&code=4%2F0AeanS0Yz-LRAZJF0dMO04ss6aTmFcX0rdGP0V4h8YjzDkmhNcqmXzu4JXGHGwVfTOXa50g&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:50:33 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 10:51:10 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 23ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:51:10 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 17.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 62.6ms | GC: 0.0ms)
+Completed 200 OK in 69ms (Views: 68.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 10:51:12 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=0761a61c192c79505f2f7d73343bcf799e3a0485aabb865f&code=4%2F0AeanS0b5BXp5mI4IUx-HH9uFKNk3AB6jdwbM7yMIlpOsR_Mz6sMrmSClbtdcMRtQ-nVevw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:51:16 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"0761a61c192c79505f2f7d73343bcf799e3a0485aabb865f", "code"=>"4/0AeanS0b5BXp5mI4IUx-HH9uFKNk3AB6jdwbM7yMIlpOsR_Mz6sMrmSClbtdcMRtQ-nVevw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731693075 refresh_token="1//04ziahOZcEkojCgYIARAAGAQSNwF-L9Irg2NbxQ9eNGNyUCYeQ-AcWnrjG-fTnL3qtZoDP3hl4CVN3_JOq7VvWucM6P-fqhdH6lQ" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDGwB04AL79E-DXr7EgBZMckxVT4gbpSCFYKqqrTStb6TXryRI-m5LtXBvIU24nIohebxXTyF1IspLxV_xqvGexut3XnaG1G1-jsMAEgxab-1ieQ4jAR3ho6GtoQ3DePqnxEokenuQNBa1nQ_kQdUbWLFPFCzCK49KeaCgYKAYwSARISFQHGX2MillPLUlYZV97aw132GDwBug0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="zbHF_hNTJoUu1c-BLEf_Hg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731693076 family_name="wang" given_name="sheng" iat=1731689476 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6YkhGX2hOVEpvVXUxYy1CTEVmX0hnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg5NDc2LCJleHAiOjE3MzE2OTMwNzZ9.26TZlgBY3lslnbf_H6byFFeNn-SKJClt12ZS8qLn502-E8e-ekh1_909oGZeC8RP242LA_GEYjfj4Pq95gJyAnAJaBV9dhetu7dpUZnRm0NnvGwZa_hY7m5sTQprWCtlF485oS3sHUhoVKgQgNfUXngqyrTIh5kzxXF-3tZYbANvXA2S_TVPTUMlpqXaD3tzgwIIW8Si-1zTZmoVDD3iiohXOrUlRjvG2jnCgWy3F2iw-ZXZr-ziL-Z4-VDjPfh4x46qaHXJGuncaidlVpf5egk6Q4Ev0MDz4VTBfZJ4l07Jf4uIgWQwm0Hxs2ruwRp0BXaBTewOVufZGVTeunYb_g" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+User object: nil
+b!
+Redirected to http://localhost:3000/login
+Completed 302 Found in 22ms (ActiveRecord: 5.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:51:16 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 11.1ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 11.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/google_oauth2/callback?state=0761a61c192c79505f2f7d73343bcf799e3a0485aabb865f&code=4%2F0AeanS0aPM7oEHUUoDBF1iAmNnOx9jLTTTA90ZJm3HQSwvv5TA1ujZrzJ00b1FTXA5SzdPQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:51:59 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/auth/google_oauth2/callback?state=0761a61c192c79505f2f7d73343bcf799e3a0485aabb865f&code=4%2F0AeanS0bvK6IqNyBl6CcKQn1Aay0slSsQYAnLSY-7sB9LoH3Lvi0aUAtedDGzMKb_FSBWbA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:52:28 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/auth/google_oauth2/callback?state=0761a61c192c79505f2f7d73343bcf799e3a0485aabb865f&code=4%2F0AeanS0bXugERnL9SQYFPeeEfqy2Ecqqx7Jo8qPBi56D3YFThYQkHofyBLMSvs7IoQV-SAA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:54:11 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/" for ::1 at 2024-11-15 10:55:48 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 17ms (ActiveRecord: 3.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 10:55:48 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 20.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 36.5ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 38.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 10:55:50 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=7ecf563936e3d4f16628a2ba8b8442b87f83b978a7ebfe0f&code=4%2F0AeanS0YMmm-vq755tVY0F7w7megZA2EeWYSl_Kn_vk9GUCI3eHayZqk963A-Su66bSVHcw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 10:55:53 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"7ecf563936e3d4f16628a2ba8b8442b87f83b978a7ebfe0f", "code"=>"4/0AeanS0YMmm-vq755tVY0F7w7megZA2EeWYSl_Kn_vk9GUCI3eHayZqk963A-Su66bSVHcw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731693352 refresh_token="1//04eydLSSsG_HKCgYIARAAGAQSNwF-L9IrcAkk9YqrIhvn3d4X3DmDLn9daJNU-htc1-8_c9l-drodGpoqQGylAbbtTaF7Gk_-Ql0" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZAqoC1y9lo2S_Qy5TZ4gucBJNwCuqZpFYXU2U9AOAkt3EfYHnjejEwJGbRH2CWJT9nUWDjhwLfKrIkEMdpuL1JYY2XPGqBCK3w9Q2Eobg-QuTYlZOVhYUYmc9BC-PuiaNMh0gMpqOO1oF-YfeIypJB1uURq5f2tVy0faCgYKAZASARISFQHGX2Mi83v-PocwLdsH09IVL_uepQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="uYxyada0YxVIy26XJO99zA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731693353 family_name="wang" given_name="sheng" iat=1731689753 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ1WXh5YWRhMFl4Vkl5MjZYSk85OXpBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjg5NzUzLCJleHAiOjE3MzE2OTMzNTN9.RRubtUSciSuqLsPFBNZvI8N1e736QIueVHmdxMkx-uzLX5Rz10L8layVQm79Al3abr5Zn-gcyCMrFO2B_cN5e9YBVMxglJtzfoSJg73lbmNf2pIYV7Zu0fMbAqyt92m0puSvZRyuCwT67D4sXMABiUywtU2MllWzQePrcfo_bak3Xlg4TIM_2sponxF92zJfiT11wqpfhHfK9Fw3c9jSUvj2SKsvr_nHqf4NruDIibecWwNyWiuAH60YhqiHkqHzwfW6y1l0Rc2sA7sbyAQ46yKPQLyHj6grUyOBGCIT492rkYDmJEkYyi_wqn_BXqOJ14K9Xn5LfbI7WPccY2264Q" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21:in `from_omniauth'
+User returned..
+User: 102181201145631017330
+User email: yzbtus3@gmail.com
+User object: nil
+User returned..
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:28:in `from_omniauth'
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:28:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:28:in `from_omniauth'
+Completed 500 Internal Server Error in 298ms (ActiveRecord: 4.1ms (3 queries, 0 cached) | GC: 2.1ms)
+
+
+  
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+  
+app/controllers/sessions_controller.rb:37:in `oauth_create'
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2024-11-15 11:03:06 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 23ms (ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 11:03:06 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 17.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 63.5ms | GC: 0.0ms)
+Completed 200 OK in 70ms (Views: 69.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 11:03:08 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=c403ce64d9e2123bf0c4c4c1fd1ff02582505b5ebc37a2cc&code=4%2F0AeanS0YeLSCxTj3PnM6jDdfGuznvhDLqMfXOB_ocP6qVfV7GEoNmXHPtySnrQm3x3FUAYQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 11:03:11 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"c403ce64d9e2123bf0c4c4c1fd1ff02582505b5ebc37a2cc", "code"=>"4/0AeanS0YeLSCxTj3PnM6jDdfGuznvhDLqMfXOB_ocP6qVfV7GEoNmXHPtySnrQm3x3FUAYQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731693790 refresh_token="1//04BdZ-JHV5EdLCgYIARAAGAQSNwF-L9IrlMfJyV3otlEmZBr0A5Ce2W3HvByBmOs2B2Z9E3q6qgxGQ2ccPb8XpnpDEvbvr2atyJ8" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZCKS1dRvM6NL4U5qXmZS252azoL-BcdLTwVqR-7DqKkLYJBEjXAcsILNLfob-aR45kkJkEkelhUbvurk93SYI6ljiYrYzg0o9DVzIsGuVlx3kvpVbM0h1UreJyfemwrFCdkWVyKHlkNnNE-xWWlV9ZBX5KjPV7DDjX0aCgYKAfwSARISFQHGX2MiSDlmCSYCVZtj874Vdlh7yg0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="no7bc3JWMZM6ZcmO2YbVZg" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731693791 family_name="wang" given_name="sheng" iat=1731690191 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJubzdiYzNKV01aTTZaY21PMlliVlpnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjkwMTkxLCJleHAiOjE3MzE2OTM3OTF9.aZy7pxUjNlTJT9xu55z9Jo6dywtfwVLE9HYsDx-yV62a3AMv5jnFegRtNK3zVekCXDEw9M0-nddjh9bzUsX4Iue2nAUdi6VJlfryykpTuoRfpv6jFP7lCSTuWrk2zZijF6C_HIGWmBdn-jWZ_dJsvdz6abVTbG1Op30LdX9mBmqdztKznY0UQN5CeioXE3SJlu8GJkp-3oI1bCNdF6exa0jcXE_nwiii3CB6szXz0dVOvwztRBmGF9Qav1BOgV9RZUKKMU3k_ImIaCowsU7lDkrYrMn5KIO1xURsIByIa1ZsmLITy6PmIyHIDCloATEcNVFoodGGsDVtSBWtwQh65w" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: nil
+=============================================
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:31:in `from_omniauth'
+  [1m[36mUser Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:31:in `from_omniauth'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/models/user.rb:31:in `from_omniauth'
+User creation failed: Validation failed: Password confirmation can't be blank
+b!
+Redirected to http://localhost:3000/login
+Completed 302 Found in 320ms (ActiveRecord: 10.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 11:03:12 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.9ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 11:06:31 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=797bf8fbeeb817d1d87b22f24459dd102ebb2b64146e685b&code=4%2F0AeanS0Z29Owhoqme83T7q-LJudJxYPwBQFQ2HiiCLzd58MOjU256uem3xTp7LXqnfLXDbg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 11:06:35 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"797bf8fbeeb817d1d87b22f24459dd102ebb2b64146e685b", "code"=>"4/0AeanS0Z29Owhoqme83T7q-LJudJxYPwBQFQ2HiiCLzd58MOjU256uem3xTp7LXqnfLXDbg", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731693994 refresh_token="1//04KtEwSVPdEM9CgYIARAAGAQSNwF-L9Iro-XOcmjy1TkTgWT5Bk92e4NSO_vTzaIOyWFjZBKdki8vdxqaj1sNo6lDWosiMCMeEc8" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZASNObMre06Gn6o8RP_kbc1EAT0hpKnA5FJi61F2PJpfBaLUk6UggihAwMAxQzmmce9S5ox9Pw5DrH0QjwN5hHNtQb-kqg8PjZvRMAS5NXT13Kvb5VFciJfgblEXLpxjrXbmo9C_wu7ytiLeLVhwCUrpeNMgkZj-AepaCgYKAS8SARISFQHGX2MiURtmfyCcUt2diHdYNypqHQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="d1rZ3EtEgukeqcrdZEqU7g" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731693995 family_name="wang" given_name="sheng" iat=1731690395 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJkMXJaM0V0RWd1a2VxY3JkWkVxVTdnIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjkwMzk1LCJleHAiOjE3MzE2OTM5OTV9.IZ6S--CjFyG75DlXN4s1y9PyX2RhI3oPFLzGO6hA5cjvHPgau298sQpzRgODQ8RxkkuRfTNKO2I2KrWL93b6IGLPw2bpB6Y1dDz0cjRhCXoTTBveNrN4KtNcTmI3cWX_As6MbOOxDES6PIF4Ipvm6UoAkEeKaCuKG3vaFmIlwmPEXY73487iNH75_BowREOVaPregbNJVCWbx0N0WW_QsBbDiU-gcRKvXPlxhNOCO7UK7Fn_qU2GZAS67NhBzP2uKDsxJuGYL1hT3s65oNkFDqQ8hGz84cb69c2LA1w-Asc37BxjB9xVYW1Ok5AeudSh5bcr23EAY0zvT-Xpe__SCQ" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: nil
+=============================================
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 2.3ms (2 queries, 0 cached) | GC: 1.3ms)
+
+
+  
+NameError (undefined local variable or method `password' for class User):
+  
+app/models/user.rb:36:in `from_omniauth'
+app/controllers/sessions_controller.rb:33:in `oauth_create'
+Started GET "/" for ::1 at 2024-11-15 11:07:21 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 26ms (ActiveRecord: 1.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 11:07:21 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 15.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 29.9ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 32.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 11:07:22 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=001f5a8966241cd030cac38eca632be944d6957eac390302&code=4%2F0AeanS0aIWQKYSipJuRVk_3cqs6CFx8mpk3BV0vuQvUrkt6yF80SwcLbrP7UrpHadALe7Jw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 11:07:26 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"001f5a8966241cd030cac38eca632be944d6957eac390302", "code"=>"4/0AeanS0aIWQKYSipJuRVk_3cqs6CFx8mpk3BV0vuQvUrkt6yF80SwcLbrP7UrpHadALe7Jw", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731694045 refresh_token="1//04HhT0PlFAvg5CgYIARAAGAQSNwF-L9IrWO9uLZV23iW90wnRtL-SW4xgAsAFdtvT3DhJgyZUXgsHnDaRFemqLt6JjB9flvdXIHE" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDBC-WqDAiYhRj7Km8YmpWIltcJ7SAZEDjv6reMYxFvlpxGNair3SRpDksNsk_9CnTaUGrz-MgMqF70ohnLi40XXKaXvuWFLCtIqqpwS6or3gCTO1ka_yyTMkbKfBk5yWMiyvx4QnqO1hku1aqSVrCrvM97M-34DH-6aCgYKAT8SARISFQHGX2MiClvNvYzZIVNiMhoMvLRx1A0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="_qpsZmTsLdiQgXHwXaO_yQ" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731694046 family_name="wang" given_name="sheng" iat=1731690446 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfcXBzWm1Uc0xkaVFnWEh3WGFPX3lRIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjkwNDQ2LCJleHAiOjE3MzE2OTQwNDZ9.Q4E9Fl_pOTyYTLVijEcVBlshqXTv2nwfCIB-ByMvEzOMlrGm4kwts_VpK0c_3d1c3OkzbYj8tRo-LxzfZE5J4qSS7tcEtkwyKTrY2annrsTW8pvMKjbF5c6zlJeeiPQ7PkFUvCALSVjGFmBHFVFbhgoXokLEPnhwFOyQLezKKErLj4zr3Ys3CfpTIra-x8y1wuf5jGicjZImXRl8UWS6ndJU8QSOCiHxaVu8lBzFgFZbTG_Nel0gaMStbGv3jbVzox2HXOywMqV5UzeHtNgY_KjAisLcWbZ7Z5jdBk2TGk5DXe6NuYxaHrg4IWIha0zU46jT0Rx3lCIBNZAmLozTJw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: nil
+=============================================
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token", "reset_digest", "reset_sent_at", "uid") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "sheng wang"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-11-15 17:07:27.484628"], ["updated_at", "2024-11-15 17:07:27.484628"], ["session_token", "[FILTERED]"], ["reset_digest", nil], ["reset_sent_at", nil], ["uid", "102181201145631017330"]]
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:32:in `from_omniauth'
+User created successfully: #<User id: 2, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: "2024-11-15 17:07:27.484628000 +0000", updated_at: "2024-11-15 17:07:27.484628000 +0000", session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 321ms (ActiveRecord: 2.6ms (4 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/users/2" for ::1 at 2024-11-15 11:07:27 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 2.0ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.7ms | GC: 0.2ms)
+Completed 200 OK in 11ms (Views: 5.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 11:08:12 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 12ms (ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/users/2" for ::1 at 2024-11-15 11:08:12 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.4ms | GC: 0.7ms)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 11:08:15 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 12ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/2" for ::1 at 2024-11-15 11:08:15 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.0ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 11:09:09 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 11:09:09 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions" for ::1 at 2024-11-15 11:09:17 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 13.0ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 13.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 6.9ms)
+
+
+Started POST "/sessions" for ::1 at 2024-11-15 11:09:28 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 7.8ms | GC: 2.3ms)
+Completed 200 OK in 14ms (Views: 9.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 2.3ms)
+
+
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Delete All (0.4ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token", "reset_digest", "reset_sent_at", "uid") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "Test User"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-11-15 17:09:38.859636"], ["updated_at", "2024-11-15 17:09:38.859636"], ["session_token", "[FILTERED]"], ["reset_digest", nil], ["reset_sent_at", nil], ["uid", nil]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/sessions" for ::1 at 2024-11-15 11:09:46 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 294ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/users/3" for ::1 at 2024-11-15 11:09:47 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.5ms | GC: 0.1ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.1ms)
+
+

@@ -27,16 +27,16 @@ class SessionsController < ApplicationController
 
   def oauth_create
     auth = request.env['omniauth.auth']  # Catch auth info
+    Rails.logger.debug "OmniAuth Auth Hash: #{auth.inspect}"
 
     # Call create from model
     user = User.from_omniauth(auth)
-
     if user
       session[:session_token] = user.session_token
       flash[:notice] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
     else
-      flash[:alert] = "Failed to sign in"
+      Rails.logger.debug "b!"
       redirect_to login_path
     end
   end
