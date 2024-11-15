@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
 
   def index
+    redirect_to user_path(@current_user) if @current_user
   end
   def set_current_user
     @current_user ||= User.find_by_session_token(session[:session_token])
