@@ -64,6 +64,8 @@ group :test do
   gem "guard-rspec"
   gem "rspec-expectations"
   gem "cucumber-rails", "~> 3.0", require: false
+  gem "database_cleaner"
+  gem "database_cleaner-active_record"
 end
 
 group :production do
