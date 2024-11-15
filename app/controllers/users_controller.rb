@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, only: [ "show", "edit", "update", "destroy" ]
+  before_action :set_current_user, only: [ "show", "edit", "destroy" ]
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -7,8 +7,14 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
+    if !current_user?(params[:id])
+      flash[:warning] = "Can only show profile of logged-in user"
+    end
   end
 
+  def edit # Temporary
+    @user = @current_user
+  end
   def new
     @user = User.new
   end
@@ -23,9 +29,15 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  def destroy
+    @current_user.destroy # Assuming you want to delete the current user's account
+    flash[:notice] = "Account deleted successfully."
+    redirect_to root_path # Redirect after deletion
+  end
+
+  protected
 
   def current_user?(id)
-    @current_user.id.to_s == id.to_s
+    @current_user.id.to_s == id
   end
 end
