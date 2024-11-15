@@ -20,6 +20,14 @@ gem "jbuilder"
 # gem "redis", ">= 4.0.1"
 gem 'haml-rails', '~> 2.0'
 
+# This is for 3rd-party login(Google login in this case)
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# Manage environment variable
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

@@ -15,4 +15,14 @@ class User < ActiveRecord::Base
   def create_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end
+
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth['provider'], uid: auth['uid']) do |user|
+      user.name = auth['info']['name']
+      user.email = auth['info']['email'] || "#{auth['uid']}@example.com"
+      user.password = 'ABcd1234**?'  # Assign a random password(user may not need it)
+      # Once user database done: Generate the password randomly and fullfill the password requirement
+      user.session_token = SecureRandom.hex(16)  # Generate a session token
+    end
+  end
 end

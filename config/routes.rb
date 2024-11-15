@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  # 3rd party login redirect
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/failure', to: redirect('/login')
+  # get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
+  # get '/auth/google_oauth2', to: redirect('https://accounts.google.com/o/oauth2/auth?client_id=917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com&redirect_uri=http://localhost:3000/auth/google_oauth2/callback&response_type=code&scope=email profile')
+
+
+
+
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 

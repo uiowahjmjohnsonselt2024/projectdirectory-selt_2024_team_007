@@ -24,4 +24,20 @@ class SessionsController < ApplicationController
     flash[:notice] = "You have logged out"
     redirect_to login_path  # Redirect to login page after logout
   end
+
+  def oauth_create
+    auth = request.env['omniauth.auth']  # Catch auth info
+
+    # Call create from model
+    user = User.from_omniauth(auth)
+
+    if user
+      session[:session_token] = user.session_token
+      flash[:notice] = "Welcome, #{user.name}!"
+      redirect_to user_path(user)
+    else
+      flash[:alert] = "Failed to sign in"
+      redirect_to login_path
+    end
+  end
 end
