@@ -10,6 +10,31 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  attr_accessor :reset_token
+
+  # Generates a password reset digest and timestamp
+  def create_reset_digest
+    self.reset_token = SecureRandom.urlsafe_base64
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  # Checks if the reset token matches the digest
+  def authenticated?(token)
+    return false if reset_digest.nil?
+    BCrypt::Password.new(reset_digest).is_password?(token)
+  end
+
+  # Checks if the password reset token has expired (20 minutes)
+  def password_reset_expired?
+    reset_sent_at < 20.minutes.ago
+  end
+
+  # Hash a string using BCrypt
+  def self.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
 
   private
   def create_session_token
@@ -38,5 +63,4 @@ class User < ActiveRecord::Base
 
     user
   end
-
 end

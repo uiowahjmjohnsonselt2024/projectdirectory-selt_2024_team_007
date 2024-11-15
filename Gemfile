@@ -74,6 +74,7 @@ group :test do
   gem "cucumber-rails", "~> 3.0", require: false
   gem "database_cleaner"
   gem "database_cleaner-active_record"
+  gem 'factory_bot_rails'
 end
 
 group :production do

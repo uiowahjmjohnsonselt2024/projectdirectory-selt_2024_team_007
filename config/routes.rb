@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
   root "application#index"
+
+  resources :password_resets, only: [:edit, :update]
 end

@@ -2065,3 +2065,152 @@ Completed 200 OK in 28ms (Views: 20.5ms | ActiveRecord: 0.3ms (1 query, 0 cached
   [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUidToUsers (20241115152600)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "users" ADD "uid" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241115152600') RETURNING "version"[0m
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-11-15 14:38:08 -0600
+Started GET "/" for 127.0.0.1 at 2024-11-15 14:38:08 -0600
+Started GET "/" for 127.0.0.1 at 2024-11-15 14:38:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Processing by ApplicationController#index as HTML
+Processing by ApplicationController#index as HTML
+Redirected to http://127.0.0.1:3000/login
+Redirected to http://127.0.0.1:3000/login
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Filter chain halted as :set_current_user rendered or redirected
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 157ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 81.3ms)
+
+
+Completed 302 Found in 156ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 81.3ms)
+
+
+Completed 302 Found in 157ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 81.3ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 14:38:09 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+Started GET "/login" for 127.0.0.1 at 2024-11-15 14:38:09 -0600
+Started GET "/login" for 127.0.0.1 at 2024-11-15 14:38:09 -0600
+  Rendered sessions/new.html.haml within layouts/application (Duration: 64.5ms | GC: 4.9ms)
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 20.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1082.6ms | GC: 273.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 984.6ms | GC: 268.9ms)
+Completed 200 OK in 1170ms (Views: 1167.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 277.1ms)
+
+
+Completed 200 OK in 991ms (Views: 986.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 268.9ms)
+
+
+  Rendered layout layouts/application.html.haml (Duration: 768.8ms | GC: 209.7ms)
+Completed 200 OK in 790ms (Views: 769.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 209.7ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-11-15 16:48:40 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 56ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 31.4ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 16:48:40 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 16:48:40 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 10.5ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 56.3ms | GC: 0.5ms)
+Completed 200 OK in 71ms (Views: 68.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.9ms)
+
+
+Started GET "/login/edit" for 127.0.0.1 at 2024-11-15 16:48:52 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/login/edit"):
+  
+Started GET "/edit" for 127.0.0.1 at 2024-11-15 16:49:04 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/edit"):
+  
+Started GET "/" for 127.0.0.1 at 2024-11-15 17:07:29 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 41ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 25.7ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 17:07:29 -0600
+Processing by SessionsController#new as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 17:07:29 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 11.3ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 61.0ms | GC: 1.1ms)
+Completed 200 OK in 72ms (Views: 70.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.4ms)
+
+
+Started GET "/reset_password" for 127.0.0.1 at 2024-11-15 17:07:42 -0600
+Processing by PasswordResetsController#edit as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 17:07:43 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.2ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/reset_password" for 127.0.0.1 at 2024-11-15 17:07:52 -0600
+Processing by PasswordResetsController#edit as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-15 17:07:52 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.4ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
