@@ -18,13 +18,6 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     user = find_by(uid: auth['uid']) || find_by(email: auth['info']['email'])
-
-    Rails.logger.debug "================= Debug User ================="
-    Rails.logger.debug "Auth UID: #{auth['uid']}"
-    Rails.logger.debug "Auth Email: #{auth['info']['email']}"
-    Rails.logger.debug "User found: #{user.inspect}"
-    Rails.logger.debug "============================================="
-
     return user if user
 
     begin

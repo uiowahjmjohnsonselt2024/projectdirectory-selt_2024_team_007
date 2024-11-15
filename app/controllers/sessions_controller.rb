@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:session_token] = user.session_token
+      session[:last_seen_at] = Time.current
       redirect_to user_path(user)  # Redirect to user"s profile or another page after successful login
     else
       flash.now[:warning] = "Invalid email/password combination"
