@@ -1,0 +1,183 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/sessions_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          4,
+          4,
+          2,
+          2,
+          null,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/users_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          2,
+          2,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          4,
+          4,
+          2,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          12,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          11,
+          null,
+          null
+        ]
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/channels/application_cable/channel.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/channels/application_cable/connection.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/ziad/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      }
+    },
+    "timestamp": 1731652275
+  }
+}
