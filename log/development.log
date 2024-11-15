@@ -4831,3 +4831,497 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.1ms)
 
 
+Started GET "/users/3" for ::1 at 2024-11-15 12:21:24 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.1ms | GC: 0.5ms)
+Completed 200 OK in 22ms (Views: 9.1ms | ActiveRecord: 3.1ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 12:21:26 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/login
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:21:26 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.9ms | GC: 1.8ms)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.8ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 12:21:28 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=2f8940513879e613a21efcd0ddd7d93d248a41bc01a3fb81&code=4%2F0AeanS0YL_wq_98hMwHkjoeq78wV_z3hLztSf0x23sQJIE2rm0kcBe2cMRNPIDZhuTeTSSA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 12:21:31 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"2f8940513879e613a21efcd0ddd7d93d248a41bc01a3fb81", "code"=>"4/0AeanS0YL_wq_98hMwHkjoeq78wV_z3hLztSf0x23sQJIE2rm0kcBe2cMRNPIDZhuTeTSSA", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731698490 refresh_token="1//04Wusf6aK7umfCgYIARAAGAQSNwF-L9Ir8d5QKPmtTfLfBrs7QO2gwKVGUZ5pXuNexgRtIMMCJ66c6VS8qdAe4SHPmL1cue5wfL4" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDIUu8SLVOwdyB0wJhTyISjyZ0DE6D6m3Ax1bSVSRAerfLjg-g834ubXo5Lc-aL-iaFYYBdEeZzSTbl6o6GRuxmWJ5IGrjZd95RrK5oWVzA_xkC5cOHbCeOQURhYaAMa8clfZ7csIuGjrxs4h0b0GqVqRI9vQBmj1huaCgYKARoSARISFQHGX2MiVqQKYghXmDtz_mVK_mwJvg0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="7KmwFtoI2fnrhwpzRYyxDA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731698491 family_name="wang" given_name="sheng" iat=1731694891 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI3S213RnRvSTJmbnJod3B6Ull5eERBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjk0ODkxLCJleHAiOjE3MzE2OTg0OTF9.QxntddXP2QQyTBKE60R35QvgfMxKzXy5_vhvVpU0shU9ga5FT7YzmdyVKxvxvad2OdG55shZWQ0a_Hs1gT8MD_WaMPxd0s14TPuXKHymYsH00uE3SG-vgDI3ToJVlpvwoOfz4OwKKlMuvW50zLFsSjMiX5WoMVEa6jv6tLybXgv__GYeFkGFekn6kUJyHI_NJoVnZEMKG48IHEBZB7OlobGATrHXTNjTyumhBrnMr66Y6K40i1y4V1q25qPvRXXlebjsHOlPVuAPt2JouIVEXmKnRwcWtoEBmqy2AjipAAGI6OS4AuQi61xSRGeT9knttHxle6GbN66fiZL0AhO0Dg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: nil
+=============================================
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token", "reset_digest", "reset_sent_at", "uid") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "sheng wang"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-11-15 18:21:32.487152"], ["updated_at", "2024-11-15 18:21:32.487152"], ["session_token", "[FILTERED]"], ["reset_digest", nil], ["reset_sent_at", nil], ["uid", "102181201145631017330"]]
+  ↳ app/models/user.rb:32:in `from_omniauth'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:32:in `from_omniauth'
+User created successfully: #<User id: 4, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: "2024-11-15 18:21:32.487152000 +0000", updated_at: "2024-11-15 18:21:32.487152000 +0000", session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 317ms (ActiveRecord: 2.5ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:21:32 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.0ms | GC: 5.2ms)
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 5.2ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 12:23:42 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 22ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:23:42 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 17.2ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 18.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 12:24:15 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:24:15 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 6.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 20.3ms | GC: 3.9ms)
+Completed 200 OK in 26ms (Views: 25.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.9ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:27:05 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 11.9ms | GC: 0.9ms)
+Completed 200 OK in 16ms (Views: 14.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:27:07 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3.1ms | GC: 0.6ms)
+Completed 200 OK in 12ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:14 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 4.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 16.0ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:32 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.9ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.5ms | GC: 0.5ms)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:44 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 7.0ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 13.8ms | GC: 0.3ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:47 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.7ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.9ms | GC: 0.1ms)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:48 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 10.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 14.9ms | GC: 0.2ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:28:50 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.3ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:29:15 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 5.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 12:29:16 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=d03347dbd36e35bb8028596842dc34cb0f3da05f3cbe1e2e&code=4%2F0AeanS0ZvNiP7ak_Fy4EyQCxfqYkUZi-hK9B42vGrimvetRIL78ShfD7biiQL5N6rH8WtgQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 12:29:21 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"d03347dbd36e35bb8028596842dc34cb0f3da05f3cbe1e2e", "code"=>"4/0AeanS0ZvNiP7ak_Fy4EyQCxfqYkUZi-hK9B42vGrimvetRIL78ShfD7biiQL5N6rH8WtgQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731698960 refresh_token="1//04oYnmX9pWld0CgYIARAAGAQSNwF-L9IrP5dxHzw43H9RpbJFAlsoxSNTq6lKZGTH905VrqjtFRZXq0ugvZ8LRGSP9yYYFDctJDo" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZAQuLGYVWvryH0hIwbIiNN3TRvClKfpOqdoiXSxC01b-ySofrFpH5QW3EyqJkuh8SN6pTse2HRGM9MT4sQnKnVUvOwCzABQt07C9JdPUV13IeJMZZmjpJLJZ-6Xio0yflUDzYdjiLH127SsG4ySxmz7f5TX-Edfs9-ZaCgYKAakSARISFQHGX2MiapFpVoK-MGeKzkz1OHupsA0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="WZu7vVofuY-BVWNK-WWZlA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731698961 family_name="wang" given_name="sheng" iat=1731695361 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJXWnU3dlZvZnVZLUJWV05LLVdXWmxBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjk1MzYxLCJleHAiOjE3MzE2OTg5NjF9.1cedMNrtOzVIvIdapMRhpyEWDJ__ouHe-4-gsZHEr6Ygo9haBlqvMUxpOakuT_OrCQSS2bbTMq8BQLNgXvPYWnjWgIxQiW6GwPAsKn2Ye_IDop8WJEz7FDkEtYmarycSR7yLKu46KzKY2AePnMnt2L_nduqfWPacyBDTTVAp_rk0NQ51L-zC6Q9aTxtLS3Z21zUh046s6ueplZ_hztouCscvI7tEWvev95Y78H3NqEo1PWuGbS-l8Srd81HQgzrGV0JoycZZHui9FKHPHZxaOCUfvxi0Rp3ZCDWQkHvwvp-Ht-eSV2j7eAHabP263ScLAE_cr4Mhnjo3YpPiLc5jrg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: #<User id: 4, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: "2024-11-15 18:21:32.487152000 +0000", updated_at: "2024-11-15 18:21:32.487152000 +0000", session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+=============================================
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 52ms (ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 3.8ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:29:21 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 3.2ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.2ms | GC: 0.2ms)
+Completed 200 OK in 15ms (Views: 8.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:29:27 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.9ms | GC: 0.3ms)
+Completed 200 OK in 10ms (Views: 5.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/auth/google_oauth2/callback?state=d03347dbd36e35bb8028596842dc34cb0f3da05f3cbe1e2e&code=4%2F0AeanS0Y4gIHM0ORmCyB_MC5JQs93SQMKw65ePBxFYrd863virDuI-XWKo6cFl98Hvst-DA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 12:29:32 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/auth/google_oauth2/callback?state=d03347dbd36e35bb8028596842dc34cb0f3da05f3cbe1e2e&code=4%2F0AeanS0Z724zfhCWJ3MOONFbGQ-zXnLIBKADB0BnSwRd3g03BriF28joJu1T9fcqCNb8xpA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 12:29:47 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2024-11-15 12:29:55 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.4ms | GC: 0.2ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 12:29:57 -0600
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 12:30:00 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=1cd130ceec23aa5d54ed314fcbcdf577547b986cee064330&code=4%2F0AeanS0aloZ-ebUsE7qzxapjPiBWjN8yD7iJ3-N7o5B_m-MpgR4mG0qJagpr-OdxDwgaWcQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 12:30:03 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"1cd130ceec23aa5d54ed314fcbcdf577547b986cee064330", "code"=>"4/0AeanS0aloZ-ebUsE7qzxapjPiBWjN8yD7iJ3-N7o5B_m-MpgR4mG0qJagpr-OdxDwgaWcQ", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731699002 refresh_token="1//04pnjfUNsgYubCgYIARAAGAQSNwF-L9IrKnlFS24iJChqAV3rDI1kROGS6S-jmtwhKBc1uB5zOkpC0k-IReS-iwnf6u9j9IpYMJQ" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDtJKWPwTPE6xM6n4nK2QY-EJTiZpWT41A_1-XQNRxiTVoisuTpmZ9hFXCKFGR8UTaKgrSRxbnzvYbt6srUqy0wTSFufvmnLAbKXfWYJw0hqT-N3lCWqRlycxr6h-SB6-ozNitC7EQAw4hVOn3Zg3WNulB1nS7a4r78aCgYKAWcSARISFQHGX2MiZihOXfahbENypgNrL65_QA0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="YvcCBW7pt5V5BAYk2DwM_g" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731699003 family_name="wang" given_name="sheng" iat=1731695403 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJZdmNDQlc3cHQ1VjVCQVlrMkR3TV9nIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNjk1NDAzLCJleHAiOjE3MzE2OTkwMDN9.1ee21MmZOuDi5mSLAsxRC-0hwtONdSMlcA1vhJf5ixESrSz6I-fxcGelOf8_JR69S5wENrKBnNtZN6jvSWX5CxkkPgtITkVXFGIqgsXH13C66al5OksqtBqLusRjmJQZ3tUrTme1eQW4Sm9hO7S572jXXuxN3HeO075YF43CZfgUNRwVGSHVARSoJMCqv1AIOq8YQbnycrQZIqGfZKtQe1Jle6CByZwsf8_8tMcE0lMdP4MWKt9wBSRyAvATRJiTq2myRZGjm2aX1HU2WSLWrATNDEnoxsjTygmL29lBxBr3Zyzf0zk5knlEIlK7QZECXwtkZON5ByaZfIhbAq4Fdg" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:20:in `from_omniauth'
+================= Debug User =================
+Auth UID: 102181201145631017330
+Auth Email: yzbtus3@gmail.com
+User found: #<User id: 4, name: "sheng wang", password_digest: [FILTERED], email: [FILTERED], created_at: "2024-11-15 18:21:32.487152000 +0000", updated_at: "2024-11-15 18:21:32.487152000 +0000", session_token: [FILTERED], reset_digest: nil, reset_sent_at: nil, uid: "102181201145631017330">
+=============================================
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 17ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:30:04 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.9ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 1.8ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 12:30:15 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:30:15 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.2ms | GC: 0.2ms)
+Completed 200 OK in 29ms (Views: 23.5ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 12:30:20 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:30:20 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2024-11-15 12:30:23 -0600
+Processing by ApplicationController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 12:30:23 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
