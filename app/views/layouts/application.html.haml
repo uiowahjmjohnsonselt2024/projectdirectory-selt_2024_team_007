@@ -20,4 +20,6 @@
           = button_to 'Login with password', login_path, method: :get
         %p.google-login
           = button_to 'Login with Google', '/auth/google_oauth2', method: :post
+        %p.register
+          = button_to 'Register New Account', register_path, method: :get
     = yield

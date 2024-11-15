@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  # Register page
+  get '/register', to: 'users#new', as: 'register'
+
   # 3rd party login redirect
   get '/auth/:provider/callback', to: 'sessions#oauth_create'
   get '/auth/failure', to: redirect('/login')
