@@ -27,6 +27,8 @@ gem 'omniauth-google-oauth2'
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]
 
+
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
