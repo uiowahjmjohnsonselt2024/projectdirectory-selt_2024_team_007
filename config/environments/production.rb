@@ -110,7 +110,8 @@ Rails.application.configure do
     enable_starttls_auto: true,
     domain:               ENV['MAILERTOGO_DOMAIN']
   }
-  config.action_mailer.default_url_options = { host: ENV['APP_HOST'], protocol: 'https' }
+
+  config.action_mailer.default_url_options = { host: 'shards-of-the-grid-30472a19e6c9.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 end
