@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
 
   # Display the reset password form
   def edit
-
+    @user.reset_token = params[:id]
   end
 
   # Update the user's password
