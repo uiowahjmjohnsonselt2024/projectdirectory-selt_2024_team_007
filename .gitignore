@@ -33,3 +33,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+.idea/
+.idea/*.iml
+log/test.log
+log/development.log
+/coverage/.last_run.json
+/coverage/.resultset.json
+/coverage/.resultset.json.lock
+/coverage/assets/
+/coverage/index.html

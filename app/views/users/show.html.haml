@@ -1,0 +1,9 @@
+%h2 Profile for #{@user.name}
+%ul#details
+  %li
+    %strong Name:
+    = @user.name
+  %li
+    %strong E-mail:
+    = @user.email
+= link_to 'Back to home', root_path

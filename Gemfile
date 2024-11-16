@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+ruby "3.3.4"
+
+# Bundle edge Rai ls instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -18,12 +20,22 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
+gem 'haml-rails', '~> 2.0'
+
+# This is for 3rd-party login(Google login in this case)
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+# Manage environment variable
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -48,18 +60,27 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "letter_opener"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'rspec-rails'
-  gem 'simplecov'
-  gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
+  gem "rspec-rails"
+  gem "simplecov"
+  gem "shoulda-matchers"
+  gem "rails-controller-testing"
+  gem "rspec", "~>3.5"
+  gem "guard-rspec"
+  gem "rspec-expectations"
+  gem "cucumber-rails", "~> 3.0", require: false
+  gem "database_cleaner"
+  gem "database_cleaner-active_record"
+  gem 'factory_bot_rails'
 end
 
 group :production do
   gem "pg" # for Heroku deployment
+  gem 'rails_12factor' # for heroku dep
 end
