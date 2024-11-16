@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
       redirect_to user_path(user)  # Redirect to user"s profile or another page after successful login
     else
       flash.now[:warning] = "Invalid email/password combination"
-      puts "Failed login attempt for email: #{params[:session][:email]}"  # Debugging output
       render "new"
     end
   end

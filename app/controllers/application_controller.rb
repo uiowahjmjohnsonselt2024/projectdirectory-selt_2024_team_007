@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   protect_from_forgery with: :exception
-  before_action :set_current_user
   before_action :check_session_timeout
+  before_action :set_current_user
 
   def index
     redirect_to user_path(@current_user) if @current_user
   end
+
   def set_current_user
     return redirect_to login_path if session[:session_token].blank?
 
@@ -21,13 +22,21 @@ class ApplicationController < ActionController::Base
   end
 
   def check_session_timeout
-    timeout_duration = 1.minutes
-    last_seen_at = session[:last_seen_at].present? ? Time.parse(session[:last_seen_at]) : nil
+    timeout_duration = 20.minute
+    last_seen_at = session[:last_seen_at] && Time.parse(session[:last_seen_at])
+
+    Rails.logger.debug("Session last_seen_at: #{last_seen_at}")
+    Rails.logger.debug("Current time: #{Time.current}")
+
     if last_seen_at && Time.current > last_seen_at + timeout_duration
       reset_session
-      redirect_to login_path, alert: "Session has expired. Please log in again."
+      Rails.logger.debug("Flash set: #{flash[:notice]}")
+      flash[:notice] = "Session has expired. Please log in again."
+      Rails.logger.debug("Session reset")
+      redirect_to login_path
     else
       session[:last_seen_at] = Time.current.iso8601
+      Rails.logger.debug("Updated session last_seen_at: #{session[:last_seen_at]}")
     end
   end
 end
