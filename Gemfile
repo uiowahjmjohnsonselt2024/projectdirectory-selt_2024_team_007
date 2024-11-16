@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+ruby "3.3.4"
+
+# Bundle edge Rai ls instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.0"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -80,4 +82,5 @@ end
 
 group :production do
   gem "pg" # for Heroku deployment
+  gem 'rails_12factor' # for heroku dep
 end
