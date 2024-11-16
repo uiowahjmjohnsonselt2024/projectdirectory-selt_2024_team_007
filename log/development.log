@@ -2282,3 +2282,198 @@ Updated session last_seen_at: 2024-11-16T04:51:09Z
 Completed 200 OK in 27ms (Views: 25.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/auth/google_oauth2/callback?state=c13534f252fb96b1da60121a14b00c5d30ce060b2298f941&code=4%2F0AeanS0bm9i0GpiXuUws46JuMiYJVZiiY8eXxfoOghycIv1yfnMqp5rRhH5Fi6N426n64fg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 23:09:45 -0600
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! csrf_detected | CSRF detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (2.1.2) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:545:in `fail!'
+omniauth-oauth2 (1.8.0) lib/omniauth/strategies/oauth2.rb:87:in `callback_phase'
+omniauth (2.1.2) lib/omniauth/strategy.rb:272:in `callback_call'
+omniauth (2.1.2) lib/omniauth/strategy.rb:194:in `call!'
+omniauth (2.1.2) lib/omniauth/strategy.rb:169:in `call'
+omniauth (2.1.2) lib/omniauth/builder.rb:44:in `call'
+rack (3.1.8) lib/rack/tempfile_reaper.rb:20:in `call'
+rack (3.1.8) lib/rack/etag.rb:29:in `call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in `call'
+rack (3.1.8) lib/rack/head.rb:15:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.2.2) lib/action_dispatch/http/content_security_policy.rb:35:in `call'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:272:in `context'
+rack-session (2.0.0) lib/rack/session/abstract/id.rb:266:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.2.2) lib/active_record/migration.rb:674:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.2) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (7.2.2) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2024-11-15 23:09:55 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-11-16 05:09:55 UTC
+Updated session last_seen_at: 2024-11-16T05:09:55Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 3.7ms | GC: 2.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 16.2ms | GC: 7.3ms)
+Completed 200 OK in 25ms (Views: 18.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.7ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 23:09:56 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=f64bc48fc85bf61f4faf240a2f42d99d6a88b06848cccf91&code=4%2F0AeanS0bdY6R1sPSrvygVFyopPYPjlLU05fcZ7gXaCDlNvG0WB5OtWU8Qp7AuWk3NXtUOLg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent" for ::1 at 2024-11-15 23:10:14 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"f64bc48fc85bf61f4faf240a2f42d99d6a88b06848cccf91", "code"=>"4/0AeanS0bdY6R1sPSrvygVFyopPYPjlLU05fcZ7gXaCDlNvG0WB5OtWU8Qp7AuWk3NXtUOLg", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"0", "prompt"=>"consent", "provider"=>"google_oauth2"}
+Session last_seen_at: 2024-11-16 05:09:55 UTC
+Current time: 2024-11-16 05:10:15 UTC
+Updated session last_seen_at: 2024-11-16T05:10:15Z
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731737414 refresh_token="1//04R-pMm9LPhTfCgYIARAAGAQSNwF-L9IrbwI7jtWcN12SfSSfzF2SQnM8ewNJ8uB8vGgeyf_SKhGFkniAUzCMPbLO8hqfKKAKmSE" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDUOPXjB3JA3WcNYfQVWDYUrXsjokzbJQgLNcAWsrT4R7bCPI-FShsWO14TUl4Xvk7JWJ2nrtv1ykZ4kqOsIj779PKFtg6nbenm35Gx7AKG5y4BErJmn2k4ehSwDzD3Rgsc0ipMpyKda-NGhzoHFCVWfYQ6BlWhihbIaCgYKAQgSARISFQHGX2Mi-8RcdNXDotnrXD-Q9tHqqQ0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="pitTwL-caHdJsodG7qfYwA" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731737415 family_name="wang" given_name="sheng" iat=1731733815 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJwaXRUd0wtY2FIZEpzb2RHN3FmWXdBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNzMzODE1LCJleHAiOjE3MzE3Mzc0MTV9.nTWoGesVvJlvqZWIESq1Wv9yxWoYxatpshCRQaBA49QVXMpmuWwnPMw1ypePL6QtnTD3-U64WY5JUcOvHbnm_3ooi_gC2NcqrqbCUS-vjq4NOEW330y7RnOF2zSRTzqLI8uVXnYUEgLib9R19lNuppFKVLqWoqhXSLD3WdP-nQRfVxsqZy79ZVuilJc898d_GM_gJRtCoEAytXmjc5WRX6JKSLVJq0Zk7nRuB7Kz5Kb8XFabD2tSKkKMBT2qILFAnJofx5y7kVh5N0mFf_9iQXR5xQJg1pOTs_PgVcn6rA7pIbYD4mefTzXMlUp-UhJtUb-ZCWB6mhzHtxAwjTW1ow" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (7.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `from_omniauth'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 36ms (ActiveRecord: 7.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 23:10:15 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+Session last_seen_at: 2024-11-16 05:10:15 UTC
+Current time: 2024-11-16 05:10:15 UTC
+Updated session last_seen_at: 2024-11-16T05:10:15Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 5.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 23:11:45 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Session last_seen_at: 2024-11-16 05:10:15 UTC
+Current time: 2024-11-16 05:11:46 UTC
+Updated session last_seen_at: 2024-11-16T05:11:46Z
+Redirected to http://localhost:3000/login
+Completed 302 Found in 10ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 23:11:46 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-11-16 05:11:46 UTC
+Current time: 2024-11-16 05:11:46 UTC
+Updated session last_seen_at: 2024-11-16T05:11:46Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 4.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.8ms | GC: 0.2ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 23:11:47 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=04867c6851046fe6a1fee1245ab23de0c8e9759090c31656&code=4%2F0AeanS0aYJQTV7oXs6SGlGKjBItuuQfLAPfiWrX4chiRNhJCUgAB0h-4rTE7Yi6ywsaiVgw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none" for ::1 at 2024-11-15 23:11:47 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"04867c6851046fe6a1fee1245ab23de0c8e9759090c31656", "code"=>"4/0AeanS0aYJQTV7oXs6SGlGKjBItuuQfLAPfiWrX4chiRNhJCUgAB0h-4rTE7Yi6ywsaiVgw", "scope"=>"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email", "authuser"=>"0", "prompt"=>"none", "provider"=>"google_oauth2"}
+Session last_seen_at: 2024-11-16 05:11:46 UTC
+Current time: 2024-11-16 05:11:47 UTC
+Updated session last_seen_at: 2024-11-16T05:11:47Z
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731737506 scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZDFEr77GuUIdd3lIexqFcQPhEYVtlGvR-RuTg6mLNjiBq4igx6-MNMN3FMwFi-5iTUKAs3kWPhho5muYvYlHTJh2dIjJ0e0Utb4V9TnOBuhhMyw0vkqA1323P2KeTUQO5A1-4MG9bN5OejKaN90Iu-jfvZJZwaCgYKAUsSARISFQHGX2MiDeWLfQiIRKvceQX8YFheeA0169"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="9rjo4lyo6lZnxZMCxr_fVQ" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731737507 family_name="wang" given_name="sheng" iat=1731733907 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI5cmpvNGx5bzZsWm54Wk1DeHJfZlZRIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNzMzOTA3LCJleHAiOjE3MzE3Mzc1MDd9.ljuPKok1eU8BMFQQ27MjuEqr6PvEX-Lu30unteq6WUCUHihifFY3sv1Sg0QqeBBwYIRpPmBRgCvLDxssENmuxXkon8EgtuTAxZNwuIUEUcpt-Q5DDQYseltQ-a022l5pAffmIXg_7AIrhXXKyucf5f70El1qzOVR_xDNqPm4aiW2ryf6of1IAQIO0gRldJL-iugtYIboe4Ou81f1a0Vpejtpb64rni-fHYGygQOuoHbCxwxScD9k3aXbsA9SFnU-lZOVC3j7-UAGbcv5tVBz-Y0IbwnmQfYvpBzOTDwQwft3QYM4llI81vTT_5bxPMH797okuE0GOTWbCGHcsYDqrQ" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `from_omniauth'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 16ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 23:11:47 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+Session last_seen_at: 2024-11-16 05:11:47 UTC
+Current time: 2024-11-16 05:11:47 UTC
+Updated session last_seen_at: 2024-11-16T05:11:47Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 7.0ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 7.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 23:13:42 -0600
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
