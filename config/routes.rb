@@ -27,5 +27,5 @@ Rails.application.routes.draw do
 
   root "application#index"
 
-  resources :password_resets, only: [:edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end

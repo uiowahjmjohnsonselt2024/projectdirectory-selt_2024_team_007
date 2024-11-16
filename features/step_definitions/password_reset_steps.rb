@@ -47,6 +47,10 @@ Then(/^I should be on "(.*)"$/) do |expected_path|
   expect(current_path).to eq(expected_path)
 end
 
+Then(/^I should not be on "(.*)"$/) do |expected_path|
+  expect(current_path).to_not eq(expected_path)
+end
+
 Then(/^I should be on the password reset page$/) do
   expect(current_path).to eq(edit_password_reset_path(@user.reset_token))
 end

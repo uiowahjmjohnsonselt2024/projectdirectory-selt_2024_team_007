@@ -31,4 +31,29 @@ RSpec.describe PasswordResetsController, type: :controller do
       expect(response).to render_template(:edit)
     end
   end
+  describe "GET #new" do
+    it "renders the new template" do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe "POST #create" do
+    context "with a valid email" do
+      it "sends a password reset email" do
+        post :create, params: { email: user.email }
+        expect(ActionMailer::Base.deliveries.size).to eq(1)
+        expect(flash[:success]).to eq("Password reset email has been sent.")
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context "with an invalid email" do
+      it "renders the new template with no warning" do
+        post :create, params: { email: "nonexistent@example.com" }
+        expect(ActionMailer::Base.deliveries.size).to eq(0)
+        expect(response).to redirect_to(new_password_reset_path)
+      end
+    end
+  end
 end
