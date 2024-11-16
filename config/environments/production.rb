@@ -99,4 +99,18 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MAILERTOGO_SMTP_HOST'],
+    port:                 ENV['MAILERTOGO_SMTP_PORT'],
+    user_name:            ENV['MAILERTOGO_SMTP_USER'],
+    password:             ENV['MAILERTOGO_SMTP_PASSWORD'],
+    authentication:       :plain,
+    enable_starttls_auto: true,
+    domain:               ENV['MAILERTOGO_DOMAIN']
+  }
+  config.action_mailer.default_url_options = { host: 'shards-of-the-grid.herokuapp.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 end
