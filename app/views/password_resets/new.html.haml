@@ -1,0 +1,7 @@
+%h1 Forgot Your Password?
+= form_with(url: password_resets_path, method: :post, local: true) do |f|
+  %div
+    = f.label :email, "Enter your email address:"
+    = f.text_field :email, required: true
+  %div
+    = f.submit "Send Reset Email"
