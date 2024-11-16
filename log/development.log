@@ -2214,3 +2214,71 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mGOOGLE_CLIENT_ID[0m and [36mGOOGLE_CLIENT_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+Started POST "/auth/google_oauth2" for ::1 at 2024-11-15 22:51:03 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+(google_oauth2)   You are using GET as an allowed request method for OmniAuth. This may leave
+  you open to CSRF attacks. As of v2.0.0, OmniAuth by default allows only POST
+  to its own routes. You should review the following resources to guide your
+  mitigation:
+  https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284
+  https://github.com/omniauth/omniauth/issues/960
+  https://nvd.nist.gov/vuln/detail/CVE-2015-9284
+  https://github.com/omniauth/omniauth/pull/809
+
+  You can ignore this warning by setting:
+  OmniAuth.config.silence_get_warning = true
+
+(google_oauth2) Request phase initiated.
+Started GET "/auth/google_oauth2/callback?state=75fa7cec1b62be4c5c882e8c0f396c3d33f05a3f8029aafb&code=4%2F0AeanS0YYJDD3QJm89ueJNdBfk-HHfSlrOCGNSkb7SVm2Uw40qAQqKuKsyypFbS0OfWUJvA&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=consent" for ::1 at 2024-11-15 22:51:06 -0600
+(google_oauth2) Callback phase initiated.
+Processing by SessionsController#oauth_create as HTML
+  Parameters: {"state"=>"75fa7cec1b62be4c5c882e8c0f396c3d33f05a3f8029aafb", "code"=>"4/0AeanS0YYJDD3QJm89ueJNdBfk-HHfSlrOCGNSkb7SVm2Uw40qAQqKuKsyypFbS0OfWUJvA", "scope"=>"email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email", "authuser"=>"1", "prompt"=>"consent", "provider"=>"google_oauth2"}
+Session last_seen_at: 2024-11-16 04:46:49 UTC
+Current time: 2024-11-16 04:51:07 UTC
+Updated session last_seen_at: 2024-11-16T04:51:07Z
+OmniAuth Auth Hash: #<OmniAuth::AuthHash credentials=#<OmniAuth::AuthHash expires=true expires_at=1731736266 refresh_token="1//04SLYjgaKSpeZCgYIARAAGAQSNwF-L9IrvyuekxmS8MscLlxGZHfsJmdkbm1I5nUoD3ap3OaOPx7bpyyGv2Bx3Gnzl_3wJuhb2gA" scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid" token="ya29.a0AeDClZBn6ORdRiemkgRojXRON9D8b4OMh_Q7I0G76IgzMoORoGQ-YV8ssR8HLY5VfWdtHlpBuz7njTXuhetvlWRlA4v-Ldnj1Qb2fUrNctqSnB3loLc_vl_0ESgHvxS-9KgsllW92Jbfev4qmYCOLA1QDKJXDRq0nQ9yQmzAaCgYKAS8SARISFQHGX2MiwH9nGvN_8OGD_1EOz3O6Jw0175"> extra=#<OmniAuth::AuthHash id_info=#<OmniAuth::AuthHash at_hash="zUGBmS0QroKwtUx6NRxA2A" aud="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" azp="917751851506-n3b2ok3mmj433i933inajeua4demmuuq.apps.googleusercontent.com" email="yzbtus3@gmail.com" email_verified=true exp=1731736267 family_name="wang" given_name="sheng" iat=1731732667 iss="https://accounts.google.com" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330"> id_token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI5MTc3NTE4NTE1MDYtbjNiMm9rM21tajQzM2k5MzNpbmFqZXVhNGRlbW11dXEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxODEyMDExNDU2MzEwMTczMzAiLCJlbWFpbCI6Inl6YnR1czNAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6VUdCbVMwUXJvS3d0VXg2TlJ4QTJBIiwibmFtZSI6InNoZW5nIHdhbmciLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjNjMHVMVkR1QzNSMHItemxOczh5aWtMWGxSLW5mMGFJczB3NF9ldC0tM25QYW1BPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6InNoZW5nIiwiZmFtaWx5X25hbWUiOiJ3YW5nIiwiaWF0IjoxNzMxNzMyNjY3LCJleHAiOjE3MzE3MzYyNjd9.080RM4zfo2Eik46TeVE8p83klDiQ8vaQ0ht4Vl8FXAwPRd7KeDde4s3Uf-AJMCFfOfPlVF4xaESHypNzfg7ks-0x3cjMz_CxRwVp17IZgj7lpZuLeHIqmgOSj44gae2jLlDrFt1zE0bIr24-Ijj4JmH1UjkYGtx6_hz-nRPO_nZ1Nn2AOHqsqD4hMNNxf5-Ekj951vxxflwv1-pFb64F0AV1Dr-mLgUzwJoNGzvgsAEsGr8M5Gfp22NfNbj4RXiwu7O49bm45XRnBt3TGGQNFlk9dkOcmCIGcqRNp6xOlT5_gLkL2RE6pz-is7iEJHTqmsDSPTdT6p-b8AeuJCWePw" raw_info=#<SnakyHash::StringKeyed email="yzbtus3@gmail.com" email_verified=true family_name="wang" given_name="sheng" name="sheng wang" picture="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA=s96-c" sub="102181201145631017330">> info=#<OmniAuth::AuthHash::InfoHash email="yzbtus3@gmail.com" email_verified=true first_name="sheng" image="https://lh3.googleusercontent.com/a/ACg8ocJ3c0uLVDuC3R0r-zlNs8yikLXlR-nf0aIs0w4_et--3nPamA" last_name="wang" name="sheng wang" unverified_email="yzbtus3@gmail.com"> provider="google_oauth2" uid="102181201145631017330">
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "102181201145631017330"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `from_omniauth'
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 38ms (ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/4" for ::1 at 2024-11-15 22:51:07 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+Session last_seen_at: 2024-11-16 04:51:07 UTC
+Current time: 2024-11-16 04:51:07 UTC
+Updated session last_seen_at: 2024-11-16T04:51:07Z
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 17.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 85.0ms | GC: 11.0ms)
+Completed 200 OK in 97ms (Views: 87.2ms | ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 11.0ms)
+
+
+Started DELETE "/logout" for ::1 at 2024-11-15 22:51:09 -0600
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+Session last_seen_at: 2024-11-16 04:51:07 UTC
+Current time: 2024-11-16 04:51:09 UTC
+Updated session last_seen_at: 2024-11-16T04:51:09Z
+Redirected to http://localhost:3000/login
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2024-11-15 22:51:09 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-11-16 04:51:09 UTC
+Current time: 2024-11-16 04:51:09 UTC
+Updated session last_seen_at: 2024-11-16T04:51:09Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 15.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 23.0ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 25.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
