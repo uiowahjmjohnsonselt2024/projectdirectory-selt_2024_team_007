@@ -15,13 +15,13 @@
         #success.message= flash[:success]
       - if @current_user
         %p.welcome You are logged in as #{@current_user.email}
-        = button_to 'Log Out', logout_path, :method => :delete
+        = button_to 'Log Out', logout_path, :method => :delete, id: 'logout_button'
         %p.profile= link_to 'View Profile', user_path(@current_user)
       - else
         %p.login
-          = button_to 'Login with password', login_path, method: :get
+          = button_to 'Login with password', login_path, method: :get, id: 'login_button'
         %p.google-login
-          = button_to 'Login with Google', '/auth/google_oauth2', method: :post
+          = button_to 'Login with Google', '/auth/google_oauth2', method: :post, id: 'google_login_button'
         %p.register
-          = button_to 'Register New Account', register_path, method: :get
+          = button_to 'Register New Account', register_path, method: :get, id: 'register_button'
     = yield

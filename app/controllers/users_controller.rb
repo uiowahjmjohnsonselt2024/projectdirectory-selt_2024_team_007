@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, only: [ "show", "edit", "destroy" ]
+  before_action :set_current_user, only: [ "show", "destroy", "edit" ]
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit # Temporary
+  def edit
     @user = @current_user
   end
   def new
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Sign up successful! Welcome!"
       redirect_to login_path
     else
+      Rails.logger.error(@user.errors.full_messages) # Log errors
       render "new"
     end
   end
