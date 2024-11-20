@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   match "/signup", to: "users#new", via: :get, as: "signup"
   match "/login", to: "sessions#new", via: :get, as: "login"
+  match "/login", to: "sessions#create", via: :create
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
   root "application#index"
