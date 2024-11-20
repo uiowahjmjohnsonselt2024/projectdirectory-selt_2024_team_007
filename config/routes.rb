@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 
-  match "/signup", to: "users#new", via: :get, as: "signup"
   match "/login", to: "sessions#new", via: :get, as: "login"
   match "/login", to: "sessions#create", via: :create
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"

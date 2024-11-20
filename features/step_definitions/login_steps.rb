@@ -26,5 +26,5 @@ Then('I should be on the user profile page') do
 end
 
 Then(/^I should be on the login page$/) do
-  expect(current_path).to eq('/sessions')
+  expect(current_path).to eq('/login')
 end
