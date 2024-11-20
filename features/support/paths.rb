@@ -3,7 +3,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
     when /^the home\s?page$/ then root_path
-    when /^the sign-up page$/ then signup_path
+    when /^the sign-up page$/ then register_path
     when /^the login page$/ then login_path
     when /^the logout page$/ then logout_path
     when /^the register page$/ then register_path

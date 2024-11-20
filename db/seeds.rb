@@ -9,7 +9,7 @@
 #   end
 User.delete_all
 User.create!(
-  name: "Test User",
+  name: "TestUser",
   email: "t@t.t",
   password: "password",
   password_confirmation: "password",
