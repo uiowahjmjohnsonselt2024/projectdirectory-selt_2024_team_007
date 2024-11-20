@@ -5,12 +5,12 @@
       -@user.errors.full_messages.each do |msg|
         %li #{msg}
 = form_tag users_path, :method => 'post' do
-  = label :user, :name, 'Name'
-  = text_field :user, 'name'
-  = label :user, :email, 'Email'
-  = text_field :user, 'email'
-  = label :user, :password, 'Password'
-  = password_field :user, 'password'
-  = label :user, :password_confirmation, 'Confirm Password'
-  = password_field :user, 'password_confirmation'
+  = label :user, :name, 'Name', id: 'name_label'
+  = text_field :user, 'name', id: 'name_field'
+  = label :user, :email, 'Email', id: 'email_label'
+  = text_field :user, 'email', id: 'email_field'
+  = label :user, :password, 'Password', id: 'password_label'
+  = password_field :user, 'password', id: 'password_field'
+  = label :user, :password_confirmation, 'Confirm Password', id: 'password_confirmation_label'
+  = password_field :user, 'password_confirmation', id: 'password_confirmation_field'
   = submit_tag 'Create my account', id: 'create_account_button'

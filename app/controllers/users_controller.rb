@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     else
       Rails.logger.error(@user.errors.full_messages) # Log errors
-      render "new"
+      redirect_to register_path
     end
   end
 
