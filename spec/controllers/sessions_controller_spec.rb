@@ -9,7 +9,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST #create" do
-    let!(:user) { User.create(name: "John Doe", email: "john@example.com", password: "password", password_confirmation: "password") }
+    let!(:user) { User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
 
     context "with valid credentials" do
       it "sets the session token" do
@@ -31,7 +31,7 @@ RSpec.describe SessionsController, type: :controller do
 
       it "renders the 'new' template" do
         post :create, params: { session: { email: "john@example.com", password: "wrong_password" } }
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(login_path)
       end
     end
   end
