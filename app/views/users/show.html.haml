@@ -1,3 +1,7 @@
+%h1.welcome You are logged in as #{@current_user.email}
+= button_to 'Log Out', logout_path, method: :delete, id: 'logout_button'
+%p.profile= link_to 'View Profile', user_path(@current_user)
+
 %h2 Profile for #{@user.name}
 %ul#details
   %li
@@ -6,4 +10,5 @@
   %li
     %strong E-mail:
     = @user.email
+
 = link_to 'Back to home', root_path

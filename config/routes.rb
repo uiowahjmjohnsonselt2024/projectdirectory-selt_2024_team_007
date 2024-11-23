@@ -9,8 +9,13 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Register page
+  # Register path
   get '/register', to: 'users#new', as: 'register'
+  post "/register", to: 'users#create'
+
+  #login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
 
   # 3rd party login redirect
   get '/auth/:provider/callback', to: 'sessions#oauth_create'
@@ -22,7 +27,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [ :new, :create, :destroy ]
 
   match "/signup", to: "users#new", via: :get, as: "signup"
-  match "/login", to: "sessions#new", via: :get, as: "login"
+
+  # match "/login", to: "sessions#new", via: :get, as: "login"
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
   root "application#index"

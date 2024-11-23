@@ -6,7 +6,7 @@ Feature: Forgot Password
   Scenario: User requests a password reset
     Given the following users exist:
       | name         | email              | password    |
-      | Example User | user@example.com   | oldpassword |
+      | ExampleUser | user@example.com   | oldpassword |
     And I am on the login page
     When I follow "Forgot Password?"
     Then I should be on "/password_resets/new"
