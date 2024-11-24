@@ -5574,3 +5574,1093 @@ Updated session last_seen_at: 2024-11-24T04:16:42Z
 Completed 200 OK in 83ms (Views: 58.0ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:37:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:16:42 UTC
+Current time: 2024-11-24 04:37:09 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 133ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-23 22:37:09 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-11-24 04:37:09 UTC
+Updated session last_seen_at: 2024-11-24T04:37:09Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1722.1ms | GC: 13.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1798.7ms | GC: 13.0ms)
+Completed 200 OK in 1903ms (Views: 1885.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 13.6ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:37:11 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:37:09 UTC
+Current time: 2024-11-24 04:37:11 UTC
+Updated session last_seen_at: 2024-11-24T04:37:11Z
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-11-23 22:37:11 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-11-24 04:37:11 UTC
+Current time: 2024-11-24 04:37:12 UTC
+Updated session last_seen_at: 2024-11-24T04:37:12Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 44.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 88.6ms | GC: 0.0ms)
+Completed 200 OK in 110ms (Views: 89.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-11-23 22:37:13 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-11-24 04:37:12 UTC
+Current time: 2024-11-24 04:37:14 UTC
+Updated session last_seen_at: 2024-11-24T04:37:14Z
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 315ms (ActiveRecord: 38.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:37:14 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:37:14 UTC
+Current time: 2024-11-24 04:37:14 UTC
+Updated session last_seen_at: 2024-11-24T04:37:14Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 7.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 63.6ms | GC: 0.0ms)
+Completed 200 OK in 117ms (Views: 67.9ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:37:16 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:37:14 UTC
+Current time: 2024-11-24 04:37:16 UTC
+Updated session last_seen_at: 2024-11-24T04:37:16Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 39.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 98.1ms | GC: 9.6ms)
+Completed 200 OK in 127ms (Views: 102.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 9.6ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:37:17 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:37:16 UTC
+Current time: 2024-11-24 04:37:17 UTC
+Updated session last_seen_at: 2024-11-24T04:37:17Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 20.6ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 21.8ms | GC: 1.0ms)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 1.4ms)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check -# app/views/store_items/index.html.haml
+
+%h1 STORE
+
+%div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+
+%div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+  %h2 Purchase Shards
+  %p Select a shard package to purchase.
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $5.00 - 50 Shards
+    %button{ class: "purchase-button", data-package: "50 Shards for $5.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $10.00 - 120 Shards
+    %button{ class: "purchase-button", data-package: "120 Shards for $10.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $20.00 - 250 Shards
+    %button{ class: "purchase-button", data-package: "250 Shards for $20.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %button{ id: "close-popup-purchase", style: "margin-top: 20px; background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+
+%div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
+  %h2 Confirm Your Purchase
+  %p{ id: "confirmation-message" }
+  %button{ id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+  %button{ id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
+
+%div{ id: "popup-shard-store", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+  %h2 Shard Store
+  %p Welcome to the Shard Store. Browse exclusive offers and items!
+  %button{ id: "close-popup-store", style: "background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+
+%button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
+  Purchase Shards
+
+%button{ id: "open-popup-store", style: "margin: 20px; padding: 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" }
+  Shard Store
+
+:javascript
+  document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("overlay");
+
+    const openPurchaseButton = document.getElementById("open-popup-purchase");
+    const closePurchaseButton = document.getElementById("close-popup-purchase");
+    const purchasePopup = document.getElementById("popup-purchase-shards");
+
+    const openStoreButton = document.getElementById("open-popup-store");
+    const closeStoreButton = document.getElementById("close-popup-store");
+    const storePopup = document.getElementById("popup-shard-store");
+
+    const closePopup = (popup) => {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    };
+
+    const openPopup = (popup) => {
+      popup.style.display = "block";
+      overlay.style.display = "block";
+    };
+
+    // Open "Purchase Shards" pop-up
+    openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
+
+    // Close "Purchase Shards" pop-up
+    closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+
+    // Open "Shard Store" pop-up
+    openStoreButton.addEventListener("click", () => openPopup(storePopup));
+
+    // Close "Shard Store" pop-up
+    closeStoreButton.addEventListener("click", () => closePopup(storePopup));
+
+    // Close pop-ups when clicking outside
+    overlay.addEventListener("click", () => {
+      closePopup(purchasePopup);
+      closePopup(storePopup);
+    });
+  });
+):
+
+Causes:
+ActiveSupport::SyntaxErrorProxy (/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:13: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "50 Shards for $5.00", style...
+...                              ^
+/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:17: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "120 Shards for $10.00", sty...
+...                              ^
+/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:21: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "250 Shards for $20.00", sty...
+...                              ^
+)
+1:    -# app/views/store_items/index.html.haml
+2:    
+3:    %h1 STORE
+4:    
+5:    %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+6:    
+7:    %div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+8:      %h2 Purchase Shards
+9:      %p Select a shard package to purchase.
+10:    
+11:      %div{ style: "margin-bottom: 15px;" }
+12:        %strong $5.00 - 50 Shards
+13:        %button{ class: "purchase-button", data-package: "50 Shards for $5.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+14:    
+15:      %div{ style: "margin-bottom: 15px;" }
+16:        %strong $10.00 - 120 Shards
+17:        %button{ class: "purchase-button", data-package: "120 Shards for $10.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
+18:    
+19:      %div{ style: "margin-bottom: 15px;" }
+20:        %strong $20.00 - 250 Shards
+21:        %button{ class: "purchase-button", data-package: "250 Shards for $20.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
+22:    
+23:      %button{ id: "close-popup-purchase", style: "margin-top: 20px; background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+24:    
+25:    %div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
+26:      %h2 Confirm Your Purchase
+27:      %p{ id: "confirmation-message" }
+28:      %button{ id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+29:      %button{ id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
+30:    
+31:    %div{ id: "popup-shard-store", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+32:      %h2 Shard Store
+33:      %p Welcome to the Shard Store. Browse exclusive offers and items!
+34:      %button{ id: "close-popup-store", style: "background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+35:    
+36:    %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
+37:      Purchase Shards
+38:    
+39:    %button{ id: "open-popup-store", style: "margin: 20px; padding: 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" }
+40:      Shard Store
+41:    
+42:    :javascript
+43:      document.addEventListener("DOMContentLoaded", () => {
+44:        const overlay = document.getElementById("overlay");
+45:    
+46:        const openPurchaseButton = document.getElementById("open-popup-purchase");
+47:        const closePurchaseButton = document.getElementById("close-popup-purchase");
+48:        const purchasePopup = document.getElementById("popup-purchase-shards");
+49:    
+50:        const openStoreButton = document.getElementById("open-popup-store");
+51:        const closeStoreButton = document.getElementById("close-popup-store");
+52:        const storePopup = document.getElementById("popup-shard-store");
+53:    
+54:        const closePopup = (popup) => {
+55:          popup.style.display = "none";
+56:          overlay.style.display = "none";
+57:        };
+58:    
+59:        const openPopup = (popup) => {
+60:          popup.style.display = "block";
+61:          overlay.style.display = "block";
+62:        };
+63:    
+64:        // Open "Purchase Shards" pop-up
+65:        openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
+66:    
+67:        // Close "Purchase Shards" pop-up
+68:        closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+69:    
+70:        // Open "Shard Store" pop-up
+71:        openStoreButton.addEventListener("click", () => openPopup(storePopup));
+72:    
+73:        // Close "Shard Store" pop-up
+74:        closeStoreButton.addEventListener("click", () => closePopup(storePopup));
+75:    
+76:        // Close pop-ups when clicking outside
+77:        overlay.addEventListener("click", () => {
+78:          closePopup(purchasePopup);
+79:          closePopup(storePopup);
+80:        });
+81:      });
+  
+app/views/store_items/index.html.haml:13: syntax error, unexpected ':', expecting =>
+app/views/store_items/index.html.haml:17: syntax error, unexpected ':', expecting =>
+app/views/store_items/index.html.haml:21: syntax error, unexpected ':', expecting =>
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:41:17 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:37:16 UTC
+Current time: 2024-11-24 04:41:17 UTC
+Updated session last_seen_at: 2024-11-24T04:41:17Z
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 287ms (ActiveRecord: 38.5ms (1 query, 0 cached) | GC: 1.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:41:18 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:41:17 UTC
+Current time: 2024-11-24 04:41:18 UTC
+Updated session last_seen_at: 2024-11-24T04:41:18Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 14.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1715.0ms | GC: 17.9ms)
+Completed 200 OK in 1844ms (Views: 1746.0ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 17.9ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:41:21 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:41:18 UTC
+Current time: 2024-11-24 04:41:22 UTC
+Updated session last_seen_at: 2024-11-24T04:41:22Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 49.8ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 95.6ms | GC: 0.2ms)
+Completed 200 OK in 129ms (Views: 99.5ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:41:23 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:41:22 UTC
+Current time: 2024-11-24 04:41:23 UTC
+Updated session last_seen_at: 2024-11-24T04:41:23Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 21.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 22.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check -# app/views/store_items/index.html.haml
+
+%h1 STORE
+
+%div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+
+-#yup
+%h1 STORE
+
+%div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+
+%div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+  %h2 Purchase Shards
+  %p Select a shard package to purchase.
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $5.00 - 50 Shards
+    %button{ class: "purchase-button", data-package: "50 Shards for $5.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $10.00 - 120 Shards
+    %button{ class: "purchase-button", data-package: "120 Shards for $10.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %div{ style: "margin-bottom: 15px;" }
+    %strong $20.00 - 250 Shards
+    %button{ class: "purchase-button", data-package: "250 Shards for $20.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
+
+  %button{ id: "close-popup-purchase", style: "margin-top: 20px; padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Close
+
+%div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
+  %h2 Confirm Your Purchase
+  %p{ id: "confirmation-message" }
+  %button{ id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+  %button{ id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
+-#nope
+%div{ id: "popup-shard-store", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+  %h2 Shard Store
+  %p Welcome to the Shard Store. Browse exclusive offers and items!
+  %button{ id: "close-popup-store", style: "background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+
+%button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
+  Purchase Shards
+
+%button{ id: "open-popup-store", style: "margin: 20px; padding: 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" }
+  Shard Store
+
+:javascript
+  document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("overlay");
+
+    const openPurchaseButton = document.getElementById("open-popup-purchase");
+    const closePurchaseButton = document.getElementById("close-popup-purchase");
+    const purchasePopup = document.getElementById("popup-purchase-shards");
+
+    const openStoreButton = document.getElementById("open-popup-store");
+    const closeStoreButton = document.getElementById("close-popup-store");
+    const storePopup = document.getElementById("popup-shard-store");
+
+    const closePopup = (popup) => {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    };
+
+    const openPopup = (popup) => {
+      popup.style.display = "block";
+      overlay.style.display = "block";
+    };
+
+    // Open "Purchase Shards" pop-up
+    openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
+
+    // Close "Purchase Shards" pop-up
+    closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+
+    // Open "Shard Store" pop-up
+    openStoreButton.addEventListener("click", () => openPopup(storePopup));
+
+    // Close "Shard Store" pop-up
+    closeStoreButton.addEventListener("click", () => closePopup(storePopup));
+
+    // Close pop-ups when clicking outside
+    overlay.addEventListener("click", () => {
+      closePopup(purchasePopup);
+      closePopup(storePopup);
+    });
+  });
+):
+
+Causes:
+ActiveSupport::SyntaxErrorProxy (/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:18: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "50 Shards for $5.00", style...
+...                              ^
+/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:22: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "120 Shards for $10.00", sty...
+...                              ^
+/mnt/c/Users/cody1/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/store_items/index.html.haml:26: syntax error, unexpected ':', expecting =>
+...purchase-button", data-package: "250 Shards for $20.00", sty...
+...                              ^
+)
+1:    -# app/views/store_items/index.html.haml
+2:    
+3:    %h1 STORE
+4:    
+5:    %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+6:    
+7:    -#yup
+8:    %h1 STORE
+9:    
+10:    %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
+11:    
+12:    %div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+13:      %h2 Purchase Shards
+14:      %p Select a shard package to purchase.
+15:    
+16:      %div{ style: "margin-bottom: 15px;" }
+17:        %strong $5.00 - 50 Shards
+18:        %button{ class: "purchase-button", data-package: "50 Shards for $5.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+19:    
+20:      %div{ style: "margin-bottom: 15px;" }
+21:        %strong $10.00 - 120 Shards
+22:        %button{ class: "purchase-button", data-package: "120 Shards for $10.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
+23:    
+24:      %div{ style: "margin-bottom: 15px;" }
+25:        %strong $20.00 - 250 Shards
+26:        %button{ class: "purchase-button", data-package: "250 Shards for $20.00", style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
+27:    
+28:      %button{ id: "close-popup-purchase", style: "margin-top: 20px; padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Close
+29:    
+30:    %div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
+31:      %h2 Confirm Your Purchase
+32:      %p{ id: "confirmation-message" }
+33:      %button{ id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+34:      %button{ id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
+35:    -#nope
+36:    %div{ id: "popup-shard-store", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; padding: 20px; background-color: #fff; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;" }
+37:      %h2 Shard Store
+38:      %p Welcome to the Shard Store. Browse exclusive offers and items!
+39:      %button{ id: "close-popup-store", style: "background-color: #DB4437; color: #fff; padding: 10px; border: none; border-radius: 5px;" } Close
+40:    
+41:    %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
+42:      Purchase Shards
+43:    
+44:    %button{ id: "open-popup-store", style: "margin: 20px; padding: 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" }
+45:      Shard Store
+46:    
+47:    :javascript
+48:      document.addEventListener("DOMContentLoaded", () => {
+49:        const overlay = document.getElementById("overlay");
+50:    
+51:        const openPurchaseButton = document.getElementById("open-popup-purchase");
+52:        const closePurchaseButton = document.getElementById("close-popup-purchase");
+53:        const purchasePopup = document.getElementById("popup-purchase-shards");
+54:    
+55:        const openStoreButton = document.getElementById("open-popup-store");
+56:        const closeStoreButton = document.getElementById("close-popup-store");
+57:        const storePopup = document.getElementById("popup-shard-store");
+58:    
+59:        const closePopup = (popup) => {
+60:          popup.style.display = "none";
+61:          overlay.style.display = "none";
+62:        };
+63:    
+64:        const openPopup = (popup) => {
+65:          popup.style.display = "block";
+66:          overlay.style.display = "block";
+67:        };
+68:    
+69:        // Open "Purchase Shards" pop-up
+70:        openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
+71:    
+72:        // Close "Purchase Shards" pop-up
+73:        closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+74:    
+75:        // Open "Shard Store" pop-up
+76:        openStoreButton.addEventListener("click", () => openPopup(storePopup));
+77:    
+78:        // Close "Shard Store" pop-up
+79:        closeStoreButton.addEventListener("click", () => closePopup(storePopup));
+80:    
+81:        // Close pop-ups when clicking outside
+82:        overlay.addEventListener("click", () => {
+83:          closePopup(purchasePopup);
+84:          closePopup(storePopup);
+85:        });
+86:      });
+  
+app/views/store_items/index.html.haml:18: syntax error, unexpected ':', expecting =>
+app/views/store_items/index.html.haml:22: syntax error, unexpected ':', expecting =>
+app/views/store_items/index.html.haml:26: syntax error, unexpected ':', expecting =>
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:44:09 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (17.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:41:22 UTC
+Current time: 2024-11-24 04:44:09 UTC
+Updated session last_seen_at: 2024-11-24T04:44:09Z
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 248ms (ActiveRecord: 36.8ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:44:09 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:44:09 UTC
+Current time: 2024-11-24 04:44:10 UTC
+Updated session last_seen_at: 2024-11-24T04:44:10Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 13.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1663.7ms | GC: 13.3ms)
+Completed 200 OK in 1772ms (Views: 1691.6ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 13.3ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:44:13 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:44:10 UTC
+Current time: 2024-11-24 04:44:13 UTC
+Updated session last_seen_at: 2024-11-24T04:44:13Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 45.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 93.4ms | GC: 0.0ms)
+Completed 200 OK in 126ms (Views: 97.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:44:14 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:44:13 UTC
+Current time: 2024-11-24 04:44:14 UTC
+Updated session last_seen_at: 2024-11-24T04:44:14Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 69.9ms | GC: 0.0ms)
+Completed 200 OK in 100ms (Views: 73.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:55:17 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:44:14 UTC
+Current time: 2024-11-24 04:55:17 UTC
+Updated session last_seen_at: 2024-11-24T04:55:17Z
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 249ms (ActiveRecord: 37.1ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:55:17 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:55:17 UTC
+Current time: 2024-11-24 04:55:18 UTC
+Updated session last_seen_at: 2024-11-24T04:55:18Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1535.5ms | GC: 14.4ms)
+Completed 200 OK in 1635ms (Views: 1561.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 14.4ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:55:20 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:55:18 UTC
+Current time: 2024-11-24 04:55:21 UTC
+Updated session last_seen_at: 2024-11-24T04:55:21Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 51.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 100.9ms | GC: 0.0ms)
+Completed 200 OK in 133ms (Views: 104.9ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:55:22 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:55:21 UTC
+Current time: 2024-11-24 04:55:22 UTC
+Updated session last_seen_at: 2024-11-24T04:55:22Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 59.1ms | GC: 0.0ms)
+Completed 200 OK in 86ms (Views: 62.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:57:01 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:55:22 UTC
+Current time: 2024-11-24 04:57:02 UTC
+Updated session last_seen_at: 2024-11-24T04:57:02Z
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 254ms (ActiveRecord: 38.6ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:57:02 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:57:02 UTC
+Current time: 2024-11-24 04:57:02 UTC
+Updated session last_seen_at: 2024-11-24T04:57:02Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 14.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1482.7ms | GC: 14.3ms)
+Completed 200 OK in 1598ms (Views: 1517.9ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 14.3ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:57:05 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:57:02 UTC
+Current time: 2024-11-24 04:57:05 UTC
+Updated session last_seen_at: 2024-11-24T04:57:05Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 50.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 100.2ms | GC: 0.0ms)
+Completed 200 OK in 132ms (Views: 103.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:57:06 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:57:05 UTC
+Current time: 2024-11-24 04:57:07 UTC
+Updated session last_seen_at: 2024-11-24T04:57:07Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 10.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 62.2ms | GC: 0.0ms)
+Completed 200 OK in 89ms (Views: 65.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 22:58:56 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:57:07 UTC
+Current time: 2024-11-24 04:58:57 UTC
+Updated session last_seen_at: 2024-11-24T04:58:57Z
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 251ms (ActiveRecord: 34.4ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 22:58:57 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 04:58:57 UTC
+Current time: 2024-11-24 04:58:57 UTC
+Updated session last_seen_at: 2024-11-24T04:58:57Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 12.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1483.3ms | GC: 0.0ms)
+Completed 200 OK in 1591ms (Views: 1510.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 22:59:00 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 04:58:57 UTC
+Current time: 2024-11-24 04:59:00 UTC
+Updated session last_seen_at: 2024-11-24T04:59:00Z
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 67.4ms | GC: 12.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 126.8ms | GC: 12.7ms)
+Completed 200 OK in 158ms (Views: 130.6ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 12.7ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 22:59:01 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 04:59:00 UTC
+Current time: 2024-11-24 04:59:01 UTC
+Updated session last_seen_at: 2024-11-24T04:59:01Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 8.5ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 59.3ms | GC: 0.4ms)
+Completed 200 OK in 89ms (Views: 64.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:00:18 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 04:59:01 UTC
+Current time: 2024-11-24 05:00:18 UTC
+Updated session last_seen_at: 2024-11-24T05:00:18Z
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 253ms (ActiveRecord: 39.4ms (1 query, 0 cached) | GC: 2.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:00:18 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:00:18 UTC
+Current time: 2024-11-24 05:00:19 UTC
+Updated session last_seen_at: 2024-11-24T05:00:19Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 11.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1447.0ms | GC: 16.1ms)
+Completed 200 OK in 1552ms (Views: 1473.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 16.1ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:00:21 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:00:19 UTC
+Current time: 2024-11-24 05:00:21 UTC
+Updated session last_seen_at: 2024-11-24T05:00:21Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 51.8ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 101.1ms | GC: 0.2ms)
+Completed 200 OK in 133ms (Views: 105.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:00:23 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:00:21 UTC
+Current time: 2024-11-24 05:00:23 UTC
+Updated session last_seen_at: 2024-11-24T05:00:23Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 9.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 64.7ms | GC: 0.0ms)
+Completed 200 OK in 96ms (Views: 68.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:05:44 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 05:00:23 UTC
+Current time: 2024-11-24 05:05:45 UTC
+Updated session last_seen_at: 2024-11-24T05:05:45Z
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 254ms (ActiveRecord: 36.2ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:05:45 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:05:45 UTC
+Current time: 2024-11-24 05:05:45 UTC
+Updated session last_seen_at: 2024-11-24T05:05:45Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 12.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1513.1ms | GC: 14.3ms)
+Completed 200 OK in 1621ms (Views: 1542.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 14.3ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:05:48 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:05:45 UTC
+Current time: 2024-11-24 05:05:48 UTC
+Updated session last_seen_at: 2024-11-24T05:05:48Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 50.3ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 96.3ms | GC: 0.3ms)
+Completed 200 OK in 129ms (Views: 100.3ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:05:52 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:05:48 UTC
+Current time: 2024-11-24 05:05:52 UTC
+Updated session last_seen_at: 2024-11-24T05:05:52Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 59.9ms | GC: 0.0ms)
+Completed 200 OK in 87ms (Views: 63.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:10:43 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 05:05:52 UTC
+Current time: 2024-11-24 05:10:43 UTC
+Updated session last_seen_at: 2024-11-24T05:10:43Z
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 247ms (ActiveRecord: 37.3ms (1 query, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:10:43 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:10:43 UTC
+Current time: 2024-11-24 05:10:44 UTC
+Updated session last_seen_at: 2024-11-24T05:10:44Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 14.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1532.2ms | GC: 13.2ms)
+Completed 200 OK in 1642ms (Views: 1561.7ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 13.2ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:10:47 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:10:44 UTC
+Current time: 2024-11-24 05:10:47 UTC
+Updated session last_seen_at: 2024-11-24T05:10:47Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 49.0ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 98.8ms | GC: 0.2ms)
+Completed 200 OK in 128ms (Views: 102.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:10:48 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:10:47 UTC
+Current time: 2024-11-24 05:10:48 UTC
+Updated session last_seen_at: 2024-11-24T05:10:48Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 9.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 59.9ms | GC: 0.0ms)
+Completed 200 OK in 87ms (Views: 63.4ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:14:16 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 05:10:48 UTC
+Current time: 2024-11-24 05:14:16 UTC
+Updated session last_seen_at: 2024-11-24T05:14:16Z
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 288ms (ActiveRecord: 37.9ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:14:17 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:14:16 UTC
+Current time: 2024-11-24 05:14:17 UTC
+Updated session last_seen_at: 2024-11-24T05:14:17Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 12.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2231.7ms | GC: 14.9ms)
+Completed 200 OK in 2336ms (Views: 2259.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 14.9ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:14:20 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:14:17 UTC
+Current time: 2024-11-24 05:14:20 UTC
+Updated session last_seen_at: 2024-11-24T05:14:20Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 49.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 99.1ms | GC: 0.0ms)
+Completed 200 OK in 128ms (Views: 103.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:14:22 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:14:20 UTC
+Current time: 2024-11-24 05:14:22 UTC
+Updated session last_seen_at: 2024-11-24T05:14:22Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 9.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 66.0ms | GC: 0.0ms)
+Completed 200 OK in 98ms (Views: 69.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:15:38 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 05:14:22 UTC
+Current time: 2024-11-24 05:15:39 UTC
+Updated session last_seen_at: 2024-11-24T05:15:39Z
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 326ms (ActiveRecord: 39.9ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:15:39 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:15:39 UTC
+Current time: 2024-11-24 05:15:39 UTC
+Updated session last_seen_at: 2024-11-24T05:15:39Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 14.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1793.1ms | GC: 14.0ms)
+Completed 200 OK in 1960ms (Views: 1829.2ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 14.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:15:42 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:15:39 UTC
+Current time: 2024-11-24 05:15:42 UTC
+Updated session last_seen_at: 2024-11-24T05:15:42Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 50.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 111.1ms | GC: 0.0ms)
+Completed 200 OK in 151ms (Views: 117.5ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:15:44 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:15:42 UTC
+Current time: 2024-11-24 05:15:44 UTC
+Updated session last_seen_at: 2024-11-24T05:15:44Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 8.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 76.0ms | GC: 0.0ms)
+Completed 200 OK in 111ms (Views: 80.2ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:15:50 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:15:44 UTC
+Current time: 2024-11-24 05:15:50 UTC
+Updated session last_seen_at: 2024-11-24T05:15:50Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 62.3ms | GC: 0.0ms)
+Completed 200 OK in 84ms (Views: 63.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-11-23 23:18:46 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#index as HTML
+Session last_seen_at: 2024-11-24 05:15:50 UTC
+Current time: 2024-11-24 05:18:46 UTC
+Updated session last_seen_at: 2024-11-24T05:18:46Z
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Redirected to http://127.0.0.1:3000/users/1
+Completed 302 Found in 247ms (ActiveRecord: 34.2ms (1 query, 0 cached) | GC: 1.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2024-11-23 23:18:46 -0600
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-11-24 05:18:46 UTC
+Current time: 2024-11-24 05:18:47 UTC
+Updated session last_seen_at: 2024-11-24T05:18:47Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering users/show.html.haml within layouts/application
+  Rendered users/show.html.haml within layouts/application (Duration: 11.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1519.3ms | GC: 26.0ms)
+Completed 200 OK in 1618ms (Views: 1545.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 26.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-11-23 23:18:49 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-24 05:18:47 UTC
+Current time: 2024-11-24 05:18:49 UTC
+Updated session last_seen_at: 2024-11-24T05:18:49Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered landing/index.html.haml within layouts/application (Duration: 50.2ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 96.0ms | GC: 0.2ms)
+Completed 200 OK in 130ms (Views: 99.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-11-23 23:18:51 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-11-24 05:18:49 UTC
+Current time: 2024-11-24 05:18:51 UTC
+Updated session last_seen_at: 2024-11-24T05:18:51Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered store_items/index.html.haml within layouts/application (Duration: 9.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 62.9ms | GC: 0.0ms)
+Completed 200 OK in 94ms (Views: 66.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
