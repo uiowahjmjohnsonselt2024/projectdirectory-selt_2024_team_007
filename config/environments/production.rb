@@ -111,7 +111,7 @@ Rails.application.configure do
     domain:               ENV['MAILERTOGO_DOMAIN']
   }
 
-  config.action_mailer.default_url_options = { host: 'shards-of-the-grid-30472a19e6c9.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 end
