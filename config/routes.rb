@@ -17,12 +17,15 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
 
+
+
   # 3rd party login redirect
   get '/auth/:provider/callback', to: 'sessions#oauth_create'
   get '/auth/failure', to: redirect('/login')
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
 
-
+  get '/landing', to: 'landing#index', as: 'landing'
+  
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 

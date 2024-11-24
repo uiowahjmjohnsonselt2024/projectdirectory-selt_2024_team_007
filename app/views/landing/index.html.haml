@@ -1,0 +1,33 @@
+%section.dashboard{ style: "display: flex; height: 100vh; background-color: #2C3E50; color: #ECF0F1; font-family: sans-serif;" }
+  / Sidebar
+  %aside.sidebar{ style: "width: 300px; background-color: #1ABC9C; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
+    %div.logo
+      %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
+        %span Shards of the Grid
+    %button{ style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" }
+      Create Game
+    %div.placeholder-game
+      %div{ style: "background-color: #ECF0F1; padding: 10px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #2C3E50; font-weight: bold;" }
+          Game Name
+        %img{ src: image_path('logo.png'), alt: "Game Placeholder", style: "width: 100%; border-radius: 5px; margin-bottom: 10px;" }
+        %button{ style: "background-color: #1ABC9C; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" }
+          Join
+  / Scrollable Game List Placeholder
+  %div.scrollable-game-list{ style: "flex: 1; padding: 20px; overflow-y: auto;" }
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
+    / Placeholder games
+    - 5.times do |i|
+      %div.game-card{ style: "background-color: #4A235A; padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }
+          Placeholder Game #{i + 1}
+        %p{ style: "color: #BDC3C7;" } Description or details here.
+        %button{ style: "background-color: #2ECC71; color: #ECF0F1; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;" }
+          Join
+  / User Settings Panel
+  %aside.user-settings{ style: "width: 300px; background-color: #4A235A; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
+    %div.profile
+      %img{ src: image_path('logo.png'), alt: "Profile Picture", style: "width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" }
+      %button{ style: "margin-bottom: 10px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Settings
+      %button{ style: "margin-bottom: 10px; background-color: #1ABC9C; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Friends
+      %button{ style: "margin-top: auto; background-color: #DB4437; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Logout
