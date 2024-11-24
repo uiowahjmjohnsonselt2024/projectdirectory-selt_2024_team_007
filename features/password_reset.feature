@@ -40,7 +40,7 @@ Feature: Password Reset Form
     And I fill in the password confirmation field with "newpassword"
     And I click the "Submit" button
     Then I should be on "/login"
-    When I fill in "Email" with "hans@uiowa.edu"
-    And I fill in "Password" with "newpassword"
+    When I fill in "email_field" with "hans@uiowa.edu"
+    And I fill in "password_field" with "newpassword"
     And I click the "Sign in" button
     Then I am at my profile page

@@ -22,7 +22,7 @@ RSpec.describe PasswordResetsController, type: :controller do
     it "updates the password with valid params" do
       user.create_reset_digest
       patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "newpassword" } }
-      expect(flash[:success]).to eq("Password has been reset.")
+      expect(flash[:notice]).to eq("Password has been reset.")
     end
 
     it "rejects mismatched passwords" do
@@ -43,7 +43,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       it "sends a password reset email" do
         post :create, params: { email: user.email }
         expect(ActionMailer::Base.deliveries.size).to eq(1)
-        expect(flash[:success]).to eq("Password reset email has been sent.")
+        expect(flash[:notice]).to eq("Password reset email has been sent.")
         expect(response).to redirect_to login_path
       end
     end

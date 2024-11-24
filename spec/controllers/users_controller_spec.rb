@@ -43,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
       # Sad Path: Renders the 'new' template with invalid parameters
       it "renders the 'new' template" do
         post :create, params: { user: { name: "", email: "", password: "", password_confirmation: "" } }
-        expect(response).to redirect_to(register_path)
+        expect(response).to render_template('new')
       end
     end
   end

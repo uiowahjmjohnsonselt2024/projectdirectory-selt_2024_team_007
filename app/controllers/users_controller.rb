@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, only: [ "show", "destroy", "edit" ]
+  before_action :set_current_user, only: [ "show", "destroy", "edit"]
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     else
       Rails.logger.error(@user.errors.full_messages) # Log errors
-      redirect_to register_path
+      render :new
     end
   end
 

@@ -18,7 +18,7 @@ When('I fill in the password field with ') do |password|
 end
 
 When('I press the sign in button') do |sign_in_button|
-  click_button sign_in_button
+  click_button 'sign_in_button'
 end
 
 Then('I should be on the user profile page') do

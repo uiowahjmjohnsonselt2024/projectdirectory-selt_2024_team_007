@@ -1,0 +1,33 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+// Color Variables for the Website
+$primary-color: #2ECC71; /* Emerald Green */
+$secondary-color: #1ABC9C; /* Teal Blue */
+$background-color: #2C3E50; /* Deep Midnight Blue */
+$header-color: #4A235A; /* Dark Purple */
+$highlight-color: #F1C40F; /* Golden Amber */
+$text-muted: #BDC3C7; /* Soft Gray */
+$text-default: #ECF0F1; /* Off-White */
+
+// Bootstrap Default Variable Overrides
+$theme-colors: (
+        "primary": $primary-color,
+        "secondary": $secondary-color,
+        "dark": $background-color,
+        "warning": $highlight-color
+);
+
+// Body Background and Text Colors
+$body-bg: $background-color;
+$body-color: $text-default;
+
+
+.btn-custom {
+  background-color: $primary-color;
+  color: $text-default;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}

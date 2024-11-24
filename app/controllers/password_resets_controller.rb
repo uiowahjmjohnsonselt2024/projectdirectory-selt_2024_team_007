@@ -18,14 +18,14 @@ class PasswordResetsController < ApplicationController
       begin
         UserMailer.password_reset(@user).deliver_now
         Rails.logger.debug "Password reset email sent successfully."
-        flash[:success] = "Password reset email has been sent."
+        flash[:notice] = "Password reset email has been sent."
       rescue => e
         Rails.logger.error "Failed to send password reset email: #{e.message}"
-        flash[:warning] = "We couldn't send the password reset email. Please try again later."
+        flash[:alert] = "We couldn't send the password reset email. Please try again later."
       end
       redirect_to login_path
     else
-      flash.now[:warning] = "Email address not found."
+      flash.now[:notice] = "Email address not found."
       redirect_to new_password_reset_path
     end
   end
@@ -41,9 +41,10 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, "can't be empty")
       redirect_to :edit
     elsif @user.update(user_params)
-      flash[:success] = "Password has been reset."
+      flash[:notice] = "Password has been reset."
       redirect_to root_url
     else
+      flash.now[:alert] = "There was a problem resetting your password."
       render :edit
     end
   end

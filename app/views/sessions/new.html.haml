@@ -1,12 +1,30 @@
-- if flash.now[:warning]
-  %p= flash.now[:warning]
+%section.vh-100{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;" }
+  %div{ style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);" }
+    %div{ style: "text-align: center; margin-bottom: 20px;" }
+      %img{ src: image_path('logo.png'), alt: "Logo", style: "max-width: 100px;" }
+    %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Sign In
 
-%h1 Sign In
-= form_tag sessions_path, method: 'post' do
-  = label :session, :email, 'Email', for: 'email_field'
-  = text_field :session, :email, id: 'email_field'
-  = label :session, :password, 'Password', for: 'password_field'
-  = password_field :session, :password, id: 'password_field'
-  = submit_tag 'Sign in', id: 'sign_in_button'
-%p
-= link_to 'Forgot Password?', new_password_reset_path
+    - if flash[:notice]
+      .alert.alert-success{ style: "color: green; text-align: center;" }
+        = flash[:notice]
+
+    - if flash[:notice] # Corrected the closing bracket here
+      .alert.alert-danger{ style: "color: red; text-align: center;" }
+        = flash[:notice]
+
+    = form_with scope: :session, url: login_path, method: :post, local: true, class: "space-y-4" do |form|
+      %div.form-group
+        = form.label :email, "Email", style: "color: #BDC3C7; font-weight: bold;"
+        = form.email_field :email, id: 'email_field', class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 10px; border: 1px solid #3498DB; border-radius: 5px;"
+      %div.form-group{ style: "margin-top: 20px;" }
+        = form.label :password, "Password", style: "color: #BDC3C7; font-weight: bold;"
+        = form.password_field :password, id: 'password_field', class: "form-control", placeholder: "Enter your password", style: "width: 100%; padding: 10px; border: 1px solid #3498DB; border-radius: 5px;"
+      %div.actions{ style: "margin-top: 20px;" }
+        = form.submit "Sign in", id: 'sign_in_button', class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #3498DB; border: none; border-radius: 5px; color: white; font-weight: bold;"
+      %p.google-login{ style: "margin-top: 10px;" }
+        = button_to 'Login with Google', '/auth/google_oauth2', method: :post, id: 'google_login_button', class: 'btn', style: "width: 100%; background-color: #DD4B39; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold;"
+      %p.register{ style: "margin-top: 10px; text-align: center; color: #BDC3C7;" }
+        Don't have an account?
+        = link_to 'Register New Account', register_path, id: 'register_button', style: "color: #1ABC9C;"
+      %p.forgot-password{ style: "margin-top: 10px; text-align: center; color: #BDC3C7;" }
+        = link_to 'Forgot Password?', new_password_reset_path, id: 'forgot_password_button', style: "color: #1ABC9C;"
