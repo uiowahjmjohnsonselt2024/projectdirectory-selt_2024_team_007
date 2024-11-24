@@ -13,7 +13,7 @@ Given(/^the following users have requested password reset:$/) do |users_table|
   users_table.hashes.each do |user_attrs|
     user = User.find_by(email: user_attrs['email'])
     user.create_reset_digest
-    @user = user # Store for later use
+    @user = user # StoreItem for later use
   end
 end
 
