@@ -37,14 +37,23 @@ class PasswordResetsController < ApplicationController
 
   # Update the user's password
   def update
+    if @user.reset_digest.nil?
+      flash[:danger] = "Invalid or expired token."
+      redirect_to root_url
+      return
+    end
+
     if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
       redirect_to :edit
     elsif @user.update(user_params)
+      # Invalidate the token by setting reset_digest to nil
+      @user.update(reset_digest: nil, reset_sent_at: nil)
+
       flash[:notice] = "Password has been reset."
       redirect_to root_url
     else
-      flash.now[:alert] = "There was a problem resetting your password."
+      flash.now[:danger] = "There was a problem resetting your password."
       render :edit
     end
   end
