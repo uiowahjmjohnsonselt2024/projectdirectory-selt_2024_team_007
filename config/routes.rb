@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
 
   get '/landing', to: 'landing#index', as: 'landing'
+
+  get '/store_items', to: 'store_items#index', as: 'store_items'
   
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
