@@ -31,3 +31,46 @@ $body-color: $text-default;
     background-color: darken($primary-color, 10%);
   }
 }
+
+/* Dropdown Container */
+.custom-dropdown-menu {
+  background-color: #4A235A; /* Matches the purple color from your layout */
+  border: none; /* Remove borders */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 0.5rem 0;
+  top: 10px; /* Adjust dropdown positioning */
+  right: 0; /* Align to the right of the container */
+  min-width: 150px; /* Set a minimum width for the dropdown */
+}
+
+.custom-dropdown {
+  position: relative; /* Ensure proper positioning */
+}
+
+/* Dropdown Items */
+.custom-dropdown-item {
+  color: #ECF0F1; /* Light text color */
+  padding: 10px 20px;
+  font-family: sans-serif; /* Match the font style */
+  font-size: 1rem;
+  background-color: transparent; /* Transparent by default */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover Effect */
+.custom-dropdown-item:hover {
+  background-color: #2ECC71; /* Light green on hover */
+  color: #2C3E50; /* Dark text on hover */
+}
+
+/* Dropdown Toggle (Profile Picture) */
+#userDropdown {
+  border: 2px solid #ECF0F1; /* Border around the image */
+  transition: transform 0.2s ease, border-color 0.2s ease; /* Smooth interaction effect */
+}
+
+#userDropdown:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+  border-color: #2ECC71; /* Change border color to green */
+}

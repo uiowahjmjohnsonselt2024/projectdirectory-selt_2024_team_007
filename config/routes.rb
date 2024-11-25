@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
 
   get '/landing', to: 'landing#index', as: 'landing'
-  
+  get 'settings', to: 'settings#settings', as: 'settings'
+  get 'friends', to: 'friends#index', as: 'friends'
+
+
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 
@@ -34,7 +37,7 @@ Rails.application.routes.draw do
   # match "/login", to: "sessions#new", via: :get, as: "login"
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
-  root "application#index"
+  root "landing#index"
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 end

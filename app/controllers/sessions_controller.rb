@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:session_token] = user.session_token
       session[:last_seen_at] = Time.current
       flash[:notice] = "Welcome, #{user.name}!"
-      redirect_to user_path(user)
+      redirect_to landing_path
     else
       flash.now[:warning] = "Invalid email/password combination"
       redirect_to login_path
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     if user
       session[:session_token] = user.session_token
       flash[:notice] = "Welcome, #{user.name}!"
-      redirect_to user_path(user)
+      redirect_to landing_path
     else
       redirect_to login_path
     end
