@@ -28,3 +28,7 @@ end
 Then(/^I should be on the login page$/) do
   expect(current_path).to eq('/login')
 end
+
+When(/^I visit the site$/) do
+  visit root_path
+end
