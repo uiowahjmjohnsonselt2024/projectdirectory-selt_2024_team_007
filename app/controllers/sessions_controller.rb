@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome, #{user.name}!"
       redirect_to landing_path
     else
-      flash.now[:warning] = "Invalid email/password combination"
+      flash[:warning] = "Invalid email/password combination"
       redirect_to login_path
     end
   end

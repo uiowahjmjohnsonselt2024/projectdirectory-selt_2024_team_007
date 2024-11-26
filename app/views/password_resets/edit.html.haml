@@ -8,6 +8,8 @@
       style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;"
     } Reset Your Password
 
+    = render 'shared/flash'
+
     = form_with(model: @user, url: password_reset_path(@user.reset_token), method: :patch, local: true, id: "password_reset_form", class: "space-y-4") do |f|
       %div.form-group
         = hidden_field_tag :email, @user.email
