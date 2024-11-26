@@ -26,7 +26,7 @@ class PasswordResetsController < ApplicationController
       end
       redirect_to login_path
     else
-      flash.now[:notice] = "Email address not found."
+      flash[:notice] = "Email address not found."
       redirect_to new_password_reset_path
     end
   end
@@ -46,7 +46,9 @@ class PasswordResetsController < ApplicationController
 
     if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
-      redirect_to :edit
+      flash.now[:danger] = @user.errors.full_messages.join(', ')
+      @user.reset_token = params[:id]
+      render :edit
     elsif @user.update(user_params)
       # Invalidate the token by setting reset_digest to nil
       @user.update(reset_digest: nil, reset_sent_at: nil)
