@@ -1,7 +1,9 @@
+# spec/factories/games.rb
 FactoryBot.define do
   factory :game do
     sequence(:name) { |n| "Game #{n}" }
     sequence(:join_code) { |n| "G#{n.to_s.rjust(5, '0')}" } # Generates "G00001", "G00002", etc.
+    map_size { "6x6" }
 
     transient do
       owner_user { nil }

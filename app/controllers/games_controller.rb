@@ -7,17 +7,17 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     @game.owner = @current_user
     @game.current_turn_user = @current_user
-
+  
     if @game.save
-      # Add the creator to the game_users
       @game.game_users.create(user: @current_user, health: 100)
-
       redirect_to @game, notice: 'Game was successfully created.'
     else
-      flash[:alert] = @game.errors.full_messages.to_sentence
-      redirect_to root_path
+      # Render the landing page with errors
+      @games = @current_user.games
+      render 'landing/index', status: :unprocessable_entity    
     end
   end
+
 
   # POST /games/join
   def join
@@ -54,6 +54,6 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :join_code)
-  end
+    params.require(:game).permit(:name, :join_code, :map_size)
+  end  
 end
