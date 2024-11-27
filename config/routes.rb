@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'settings', to: 'settings#settings', as: 'settings'
   get 'friends', to: 'friends#index', as: 'friends'
 
+  patch 'change_email', to: 'settings#change_email'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
