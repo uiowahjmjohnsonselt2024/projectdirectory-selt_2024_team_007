@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
 
   get '/store_items', to: 'store_items#index', as: 'store_items'
+  post 'store_items/purchase', to: 'store_items#purchase'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]

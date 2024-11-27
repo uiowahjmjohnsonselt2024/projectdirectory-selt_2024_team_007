@@ -19,18 +19,23 @@
         %div.purchase-panel
           %img{ src: image_path('shards_normal.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
           %strong $5.00 - 50 Shards
-          %button{ class: "purchase-button", data: { package: "50 Shards for $5.00" }, style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+          %button{ class: "purchase-button",
+                   data: { package: "50 Shards for $5.00", shard_amount: 50 },
+                   style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
-          %img{ src: image_path('shards_medium.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
+          %img{ src: image_path('shards_medium.png'), alt: "120 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
           %strong $10.00 - 120 Shards
-          %button{ class: "purchase-button", data: { package: "120 Shards for $10.00" }, style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
+          %button{ class: "purchase-button",
+                   data: { package: "120 Shards for $10.00", shard_amount: 120 },
+                   style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
-          %img{ src: image_path('shards_large.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
+          %img{ src: image_path('shards_large.png'), alt: "250 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
           %strong $20.00 - 250 Shards
-          %button{ class: "purchase-button", data: { package: "250 Shards for $20.00" }, style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
-
+          %button{ class: "purchase-button",
+                   data: { package: "250 Shards for $20.00", shard_amount: 250 },
+                   style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
       %button{ id: "close-popup-purchase", style: "margin-top: 20px; padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Close
 
     %div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
@@ -41,6 +46,16 @@
 
     %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
       Purchase Shards
+
+%div.store-items
+  - @store_items.each do |item|
+    %div.store-item
+      %h2= item.name
+      %p= item.description
+      %p Cost: #{item.shards_cost} shards
+      %button{ class: "purchase-button",
+                data: { package: "#{item.name} for #{item.shards_cost} shards" },
+                style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
 
 :javascript
   document.addEventListener("DOMContentLoaded", () => {
@@ -68,8 +83,14 @@
     };
 
     const openConfirmation = (packageInfo) => {
+      const shardAmount = parseInt(packageInfo.match(/\d+/)[0], 10); // Assuming format like "50 Shards for $5.00"
+
       // Set up the confirmation message dynamically
       confirmationMessage.textContent = `Are you sure you want to purchase ${packageInfo}?`;
+
+      // Set the data attribute with the shard amount
+      confirmationPopup.setAttribute('data-shard-amount', shardAmount);
+
       openPopup(confirmationPopup);
       closePopup(purchasePopup); // Close the purchase pop-up immediately after opening confirmation
     };
@@ -97,9 +118,39 @@
 
     // Confirm purchase (this could trigger a backend action in the future)
     confirmPurchaseButton.addEventListener("click", () => {
-      console.log('Purchase confirmed!');
-      // Here, you'd likely trigger a backend API call to process the purchase
-      closePopup(confirmationPopup); // Close the confirmation
+      const shardAmount = parseInt(confirmationPopup.getAttribute('data-shard-amount'), 10);
+
+      // Create a FormData object to send the data as form-encoded
+      const formData = new FormData();
+      formData.append('shard_amount', shardAmount);
+      formData.append('purchase', true);  // Add any other necessary parameters here
+
+      fetch('/store_items/purchase', {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData  // Send the form data directly
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Expect a JSON response from the server
+      })
+      .then(data => {
+        if (data.success) {
+          alert(`Purchase confirmed! You have received ${shardAmount} shards.`);
+          closePopup(confirmationPopup); // Call the function to close the popup
+          window.location.href = '/store_items'; // Redirect to the store items page after successful purchase
+        } else {
+          alert('An error occurred while processing your purchase.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your purchase.');
+      });
     });
 
     // Cancel purchase
