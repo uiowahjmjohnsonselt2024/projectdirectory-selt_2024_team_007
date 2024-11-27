@@ -9,23 +9,46 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Register page
+  # Register path
   get '/register', to: 'users#new', as: 'register'
+  post "/register", to: 'users#create'
+
+  #login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+
+
 
   # 3rd party login redirect
   get '/auth/:provider/callback', to: 'sessions#oauth_create'
   get '/auth/failure', to: redirect('/login')
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
 
+  get '/landing', to: 'landing#index', as: 'landing'
+  get 'settings', to: 'settings#settings', as: 'settings'
+  get 'friends', to: 'friends#index', as: 'friends'
+
+  # Games routes
+  resources :games, only: [:create, :show] do
+    member do
+      post 'start'  # This creates start_game_path(@game)
+    end
+
+    collection do
+      post 'join'  # Handles POST /games/join
+    end
+  end
+
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 
   match "/signup", to: "users#new", via: :get, as: "signup"
-  match "/login", to: "sessions#new", via: :get, as: "login"
+
+  # match "/login", to: "sessions#new", via: :get, as: "login"
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
-  root "application#index"
+  root "landing#index"
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 end

@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   has_secure_password
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
-  validates :name, presence: true, length: { maximum: 50 }
+
+  VALID_NAME_REGEX = /\A[^\s]+\z/
+  validates :name, presence: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
@@ -63,4 +65,9 @@ class User < ActiveRecord::Base
 
     user
   end
+
+  has_many :game_users, dependent: :destroy
+  has_many :games, through: :game_users
+  has_many :owned_games, class_name: 'Game', foreign_key: 'owner_id', dependent: :nullify
+  has_many :current_turn_games, class_name: 'Game', foreign_key: 'current_turn_user_id', dependent: :nullify
 end

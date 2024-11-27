@@ -14,20 +14,20 @@ RSpec.describe UsersController, type: :controller do
     context "with valid parameters" do
       # Happy Path: User is created successfully
       it "creates a new User" do
-        post :create, params: { user: { name: "John Doe", email: "john.doe@example.com", password: "password", password_confirmation: "password" } }
+        post :create, params: { user: { name: "JohnDoe", email: "john.doe@example.com", password: "password", password_confirmation: "password" } }
 
         # Check if the user instance is valid
         expect(assigns(:user)).to be_valid
 
         # Test the change in User count
         expect {
-          post :create, params: { user: { name: "Jane Doe", email: "jane.doe@example.com", password: "password123", password_confirmation: "password123" } }
+          post :create, params: { user: { name: "JaneDoe", email: "jane.doe@example.com", password: "password123", password_confirmation: "password123" } }
         }.to change(User, :count).by(1)
       end
 
       # Happy Path: Redirects to the login path after user creation
       it "redirects to the login path" do
-        post :create, params: { user: { name: "John Doe", email: "john.doe@example.com", password: "password", password_confirmation: "password" } }
+        post :create, params: { user: { name: "JohnDoe", email: "john.doe@example.com", password: "password", password_confirmation: "password" } }
         expect(response).to redirect_to(login_path)
       end
     end
@@ -43,13 +43,13 @@ RSpec.describe UsersController, type: :controller do
       # Sad Path: Renders the 'new' template with invalid parameters
       it "renders the 'new' template" do
         post :create, params: { user: { name: "", email: "", password: "", password_confirmation: "" } }
-        expect(response).to render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
 
   describe "GET #show" do
-    let(:user) { User.create(name: "John Doe", email: "john@example.com", password: "password", password_confirmation: "password") }
+    let(:user) { User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
 
     context "when user is logged in" do
       before do
@@ -86,8 +86,8 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  let!(:user) { User.create!(name: "John Doe", email: "john@example.com", password: "password", password_confirmation: "password") }
-  let!(:another_user) { User.create!(name: "Jane Smith", email: "jane@example.com", password: "password", password_confirmation: "password") }
+  let!(:user) { User.create!(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
+  let!(:another_user) { User.create!(name: "JaneSmith", email: "jane@example.com", password: "password", password_confirmation: "password") }
 
   before do
     # Simulate setting the current user

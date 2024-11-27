@@ -1,0 +1,23 @@
+%section.vh-100{
+  style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
+}
+  %div{
+    style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
+  }
+    %h1{
+      style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;"
+    } Profile Settings
+
+    %p{style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;"}
+      You are logged in as #{@current_user.email}
+
+    = render 'shared/flash'
+
+    = form_with(url: password_resets_path, method: :post, local: true) do |f|
+      - if @current_user&.email
+        = hidden_field_tag :email, @current_user.email
+      %div.actions{ style: "margin-top: 20px;" }
+        = f.submit "Reset Password", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+    %p{style: "text-align: center; margin-top: 15px;"}
+      = link_to 'Back to home', root_path, style: "color: #1ABC9C;"

@@ -3,7 +3,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
     when /^the home\s?page$/ then root_path
-    when /^the sign-up page$/ then signup_path
+    when /^the sign-up page$/ then register_path
     when /^the login page$/ then login_path
     when /^the logout page$/ then logout_path
     when /^the register page$/ then register_path
@@ -12,6 +12,7 @@ module NavigationHelpers
     when /^the user profile page for "(.*)"$/ then user_path(User.find_by(name: $1))
     when /^the users page$/ then users_path
     when /^the sessions page$/ then sessions_path
+    when /^the landing page$/ then landing_path
 
     # Everyone, put new mappings here as you need them. I based this off of the routes file/
 

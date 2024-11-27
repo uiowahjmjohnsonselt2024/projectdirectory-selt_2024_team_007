@@ -1,15 +1,15 @@
 FactoryBot.define do
   factory :user do
-    name { "John Doe" }
-    email { "john.doe@example.com" }
+    sequence(:name) { |n| "JohnDoe#{n}" }
+    sequence(:email) { |n| "john.doe#{n}@example.com" }
     password { "password" }
     password_confirmation { "password" }
-    session_token { SecureRandom.urlsafe_base64 } # Generate a unique session token
-    reset_digest { nil }                         # Typically nil until a reset is initiated
-    reset_sent_at { nil }                        # Typically nil until a reset is initiated
-    uid { SecureRandom.uuid }                    # Unique identifier for OAuth integrations (if applicable)
+    session_token { SecureRandom.urlsafe_base64 }
+    reset_digest { nil }
+    reset_sent_at { nil }
+    uid { SecureRandom.uuid }
 
-    # Trait for a user with an active reset token
+    # Keep existing trait
     trait :with_reset_token do
       after(:build) do |user|
         user.reset_token = SecureRandom.urlsafe_base64
