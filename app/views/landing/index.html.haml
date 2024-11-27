@@ -8,19 +8,23 @@
         Let the Adventure Begin!
     = render 'shared/flash'
     / Create Game Button
+
+    %button{ style: "margin-bottom: 10px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" }
+      = link_to 'StoreItem', store_items_path, style: "color: #ECF0F1; text-decoration: none; display: block;"
+
     %button.btn.btn-primary{
-      id: "new_game_button", 
-      "data-bs-toggle" => "modal", 
-      "data-bs-target" => "#createGameModal", 
-      style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" 
+      id: "new_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#createGameModal",
+      style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
     }
       New Game
     / Join Game Button
     %button.btn.btn-secondary{
-      id: "join_game_button",  
-      "data-bs-toggle" => "modal", 
-      "data-bs-target" => "#joinGameModal", 
-      style: "background-color: #3498DB; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" 
+      id: "join_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#joinGameModal",
+      style: "background-color: #3498DB; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
     }
       Join Existing Game
 
