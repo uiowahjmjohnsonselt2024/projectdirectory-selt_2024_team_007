@@ -1,23 +1,13 @@
-%section.vh-100{
-  style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
-}
-  %div{
-    style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
-  }
-    %h1{
-      style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;"
-    } Reset Your Password
+%h1 Reset Your Password
 
-    = render 'shared/flash'
-
-    = form_with(model: @user, url: password_reset_path(@user.reset_token), method: :patch, local: true, id: "password_reset_form", class: "space-y-4") do |f|
-      %div.form-group
-        = hidden_field_tag :email, @user.email
-      %div.form-group
-        = f.label :password, "New Password", style: "color: #BDC3C7; font-weight: bold;"
-        = f.password_field :password, required: true, id: "new_password_field", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.form-group{ style: "margin-top: 20px;" }
-        = f.label :password_confirmation, "Confirm New Password", style: "color: #BDC3C7; font-weight: bold;"
-        = f.password_field :password_confirmation, required: true, id: "password_confirmation_field", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.actions{ style: "margin-top: 20px;" }
-        = f.submit "Submit", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+= form_with(model: @user, url: password_reset_path(@user.reset_token), method: :patch, local: true, id: "password_reset_form") do |f|
+  %div
+    = hidden_field_tag :email, @user.email
+  %div
+    = f.label :password, "New Password"
+    = f.password_field :password, required: true, id: "new_password_field"
+  %div
+    = f.label :password_confirmation, "Confirm New Password"
+    = f.password_field :password_confirmation, required: true, id: "password_confirmation_field"
+  %div
+    = f.submit "Submit", class: "btn btn-primary"

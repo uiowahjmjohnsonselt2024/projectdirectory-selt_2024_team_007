@@ -29,10 +29,7 @@ gem 'omniauth-google-oauth2'
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'sassc-rails'
-gem 'bootstrap', '~> 5.3.3'
-gem 'popper_js', '~> 2.11.8'
-gem 'jquery-rails'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

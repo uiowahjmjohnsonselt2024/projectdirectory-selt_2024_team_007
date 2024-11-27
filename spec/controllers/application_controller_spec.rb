@@ -25,7 +25,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  let(:user) { User.create!(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
+  let(:user) { User.create!(name: "John Doe", email: "john@example.com", password: "password", password_confirmation: "password") }
 
   describe "#set_current_user" do
     context "when session token is blank" do

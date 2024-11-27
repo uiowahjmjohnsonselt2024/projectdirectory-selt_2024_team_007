@@ -1,18 +1,16 @@
-%div{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;" }
-  %div{ style: "background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 8px;" }
-    %h2{ style: "color: white;" } Register
-    = form_with model: @user, url: users_path, local: true do |f|
-      .form-group
-        = f.label :name
-        = f.text_field :name, required: true
-      .form-group
-        = f.label :email
-        = f.email_field :email, required: true
-      .form-group
-        = f.label :password
-        = f.password_field :password, required: true
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, required: true
-      .form-group
-        = f.submit "Register"
+%h1 Register
+= form_with model: @user, url: users_path, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, required: true
+  .form-group
+    = f.label :email
+    = f.email_field :email, required: true
+  .form-group
+    = f.label :password
+    = f.password_field :password, required: true
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, required: true
+  .form-group
+    = f.submit "Register"

@@ -3,13 +3,4 @@
 
 require_relative "config/application"
 
-desc "Run tests with coverage enabled"
-task :coverage do
-  puts "Running RSpec with coverage..."
-  system("COVERAGE=true bundle exec rspec")
-  puts "Running Cucumber with coverage..."
-  system("COVERAGE=true bundle exec cucumber")
-end
-
-
 Rails.application.load_tasks

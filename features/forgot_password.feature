@@ -6,7 +6,7 @@ Feature: Forgot Password
   Scenario: User requests a password reset
     Given the following users exist:
       | name         | email              | password    |
-      | ExampleUser | user@example.com   | oldpassword |
+      | Example User | user@example.com   | oldpassword |
     And I am on the login page
     When I follow "Forgot Password?"
     Then I should be on "/password_resets/new"
@@ -21,5 +21,5 @@ Feature: Forgot Password
     Then I should be on "/password_resets/new"
     When I fill in "email" with "nonexistent@example.com"
     And I press "Send Reset Email"
-    Then I should see "Email address not found."
-    And I should be on "/password_resets/new"
+    Then I should be on "/password_resets/new"
+    And I should not be on "/login"

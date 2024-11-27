@@ -1,17 +1,7 @@
-%section.vh-100{
-  style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
-}
-  %div{
-    style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
-  }
-    %h1{
-      style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;"
-    } Forgot Your Password?
-
-    = render 'shared/flash'
-    = form_with(url: password_resets_path, method: :post, local: true, class: "space-y-4") do |f|
-      %div.form-group
-        = f.label :email, "Enter your email address:", style: "color: #BDC3C7; font-weight: bold;"
-        = f.text_field :email, required: true, id: "email_field", class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.actions{ style: "margin-top: 20px;" }
-        = f.submit "Send Reset Email", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+%h1 Forgot Your Password?
+= form_with(url: password_resets_path, method: :post, local: true) do |f|
+  %div
+    = f.label :email, "Enter your email address:"
+    = f.text_field :email, required: true
+  %div
+    = f.submit "Send Reset Email"

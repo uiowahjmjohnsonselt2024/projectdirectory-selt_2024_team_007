@@ -7,9 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-User.destroy_all
+User.delete_all
 User.create!(
-  name: "TestUser",
+  name: "Test User",
   email: "t@t.t",
   password: "password",
   password_confirmation: "password",
@@ -18,27 +18,3 @@ User.create!(
   reset_sent_at: nil,
   uid: nil
 )
-
-user = User.find_or_create_by(email: 'admin@example.com') do |u|
-  u.name = 'Admin'
-  u.password = 'password'
-  u.password_confirmation = 'password'
-  u.session_token = SecureRandom.urlsafe_base64
-  u.reset_digest = nil
-  u.reset_sent_at = nil
-  u.uid = nil
-end
-
-# Create some sample games
-5.times do |i|
-  game = Game.create!(
-    name: "Sample Game #{i + 1}",
-    join_code: "GAME#{format('%02d', i + 1)}", # Ensures two digits
-    owner: user,
-    current_turn_user: user
-  )
-  game.game_users.create!(user: user, health: 100)
-end
-
-puts "Seeded #{Game.count} games."
-
