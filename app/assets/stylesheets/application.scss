@@ -86,3 +86,37 @@ $body-color: $text-default;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.store-button {
+  width: 100%; /* Matches your current button width */
+}
+
+.store-link {
+  display: block; /* Ensures the link fills the button */
+  text-align: center; /* Centers the content */
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8); /* Black semi-transparent background */
+  color: rgba(180, 150, 255, 0.8); /* Light purple text */
+  border: 2px solid rgba(180, 150, 255, 0.8); /* Light purple outline */
+  border-radius: 12px; /* Curved corners */
+  text-decoration: none;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(180, 150, 255, 0.2); /* Light purple background on hover */
+    color: rgba(180, 150, 255, 1); /* Fully opaque text on hover */
+  }
+}
+
+.store-icon {
+  height: 60px;
+  width: 60px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.balance {
+  font-size: 14px;
+  vertical-align: middle;
+}
