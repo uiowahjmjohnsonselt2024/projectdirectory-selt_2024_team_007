@@ -28,6 +28,17 @@ Rails.application.routes.draw do
   get 'settings', to: 'settings#settings', as: 'settings'
   get 'friends', to: 'friends#index', as: 'friends'
 
+  # Games routes
+  resources :games, only: [:create, :show] do
+    member do
+      post 'start'  # This creates start_game_path(@game)
+    end
+
+    collection do
+      post 'join'  # Handles POST /games/join
+    end
+  end
+
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]

@@ -1,0 +1,17 @@
+/ app/views/games/show.html.haml
+
+%h1= @game.name
+
+%p
+  %strong Join Code:
+  = @game.join_code
+
+%h2 Players
+%ul
+  - @game_users.each do |game_user|
+    %li= "#{game_user.user.name} (Health: #{game_user.health})"
+
+- if @game.owner == @current_user
+  = link_to 'Start Game', start_game_path(@game), class: 'btn btn-success'
+
+= link_to 'Back to Landing Page', landing_path

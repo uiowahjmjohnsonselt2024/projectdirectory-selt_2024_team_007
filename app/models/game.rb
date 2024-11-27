@@ -8,4 +8,14 @@ class Game < ApplicationRecord
 
   # Validations
   validates :name, presence: true
+  validates :join_code, presence: true, uniqueness: true, format: { with: /\A[A-Z0-9]{6}\z/, message: "must be 6 uppercase alphanumeric characters" }
+
+  # Callbacks
+  before_validation :normalize_join_code, on: :create
+
+  private
+
+  def normalize_join_code
+    self.join_code = join_code.upcase.strip if join_code.present?
+  end
 end
