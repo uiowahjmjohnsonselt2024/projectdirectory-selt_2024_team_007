@@ -74,3 +74,15 @@ $body-color: $text-default;
   transform: scale(1.1); /* Slight zoom effect on hover */
   border-color: #2ECC71; /* Change border color to green */
 }
+
+/*Store purchase panel for buying shards*/
+.purchase-panel {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
