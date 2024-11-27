@@ -10,23 +10,3 @@
     %script{src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"}
   %body{ style: "margin: 0; padding: 0; height: 100%; width: 100%;" }
     = yield
-    -# %h1.title Welcome to My Application
-    -# #main
-    -#   - if flash[:notice]
-    -#     #notice.message= flash[:notice]
-    -#   - elsif flash[:warning]
-    -#     #warning.message= flash[:warning]
-    -#   - elsif flash[:success]
-    -#     #success.message= flash[:success]
-    -#   - if @current_user
-    -#     %p.welcome You are logged in as #{@current_user.email}
-    -#     = button_to 'Log Out', logout_path, :method => :delete, id: 'logout_button'
-    -#     %p.profile= link_to 'View Profile', user_path(@current_user)
-    -#   - else
-    -#     %p.login
-    -#       = button_to 'Login with password', login_path, method: :get, id: 'login_button'
-        -# %p.google-login
-        -#   = button_to 'Login with Google', '/auth/google_oauth2', method: :post, id: 'google_login_button'
-        -# %p.register
-        -#   = button_to 'Register New Account', register_path, method: :get, id: 'register_button'
-    -# = yield
