@@ -17,9 +17,9 @@ RSpec.describe SessionsController, type: :controller do
         expect(session[:session_token]).to eq(user.session_token)
       end
 
-      it "redirects to the user's profile" do
+      it "redirects to the user's landing page" do
         post :create, params: { session: { email: "john@example.com", password: "password" } }
-        expect(response).to redirect_to(user_path(user))
+        expect(response).to redirect_to(landing_path)
       end
     end
 

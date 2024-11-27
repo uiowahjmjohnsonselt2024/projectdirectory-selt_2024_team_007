@@ -8,6 +8,7 @@
         %ul
           - @user.errors.full_messages.each do |msg|
             %li= msg
+    = render 'shared/flash'
     = form_with model: @user, url: register_path, local: true, class: "space-y-4" do |form|
       %div.form-group
         = form.label :name, "Name", style: "color: #BDC3C7; font-weight: bold;"

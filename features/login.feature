@@ -12,7 +12,7 @@ Feature: User Login
     When I fill in "email_field" with "aliyo@email.com"
     And I fill in "password_field" with "passwordiness"
     And I press "Sign in"
-    Then I should be on the user profile page
+    Then I should be on "/landing"
 
   Scenario: User logs in with incorrect credentials
     Given the following user exists:

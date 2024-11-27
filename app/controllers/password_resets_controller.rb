@@ -10,22 +10,23 @@ class PasswordResetsController < ApplicationController
 
   # Handle the form submission and send the email
   def create
-    Rails.logger.debug "Email parameter received: #{params[:email]}"
+    if params[:email].nil? || params[:email].empty?
+      flash[:danger] = "There was an error"
+      redirect_to login_path
+    end
     @user = User.find_by(email: params[:email].downcase)
 
     if @user
       @user.create_reset_digest
       begin
         UserMailer.password_reset(@user).deliver_now
-        Rails.logger.debug "Password reset email sent successfully."
-        flash[:notice] = "Password reset email has been sent."
+        flash[:success] = "Password reset email has been sent."
       rescue => e
-        Rails.logger.error "Failed to send password reset email: #{e.message}"
         flash[:alert] = "We couldn't send the password reset email. Please try again later."
       end
       redirect_to login_path
     else
-      flash.now[:notice] = "Email address not found."
+      flash[:notice] = "Email address not found."
       redirect_to new_password_reset_path
     end
   end
@@ -45,7 +46,9 @@ class PasswordResetsController < ApplicationController
 
     if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
-      redirect_to :edit
+      flash.now[:danger] = @user.errors.full_messages.join(', ')
+      @user.reset_token = params[:id]
+      render :edit
     elsif @user.update(user_params)
       # Invalidate the token by setting reset_digest to nil
       @user.update(reset_digest: nil, reset_sent_at: nil)
@@ -53,7 +56,8 @@ class PasswordResetsController < ApplicationController
       flash[:notice] = "Password has been reset."
       redirect_to root_url
     else
-      flash.now[:danger] = "There was a problem resetting your password."
+      flash.now[:danger] = @user.errors.full_messages.join(', ')
+      @user.reset_token = params[:id]
       render :edit
     end
   end

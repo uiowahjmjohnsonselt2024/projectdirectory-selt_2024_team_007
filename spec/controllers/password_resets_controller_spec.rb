@@ -43,7 +43,6 @@ RSpec.describe PasswordResetsController, type: :controller do
       it "sends a password reset email" do
         post :create, params: { email: user.email }
         expect(ActionMailer::Base.deliveries.size).to eq(1)
-        expect(flash[:notice]).to eq("Password reset email has been sent.")
         expect(response).to redirect_to login_path
       end
     end

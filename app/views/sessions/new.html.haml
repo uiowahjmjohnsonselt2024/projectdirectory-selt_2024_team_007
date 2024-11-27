@@ -4,13 +4,7 @@
       %img{ src: image_path('logo.png'), alt: "Logo", style: "max-width: 100px;" }
     %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Sign In
 
-    - if flash[:notice]
-      .alert.alert-success{ style: "color: green; text-align: center;" }
-        = flash[:notice]
-
-    - if flash[:notice] # Corrected the closing bracket here
-      .alert.alert-danger{ style: "color: red; text-align: center;" }
-        = flash[:notice]
+    = render 'shared/flash'
 
     = form_with scope: :session, url: login_path, method: :post, local: true, class: "space-y-4" do |form|
       %div.form-group
