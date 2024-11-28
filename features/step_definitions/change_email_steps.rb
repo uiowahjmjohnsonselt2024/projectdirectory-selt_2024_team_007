@@ -1,19 +1,7 @@
-When('I click {string} button') do |string|
-  click_button(string)
-end
-
 Then('I should see the {string} modal') do |modal_title|
   within('.modal') do
     expect(page).to have_content(modal_title)
   end
-end
-
-When('I fill in {string} with {string}') do |field_label, value|
-  fill_in(field_label, with: value)
-end
-
-Then('I should see {string}') do |message|
-  expect(page).to have_content(message)
 end
 
 Then('the {string} field should contain {string}') do |field_label, value|
