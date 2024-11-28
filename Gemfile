@@ -19,7 +19,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
+gem 'actioncable', '~> 7.0'
+
 gem 'haml-rails', '~> 2.0'
 
 # This is for 3rd-party login(Google login in this case)

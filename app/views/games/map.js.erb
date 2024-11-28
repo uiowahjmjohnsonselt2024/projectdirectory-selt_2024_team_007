@@ -1,0 +1,4 @@
+const modalBody = document.querySelector('#mapModal .modal-body');
+if (modalBody) {
+  modalBody.innerHTML = '<%= j(render partial: "map", locals: { game: @game, tiles: @tiles, game_users: @game_users }) %>';
+}
