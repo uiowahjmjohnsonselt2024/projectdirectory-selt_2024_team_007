@@ -6,11 +6,10 @@
     = render 'shared/navigation'
 
   %div.center-content{ style: "display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" }
+    = render 'shared/flash'
     %h1{ style: "font-size: 2.5rem; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" } STORE
 
     %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
-      = render 'shared/flash'
-
     %div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 10px;" }
       %h2{ style: "margin-bottom: 20px; color: #2C3E50; text-align: center;" } Purchase Shards
       %p{ style: "margin-bottom: 20px; color: #7F8C8D; text-align: center;" } Select a shard package to purchase.
@@ -41,11 +40,15 @@
     %div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }
       %h2 Confirm Your Purchase
       %p{ id: "confirmation-message" }
-      %button{ id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
-      %button{ id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
+
+      = form_with url: purchase_store_items_path, method: :post, local: true, id: "purchase-form" do |f|
+        = hidden_field_tag :shard_amount, nil, id: "shard-amount-field"
+        %button{ type: "submit", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+        %button{ type: "button", id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
 
     %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
       Purchase Shards
+
 
 %div.store-items
   - @store_items.each do |item|
@@ -54,7 +57,7 @@
       %p= item.description
       %p Cost: #{item.shards_cost} shards
       %button{ class: "purchase-button",
-                data: { package: "#{item.name} for #{item.shards_cost} shards" },
+                data: { package: "#{item.name} for #{item.shards_cost} shards", shard_amount: item.shards_cost },
                 style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
 
 :javascript
@@ -68,7 +71,6 @@
 
     // Confirmation pop-up elements
     const confirmationPopup = document.getElementById("popup-confirm-purchase");
-    const confirmPurchaseButton = document.getElementById("confirm-purchase");
     const cancelPurchaseButton = document.getElementById("cancel-purchase");
     const confirmationMessage = document.getElementById("confirmation-message");
 
@@ -82,17 +84,12 @@
       overlay.style.display = "block";
     };
 
-    const openConfirmation = (packageInfo) => {
-      const shardAmount = parseInt(packageInfo.match(/\d+/)[0], 10); // Assuming format like "50 Shards for $5.00"
-
-      // Set up the confirmation message dynamically
+    const openConfirmation = (packageInfo, shardAmount) => {
       confirmationMessage.textContent = `Are you sure you want to purchase ${packageInfo}?`;
-
-      // Set the data attribute with the shard amount
-      confirmationPopup.setAttribute('data-shard-amount', shardAmount);
+      document.getElementById('shard-amount-field').value = shardAmount;
 
       openPopup(confirmationPopup);
-      closePopup(purchasePopup); // Close the purchase pop-up immediately after opening confirmation
+      closePopup(purchasePopup);
     };
 
     // Open "Purchase Shards" pop-up
@@ -102,11 +99,11 @@
     closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
 
     // Open confirmation pop-up when a purchase button is clicked
-    const purchaseButtons = document.querySelectorAll('.purchase-button');
-    purchaseButtons.forEach(button => {
+    document.querySelectorAll('.purchase-button').forEach(button => {
       button.addEventListener('click', (event) => {
         const packageInfo = event.target.getAttribute('data-package');
-        openConfirmation(packageInfo);
+        const shardAmount = event.target.getAttribute('data-shard-amount'); // Retrieve from button
+        openConfirmation(packageInfo, shardAmount);
       });
     });
 
@@ -116,46 +113,9 @@
       closePopup(confirmationPopup);
     });
 
-    // Confirm purchase (this could trigger a backend action in the future)
-    confirmPurchaseButton.addEventListener("click", () => {
-      const shardAmount = parseInt(confirmationPopup.getAttribute('data-shard-amount'), 10);
-
-      // Create a FormData object to send the data as form-encoded
-      const formData = new FormData();
-      formData.append('shard_amount', shardAmount);
-      formData.append('purchase', true);  // Add any other necessary parameters here
-
-      fetch('/store_items/purchase', {
-        method: 'POST',
-        headers: {
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: formData  // Send the form data directly
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json(); // Expect a JSON response from the server
-      })
-      .then(data => {
-        if (data.success) {
-          alert(`Purchase confirmed! You have received ${shardAmount} shards.`);
-          closePopup(confirmationPopup); // Call the function to close the popup
-          window.location.href = '/store_items'; // Redirect to the store items page after successful purchase
-        } else {
-          alert('An error occurred while processing your purchase.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while processing your purchase.');
-      });
-    });
-
     // Cancel purchase
     cancelPurchaseButton.addEventListener("click", () => {
       console.log('Purchase canceled.');
-      closePopup(confirmationPopup); // Close the confirmation
+      closePopup(confirmationPopup);
     });
   });

@@ -54,5 +54,11 @@ Rails.application.routes.draw do
 
   root "landing#index"
 
+  resources :store_items do
+    collection do
+      post 'purchase'
+    end
+  end
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 end
