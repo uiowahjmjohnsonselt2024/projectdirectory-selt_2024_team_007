@@ -60,5 +60,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friends, only: [:index, :create] do
+    member do
+      post 'accept', to: 'friends#accept'
+      delete 'reject', to: 'friends#reject'
+      delete 'cancel', to: 'friends#cancel' # This is the missing route
+    end
+  end
+
   resources :password_resets, only: [:new, :create, :edit, :update]
 end
