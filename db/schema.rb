@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_27_211533) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_28_044411) do
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
+    t.string "status", default: "pending", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+  end
+
   create_table "game_users", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "user_id", null: false
@@ -71,9 +80,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_211533) do
     t.string "uid"
     t.integer "shards_balance", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["session_token"], name: "index_users_on_session_token"
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "game_users", "games"
   add_foreign_key "game_users", "tiles", column: "current_tile_id"
   add_foreign_key "game_users", "users"
