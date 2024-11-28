@@ -2,8 +2,9 @@ RSpec.describe SettingsController, type: :controller do
   let(:user) { create(:user, password: "password", email: "user@example.com") }
 
   before do
-    allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:@current_user).and_return(user)
+    allow(controller).to receive(:set_current_user) do
+      controller.instance_variable_set(:@current_user, user)
+    end
   end
 
   describe "PATCH #change_email" do

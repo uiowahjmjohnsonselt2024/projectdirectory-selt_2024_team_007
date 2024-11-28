@@ -1,10 +1,12 @@
-require 'app/controllers/settings_controller'
+require 'rails_helper.rb'
+
 RSpec.describe SettingsController, type: :controller do
   let(:user) { create(:user, password: "password", email: "user@example.com") }
 
   before do
-    allow(controller).to receive(:current_user).and_return(user)
-    allow(controller).to receive(:@current_user).and_return(user)
+    allow(controller).to receive(:set_current_user) do
+      controller.instance_variable_set(:@current_user, user)
+    end
   end
 
   describe "PATCH #change_email" do
@@ -22,7 +24,7 @@ RSpec.describe SettingsController, type: :controller do
     end
 
     context "with invalid parameters" do
-      it "does not update the email when passwords do not match" do
+      it "does not update the email when emails do not match" do
         patch :change_email, params: {
           current_password: "password",
           new_email: "new_email@example.com",

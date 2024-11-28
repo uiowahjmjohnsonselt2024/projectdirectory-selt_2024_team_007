@@ -1,10 +1,11 @@
 class SettingsController < ApplicationController
+  before_action :set_current_user
+
   def settings
     # Logic for the settings page (if needed)
   end
 
   def change_email
-    @user = @current_user
 
     # Check if password is provided
     unless params[:current_password].present?
@@ -13,7 +14,7 @@ class SettingsController < ApplicationController
     end
 
     # Verify the password
-    unless @user.authenticate(params[:current_password])
+    unless @current_user.authenticate(params[:current_password])
       flash[:danger] = "Incorrect password. Please try again."
       redirect_to settings_path and return
     end
@@ -25,7 +26,7 @@ class SettingsController < ApplicationController
     end
 
     # Update the email without triggering validations
-    if @user.update_columns(email: params[:new_email]) # Skips validations
+    if @current_user.update_columns(email: params[:new_email]) # Skips validations
       flash[:success] = "Your email has been updated successfully."
       redirect_to settings_path
     else
