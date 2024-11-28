@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
       password = SecureRandom.base64(12)
       user = self.create!(
         uid: auth['uid'],
-        name: auth['info']['name'] || "Unknown User",
+        name: "#{auth['info']['name'].gsub(/\s+/, '')}#{Array.new(6) { ('A'..'Z').to_a.sample }.join}" || "UNKNOWNUSER#{Array.new(6) { ('A'..'Z').to_a.sample }.join}",
         email: auth['info']['email'] || "#{auth['uid']}@google.com",
         password: password,
         password_confirmation: password,
