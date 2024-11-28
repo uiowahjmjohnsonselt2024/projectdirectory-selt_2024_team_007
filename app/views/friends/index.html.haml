@@ -12,42 +12,38 @@
       %br
       The Grid is better with friends.
 
+    = render 'shared/flash'
+
+    %div.refresh-container{ style: "text-align: center; margin: 20px;" }
+      %button.btn#refresh-button{ style: "padding: 10px 20px; font-size: 1rem;" }
+        Refresh
+
     / Add Friend Button (Moved inside the sidebar)
-    %button.btn.btn-primary{
-      id: "add_friend_button",
-      "data-bs-toggle" => "modal",
-      "data-bs-target" => "#addFriendModal",
-      style: "margin-top: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
-    }
+    %button.btn.btn-primary#add_friend_button{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendModal", style: "margin-top: 20px; padding: 10px; border-radius: 5px; width: 100%; font-size: 1.2rem;" }
       Add New Friend
 
   / Scrollable Friends List
   %div.scrollable-friends-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Your Friends:
-    %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-      %p{ style: "color: #ECF0F1; font-weight: bold;" } Alice
-      %p{ style: "color: #BDC3C7;" } Adventurer of the Grid
-      %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
+    - @friends.each do |friend|
+      %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        %p{ style: "color: #BDC3C7;" } Adventurer of the Grid
+        %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
 
-    %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-      %p{ style: "color: #ECF0F1; font-weight: bold;" } Bob
-      %p{ style: "color: #BDC3C7;" } Master Strategist
-      %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Friend Requests:
+    - @pending_friend_requests.each do |friend|
+      %div.friend-card{ style: "background: rgba(255, 165, 0, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        = button_to 'Accept', accept_friend_path(friend), method: :post, class: 'btn btn-primary', style: 'margin-top: 10px; display: inline-block;'
+        = button_to 'Decline', reject_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
 
-    %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-      %p{ style: "color: #ECF0F1; font-weight: bold;" } Charlie
-      %p{ style: "color: #BDC3C7;" } Explorer Extraordinaire
-      %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Sent Friend Requests:
+    - @sent_friend_requests.each do |friend|
+      %div.friend-card{ style: "background: rgba(0, 0, 255, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        = button_to 'Cancel', cancel_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
 
-    %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-      %p{ style: "color: #ECF0F1; font-weight: bold;" } Dana
-      %p{ style: "color: #BDC3C7;" } Grid Guardian
-      %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
-
-    %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-      %p{ style: "color: #ECF0F1; font-weight: bold;" } Eve
-      %p{ style: "color: #BDC3C7;" } Puzzle Wizard
-      %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
 
 /==============================
 / Add Friend Modal
@@ -59,6 +55,26 @@
         %h5.modal-title#addFriendModalLabel{ style: "color: black;" } Add a New Friend
         %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
       %div.modal-body
-        %p{ style: "color: black;" } Friend addition is under construction!
-      %div.modal-footer
-        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+        = form_with url: friends_path, method: :post, local: true do |f|
+          %div.form-group
+            = f.label :friend_email, "Friend's Email", class: 'form-label', style: "color: black;"
+            = f.email_field :friend_email, class: 'form-control', required: true
+          %div.modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+            = f.submit "Send Friend Request", class: 'btn btn-primary'
+
+:javascript
+  document.addEventListener('DOMContentLoaded', () => {
+    const refreshButton = document.getElementById('refresh-button');
+    refreshButton.addEventListener('click', () => {
+      fetch('/friends')
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const newContent = parser.parseFromString(html, 'text/html');
+          const newFriendsList = newContent.querySelector('.scrollable-friends-list');
+          document.querySelector('.scrollable-friends-list').innerHTML = newFriendsList.innerHTML;
+        })
+        .catch(err => console.error('Error refreshing friends list:', err));
+    });
+  });

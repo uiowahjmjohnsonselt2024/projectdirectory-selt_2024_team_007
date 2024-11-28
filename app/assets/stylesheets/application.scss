@@ -157,4 +157,28 @@ $body-color: $text-default;
 .btn-secondary {
   background-color: #3498db;
   border: none;
+
+#refresh-button {
+  background-color: #28a745; /* Default green */
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+#refresh-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+/* Add New Friend button hover effect */
+#add_friend_button {
+  background-color: #2ECC71; /* Default lighter green */
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#add_friend_button:hover {
+  background-color: #27AE60; /* Darker green on hover */
+  transform: scale(1.05);
 }

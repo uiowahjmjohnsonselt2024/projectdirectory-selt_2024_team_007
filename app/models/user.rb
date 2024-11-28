@@ -14,6 +14,22 @@ class User < ActiveRecord::Base
 
   validates :shards_balance, numericality: { greater_than_or_equal_to: 0 }
 
+  # Friendships where the user is the initiator
+  has_many :friendships, dependent: :destroy
+  has_many :friends, -> { where(friendships: { status: 'accepted' }) }, through: :friendships, source: :friend
+
+  # Friendships where the user is the recipient
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
+  has_many :inverse_friends, -> { where(friendships: { status: 'accepted' }) }, through: :inverse_friendships, source: :user
+
+  # Pending friend requests sent by this user
+  has_many :pending_friendships, -> { where(status: 'pending') }, class_name: 'Friendship'
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
+  # Pending friend requests received by this user
+  has_many :received_friend_requests, -> { where(status: 'pending') }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :requesting_friends, through: :received_friend_requests, source: :user
+
   attr_accessor :reset_token
 
   # Generates a password reset digest and timestamp
