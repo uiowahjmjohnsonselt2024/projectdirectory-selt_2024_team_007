@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_27_211533) do
     t.string "uid"
     t.integer "shards_balance", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["session_token"], name: "index_users_on_session_token"
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
   add_foreign_key "game_users", "games"
