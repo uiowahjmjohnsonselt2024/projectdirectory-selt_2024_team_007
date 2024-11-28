@@ -1,3 +1,4 @@
+require 'app/controllers/settings_controller'
 RSpec.describe SettingsController, type: :controller do
   let(:user) { create(:user, password: "password", email: "user@example.com") }
 
