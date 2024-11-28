@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get '/landing', to: 'landing#index', as: 'landing'
   get 'settings', to: 'settings#settings', as: 'settings'
+  patch 'change_email', to: 'settings#change_email'
   get 'friends', to: 'friends#index', as: 'friends'
 
   # Games routes
