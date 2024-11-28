@@ -1,26 +1,33 @@
 %section.dashboard{ style: "display: flex; height: 100vh; background-image: url(#{image_path('landing_page.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
-  / Sidebar 
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+
+  / Sidebar
   %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
     %div.logo
-      %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
-        Welcome back, #{@current_user.name}!
-        The Grid awaits your return to Shards of the Grid.
-        Let the Adventure Begin!
+    %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
+      Welcome back, #{@current_user.name}!
+      %br
+      The Grid awaits your return to Shards of the Grid.
+      %br
+      Let the Adventure Begin!
+
     = render 'shared/flash'
     / Create Game Button
+
     %button.btn.btn-primary{
-      id: "new_game_button", 
-      "data-bs-toggle" => "modal", 
-      "data-bs-target" => "#createGameModal", 
-      style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" 
+      id: "new_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#createGameModal",
+      style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
     }
       New Game
     / Join Game Button
     %button.btn.btn-secondary{
-      id: "join_game_button",  
-      "data-bs-toggle" => "modal", 
-      "data-bs-target" => "#joinGameModal", 
-      style: "background-color: #3498DB; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" 
+      id: "join_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#joinGameModal",
+      style: "background-color: #3498DB; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
     }
       Join Existing Game
 
@@ -37,25 +44,6 @@
           = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
     - else
       %p{ style: "color: #BDC3C7;" } No games available. Create one!
-
-  / User Settings Panel
-  %div.profile
-    %div.dropdown.custom-dropdown{ style: "text-align: center;" }
-      %img{
-        src: image_path('logo.png'),
-        alt: "Profile Picture",
-        class: "dropdown-toggle",
-        id: "userDropdown",
-        "data-bs-toggle" => "dropdown",
-        style: "width: 65px; height: 65px; border-radius: 50%; margin-top: 10px; margin-right: 15px; cursor: pointer; box-sizing: border-box"
-      }
-      %ul.dropdown-menu.dropdown-menu-end.custom-dropdown-menu{"aria-labelledby" => "userDropdown"}
-        %li
-          = link_to 'Settings', settings_path, class: 'dropdown-item custom-dropdown-item'
-        %li
-          = link_to 'Friends', friends_path, class: 'dropdown-item custom-dropdown-item'
-        %li
-          = button_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item custom-dropdown-item', id: 'logout_button'
 
   /==============================
   / Create Game Modal

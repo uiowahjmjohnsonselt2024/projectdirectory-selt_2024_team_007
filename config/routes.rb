@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   end
 
 
+
+  get '/store_items', to: 'store_items#index', as: 'store_items'
+
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
 

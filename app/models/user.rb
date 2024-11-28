@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  validates :shards_balance, numericality: { greater_than_or_equal_to: 0 }
+
   attr_accessor :reset_token
 
   # Generates a password reset digest and timestamp
