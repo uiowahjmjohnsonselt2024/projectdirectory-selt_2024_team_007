@@ -4,17 +4,25 @@ class GamesController < ApplicationController
 
   # POST /games
   def create
-    @game = Game.new(game_params)
-    @game.owner = @current_user
-    @game.current_turn_user = @current_user
-  
-    if @game.save
-      @game.game_users.create(user: @current_user, health: 100)
-      redirect_to @game, notice: 'Game was successfully created.'
+    if @current_user.shards_balance >= 500
+      @game = Game.new(game_params)
+      @game.owner = @current_user
+      @game.current_turn_user = @current_user
+
+      if @game.save
+        @current_user.update_column(:shards_balance, @current_user.shards_balance - 500)
+        @game.game_users.create(user: @current_user, health: 100)
+        redirect_to @game, notice: 'Game was successfully created.'
+      else
+        # Render the landing page with errors
+        @games = @current_user.games
+        flash[:danger] = "An error occurred."
+        render 'landing/index', status: :unprocessable_entity
+      end
     else
-      # Render the landing page with errors
       @games = @current_user.games
-      render 'landing/index', status: :unprocessable_entity    
+      flash[:error] = "Insufficient Shards Balance"
+      redirect_to landing_path
     end
   end
 

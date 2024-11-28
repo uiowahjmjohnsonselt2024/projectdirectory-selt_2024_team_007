@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
 
   get '/store_items', to: 'store_items#index', as: 'store_items'
+  post 'store_items/purchase', to: 'store_items#purchase'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
@@ -52,6 +53,12 @@ Rails.application.routes.draw do
   match "/logout", to: "sessions#destroy", via: :delete, as: "logout"
 
   root "landing#index"
+
+  resources :store_items do
+    collection do
+      post 'purchase'
+    end
+  end
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 end

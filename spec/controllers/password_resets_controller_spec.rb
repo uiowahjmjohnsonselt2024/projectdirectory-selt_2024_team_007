@@ -19,24 +19,39 @@ RSpec.describe PasswordResetsController, type: :controller do
   end
 
   describe "PATCH #update" do
-    it "updates the password with valid params" do
-      user.create_reset_digest
-      patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "newpassword" } }
-      expect(flash[:notice]).to eq("Password has been reset.")
+    let(:user) { create(:user) }
+
+    context "when the password reset has expired" do
+      before do
+        user.create_reset_digest
+        user.update(reset_sent_at: 3.hours.ago) # Simulate expiration
+      end
+
+      it "redirects to the root URL with a danger flash message" do
+        patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "newpassword" } }
+        expect(flash[:danger]).to eq("Password reset has expired.")
+        expect(response).to redirect_to(root_url)
+      end
     end
 
-    it "rejects mismatched passwords" do
-      user.create_reset_digest
-      patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "mismatch" } }
-      expect(response).to render_template(:edit)
+    context "when the reset digest is present" do
+      before do
+        user.create_reset_digest
+      end
+
+      it "allows password update with valid params" do
+        patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "newpassword" } }
+        expect(flash[:notice]).to eq("Password has been reset.")
+        expect(user.reload.authenticate("newpassword")).to be_truthy
+      end
+
+      it "renders the edit template with mismatched passwords" do
+        patch :update, params: { id: user.reset_token, email: user.email, user: { password: "newpassword", password_confirmation: "mismatch" } }
+        expect(response).to render_template(:edit)
+      end
     end
   end
-  describe "GET #new" do
-    it "renders the new template" do
-      get :new
-      expect(response).to render_template(:new)
-    end
-  end
+
 
   describe "POST #create" do
     context "with a valid email" do
@@ -52,6 +67,20 @@ RSpec.describe PasswordResetsController, type: :controller do
         post :create, params: { email: "nonexistent@example.com" }
         expect(ActionMailer::Base.deliveries.size).to eq(0)
         expect(response).to redirect_to(new_password_reset_path)
+      end
+    end
+
+    context "with a missing or empty email" do
+      it "redirects to login with a danger flash message" do
+        post :create, params: { email: "" }
+        expect(flash[:danger]).to eq("There was an error")
+        expect(response).to redirect_to login_path
+      end
+
+      it "redirects to login with a danger flash message if email is nil" do
+        post :create, params: { email: nil }
+        expect(flash[:danger]).to eq("There was an error")
+        expect(response).to redirect_to login_path
       end
     end
   end

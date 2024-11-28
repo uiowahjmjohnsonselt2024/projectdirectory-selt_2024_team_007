@@ -9,6 +9,9 @@ Feature: Create a Game
       | ExampleUser | user@example.com | oldpassword |
       | TestUser    | test@example.com | testpass    |
     And I am logged in as "user@example.com" with password "oldpassword"
+    And the user "user@example.com" has a shards balance of 1000
+    And the user "test@example.com" has a shards balance of 1000
+
 
   Scenario: Creating a game with valid map size
   When I navigate to the landing page

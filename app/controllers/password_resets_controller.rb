@@ -12,7 +12,7 @@ class PasswordResetsController < ApplicationController
   def create
     if params[:email].nil? || params[:email].empty?
       flash[:danger] = "There was an error"
-      redirect_to login_path
+      redirect_to login_path and return
     end
     @user = User.find_by(email: params[:email].downcase)
 
