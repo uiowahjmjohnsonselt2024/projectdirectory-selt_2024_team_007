@@ -3,11 +3,6 @@ Feature: Shards and Store Navigation
   As a user who wants to enhance my game experience,
   I want the ability to click a button to go to the in-game purchases page,
   So that I can view and purchase items or upgrades that improve my gameplay.
-
-  As a user,
-  I want to see my shard balance displayed on my profile and landing pages,
-  So that I can keep track of my in-game currency for purchases and upgrades.
-
   Background:
     Given the following user exists:
       | name  | email            | password       |
@@ -42,3 +37,9 @@ Feature: Shards and Store Navigation
     Given the user "aliyo@email.com" has a shards balance of 200
     When I navigate to the landing page
     Then I should see "Shards: 200"
+
+  Scenario: Insufficient shards to create a game
+    Given the user "aliyo@email.com" has a shards balance of 400
+    When I submit the create game form
+    Then I should see "Insufficient Shards Balance"
+    And I should be on "/landing"

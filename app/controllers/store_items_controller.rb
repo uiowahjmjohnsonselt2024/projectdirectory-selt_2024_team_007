@@ -12,7 +12,7 @@ class StoreItemsController < ApplicationController
 
     if user.shards_balance >= 0
       user.update_column(:shards_balance, user.shards_balance + shard_amount)
-      flash[:success] = "Purchase successful! You now have #{@current_user.shards_balance} shards."
+      flash[:success] = "Purchase successful!"
       redirect_to store_items_path
 
     else

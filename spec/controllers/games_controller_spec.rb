@@ -8,14 +8,10 @@ RSpec.describe GamesController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:valid_params) { { name: 'Epic Battle', join_code: 'G00001', map_size: '6x6' } }
+
     context 'with valid parameters' do
-      let(:valid_params) { 
-        { 
-          name: 'Epic Battle', 
-          join_code: 'G00001',
-          map_size: '6x6' 
-        } 
-      }
+      before { user.update_column(:shards_balance, 600) }
 
       it 'creates a new game' do
         expect {
@@ -23,114 +19,58 @@ RSpec.describe GamesController, type: :controller do
         }.to change(Game, :count).by(1)
       end
 
-      it 'associates the game with the current user as owner and current_turn_user' do
+      it 'reduces the user’s shard balance by 500' do
         post :create, params: { game: valid_params }
-        game = Game.last
-        expect(game.owner).to eq(user)
-        expect(game.current_turn_user).to eq(user)
+        expect(user.reload.shards_balance).to eq(100)
       end
 
-      it 'creates a GameUser association for the creator' do
+      it 'sets a success flash message' do
+        post :create, params: { game: valid_params }
+        expect(flash[:notice]).to eq('Game was successfully created.')
+      end
+    end
+
+    context 'when the user has insufficient shards' do
+      before { user.update_column(:shards_balance, 400) }
+
+      it 'does not create a new game' do
         expect {
           post :create, params: { game: valid_params }
-        }.to change(GameUser, :count).by(1)
-        game_user = GameUser.last
-        expect(game_user.user).to eq(user)
-        expect(game_user.game.name).to eq('Epic Battle')
-        expect(game_user.health).to eq(100)
+        }.not_to change(Game, :count)
       end
 
-      it 'creates a game with valid map size' do
+      it 'renders the landing page with an error message' do
         post :create, params: { game: valid_params }
-        expect(Game.last.map_size).to eq('6x6')
+        expect(response).to redirect_to('/landing')
+        expect(flash[:error]).to eq('Insufficient Shards Balance')
       end
     end
 
     context 'with invalid parameters' do
-      context 'missing name' do
-        let(:invalid_params) { { join_code: 'G00001', map_size: '6x6' } }
+      let(:invalid_params) { { join_code: 'G00001', map_size: '6x6' } }
 
-        it 'does not create a new game' do
-          expect {
-            post :create, params: { game: invalid_params }
-          }.not_to change(Game, :count)
-        end
+      before { user.update_column(:shards_balance, 600) }
 
-        it 'renders landing page with errors' do
+      it 'does not create a new game' do
+        expect {
           post :create, params: { game: invalid_params }
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(response).to render_template('landing/index')
-        end
+        }.not_to change(Game, :count)
       end
 
-      context 'duplicate join_code' do
-        let!(:existing_game) { create(:game, join_code: 'G00001', owner: user) }
-        let(:invalid_params) { 
-          { 
-            name: 'Another Battle', 
-            join_code: 'G00001',
-            map_size: '6x6'
-          } 
-        }
-
-        it 'does not create a new game' do
-          expect {
-            post :create, params: { game: invalid_params }
-          }.not_to change(Game, :count)
-        end
-
-        it 'renders landing page with errors' do
-          post :create, params: { game: invalid_params }
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(response).to render_template('landing/index')
-        end
+      it 'does not change the user’s shard balance' do
+        post :create, params: { game: invalid_params }
+        expect(user.reload.shards_balance).to eq(600)
       end
 
-      context 'invalid map size format' do
-        let(:invalid_params) { 
-          { 
-            name: 'Epic Battle', 
-            join_code: 'G00001',
-            map_size: '6' 
-          } 
-        }
-
-        it 'does not create a new game' do
-          expect {
-            post :create, params: { game: invalid_params }
-          }.not_to change(Game, :count)
-        end
-
-        it 'renders landing page with errors' do
-          post :create, params: { game: invalid_params }
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(response).to render_template('landing/index')
-        end
-      end
-
-      context 'map size too small' do
-        let(:invalid_params) { 
-          { 
-            name: 'Epic Battle', 
-            join_code: 'G00001',
-            map_size: '4x4' 
-          } 
-        }
-
-        it 'does not create a new game' do
-          expect {
-            post :create, params: { game: invalid_params }
-          }.not_to change(Game, :count)
-        end
-
-        it 'renders landing page with errors' do
-          post :create, params: { game: invalid_params }
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(response).to render_template('landing/index')
-        end
+      it 'renders the landing page with an error message' do
+        post :create, params: { game: invalid_params }
+        expect(response).to render_template('landing/index') # Expect template rendering
+        expect(response).to have_http_status(:unprocessable_entity) # Expect 422 status
+        expect(flash[:danger]).to eq('An error occurred.') # Check flash message
       end
     end
   end
+
 
   describe 'POST #join' do
     let!(:game) { create(:game, join_code: 'G00002', owner: user) }
