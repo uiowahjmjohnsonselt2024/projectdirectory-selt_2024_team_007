@@ -54,7 +54,7 @@
         - game_object = @game || Game.new
         = form_with model: game_object, url: games_path, local: true do |form|
           .modal-header
-            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game
+            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 500 Shards!)
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             - if game_object.errors.any?
