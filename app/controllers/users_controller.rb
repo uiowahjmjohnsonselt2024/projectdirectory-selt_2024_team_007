@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: [ "show", "destroy", "edit"]
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image)
   end
 
   def show

@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   patch 'change_email', to: 'settings#change_email'
   get 'friends', to: 'friends#index', as: 'friends'
 
+  patch 'update_profile_image', to: 'settings#update_profile_image'
+  patch 'update_name', to: 'settings#update_name'
+
+
+
   # Games routes
   resources :games, only: [:create, :show] do
     member do

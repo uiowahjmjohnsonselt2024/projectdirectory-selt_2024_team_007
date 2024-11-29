@@ -5,6 +5,34 @@ class SettingsController < ApplicationController
     # Logic for the settings page (if needed)
   end
 
+  def update_profile_image
+    @user = @current_user
+
+    if params[:profile_image].present?
+      if @user.update(profile_image: params[:profile_image])
+        flash[:success] = "Profile image updated successfully."
+      else
+        flash[:danger] = "Failed to update profile image. Please try again."
+      end
+    else
+      flash[:danger] = "No image selected."
+    end
+
+    redirect_to settings_path
+  end
+
+  def update_name
+    @user = @current_user
+
+    if params[:name].present? && @user.update(name: params[:name])
+      flash[:success] = "Your name has been updated successfully."
+    else
+      flash[:danger] = @user.errors.full_messages.join(", ").presence || "Failed to update your name."
+    end
+
+    redirect_to settings_path
+  end
+
   def change_email
 
     # Check if password is provided

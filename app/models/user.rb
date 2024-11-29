@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_one_attached :profile_image
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
 
@@ -9,8 +10,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
+  validates :password_confirmation, presence: true, if: :password_required?
 
   validates :shards_balance, numericality: { greater_than_or_equal_to: 0 }
 
@@ -57,6 +58,9 @@ class User < ActiveRecord::Base
 
 
   private
+  def password_required?
+    password.present? || password_confirmation.present?
+  end
   def create_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end

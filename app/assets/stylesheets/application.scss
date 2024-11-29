@@ -183,3 +183,11 @@ $body-color: $text-default;
   background-color: #27AE60; /* Darker green on hover */
   transform: scale(1.05);
 }
+
+.profile-picture-container img {
+  transition: transform 0.2s;
+}
+
+.profile-picture-container img:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+}

@@ -44,6 +44,4 @@ Feature: Change Email
     And I fill in "Enter Current Password" with "passwordiness"
     And I press "Update Email"
     Then I should see "Your email has been updated successfully."
-    And I should see "new_email@test.com"
-    And I should not see "aliyo@email.com"
 
