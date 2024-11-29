@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-11-29T11:31:39-06:00">2024-11-29T11:31:39-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-11-29T14:48:46-06:00">2024-11-29T14:48:46-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,14 +22,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  93.62%
+  92.97%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         34.41
+         34.09
        </span>
     </span> hits/line
     )
@@ -42,11 +42,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>423</b> relevant lines,
-    <span class="green"><b>396</b> lines covered</span> and
-    <span class="red"><b>27</b> lines missed. </span>
+    <b>427</b> relevant lines,
+    <span class="green"><b>397</b> lines covered</span> and
+    <span class="red"><b>30</b> lines missed. </span>
     (<span class="green">
-  93.62%
+  92.97%
 </span>
 )
   </div>
@@ -126,12 +126,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#376c9bf03cc3fe24381315cdc2100053250462b9" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">43</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">12.68</td>
+            <td class="green strong cell--number t-file__coverage">90.63 %</td>
+            <td class="cell--number">48</td>
+            <td class="cell--number">32</td>
+            <td class="cell--number">29</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">11.16</td>
             
           </tr>
         
@@ -279,14 +279,14 @@
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
       <span class="green">
-  92.15%
+  91.25%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         15.12
+         14.92
        </span>
     </span> hits/line
     )
@@ -299,11 +299,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>293</b> relevant lines,
-    <span class="green"><b>270</b> lines covered</span> and
-    <span class="red"><b>23</b> lines missed. </span>
+    <b>297</b> relevant lines,
+    <span class="green"><b>271</b> lines covered</span> and
+    <span class="red"><b>26</b> lines missed. </span>
     (<span class="green">
-  92.15%
+  91.25%
 </span>
 )
   </div>
@@ -383,12 +383,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#376c9bf03cc3fe24381315cdc2100053250462b9" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">43</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">28</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">12.68</td>
+            <td class="green strong cell--number t-file__coverage">90.63 %</td>
+            <td class="cell--number">48</td>
+            <td class="cell--number">32</td>
+            <td class="cell--number">29</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">11.16</td>
             
           </tr>
         
@@ -4678,7 +4678,7 @@
     <h3>app/controllers/sessions_controller.rb</h3>
     <h4>
       <span class="green">
-  100.0%
+  90.63%
 </span>
 
       lines covered
@@ -4687,9 +4687,9 @@
     
 
     <div class="t-line-summary">
-      <b>28</b> relevant lines.
-      <span class="green"><b>28</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>32</b> relevant lines.
+      <span class="green"><b>29</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
 
     
@@ -5166,7 +5166,59 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="covered" data-hits="2" data-linenumber="42">
+            
+              <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">  def auth_failure</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="43">
+            
+
+            
+
+            <code class="ruby">    Rails.logger.debug &quot;OmniAuth Authentication Failure: #{params[:message]}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="44">
+            
+
+            
+
+            <code class="ruby">    flash[:warning] = &quot;Authentication failed: #{params[:message]}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="45">
+            
+
+            
+
+            <code class="ruby">    redirect_to login_path</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="46">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="47">
             
 
             
@@ -5176,7 +5228,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="43">
+          <li class="never" data-hits="" data-linenumber="48">
             
 
             

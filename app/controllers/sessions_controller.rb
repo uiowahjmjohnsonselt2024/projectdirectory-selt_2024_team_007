@@ -39,5 +39,10 @@ class SessionsController < ApplicationController
       redirect_to login_path
     end
   end
+  def auth_failure
+    Rails.logger.debug "OmniAuth Authentication Failure: #{params[:message]}"
+    flash[:warning] = "Authentication failed: #{params[:message]}"
+    redirect_to login_path
+  end
 end
 
