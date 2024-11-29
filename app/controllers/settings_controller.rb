@@ -9,7 +9,7 @@ class SettingsController < ApplicationController
 
 
   def add_billing_method
-    @billing_method = current_user.billing_methods.new(billing_method_params)
+    @billing_method = @current_user.billing_methods.new(billing_method_params)
 
     if @billing_method.save
       flash[:success] = "Billing method added successfully."
@@ -21,7 +21,7 @@ class SettingsController < ApplicationController
   end
 
   def edit_billing_method
-    @billing_method = current_user.billing_methods.find(params[:id])
+    @billing_method = @current_user.billing_methods.find(params[:id])
 
     if @billing_method.update(billing_method_params)
       flash[:success] = "Billing method updated successfully."
@@ -33,7 +33,7 @@ class SettingsController < ApplicationController
   end
 
   def delete_billing_method
-    @billing_method = current_user.billing_methods.find(params[:id])
+    @billing_method = @current_user.billing_methods.find(params[:id])
 
     if @billing_method.destroy
       flash[:success] = "Billing method deleted successfully."
@@ -43,7 +43,6 @@ class SettingsController < ApplicationController
 
     redirect_to settings_path
   end
-
 
   private
 
