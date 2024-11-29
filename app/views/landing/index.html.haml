@@ -57,7 +57,7 @@
                     %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
                   %div.modal-body
                     = form_with url: invite_friends_game_path(game), method: :post, local: true do |f|
-                      - @friends = @current_user.friends
+                      - @friends = @current_user.friends + @current_user.inverse_friends
                       - @friends_in_game = game.users
                       - available_friends = @friends - @friends_in_game
                       - if available_friends.empty?
