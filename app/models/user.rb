@@ -67,9 +67,11 @@ class User < ActiveRecord::Base
 
     begin
       password = SecureRandom.base64(12)
+      name = auth['info']['name']&.gsub(/\s+/, '') || "UnknownUser"
+      random_suffix = Array.new(6) { ('A'..'Z').to_a.sample }.join
       user = self.create!(
         uid: auth['uid'],
-        name: "#{auth['info']['name'].gsub(/\s+/, '')}#{Array.new(6) { ('A'..'Z').to_a.sample }.join}" || "UNKNOWNUSER#{Array.new(6) { ('A'..'Z').to_a.sample }.join}",
+        name: "#{name}#{random_suffix}",
         email: auth['info']['email'] || "#{auth['uid']}@google.com",
         password: password,
         password_confirmation: password,
