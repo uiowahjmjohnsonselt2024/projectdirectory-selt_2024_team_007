@@ -87,6 +87,7 @@ group :test do
 end
 
 group :production do
+  gem 'aws-sdk-s3', '~> 1.0', require: false
   gem "pg" # for Heroku deployment
   gem 'rails_12factor' # for heroku dep
 end
