@@ -5,7 +5,7 @@ class GameUser < ApplicationRecord
 
   # Validations
   validates :health, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validate :max_players_limit, on: :create
+  validate :max_players_limit, on: :create, if: -> { game.present? }
 
   private
 

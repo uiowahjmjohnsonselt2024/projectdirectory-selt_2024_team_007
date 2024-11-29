@@ -36,7 +36,7 @@
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
     - if @games.any?
       - @games.each do |game|
-        %div.game-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %div.game-card{ id: "game-card-#{game.id}", style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
           %p{ style: "color: #ECF0F1; font-weight: bold;" }
             = game.name
             - if game.owner == @current_user

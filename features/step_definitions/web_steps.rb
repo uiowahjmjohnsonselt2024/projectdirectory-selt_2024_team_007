@@ -196,4 +196,5 @@ Given /^(?:|I )am logged in as "([^"]*)" with password "([^"]*)"$/ do |email, pa
   fill_in "email_field", with: email
   fill_in "password_field", with: password
   click_button "Sign in"
+  @current_user = User.find_by(email: email)
 end
