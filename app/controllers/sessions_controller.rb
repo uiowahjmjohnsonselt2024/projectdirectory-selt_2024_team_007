@@ -29,6 +29,9 @@ class SessionsController < ApplicationController
   def oauth_create
     auth = request.env['omniauth.auth']
     Rails.logger.debug "OmniAuth Auth Hash: #{auth.inspect}"
+    Rails.logger.debug "Session CSRF State: #{session['omniauth.state']}"
+    Rails.logger.debug "Request CSRF State: #{params[:state]}"
+
 
     user = User.from_omniauth(auth)
     if user
@@ -39,5 +42,13 @@ class SessionsController < ApplicationController
       redirect_to login_path
     end
   end
+
+  def auth_failure
+    Rails.logger.debug "OmniAuth Authentication Failure: #{params[:message]}"
+    flash[:warning] = "Authentication failed: #{params[:message]}"
+    redirect_to login_path
+  end
+
+
 end
 
