@@ -18,7 +18,7 @@ class StoreItem < ActiveRecord::Base
     item_data ? new(item_data) : nil
   end
 
-  def initialize(attributes)
+  def initialize(attributes = {})
     @id = attributes[:id]
     @name = attributes[:name]
     @description = attributes[:description]
