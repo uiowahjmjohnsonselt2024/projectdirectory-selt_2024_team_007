@@ -15,8 +15,9 @@
         = form.password_field :password, id: 'password_field', class: "form-control", placeholder: "Enter your password", style: "width: 100%; padding: 10px; border: 1px solid #3498DB; border-radius: 5px;"
       %div.actions{ style: "margin-top: 20px;" }
         = form.submit "Sign in", id: 'sign_in_button', class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #3498DB; border: none; border-radius: 5px; color: white; font-weight: bold;"
-    %p.google-login{ style: "margin-top: 10px;" }
-      = button_to 'Login with Google', '/auth/google_oauth2', method: :post, id: 'google_login_button', class: 'btn', style: "width: 100%; background-color: #DD4B39; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold;"
+    - if Rails.env.test?
+      %p.google-login{ style: "margin-top: 10px;" }
+        = button_to 'Login with Google', '/auth/google_oauth2', method: :post, id: 'google_login_button', class: 'btn', style: "width: 100%; background-color: #DD4B39; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold;"
     %p.register{ style: "margin-top: 10px; text-align: center; color: #BDC3C7;" }
       Don't have an account?
       = link_to 'Register New Account', register_path, id: 'register_button', style: "color: #1ABC9C;"
