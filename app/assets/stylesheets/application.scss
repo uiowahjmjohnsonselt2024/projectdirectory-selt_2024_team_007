@@ -197,22 +197,22 @@ $body-color: $text-default;
   .content-area {
     .gpt-image-box {
       position: relative;
-      width: 100%;
-      max-width: 100%;
+      width: 75%;  // Smaller width
+      height: 75%; // Matching height
+      margin: 0 auto;
       background-color: #ecf0f1;
-      max-height: 500px; // Adjust as needed
-      overflow: hidden;
   
       .square-container {
         position: relative;
         width: 100%;
-        padding-bottom: 100%;
+        height: 100%;
         background-color: #ecf0f1;
         color: #7f8c8d;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
+        }
+      
   
       button#map_button {
         position: absolute;
