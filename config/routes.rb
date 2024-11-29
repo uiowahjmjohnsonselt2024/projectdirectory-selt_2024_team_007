@@ -42,7 +42,8 @@ Rails.application.routes.draw do
 
 
   get '/store_items', to: 'store_items#index', as: 'store_items'
-  post 'store_items/purchase', to: 'store_items#purchase'
+  post '/store_items/purchase', to: 'store_items#purchase'
+  post '/store_items/purchas_with_shards', to: 'store_items#purchase_with_shards'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
@@ -57,6 +58,7 @@ Rails.application.routes.draw do
   resources :store_items do
     collection do
       post 'purchase'
+      post 'purchase_with_shards'
     end
   end
 
