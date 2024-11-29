@@ -48,8 +48,8 @@ class Game < ApplicationRecord
 
   def generate_tiles
     rows, columns = map_size.split('x').map(&:to_i)
-    (1..rows).each do |x|
-      (1..columns).each do |y|
+    (0..rows).each do |x|
+      (0..columns).each do |y|
         tiles.create!(
           x_coordinate: x,
           y_coordinate: y,

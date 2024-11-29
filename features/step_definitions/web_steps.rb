@@ -176,6 +176,12 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
+Then('I should see the {string} modal') do |modal_title|
+  within(:css, '.modal', text: modal_title) do
+    expect(page).to have_content(modal_title)
+  end
+end
+
 
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|

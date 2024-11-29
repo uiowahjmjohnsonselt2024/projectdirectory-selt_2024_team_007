@@ -366,6 +366,10 @@ GEM
       ffi (~> 1.0)
     rdoc (6.7.0)
       psych (>= 4.0.0)
+    redis (5.3.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.22.2)
+      connection_pool
     regexp_parser (2.9.2)
     reline (0.5.11)
       io-console (~> 0.5)
@@ -513,6 +517,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  actioncable (~> 7.0)
   bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.3.3)
@@ -538,6 +543,7 @@ DEPENDENCIES
   rails (~> 7.2.0)
   rails-controller-testing
   rails_12factor
+  redis (>= 4.0.1)
   rspec (~> 3.5)
   rspec-expectations
   rspec-rails
