@@ -32,8 +32,13 @@ When('I select the following friends to invite:') do |table|
   table.hashes.each do |row|
     friend_email = row['email']
     friend = User.find_by(email: friend_email)
-    checkbox_id = "friend_ids_#{@game.id}_#{friend.id}"
-    check(checkbox_id)
+    @games = @current_user.games.includes(:game_users).order(created_at: :desc)
+    @games.each do |game|
+      if game.join_code == "ABC123"
+        checkbox_id = "friend_ids_#{game.id}_#{friend.id}"
+        check(checkbox_id)
+      end
+    end
   end
 end
 

@@ -39,8 +39,16 @@ Feature: Invite friends to a game
     And I press "Invite Friends"
     Then I should see "Friends successfully added to the game."
 
-  Scenario: Prevent inviting more than 3 friends
+  Scenario: Prevent inviting non-friends
     When I navigate to the landing page
+    And I click on the "Add Friends" button for "Alice's Adventure"
+    Then I should not see "Eve"
+
+  Scenario: Prevent inviting more than 3 friends
+    When I have the following friends:
+      | email             |
+      | eve@example.com   |
+    And I navigate to the landing page
     And I click on the "Add Friends" button for "Alice's Adventure"
     And I check "Bob"
     And I check "Charlie"
@@ -50,17 +58,30 @@ Feature: Invite friends to a game
     Then I should see "You can invite up to 3 friends."
 
   Scenario: Prevent inviting friends already in the game
-    Given "bob@example.com" is already in the game "Alice's Adventure"
     When I navigate to the landing page
     And I click on the "Add Friends" button for "Alice's Adventure"
-    And I check "Bob"
-    And I check "Charlie"
+    And I select the following friends to invite:
+      | email               |
+      | bob@example.com     |
     And I press "Invite Friends"
-    Then I should see "Some friends are already in the game and were not invited."
-
-  Scenario: Prevent inviting non-friends
     When I navigate to the landing page
+    And I click on the "Add Friends" button for "Alice's Adventure"
+    Then I should not see "Bob"
+
+  Scenario: Cannot add a 4th friend AFTER successfully inviting 3 friends
+    Given I have the following friends:
+      | email             |
+      | eve@example.com   |
+    When I navigate to the landing page
+    And I click on the "Add Friends" button for "Alice's Adventure"
+    And I select the following friends to invite:
+      | email               |
+      | bob@example.com     |
+      | charlie@example.com |
+      | david@example.com   |
+    And I press "Invite Friends"
+    Then I should see "Friends successfully added to the game."
     And I click on the "Add Friends" button for "Alice's Adventure"
     And I check "Eve"
     And I press "Invite Friends"
-    Then I should see "You can only invite your friends to the game."
+    Then I should see "Total players in a game cannot exceed 4."
