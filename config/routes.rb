@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   patch 'update_profile_image', to: 'settings#update_profile_image'
   patch 'update_name', to: 'settings#update_name'
+  post 'add_billing_method', to: 'settings#add_billing_method'
+
+  patch 'edit_billing_method/:id', to: 'settings#edit_billing_method', as: 'edit_billing_method'
+  delete 'delete_billing_method/:id', to: 'settings#delete_billing_method', as: 'delete_billing_method'
 
 
 
@@ -45,7 +49,12 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :billing_methods, only: [] do
+    member do
+      patch :update
+      delete :destroy
+    end
+  end
 
   get '/store_items', to: 'store_items#index', as: 'store_items'
   post 'store_items/purchase', to: 'store_items#purchase'

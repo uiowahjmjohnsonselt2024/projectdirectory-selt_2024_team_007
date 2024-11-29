@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   # Pending friend requests received by this user
   has_many :received_friend_requests, -> { where(status: 'pending') }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :requesting_friends, through: :received_friend_requests, source: :user
+  has_many :billing_methods, dependent: :destroy
 
   attr_accessor :reset_token
 

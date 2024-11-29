@@ -15,7 +15,7 @@
       "data-bs-target": "#v-pills-account-details",
       type: "button",
       role: "tab",
-      "aria-controls": "v-account-details",
+      "aria-controls": "v-pills-account-details",
       "aria-selected": "true",
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Account Details
@@ -127,34 +127,34 @@
       %p{ style: "text-align: center; margin-top: 15px;" }
         = link_to 'Back to home', root_path, style: "color: #1ABC9C;"
 
-  / Modal for Changing Email
-.modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
-        %button.btn-close{
-          type: "button",
-          "data-bs-dismiss" => "modal",
-          "aria-label" => "Close"
-        }
-      = form_with(url: change_email_path, method: :patch, local: true) do |f|
-        .modal-body
-          .mb-3
-            = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
-            = f.email_field :new_email, class: 'form-control', required: true
-          .mb-3
-            = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
-            = f.email_field :confirm_email, class: 'form-control', required: true
-          .mb-3
-            = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
-            = f.password_field :current_password, class: 'form-control', required: true
-        .modal-footer
-          = f.submit "Update Email", class: "btn btn-primary"
-          %button.btn.btn-secondary{
-            type: "button",
-            "data-bs-dismiss" => "modal"
-          } Close
+        / Modal for Changing Email
+      .modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(url: change_email_path, method: :patch, local: true) do |f|
+              .modal-body
+                .mb-3
+                  = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :new_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :confirm_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
+                  = f.password_field :current_password, class: 'form-control', required: true
+              .modal-footer
+                = f.submit "Update Email", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss" => "modal"
+                } Close
 
 
     %div.tab-pane.fade{
@@ -162,10 +162,95 @@
       role: "tabpanel",
       "aria-labelledby": "v-pills-billings-tab",
       tabindex: "0",
-      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
     }
       %h1{ style: "color: #2C3E50; text-align: center;" } Billing Information
-      %p Manage your billing details here.
+      %div{ style: "margin-top: 20px;" }
+        %ul.list-group
+          - @billing_methods.each do |method|
+            %li.list-group-item{ style: "display: flex; justify-content: space-between; align-items: center;" }
+              %div
+                %p{ style: "margin: 0; font-weight: bold;" }= method.card_holder_name
+                %p{ style: "margin: 0; color: #888;" } **** **** **** #{method.card_number.last(4)}
+                %p{ style: "margin: 0; color: #888;" } Exp: #{method.expiration_date.strftime('%m/%y')}
+              %div
+                %button.btn.btn-sm.btn-outline-primary{
+                  type: "button",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#editCardModal-#{method.id}",
+                  style: "margin-left: 10px;"
+                } Edit
+
+                / Edit Modal for Each Card
+      - @billing_methods.each do |method|
+        .modal.fade{id: "editCardModal-#{method.id}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %h5.modal-title{id: "editCardModalLabel-#{method.id}"} Edit Card
+                %button.btn-close{type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close"}
+              = form_with(model: method, url: edit_billing_method_path(method), method: :patch, local: true) do |f|
+                .modal-body
+                  .mb-3
+                    = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+                    = f.text_field :card_holder_name, value: method.card_holder_name, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :card_number, "Card Number", class: 'form-label'
+                    = f.text_field :card_number, value: method.card_number, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+                    = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
+                .modal-footer
+                  = form_with(url: delete_billing_method_path(method), method: :delete, local: true) do
+                    = submit_tag "Delete", class: "btn btn-danger", style: "position: absolute; bottom: 10px; left: 10px;"
+                  = f.submit "Save", class: "btn btn-primary"
+                  %button.btn.btn-secondary{
+                    type: "button",
+                    "data-bs-dismiss" => "modal",
+                    style: "position: absolute; bottom: 10px; right: 10px;"
+                  } Cancel
+
+      %button.btn.btn-primary#add-card-button{
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#addCardModal",
+        style: "margin-top: 20px; display: block; width: 100%;"
+      } Add New Card
+
+
+      / Modal for Adding a New Card
+      .modal.fade#addCardModal{ tabindex: "-1", "aria-labelledby" => "addCardModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#addCardModalLabel Add New Card
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(model: @billing_method, url: add_billing_method_path, method: :post, local: true) do |f|
+              .modal-body
+                - if @billing_method.errors.any?
+                  .alert.alert-danger
+                    %ul
+                      - @billing_method.errors.full_messages.each do |message|
+                        %li= message
+                .mb-3
+                  = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+                  = f.text_field :card_holder_name, class: 'form-control', required: true
+                .mb-3
+                  = f.label :card_number, "Card Number", class: 'form-label'
+                  = f.text_field :card_number, class: 'form-control', required: true
+                .mb-3
+                  = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+                  = f.date_field :expiration_date, class: 'form-control', required: true
+              .modal-footer
+                = f.submit "Add Card", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss": "modal"
+                } Cancel
 
     %div.tab-pane.fade{
       id: "v-pills-orders",

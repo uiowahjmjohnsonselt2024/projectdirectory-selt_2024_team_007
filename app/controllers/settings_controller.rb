@@ -2,7 +2,53 @@ class SettingsController < ApplicationController
   before_action :set_current_user
 
   def settings
-    # Logic for the settings page (if needed)
+    @billing_methods = @current_user.billing_methods
+    @billing_method = BillingMethod.new
+
+  end
+
+
+  def add_billing_method
+    @billing_method = current_user.billing_methods.new(billing_method_params)
+
+    if @billing_method.save
+      flash[:success] = "Billing method added successfully."
+    else
+      flash[:danger] = @billing_method.errors.full_messages.join(", ")
+    end
+
+    redirect_to settings_path
+  end
+
+  def edit_billing_method
+    @billing_method = current_user.billing_methods.find(params[:id])
+
+    if @billing_method.update(billing_method_params)
+      flash[:success] = "Billing method updated successfully."
+    else
+      flash[:danger] = @billing_method.errors.full_messages.join(", ")
+    end
+
+    redirect_to settings_path
+  end
+
+  def delete_billing_method
+    @billing_method = current_user.billing_methods.find(params[:id])
+
+    if @billing_method.destroy
+      flash[:success] = "Billing method deleted successfully."
+    else
+      flash[:danger] = "Failed to delete billing method. Please try again."
+    end
+
+    redirect_to settings_path
+  end
+
+
+  private
+
+  def billing_method_params
+    params.require(:billing_method).permit(:card_holder_name, :card_number, :expiration_date)
   end
 
   def update_profile_image
