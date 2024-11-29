@@ -9,7 +9,6 @@ Given('I have the following friends:') do |table|
     end
     # Create mutual friendships
     Friendship.create!(user: @current_user, friend: friend, status: 'accepted')
-    Friendship.create!(user: friend, friend: @current_user, status: 'accepted')
   end
 end
 
