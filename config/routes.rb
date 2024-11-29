@@ -56,6 +56,19 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :settings, only: [] do
+    collection do
+      patch :change_email
+      patch :update_profile_image
+      patch :update_name
+      post :add_billing_method
+    end
+    member do
+      patch :edit_billing_method
+      delete :delete_billing_method
+    end
+  end
+
   get '/store_items', to: 'store_items#index', as: 'store_items'
   post 'store_items/purchase', to: 'store_items#purchase'
 

@@ -1,13 +1,6 @@
 class SettingsController < ApplicationController
   before_action :set_current_user
 
-  def settings
-    @billing_methods = @current_user.billing_methods
-    @billing_method = BillingMethod.new
-
-  end
-
-
   def add_billing_method
     @billing_method = @current_user.billing_methods.new(billing_method_params)
 
@@ -42,12 +35,6 @@ class SettingsController < ApplicationController
     end
 
     redirect_to settings_path(active_tab: 'v-pills-billings')
-  end
-
-  private
-
-  def billing_method_params
-    params.require(:billing_method).permit(:card_holder_name, :card_number, :expiration_date)
   end
 
   def update_profile_image
@@ -106,6 +93,18 @@ class SettingsController < ApplicationController
       flash[:danger] = "Failed to update email. Please try again."
       redirect_to settings_path
     end
+  end
+
+  def settings
+    @billing_methods = @current_user.billing_methods
+    @billing_method = BillingMethod.new
+
+  end
+
+  private
+
+  def billing_method_params
+    params.require(:billing_method).permit(:card_holder_name, :card_number, :expiration_date)
   end
 
 end
