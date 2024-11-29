@@ -36,12 +36,41 @@
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
     - if @games.any?
       - @games.each do |game|
-        %div.game-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %div.game-card{ id: "game-card-#{game.id}", style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
           %p{ style: "color: #ECF0F1; font-weight: bold;" }
             = game.name
-          %p{ style: "color: #BDC3C7;" }
+            - if game.owner == @current_user
+              %span.owner-flair{ style: "background-color: #F39C12; color: #ECF0F1; padding: 2px 5px; border-radius: 3px; margin-left: 10px;" }
+                Owner
+          %p{ style: "color: #ECF0F1;" }
             = game.context
           = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
+          - if game.owner == @current_user
+            %button.btn.btn-primary{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: 'margin-top: 10px; margin-left: 10px;' } Add Friends
+
+            / Add Friends Modal
+            .modal.fade{ :id => "addFriendsModal-#{game.id}", tabindex: "-1", "aria-labelledby" => "addFriendsModalLabel-#{game.id}", "aria-hidden" => "true" }
+              .modal-dialog
+                .modal-content
+                  %div.modal-header
+                    %h5.modal-title#addFriendsModalLabel{ style: "color: black;" } Invite Friends to #{game.name}
+                    %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+                  %div.modal-body
+                    = form_with url: invite_friends_game_path(game), method: :post, local: true do |f|
+                      - @friends = @current_user.friends
+                      - @friends_in_game = game.users
+                      - available_friends = @friends - @friends_in_game
+                      - if available_friends.empty?
+                        %p{ style: "color: black;" } You have no friends to invite.
+                      - else
+                        %p{ style: "color: black;" } Select up to 3 friends to invite:
+                        - available_friends.each do |friend|
+                          %div.form-check
+                            = check_box_tag "friend_ids[]", friend.id, false, id: "friend_ids_#{game.id}_#{friend.id}", class: 'form-check-input'
+                            = label_tag "friend_ids_#{game.id}_#{friend.id}", friend.name, class: 'form-check-label', style: "color: black;"
+                      .modal-footer
+                        = f.submit 'Invite Friends', class: 'btn btn-primary'
+                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
     - else
       %p{ style: "color: #BDC3C7;" } No games available. Create one!
 

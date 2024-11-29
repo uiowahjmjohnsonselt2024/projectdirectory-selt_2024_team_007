@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :games do
+    post 'invite_friends', on: :member
+  end
 
 
   get '/store_items', to: 'store_items#index', as: 'store_items'

@@ -2,9 +2,15 @@ require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
   let(:user) { create(:user, email: "unique_user_#{SecureRandom.hex(4)}@example.com") }
+  let(:friend1) { create(:user) }
+  let(:friend2) { create(:user) }
+  let(:friend3) { create(:user) }
+  let(:friend4) { create(:user) }
+  let(:game) { create(:game, owner: user) }
 
   before do
     session[:session_token] = user.session_token
+    user.friends << [friend1, friend2, friend3]
   end
 
   describe 'POST #create' do
@@ -67,6 +73,105 @@ RSpec.describe GamesController, type: :controller do
         expect(response).to render_template('landing/index') # Expect template rendering
         expect(response).to have_http_status(:unprocessable_entity) # Expect 422 status
         expect(flash[:danger]).to eq('An error occurred.') # Check flash message
+      end
+    end
+  end
+
+  describe 'POST #invite_friends' do
+    before do
+      controller.instance_variable_set(:@game, game)
+      allow(controller).to receive(:ensure_owner)
+    end
+
+    context 'when inviting valid friends' do
+      it 'adds friends to the game' do
+        expect {
+          post :invite_friends, params: { id: game.id, friend_ids: [friend1.id, friend2.id] }
+        }.to change(GameUser, :count).by(2)
+
+        expect(game.users).to include(friend1, friend2)
+        expect(flash[:notice]).to eq('Friends successfully added to the game.')
+      end
+
+      it 'does not add duplicate friends already in the game' do
+        game.users << friend1
+
+        expect {
+          post :invite_friends, params: { id: game.id, friend_ids: [friend1.id, friend2.id] }
+        }.to change(GameUser, :count).by(1)
+
+        expect(game.users).to include(friend2)
+        expect(flash[:notice]).to eq('Friends successfully added to the game.')
+      end
+    end
+
+    context 'when inviting more than 3 friends' do
+      it 'does not add friends and redirects with an alert' do
+        post :invite_friends, params: { id: game.id, friend_ids: [friend1.id, friend2.id, friend3.id, friend4.id] }
+
+        expect(game.users).not_to include(friend4)
+        expect(flash[:alert]).to eq('You can invite up to 3 friends.')
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when total players exceed 4' do
+      it 'does not add friends and redirects with an alert' do
+        # Create a new game for this test
+        test_game = create(:game, owner: user)
+
+        # Add one user to the game manually
+        test_game.users << friend1
+        test_game.reload
+
+        # First invite: Add two more users (total = 3 including owner)
+        post :invite_friends, params: { id: test_game.id, friend_ids: [friend2.id, friend3.id] }
+        test_game.reload
+
+        # Second invite: Attempt to add a 4th user (exceeding the limit)
+        post :invite_friends, params: { id: test_game.id, friend_ids: [friend4.id] }
+        test_game.reload
+
+        # Validate that the 4th friend was not added
+        expect(test_game.users).not_to include(friend4)
+
+        # Validate redirection
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+
+
+
+    context 'when inviting non-friends' do
+      let(:non_friend) { create(:user) }
+
+      it 'ignores non-friends and only adds valid friends' do
+        expect {
+          post :invite_friends, params: { id: game.id, friend_ids: [friend1.id, non_friend.id] }
+        }.to change(GameUser, :count).by(1)
+
+        expect(game.users).to include(friend1)
+        expect(game.users).not_to include(non_friend)
+        expect(flash[:notice]).to eq('Friends successfully added to the game.')
+      end
+    end
+  end
+
+  describe 'ensure_owner' do
+    context 'when the current user is not the game owner' do
+      let(:other_user) { create(:user) }
+
+      before do
+        session[:session_token] = other_user.session_token
+        controller.instance_variable_set(:@game, game)
+      end
+
+      it 'redirects to root with an alert' do
+        expect(controller).to receive(:redirect_to).with(root_path)
+        expect {
+          controller.send(:ensure_owner)
+        }.to change { flash[:alert] }.to('You are not authorized to add friends to this game.')
       end
     end
   end

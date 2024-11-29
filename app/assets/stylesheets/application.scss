@@ -184,6 +184,14 @@ $body-color: $text-default;
   transform: scale(1.05);
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
 .profile-picture-container img {
   transition: transform 0.2s;
 }
