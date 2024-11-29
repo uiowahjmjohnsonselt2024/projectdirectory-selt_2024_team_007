@@ -17,7 +17,7 @@ class SettingsController < ApplicationController
       flash[:danger] = @billing_method.errors.full_messages.join(", ")
     end
 
-    redirect_to settings_path
+    redirect_to settings_path(active_tab: 'v-pills-billings')
   end
 
   def edit_billing_method
@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
       flash[:danger] = @billing_method.errors.full_messages.join(", ")
     end
 
-    redirect_to settings_path
+    redirect_to settings_path(active_tab: 'v-pills-billings')
   end
 
   def delete_billing_method
@@ -41,7 +41,7 @@ class SettingsController < ApplicationController
       flash[:danger] = "Failed to delete billing method. Please try again."
     end
 
-    redirect_to settings_path
+    redirect_to settings_path(active_tab: 'v-pills-billings')
   end
 
   private

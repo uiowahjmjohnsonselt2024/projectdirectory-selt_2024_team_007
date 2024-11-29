@@ -7664,3 +7664,92 @@ Processing by ActiveStorage::DiskController#show as PNG
 Completed 304 Not Modified in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/settings" for 127.0.0.1 at 2024-11-29 16:07:18 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-11-29 22:01:16 UTC
+Current time: 2024-11-29 22:07:18 UTC
+Updated session last_seen_at: 2024-11-29T22:07:18Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.8ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 35.4ms | GC: 6.6ms)
+  Rendered shared/_flash.html.haml (Duration: 5.9ms | GC: 1.1ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/settings/settings.html.haml:174
+  Rendered settings/settings.html.haml within layouts/application (Duration: 128.1ms | GC: 31.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 132.1ms | GC: 31.5ms)
+Completed 200 OK in 190ms (Views: 126.7ms | ActiveRecord: 8.7ms (4 queries, 0 cached) | GC: 44.0ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NSwicHVyIjoiYmxvYl9pZCJ9fQ==--1b29325c6eb49a42aa2e7d3c9c3bf90bbd20e308/shards_icon.png" for 127.0.0.1 at 2024-11-29 16:07:18 -0600
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsiZGF0YSI6NSwicHVyIjoiYmxvYl9pZCJ9fQ==--1b29325c6eb49a42aa2e7d3c9c3bf90bbd20e308", "filename"=>"shards_icon"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: qd638fyoz233ulzw0xzd3s4498vt (http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJxZDYzOGZ5b3oyMzN1bHp3MHh6ZDNzNDQ5OHZ0IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwic2hhcmRzX2ljb24ucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnc2hhcmRzX2ljb24ucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNC0xMS0yOVQyMjoxMjoxOC44NThaIiwicHVyIjoiYmxvYl9rZXkifX0=--365092f62e7fcace02865d671a7d6e62de81cbc3/shards_icon.png)[0m
+Redirected to http://127.0.0.1:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJxZDYzOGZ5b3oyMzN1bHp3MHh6ZDNzNDQ5OHZ0IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwic2hhcmRzX2ljb24ucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnc2hhcmRzX2ljb24ucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNC0xMS0yOVQyMjoxMjoxOC44NThaIiwicHVyIjoiYmxvYl9rZXkifX0=--365092f62e7fcace02865d671a7d6e62de81cbc3/shards_icon.png
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJxZDYzOGZ5b3oyMzN1bHp3MHh6ZDNzNDQ5OHZ0IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwic2hhcmRzX2ljb24ucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnc2hhcmRzX2ljb24ucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNC0xMS0yOVQyMjoxMjoxOC44NThaIiwicHVyIjoiYmxvYl9rZXkifX0=--365092f62e7fcace02865d671a7d6e62de81cbc3/shards_icon.png" for 127.0.0.1 at 2024-11-29 16:07:18 -0600
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"shards_icon"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/delete_billing_method/3" for 127.0.0.1 at 2024-11-29 16:07:24 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"3"}
+Session last_seen_at: 2024-11-29 22:07:18 UTC
+Current time: 2024-11-29 22:07:24 UTC
+Updated session last_seen_at: 2024-11-29T22:07:24Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 2], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:36:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:38:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (1.9ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/settings_controller.rb:38:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:38:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 11ms (ActiveRecord: 2.3ms (3 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-11-29 16:07:24 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-11-29 22:07:24 UTC
+Current time: 2024-11-29 22:07:24 UTC
+Updated session last_seen_at: 2024-11-29T22:07:24Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/settings/settings.html.haml:174
+  Rendered settings/settings.html.haml within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 7.9ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 0.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJxZDYzOGZ5b3oyMzN1bHp3MHh6ZDNzNDQ5OHZ0IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwic2hhcmRzX2ljb24ucG5nXCI7IGZpbGVuYW1lKj1VVEYtOCcnc2hhcmRzX2ljb24ucG5nIiwiY29udGVudF90eXBlIjoiaW1hZ2UvcG5nIiwic2VydmljZV9uYW1lIjoibG9jYWwifSwiZXhwIjoiMjAyNC0xMS0yOVQyMjoxMjoxOC44NThaIiwicHVyIjoiYmxvYl9rZXkifX0=--365092f62e7fcace02865d671a7d6e62de81cbc3/shards_icon.png" for 127.0.0.1 at 2024-11-29 16:07:24 -0600
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"shards_icon"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

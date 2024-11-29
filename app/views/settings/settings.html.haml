@@ -4,19 +4,21 @@
     = render 'shared/navigation'
 
   %div.nav.flex-column.nav-pills{
-    id: "v-pills-tab",
-    role: "tablist",
-    "aria-orientation": "vertical",
-    style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
+  id: "v-pills-tab",
+  role: "tablist",
+  "aria-orientation": "vertical",
+  style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
   }
-    %button.nav-link.active{
+    - active_tab = params[:active_tab] || 'v-pills-account-details'
+    %button.nav-link{
       id: "v-pills-account-details-tab",
       "data-bs-toggle": "pill",
       "data-bs-target": "#v-pills-account-details",
       type: "button",
       role: "tab",
       "aria-controls": "v-pills-account-details",
-      "aria-selected": "true",
+      "aria-selected": active_tab == 'v-pills-account-details',
+      class: ("active" if active_tab == 'v-pills-account-details'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Account Details
     %button.nav-link{
@@ -26,7 +28,8 @@
       type: "button",
       role: "tab",
       "aria-controls": "v-pills-billings",
-      "aria-selected": "false",
+      "aria-selected": active_tab == 'v-pills-billings',
+      class: ("active" if active_tab == 'v-pills-billings'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Billings
     %button.nav-link{
@@ -36,7 +39,8 @@
       type: "button",
       role: "tab",
       "aria-controls": "v-pills-orders",
-      "aria-selected": "false",
+      "aria-selected": active_tab == 'v-pills-orders',
+      class: ("active" if active_tab == 'v-pills-orders'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Orders
 
