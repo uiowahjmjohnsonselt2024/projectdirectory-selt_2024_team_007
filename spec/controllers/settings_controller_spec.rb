@@ -75,4 +75,60 @@ RSpec.describe SettingsController, type: :controller do
       end
     end
   end
+
+  describe "PATCH #update_profile_image" do
+    context "with a valid image" do
+      it "updates the profile image successfully" do
+        file = fixture_file_upload("app/assets/images/logo.png", "image/jpeg")
+        patch :update_profile_image, params: { profile_image: file }
+        expect(flash[:success]).to eq("Profile image updated successfully.")
+        expect(response).to redirect_to(settings_path)
+        expect(user.reload.profile_image).to be_attached
+      end
+    end
+
+    context "without an image" do
+      it "does not update the profile image and shows an error message" do
+        patch :update_profile_image, params: { profile_image: nil }
+        expect(flash[:danger]).to eq("No image selected.")
+        expect(response).to redirect_to(settings_path)
+        expect(user.reload.profile_image).not_to be_attached
+      end
+    end
+
+    context "with a database update failure" do
+      before do
+        allow_any_instance_of(User).to receive(:update).and_return(false)
+      end
+
+      it "does not update the profile image and shows an error message" do
+        file = fixture_file_upload("app/assets/images/logo.png", "image/jpeg")
+        patch :update_profile_image, params: { profile_image: file }
+        expect(flash[:danger]).to eq("Failed to update profile image. Please try again.")
+        expect(response).to redirect_to(settings_path)
+        expect(user.reload.profile_image).not_to be_attached
+      end
+    end
+  end
+
+  describe "PATCH #update_name" do
+    context "with valid name" do
+      it "updates the user's name" do
+        patch :update_name, params: { name: "NewName" }
+        expect(flash[:success]).to eq("Your name has been updated successfully.")
+        expect(response).to redirect_to(settings_path)
+        expect(user.reload.name).to eq("NewName")
+      end
+    end
+
+    context "with invalid name" do
+      it "does not update the user's name and shows an error message" do
+        patch :update_name, params: { name: "" }
+        expect(flash[:danger]).to eq("Failed to update your name.")
+        expect(response).to redirect_to(settings_path)
+        expect(user.reload.name).not_to eq("")
+      end
+    end
+  end
+
 end
