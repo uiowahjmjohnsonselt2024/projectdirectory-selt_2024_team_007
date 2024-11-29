@@ -168,23 +168,23 @@
       "aria-labelledby": "v-pills-billings-tab",
       tabindex: "0",
       class: ("show active" if active_tab == 'v-pills-billings'),
-      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
-      %h1{ style: "color: #2C3E50; text-align: center;" } Billing Information
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
       %div{ style: "margin-top: 20px;" }
         %ul.list-group
           - @billing_methods.each do |method|
-            %li.list-group-item{ style: "display: flex; justify-content: space-between; align-items: center;" }
+            %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
               %div
-                %p{ style: "margin: 0; font-weight: bold;" }= method.card_holder_name
-                %p{ style: "margin: 0; color: #888;" } **** **** **** #{method.card_number.last(4)}
+                %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= method.card_holder_name
+                %p{ style: "margin: 0; color: #fff;" } **** **** **** #{method.card_number.last(4)}
                 %p{ style: "margin: 0; color: #888;" } Exp: #{method.expiration_date.strftime('%m/%y')}
               %div
                 %button.btn.btn-sm.btn-outline-primary{
                   type: "button",
                   "data-bs-toggle": "modal",
                   "data-bs-target": "#editCardModal-#{method.id}",
-                  style: "margin-left: 10px;"
+                  style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
                 } Edit
 
                 / Edit Modal for Each Card
@@ -268,7 +268,7 @@
       "aria-labelledby": "v-pills-orders-tab",
       tabindex: "0",
       class: ("show active" if active_tab == 'v-pills-orders'),
-      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
       %h1{ style: "color: #2C3E50; text-align: center;" } Orders
       %p Here are your order details.
