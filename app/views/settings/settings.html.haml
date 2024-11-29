@@ -4,10 +4,10 @@
     = render 'shared/navigation'
 
   %div.nav.flex-column.nav-pills{
-  id: "v-pills-tab",
-  role: "tablist",
-  "aria-orientation": "vertical",
-  style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical",
+    style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
   }
     - active_tab = params[:active_tab] || 'v-pills-account-details'
     %button.nav-link{
@@ -49,11 +49,12 @@
     id: "v-pills-tabContent",
     style: "padding: 50px; flex-grow: 1; "
   }
-    %div.tab-pane.fade.show.active{
+    %div.tab-pane.fade{
       id: "v-pills-account-details",
       role: "tabpanel",
       "aria-labelledby": "v-pills-account-details-tab",
       tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-account-details'),
       style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
       %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Profile Settings
@@ -166,7 +167,8 @@
       role: "tabpanel",
       "aria-labelledby": "v-pills-billings-tab",
       tabindex: "0",
-      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      class: ("show active" if active_tab == 'v-pills-billings'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
     }
       %h1{ style: "color: #2C3E50; text-align: center;" } Billing Information
       %div{ style: "margin-top: 20px;" }
@@ -265,6 +267,7 @@
       role: "tabpanel",
       "aria-labelledby": "v-pills-orders-tab",
       tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-orders'),
       style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
     }
       %h1{ style: "color: #2C3E50; text-align: center;" } Orders
