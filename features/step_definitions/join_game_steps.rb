@@ -12,3 +12,7 @@ When("I submit the join game form") do
     click_button "Join Game"
   end
 end
+
+Then('my profile name {string} should be displayed in the game lobby') do |string|
+  expect(page).to have_content(string)
+end
