@@ -27,6 +27,8 @@ gem 'haml-rails', '~> 2.0'
 # This is for 3rd-party login(Google login in this case)
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]

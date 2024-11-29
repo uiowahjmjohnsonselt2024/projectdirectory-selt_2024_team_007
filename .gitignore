@@ -37,3 +37,7 @@
 .idea/*.iml
 log/test.log
 log/development.log
+
+# Ignore dependencies files
+node_modules/
+
