@@ -3,10 +3,10 @@ class StoreItem < ActiveRecord::Base
   attr_reader :id, :name, :description, :shards_cost
 
   STORE_ITEMS = [
-    { id: 1, name: 'Teleport', description: 'Instantly teleport to any location.', shards_cost: 0 },
-    { id: 2, name: 'Small Health Potion', description: 'Restores 50 HP.', shards_cost: 0 },
-    { id: 3, name: 'Invisibility Cloak', description: 'Become invisible for 10 minutes.', shards_cost: 0 },
-    { id: 4, name: 'Speed Boost', description: 'Doubles your speed for 5 minutes.', shards_cost: -5 }
+    { id: 1, name: 'Teleport', description: 'Instantly teleport to any location.', shards_cost: -10 },
+    { id: 2, name: 'Small Health Potion', description: 'Restores 50 HP.', shards_cost: -5 },
+    { id: 3, name: 'Invisibility Cloak', description: 'Become invisible for 10 minutes.', shards_cost: -20 },
+    { id: 4, name: 'Speed Boost', description: 'Doubles your speed for 5 minutes.', shards_cost: -200 }
   ].freeze
 
   def self.all

@@ -48,22 +48,26 @@
 
       = form_with url: purchase_store_items_path, method: :post, local: true, id: "purchase-form" do |f|
         = hidden_field_tag :shard_amount, nil, id: "shard-amount-field"
-        %button{ type: "submit", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+        = hidden_field_tag :package, nil, id: "package-field"
+        = hidden_field_tag :action_url, purchase_store_items_path, id: "action-url-field" # Hidden field for dynamic URL
+
+        %button{ type: "submit", id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
         %button{ type: "button", id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
 
     %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
       Purchase Shards
 
 
-%div.store-items
+  %div.store-items
   - @store_items.each do |item|
     %div.store-item
       %h2= item.name
       %p= item.description
       %p Cost: #{item.shards_cost} shards
       %button{ class: "purchase-button",
-                data: { package: "#{item.name} for #{item.shards_cost} shards", shard_amount: item.shards_cost },
-                style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+        data: { package: "#{item.name} for #{item.shards_cost} Shards", shard_amount: item.shards_cost, action_url: purchase_with_shards_store_items_path },
+        style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;"
+      } Purchase
 
 :javascript
   document.addEventListener("DOMContentLoaded", () => {
@@ -101,13 +105,13 @@
     openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
 
     // Close "Purchase Shards" pop-up
-    closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+    closePurchaseButton.addEventListener("click", () => closePopup  (purchasePopup));
 
     // Open confirmation pop-up when a purchase button is clicked
     document.querySelectorAll('.purchase-button').forEach(button => {
       button.addEventListener('click', (event) => {
         const packageInfo = event.target.getAttribute('data-package');
-        const shardAmount = event.target.getAttribute('data-shard-amount'); // Retrieve from button
+        const shardAmount = event.target.getAttribute('data-shard-amount');
         openConfirmation(packageInfo, shardAmount);
       });
     });
