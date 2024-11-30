@@ -184,14 +184,14 @@
                 %button.btn.btn-sm.btn-outline-primary{
                   type: "button",
                   "data-bs-toggle": "modal",
-                  "data-bs-target": "#editCardModal-#{method.id}",
+                  "data-bs-target": "#editCardModal-#{method.card_number.last(4)}",
                   "data-card-last-four": "#{method.card_number.last(4)}",
                   style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
                 } Edit
 
                 / Edit Modal for Each Card
       - @billing_methods.each do |method|
-        .modal.fade{id: "editCardModal-#{method.id}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
+        .modal.fade{id: "editCardModal-#{method.card_number.last(4)}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
           .modal-dialog
             .modal-content
               .modal-header
@@ -202,16 +202,16 @@
               = form_with(model: method, url: edit_billing_method_path(method), method: :patch, local: true) do |f|
                 .modal-body
                   .mb-3
-                    = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+                    = f.label :card_holder_name, "Edit Card Holder Name", class: 'form-label'
                     = f.text_field :card_holder_name, value: method.card_holder_name, class: 'form-control', required: true
                   .mb-3
-                    = f.label :card_number, "Card Number", class: 'form-label'
+                    = f.label :card_number, "Edit Card Number", class: 'form-label'
                     = f.text_field :card_number, value: method.card_number, class: 'form-control', required: true
                   .mb-3
-                    = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+                    = f.label :expiration_date, "Edit Expiration Date (MM/YY)", class: 'form-label'
                     = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
                 .modal-footer
-                  = f.submit "Save", class: "btn btn-primary"
+                  = f.submit "Update Card", class: "btn btn-primary"
                   %button.btn.btn-secondary{
                     type: "button",
                     "data-bs-dismiss" => "modal"

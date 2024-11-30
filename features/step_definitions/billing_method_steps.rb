@@ -5,8 +5,18 @@ When('I click Billings button') do
 end
 
 When('I fill in the following fields for the billing method:') do |table|
-  table.rows_hash.each do |field, value|
-    fill_in(field, with: value)
+  within('#addCardModal') do
+    table.rows_hash.each do |field, value|
+      fill_in(field, with: value)
+    end
+  end
+end
+
+When('I edit the following fields for the card ending in {string}:') do |last_4_digits, table|
+  within("#editCardModal-#{last_4_digits}") do
+    table.rows_hash.each do |field, value|
+      fill_in(field, with: value)
+    end
   end
 end
 
