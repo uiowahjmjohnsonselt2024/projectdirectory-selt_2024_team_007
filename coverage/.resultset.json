@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/application_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null,
@@ -27,27 +27,20 @@
           null,
           null,
           1,
-          84,
-          84,
-          null,
-          84,
-          84,
-          null,
-          84,
+
           1,
           1,
           1,
           1,
           1,
           null,
-          83,
-          83,
+
           null,
           null,
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/friends_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/friends_controller.rb": {
         "lines": [
           1,
           1,
@@ -133,7 +126,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/games_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/games_controller.rb": {
         "lines": [
           1,
           1,
@@ -248,7 +241,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/landing_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/landing_controller.rb": {
         "lines": [
           1,
           1,
@@ -258,63 +251,59 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/settings_controller.rb": {
-        "lines": [
-          1,
-          1,
+
           null,
           1,
           null,
           null,
-          null,
-          1,
-          3,
-          null,
-          3,
           2,
-          1,
-          null,
-          1,
           null,
           null,
           1,
-          null,
+
           null,
           3,
+          2,
           null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+
+          null,
+          null,
+          1,
+
           null,
           1,
           2,
           null,
           2,
           1,
-          null,
-          1,
-          null,
-          null,
-          2,
-          null,
+
           null,
           1,
           null,
           null,
           10,
           2,
-          2,
+
           null,
-          null,
-          null,
-          8,
+          10,
           2,
           2,
           null,
           null,
-          null,
-          6,
+
           2,
           2,
           null,
+          2,
+          2,
           null,
+
           null,
           4,
           2,
@@ -323,12 +312,13 @@
           2,
           2,
           null,
+
           null,
           null,
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/sessions_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/sessions_controller.rb": {
         "lines": [
           1,
           1,
@@ -380,7 +370,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/store_items_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/store_items_controller.rb": {
         "lines": [
           1,
           null,
@@ -415,7 +405,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/users_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/users_controller.rb": {
         "lines": [
           1,
           1,
@@ -464,7 +454,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/mailers/user_mailer.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/mailers/user_mailer.rb": {
         "lines": [
           1,
           1,
@@ -476,7 +466,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/mailers/application_mailer.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/mailers/application_mailer.rb": {
         "lines": [
           1,
           1,
@@ -484,7 +474,37 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/friendship.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/billing_method.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          27,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/friendship.rb": {
         "lines": [
           1,
           1,
@@ -498,7 +518,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/game.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/game.rb": {
         "lines": [
           1,
           1,
@@ -567,14 +587,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/game_user.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/game_user.rb": {
         "lines": [
           1,
           1,
@@ -595,7 +608,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/tile.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/tile.rb": {
         "lines": [
           1,
           1,
@@ -610,12 +623,12 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/user.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/user.rb": {
         "lines": [
           1,
           1,
           1,
-          256,
+
           1,
           null,
           1,
@@ -644,6 +657,7 @@
           null,
           6,
           1,
+          1,
           null,
           1,
           null,
@@ -673,10 +687,7 @@
           null,
           1,
           1,
-          795,
-          null,
-          1,
-          249,
+
           null,
           null,
           1,
@@ -711,7 +722,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/store_item.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/store_item.rb": {
         "lines": [
           1,
           null,
@@ -745,7 +756,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/password_resets_controller.rb": {
+
         "lines": [
           0,
           0,
@@ -754,55 +765,6 @@
           0,
           null,
           null,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
           0,
           0,
           0,
@@ -839,16 +801,12 @@
         "branches": {}
       }
     },
-    "timestamp": 1732913303
-  },
-  "Cucumber Features": {
-    "coverage": {
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/user.rb": {
+
         "lines": [
           1,
           1,
           1,
-          103,
+
           1,
           null,
           1,
@@ -876,6 +834,7 @@
           null,
           null,
           22,
+          1,
           1,
           null,
           1,
@@ -906,10 +865,7 @@
           null,
           1,
           1,
-          309,
-          null,
-          1,
-          96,
+
           null,
           null,
           1,
@@ -944,23 +900,14 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/sessions_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/sessions_controller.rb": {
         "lines": [
           1,
           1,
           1,
           null,
           1,
-          47,
-          null,
-          null,
-          1,
-          39,
-          39,
-          38,
-          38,
-          38,
-          38,
+
           null,
           1,
           1,
@@ -1042,17 +989,26 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/landing_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          null,
           1,
-          78,
-          78,
+
           null,
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/game_user.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/landing_controller.rb": {
+        "lines": [
+          1,
+          1,
+          55,
+          null,
+          null
+        ]
+      },
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/game_user.rb": {
         "lines": [
           1,
           1,
@@ -1073,14 +1029,14 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/application_record.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/game.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/game.rb": {
         "lines": [
           1,
           1,
@@ -1149,7 +1105,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/friendship.rb": {
+
         "lines": [
           1,
           1,
@@ -1397,7 +1353,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/tile.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/tile.rb": {
         "lines": [
           1,
           1,
@@ -1412,7 +1368,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/password_resets_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/password_resets_controller.rb": {
         "lines": [
           1,
           1,
@@ -1504,7 +1460,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/mailers/user_mailer.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/mailers/user_mailer.rb": {
         "lines": [
           1,
           1,
@@ -1516,7 +1472,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/mailers/application_mailer.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/mailers/application_mailer.rb": {
         "lines": [
           1,
           1,
@@ -1524,7 +1480,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/friends_controller.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/controllers/friends_controller.rb": {
         "lines": [
           1,
           1,
@@ -1610,7 +1566,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/controllers/store_items_controller.rb": {
+
         "lines": [
           1,
           null,
@@ -1645,7 +1601,7 @@
           null
         ]
       },
-      "/home/bjohnson/Project_Files/SELT/i2dev/app/models/store_item.rb": {
+      "/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/models/store_item.rb": {
         "lines": [
           1,
           null,
@@ -1680,6 +1636,5 @@
         ]
       }
     },
-    "timestamp": 1732913326
   }
 }
