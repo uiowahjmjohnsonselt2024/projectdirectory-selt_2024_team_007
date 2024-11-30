@@ -104,4 +104,91 @@ RSpec.describe User, type: :model do
       expect(user.password_reset_expired?).to be false
     end
   end
+
+
+
+  describe '.from_omniauth' do
+    let(:auth) { OmniAuth::AuthHash.new(provider: 'google_oauth2', uid: '12345', info: { name: 'Test User', email: 'test@example.com' }) }
+
+    context 'when user exists by uid' do
+      let!(:existing_user) do
+        User.create!(
+          uid: '12345',
+          name: 'Existing User',
+          email: 'existing@example.com',
+          password: 'password',
+          password_confirmation: 'password',
+          session_token: 'token123'
+        )
+      end
+
+      it 'returns the existing user' do
+        user = User.from_omniauth(auth)
+        expect(user).to eq(existing_user)
+      end
+    end
+
+    context 'when user exists by email' do
+      let!(:existing_user) do
+        User.create!(
+          uid: '67890',
+          name: 'Existing Email User',
+          email: 'test@example.com',
+          password: 'password',
+          password_confirmation: 'password',
+          session_token: 'token456'
+        )
+      end
+
+      it 'returns the existing user' do
+        user = User.from_omniauth(auth)
+        expect(user).to eq(existing_user)
+      end
+    end
+
+    context 'when user does not exist and is successfully created' do
+      it 'creates and returns a new user' do
+        expect {
+          @new_user = User.from_omniauth(auth)
+        }.to change(User, :count).by(1)
+
+        expect(@new_user.uid).to eq('12345')
+        expect(@new_user.email).to eq('test@example.com')
+        expect(@new_user.name).to match(/^TestUser[A-Z]{6}$/)
+        expect(@new_user.session_token).to be_present
+      end
+    end
+
+    context 'when user creation fails' do
+      let(:invalid_auth) { OmniAuth::AuthHash.new(provider: 'google_oauth2', uid: '12345', info: { name: 'Test User', email: 'test@example.com' }) }
+
+      it 'returns nil' do
+        # 模拟 User.create! 抛出 ActiveRecord::RecordInvalid 异常
+        allow(User).to receive(:create!).and_raise(ActiveRecord::RecordInvalid.new(User.new))
+
+        user = User.from_omniauth(invalid_auth)
+        expect(user).to be_nil
+      end
+    end
+
+    context "when user's name is nil or empty" do
+      let(:auth_without_name) { OmniAuth::AuthHash.new(provider: 'google_oauth2', uid: '54321', info: { name: nil, email: 'noname@example.com' }) }
+
+      it 'uses the default name "UnknownUser" and adds a random suffix' do
+        user = User.from_omniauth(auth_without_name)
+        expect(user.name).to match(/^UnknownUser[A-Z]{6}$/)
+      end
+    end
+
+    context "when user's email is nil" do
+      let(:auth_without_email) { OmniAuth::AuthHash.new(provider: 'google_oauth2', uid: '99999', info: { name: 'NoEmail User', email: nil }) }
+
+      it 'uses uid to generate the default email' do
+        expect {
+          user = User.from_omniauth(auth_without_email)
+          expect(user.email).to eq('99999@google.com')
+        }.to change(User, :count).by(1)
+      end
+    end
+  end
 end

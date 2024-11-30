@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
 
   # 3rd party login redirect
-  get '/auth/:provider/callback', to: 'sessions#oauth_create'
+  get '/auth/:provider/callback', to: 'sessions#oauth_create', as: 'oauth_create'
   get '/auth/failure', to: redirect('/login')
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
 
@@ -49,11 +49,15 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :billing_methods, only: [] do
     member do
       patch :update
       delete :destroy
     end
+
+  resources :games do
+    post 'invite_friends', on: :member
   end
 
   resources :settings, only: [] do

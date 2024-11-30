@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
 
-  VALID_NAME_REGEX = /\A[^\s]+\z/
+  VALID_NAME_REGEX = /\A[^\s]+(\s[^\s]+)*\z/
   validates :name, presence: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
@@ -72,9 +72,11 @@ class User < ActiveRecord::Base
 
     begin
       password = SecureRandom.base64(12)
+      name = auth['info']['name']&.gsub(/\s+/, '') || "UnknownUser"
+      random_suffix = Array.new(6) { ('A'..'Z').to_a.sample }.join
       user = self.create!(
         uid: auth['uid'],
-        name: auth['info']['name'] || "Unknown User",
+        name: "#{name}#{random_suffix}",
         email: auth['info']['email'] || "#{auth['uid']}@google.com",
         password: password,
         password_confirmation: password,

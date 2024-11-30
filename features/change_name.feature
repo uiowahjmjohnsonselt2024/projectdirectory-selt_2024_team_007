@@ -26,9 +26,3 @@ Feature: Change username
     And I fill in "User Name" with ""
     And I press "Save"
     Then I should see "Failed to update your name."
-
-  Scenario: Attempt to change with invalid name
-    Then I should be redirected to the settings page
-    And I fill in "User Name" with "New Name"
-    And I press "Save"
-    Then I should see "Name is invalid"
