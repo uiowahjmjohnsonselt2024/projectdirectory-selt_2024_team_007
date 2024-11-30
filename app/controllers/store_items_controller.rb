@@ -1,5 +1,6 @@
 # app/controllers/store_items_controller.rb
 
+
 class StoreItemsController < ApplicationController
   before_action :set_currency
 
@@ -35,7 +36,7 @@ class StoreItemsController < ApplicationController
     user_ip = request.remote_ip
     Rails.logger.debug "****user_ip=#{user_ip}"
 
-    user_ip = '133.242.187.207' # for test only-japan
+    #user_ip = '133.242.187.207' # for test only-japan
     @user_country_code = IpLocationService.get_country_from_ip(user_ip)
     Rails.logger.debug "user_country_code=#{@user_country_code}"
 
@@ -44,22 +45,14 @@ class StoreItemsController < ApplicationController
   end
 
   def country_code_to_currency(country_code)
-    currency_mapping = {
-      'US' => 'USD',
-      'CA' => 'CAD',
-      'GB' => 'GBP',
-      'JP' => 'JPY',
-      'EU' => 'EUR',
-      'IN' => 'INR',
-      'CN' => 'CNY',
-      'AU' => 'AUD',
-      'NZ' => 'NZD',
-      # ADD MORE
-    }
-    currency_mapping[country_code] || 'USD'
+    country = ISO3166::Country[country_code]
+    if country && country.currency_code
+      country.currency_code
+    else
+      'USD'
+    end
   end
 
-  private
 
   def current_user
     session_token = session[:session_token]
