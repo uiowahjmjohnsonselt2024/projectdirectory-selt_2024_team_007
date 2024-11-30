@@ -29,6 +29,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+# This gem is to do country_code and currency_name conversion
+gem 'money-rails'
 
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]

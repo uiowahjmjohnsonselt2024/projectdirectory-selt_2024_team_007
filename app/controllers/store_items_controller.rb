@@ -1,8 +1,16 @@
+# app/controllers/store_items_controller.rb
+
 class StoreItemsController < ApplicationController
+  before_action :set_currency
 
   def index
     @store_items = StoreItem.all
     @shard_balance = session[:shard_balance] ||= 100 # Default balance
+    @shard_packages = [
+      { shards: 50, price_usd: 5.00 },
+      { shards: 120, price_usd: 10.00 },
+      { shards: 250, price_usd: 20.00 }
+    ]
   end
 
   def purchase
@@ -23,9 +31,39 @@ class StoreItemsController < ApplicationController
 
   private
 
+  def set_currency
+    user_ip = request.remote_ip
+    Rails.logger.debug "****user_ip=#{user_ip}"
+
+    user_ip = '133.242.187.207' # for test only-japan
+    @user_country_code = IpLocationService.get_country_from_ip(user_ip)
+    Rails.logger.debug "user_country_code=#{@user_country_code}"
+
+    @currency = country_code_to_currency(@user_country_code)
+    @exchange_rate = ExchangeRateService.get_rate(@currency)
+  end
+
+  def country_code_to_currency(country_code)
+    currency_mapping = {
+      'US' => 'USD',
+      'CA' => 'CAD',
+      'GB' => 'GBP',
+      'JP' => 'JPY',
+      'EU' => 'EUR',
+      'IN' => 'INR',
+      'CN' => 'CNY',
+      'AU' => 'AUD',
+      'NZ' => 'NZD',
+      # ADD MORE
+    }
+    currency_mapping[country_code] || 'USD'
+  end
+
+  private
+
   def current_user
     session_token = session[:session_token]
     User.find_by(session_token: session_token) if session_token.present?
   end
-
 end
+

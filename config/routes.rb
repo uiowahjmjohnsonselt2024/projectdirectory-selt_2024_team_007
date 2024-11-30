@@ -34,6 +34,9 @@ Rails.application.routes.draw do
 
 
 
+
+
+
   # Games routes
   resources :games, only: [:create, :show] do
     member do
@@ -64,9 +67,8 @@ Rails.application.routes.draw do
   root "landing#index"
 
   resources :store_items do
-    collection do
-      post 'purchase'
-    end
+      post :purchase, on: :collection
+
   end
 
   resources :friends, only: [:index, :create] do
