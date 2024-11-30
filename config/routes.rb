@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
 
   # 3rd party login redirect
+  post '/auth/:provider', to: 'sessions#oauth_request', as: 'oauth_request'
   get '/auth/:provider/callback', to: 'sessions#oauth_create', as: 'oauth_create'
   get '/auth/failure', to: redirect('/login')
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
