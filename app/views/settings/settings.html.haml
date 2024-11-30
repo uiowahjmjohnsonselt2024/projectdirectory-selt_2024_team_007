@@ -172,6 +172,7 @@
     }
       %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
       %div{ style: "margin-top: 20px;" }
+        = render 'shared/flash'
         %ul.list-group
           - @billing_methods.each do |method|
             %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
@@ -184,6 +185,7 @@
                   type: "button",
                   "data-bs-toggle": "modal",
                   "data-bs-target": "#editCardModal-#{method.id}",
+                  "data-card-last-four": "#{method.card_number.last(4)}",
                   style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
                 } Edit
 
