@@ -55,6 +55,8 @@ Rails.application.routes.draw do
       patch :update
       delete :destroy
     end
+  end
+
 
   resources :games do
     post 'invite_friends', on: :member
