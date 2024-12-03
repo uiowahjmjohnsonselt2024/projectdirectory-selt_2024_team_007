@@ -5,6 +5,7 @@ RSpec.describe StoreItemsController, type: :controller do
 
   before do
     session[:session_token] = user.session_token
+    allow(IpLocationService).to receive(:get_country_from_ip).and_return('US')
   end
 
   describe "GET #index" do

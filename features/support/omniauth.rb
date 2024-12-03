@@ -23,7 +23,6 @@ Given(/^I am logged in as "([^"]*)"$/) do |user|
   else
     raise "Unknown user: #{user}"
   end
-
   visit '/auth/google_oauth2'
 end
 

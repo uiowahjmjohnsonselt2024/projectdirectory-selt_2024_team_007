@@ -122,6 +122,9 @@ GEM
     connection_pool (2.4.1)
     countries (7.0.0)
       unaccent (~> 0.3)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     cucumber (9.2.0)
       builder (~> 3.2)
@@ -218,6 +221,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    hashdiff (1.1.2)
     hashie (5.0.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -524,6 +528,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.24.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -594,6 +602,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  webmock
 
 RUBY VERSION
    ruby 3.3.4p94

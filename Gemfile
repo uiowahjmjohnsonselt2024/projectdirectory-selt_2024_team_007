@@ -33,6 +33,9 @@ gem 'omniauth-rails_csrf_protection'
 gem 'money-rails'
 gem 'countries'
 
+# To do the https mock request, not sure if it will be used in deployment
+gem 'webmock'
+
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]
 

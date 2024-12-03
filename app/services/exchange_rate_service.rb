@@ -22,7 +22,7 @@ require 'json'
 # end
 #
 class ExchangeRateService
-  API_KEY = 'dccc02a3cb5ebc08c7f8aa88d87db30d'
+  API_KEY = ENV['EXCHANGE_RATE']
 
   def self.get_rate(target_currency)
     return 1.0 if target_currency == "USD"

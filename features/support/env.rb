@@ -1,4 +1,7 @@
 require 'cucumber/rails'
+
+
+WebMock.disable_net_connect!(allow_localhost: true)
 Capybara.default_driver = :rack_test
 
 # Ensure transactional fixtures are used for speed
