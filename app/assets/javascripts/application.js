@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-
-    if (audio.paused) {
+    function playAudio() {
+        audio.muted = false;
         audio.play().catch((err) => {
             console.error('Audio playback error:', err);
         });
+        document.removeEventListener('click', playAudio);
     }
+
+    document.addEventListener('click', playAudio);
 });

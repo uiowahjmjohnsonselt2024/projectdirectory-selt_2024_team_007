@@ -1,7 +1,5 @@
 %section.vh-100{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;" }
-  %audio#background-music{ controls: true, loop: true, autoplay: true }
-    %source{ src: asset_path("Shards_of_the_Grid_landing.mp3"), type: "audio/mpeg" }
-    = t("audio.unsupported_message")
+  - content_for :background_music, 'log_in.mp3'
 
   %div{ style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);" }
     %div{ style: "text-align: center; margin-bottom: 20px;" }
