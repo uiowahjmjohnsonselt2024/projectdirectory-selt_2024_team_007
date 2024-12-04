@@ -37,10 +37,25 @@ class GamesController < ApplicationController
       else
         @game.game_users.create(user: @current_user, health: 100)
         redirect_to @game, notice: 'You have successfully joined the game.'
+        update_players_list
       end
     else
       flash[:alert] = 'Invalid join code.'
       redirect_to root_path
+    end
+  end
+
+  # POST /games/:id/leave
+  def leave
+    @game = Game.find(params[:id])
+    game_user = @game.game_users.find_by(user: @current_user)
+
+    if game_user
+      game_user.destroy
+      update_players_list
+      redirect_to landing_path, notice: 'You have left the game.'
+    else
+      redirect_to @game, alert: 'You are not part of this game.'
     end
   end
 
@@ -88,6 +103,17 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def update_players_list
+    @game_users = GameUser.all
+    html = render_to_string(inline: <<-HAML, locals: { game_users: @game_users })
+    %ul
+      - game_users.each do |game_user|
+        %li= "\#{game_user.user.name} (Health: \#{game_user.health})"
+    HAML
+  
+    Turbo::StreamsChannel.broadcast_replace_to 'players', target: 'players', html: html
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game
