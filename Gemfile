@@ -69,6 +69,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "letter_opener"
+  gem "ruby-openai"
 end
 
 group :test do
@@ -89,6 +90,7 @@ group :test do
 end
 
 group :production do
+  gem "ruby-openai"
   gem 'aws-sdk-s3', '~> 1.0', require: false
   gem "pg" # for Heroku deployment
   gem 'rails_12factor' # for heroku dep

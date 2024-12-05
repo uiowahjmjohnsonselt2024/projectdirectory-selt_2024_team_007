@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :show] do
     member do
       post 'start'  # This creates start_game_path(@game)
+      post 'chat'            # For the chat feature
     end
 
     collection do

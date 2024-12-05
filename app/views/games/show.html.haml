@@ -46,11 +46,53 @@
 
     / Editable User Input Field
     %div.user-input.mt-3
-      = form_with url: '#', local: true do |form|
+      = form_with url: chat_game_path(@game), local: true, data: { type: :json }, id: 'chat-form' do |form|
         .mb-3
           = form.label :message, 'Your Response', class: 'form-label fw-bold'
           = form.text_area :message, id: 'user-message', class: 'form-control', rows: 3, placeholder: 'Type your message here...'
         = form.submit 'Send', class: 'btn btn-primary'
+
+  %script
+    :javascript
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('chat-form');
+        const responseField = document.getElementById('chatbot-response');
+
+        if (form) {
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const message = document.getElementById('user-message').value;
+            const url = form.getAttribute('action');
+
+            try {
+              const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({ message }),
+              });
+
+              const data = await response.json();
+              if (data.response) {
+                responseField.textContent = data.response;
+              } else if (data.error) {
+                responseField.textContent = `Error: ${data.error}`;
+              } else {
+                responseField.textContent = 'An error occurred.';
+              }
+            } catch (error) {
+              responseField.textContent = 'Failed to fetch response.';
+            }
+          });
+        } else {
+          console.error('Chat form not found on the page.');
+        }
+      });
+
+
 
   / Map Modal
   .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
