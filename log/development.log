@@ -8570,3 +8570,1227 @@ Updated session last_seen_at: 2024-11-29T09:27:10Z
 Completed 200 OK in 200ms (Views: 177.7ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2024-12-05 15:49:48 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 20:56:58 UTC
+Current time: 2024-12-05 21:49:50 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 487ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 15:49:50 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-05 21:49:50 UTC
+Updated session last_seen_at: 2024-12-05T21:49:50Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 16.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 7972.3ms | GC: 17.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8248.1ms | GC: 17.0ms)
+Completed 200 OK in 8631ms (Views: 8586.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 17.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-05 15:50:10 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 21:49:50 UTC
+Current time: 2024-12-05 21:50:10 UTC
+Updated session last_seen_at: 2024-12-05T21:50:10Z
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/landing
+Completed 302 Found in 680ms (ActiveRecord: 57.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-05 15:50:11 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 21:50:11 UTC
+Current time: 2024-12-05 21:50:11 UTC
+Updated session last_seen_at: 2024-12-05T21:50:11Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 102.3ms | GC: 0.4ms)
+  Rendered shared/_navigation.html.haml (Duration: 191.7ms | GC: 18.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (1.6ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 388.6ms | GC: 18.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 493.2ms | GC: 18.6ms)
+Completed 200 OK in 1001ms (Views: 501.1ms | ActiveRecord: 12.8ms (3 queries, 0 cached) | GC: 18.6ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 15:50:15 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 21:50:11 UTC
+Current time: 2024-12-05 21:50:16 UTC
+Updated session last_seen_at: 2024-12-05T21:50:16Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 52.3ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 97.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 489.7ms | GC: 1.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 591.1ms | GC: 1.2ms)
+Completed 200 OK in 686ms (Views: 597.7ms | ActiveRecord: 2.7ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 15:50:30 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"-10", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 21:50:16 UTC
+Current time: 2024-12-05 21:50:31 UTC
+Updated session last_seen_at: 2024-12-05T21:50:31Z
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (33.8ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2190], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 98ms (ActiveRecord: 35.0ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 15:50:31 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 21:50:31 UTC
+Current time: 2024-12-05 21:50:31 UTC
+Updated session last_seen_at: 2024-12-05T21:50:31Z
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 16.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 33.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 109.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 149.4ms | GC: 0.0ms)
+Completed 200 OK in 170ms (Views: 150.8ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-05 15:50:43 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 21:50:31 UTC
+Current time: 2024-12-05 21:50:44 UTC
+Updated session last_seen_at: 2024-12-05T21:50:44Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 16.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 32.2ms | GC: 0.6ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 64.7ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 208.3ms | GC: 1.5ms)
+Completed 200 OK in 227ms (Views: 209.4ms | ActiveRecord: 1.2ms (3 queries, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/games/1" for 127.0.0.1 at 2024-12-05 15:50:46 -0600
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"1"}
+Session last_seen_at: 2024-12-05 21:50:44 UTC
+Current time: 2024-12-05 21:50:47 UTC
+Updated session last_seen_at: 2024-12-05T21:50:47Z
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mGame Load (1.6ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:57:in `set_game'
+  Rendering layout layouts/application.html.haml
+  Rendering games/show.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGameUser Load (1.3ms)[0m  [1m[34mSELECT "game_users".* FROM "game_users" WHERE "game_users"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/views/games/show.html.haml:11
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  ↳ app/views/games/show.html.haml:11
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/games/show.html.haml:14
+  Rendered games/show.html.haml within layouts/application (Duration: 169.5ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 277.5ms | GC: 0.8ms)
+Completed 200 OK in 511ms (Views: 284.6ms | ActiveRecord: 14.1ms (5 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 15:57:04 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 21:52:44 UTC
+Current time: 2024-12-05 21:57:05 UTC
+Updated session last_seen_at: 2024-12-05T21:57:05Z
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 43.8ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 89.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 6.8ms | GC: 0.0ms)
+  [1m[36mGame Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 3060.4ms | GC: 15.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 3220.4ms | GC: 15.6ms)
+Completed 200 OK in 4097ms (Views: 3238.8ms | ActiveRecord: 85.6ms (3 queries, 0 cached) | GC: 16.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 15:58:03 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (5.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 21:57:05 UTC
+Current time: 2024-12-05 21:58:04 UTC
+Updated session last_seen_at: 2024-12-05T21:58:04Z
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 25.0ms | GC: 0.1ms)
+  Rendered shared/_navigation.html.haml (Duration: 57.7ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 5.4ms | GC: 0.2ms)
+  [1m[36mGame Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (1.3ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 1527.7ms | GC: 15.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 1700.5ms | GC: 15.9ms)
+Completed 200 OK in 2728ms (Views: 1772.2ms | ActiveRecord: 116.2ms (3 queries, 0 cached) | GC: 16.7ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 15:58:11 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 21:58:04 UTC
+Current time: 2024-12-05 21:58:11 UTC
+Updated session last_seen_at: 2024-12-05T21:58:11Z
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 56.6ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 97.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 478.1ms | GC: 14.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 597.6ms | GC: 15.1ms)
+Completed 200 OK in 738ms (Views: 606.2ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 15.1ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 15:58:16 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"-10", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 21:58:11 UTC
+Current time: 2024-12-05 21:58:17 UTC
+Updated session last_seen_at: 2024-12-05T21:58:17Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (35.4ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2180], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 95ms (ActiveRecord: 36.3ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 15:58:17 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 21:58:17 UTC
+Current time: 2024-12-05 21:58:18 UTC
+Updated session last_seen_at: 2024-12-05T21:58:18Z
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 53.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 93.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 295.8ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 418.4ms | GC: 0.4ms)
+Completed 200 OK in 470ms (Views: 419.8ms | ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-05 15:58:23 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 21:58:18 UTC
+Current time: 2024-12-05 21:58:23 UTC
+Updated session last_seen_at: 2024-12-05T21:58:23Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 20.9ms | GC: 0.1ms)
+  Rendered shared/_navigation.html.haml (Duration: 48.9ms | GC: 0.1ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 79.0ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 119.8ms | GC: 0.1ms)
+Completed 200 OK in 141ms (Views: 120.0ms | ActiveRecord: 1.3ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:03:29 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 21:58:23 UTC
+Current time: 2024-12-05 22:03:29 UTC
+Updated session last_seen_at: 2024-12-05T22:03:29Z
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 41.6ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 67.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 194.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 298.9ms | GC: 0.0ms)
+Completed 200 OK in 326ms (Views: 300.4ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:08:36 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:03:29 UTC
+Current time: 2024-12-05 22:08:37 UTC
+Updated session last_seen_at: 2024-12-05T22:08:37Z
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 93.7ms | GC: 0.2ms)
+  Rendered shared/_navigation.html.haml (Duration: 221.1ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 16.2ms | GC: 0.2ms)
+  [1m[36mGame Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (1.5ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 2477.7ms | GC: 18.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 2697.0ms | GC: 18.8ms)
+Completed 200 OK in 3907ms (Views: 2743.6ms | ActiveRecord: 127.4ms (3 queries, 0 cached) | GC: 20.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:08:44 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:08:37 UTC
+Current time: 2024-12-05 22:08:44 UTC
+Updated session last_seen_at: 2024-12-05T22:08:44Z
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 53.5ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 101.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 443.2ms | GC: 12.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 566.6ms | GC: 12.4ms)
+Completed 200 OK in 762ms (Views: 577.0ms | ActiveRecord: 3.5ms (1 query, 0 cached) | GC: 12.4ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:08:52 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"5", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:08:44 UTC
+Current time: 2024-12-05 22:08:53 UTC
+Updated session last_seen_at: 2024-12-05T22:08:53Z
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (32.1ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2185], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 86ms (ActiveRecord: 33.5ms (3 queries, 1 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:08:53 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:08:53 UTC
+Current time: 2024-12-05 22:08:53 UTC
+Updated session last_seen_at: 2024-12-05T22:08:53Z
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.0ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 25.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 180.2ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 213.0ms | GC: 0.4ms)
+Completed 200 OK in 227ms (Views: 213.8ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:09:01 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"1", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:08:53 UTC
+Current time: 2024-12-05 22:09:01 UTC
+Updated session last_seen_at: 2024-12-05T22:09:01Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2184], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:17:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 21ms (ActiveRecord: 1.3ms (3 queries, 1 cached) | GC: 0.5ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:09:01 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:09:01 UTC
+Current time: 2024-12-05 22:09:02 UTC
+Updated session last_seen_at: 2024-12-05T22:09:02Z
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 13.7ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 29.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 95.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 129.4ms | GC: 0.0ms)
+Completed 200 OK in 145ms (Views: 130.2ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:10:17 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:09:02 UTC
+Current time: 2024-12-05 22:10:18 UTC
+Updated session last_seen_at: 2024-12-05T22:10:18Z
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 91.1ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 203.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 14.0ms | GC: 0.0ms)
+  [1m[36mGame Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 3620.9ms | GC: 18.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3812.7ms | GC: 18.0ms)
+Completed 200 OK in 4509ms (Views: 3836.8ms | ActiveRecord: 63.2ms (3 queries, 0 cached) | GC: 19.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:10:39 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:10:18 UTC
+Current time: 2024-12-05 22:10:40 UTC
+Updated session last_seen_at: 2024-12-05T22:10:40Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 14.9ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 27.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 169.1ms | GC: 13.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 203.0ms | GC: 14.0ms)
+Completed 200 OK in 239ms (Views: 206.2ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 14.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:10:44 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"25", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:10:40 UTC
+Current time: 2024-12-05 22:10:45 UTC
+Updated session last_seen_at: 2024-12-05T22:10:45Z
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (31.7ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2209], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 55ms (ActiveRecord: 33.0ms (3 queries, 1 cached) | GC: 0.3ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:10:45 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:10:45 UTC
+Current time: 2024-12-05 22:10:45 UTC
+Updated session last_seen_at: 2024-12-05T22:10:45Z
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 37.2ms | GC: 0.3ms)
+  Rendered shared/_navigation.html.haml (Duration: 82.2ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 257.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 356.0ms | GC: 0.4ms)
+Completed 200 OK in 406ms (Views: 357.3ms | ActiveRecord: 5.6ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:10:52 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"5", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:10:45 UTC
+Current time: 2024-12-05 22:10:52 UTC
+Updated session last_seen_at: 2024-12-05T22:10:52Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2214], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 18ms (ActiveRecord: 1.4ms (3 queries, 1 cached) | GC: 0.1ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:10:52 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:10:52 UTC
+Current time: 2024-12-05 22:10:52 UTC
+Updated session last_seen_at: 2024-12-05T22:10:52Z
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 15.4ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 30.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 95.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 134.2ms | GC: 0.0ms)
+Completed 200 OK in 151ms (Views: 135.1ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:10:56 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"1", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:10:52 UTC
+Current time: 2024-12-05 22:10:56 UTC
+Updated session last_seen_at: 2024-12-05T22:10:56Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `current_user'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2213], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:17:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 21ms (ActiveRecord: 1.2ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:10:56 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:10:56 UTC
+Current time: 2024-12-05 22:10:57 UTC
+Updated session last_seen_at: 2024-12-05T22:10:57Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 27.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 87.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 124.9ms | GC: 0.0ms)
+Completed 200 OK in 140ms (Views: 125.9ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:17:57 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:10:57 UTC
+Current time: 2024-12-05 22:17:58 UTC
+Updated session last_seen_at: 2024-12-05T22:17:58Z
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 33.0ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 74.5ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 5.8ms | GC: 0.3ms)
+  [1m[36mGame Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 3783.3ms | GC: 14.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 3841.8ms | GC: 14.6ms)
+Completed 200 OK in 4840ms (Views: 3903.9ms | ActiveRecord: 111.8ms (3 queries, 0 cached) | GC: 15.4ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:06 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:17:58 UTC
+Current time: 2024-12-05 22:18:07 UTC
+Updated session last_seen_at: 2024-12-05T22:18:07Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 44.9ms | GC: 0.2ms)
+  Rendered shared/_navigation.html.haml (Duration: 90.6ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 470.8ms | GC: 12.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 568.6ms | GC: 12.7ms)
+Completed 200 OK in 726ms (Views: 578.3ms | ActiveRecord: 4.0ms (1 query, 0 cached) | GC: 12.7ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:12 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"5", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:07 UTC
+Current time: 2024-12-05 22:18:12 UTC
+Updated session last_seen_at: 2024-12-05T22:18:12Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (32.9ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2218], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 53ms (ActiveRecord: 33.6ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:12 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:12 UTC
+Current time: 2024-12-05 22:18:13 UTC
+Updated session last_seen_at: 2024-12-05T22:18:13Z
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.4ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 28.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 93.9ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 133.8ms | GC: 0.6ms)
+Completed 200 OK in 167ms (Views: 135.2ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:16 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"12", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:13 UTC
+Current time: 2024-12-05 22:18:17 UTC
+Updated session last_seen_at: 2024-12-05T22:18:17Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2230], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 43ms (ActiveRecord: 2.2ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:17 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:17 UTC
+Current time: 2024-12-05 22:18:17 UTC
+Updated session last_seen_at: 2024-12-05T22:18:17Z
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 55.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 101.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 303.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 401.8ms | GC: 0.0ms)
+Completed 200 OK in 447ms (Views: 402.6ms | ActiveRecord: 3.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:22 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"25", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:17 UTC
+Current time: 2024-12-05 22:18:23 UTC
+Updated session last_seen_at: 2024-12-05T22:18:23Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2255], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:13:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 25ms (ActiveRecord: 1.7ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:23 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:23 UTC
+Current time: 2024-12-05 22:18:23 UTC
+Updated session last_seen_at: 2024-12-05T22:18:23Z
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 65.0ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 114.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 323.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 429.5ms | GC: 0.0ms)
+Completed 200 OK in 447ms (Views: 430.8ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:29 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"1", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:23 UTC
+Current time: 2024-12-05 22:18:30 UTC
+Updated session last_seen_at: 2024-12-05T22:18:30Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (1.7ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2254], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:18:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 19ms (ActiveRecord: 2.0ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:30 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:30 UTC
+Current time: 2024-12-05 22:18:30 UTC
+Updated session last_seen_at: 2024-12-05T22:18:30Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 14.4ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 28.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 177.1ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 347.1ms | GC: 1.1ms)
+Completed 200 OK in 363ms (Views: 348.7ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:34 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"2", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:30 UTC
+Current time: 2024-12-05 22:18:34 UTC
+Updated session last_seen_at: 2024-12-05T22:18:34Z
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (1.0ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2252], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:18:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 18ms (ActiveRecord: 2.0ms (3 queries, 1 cached) | GC: 0.1ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:34 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:34 UTC
+Current time: 2024-12-05 22:18:35 UTC
+Updated session last_seen_at: 2024-12-05T22:18:35Z
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 13.3ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 27.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 91.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 126.7ms | GC: 0.1ms)
+Completed 200 OK in 145ms (Views: 127.6ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:38 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:35 UTC
+Current time: 2024-12-05 22:18:39 UTC
+Updated session last_seen_at: 2024-12-05T22:18:39Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2249], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:18:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 17ms (ActiveRecord: 1.1ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:18:39 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:18:39 UTC
+Current time: 2024-12-05 22:18:39 UTC
+Updated session last_seen_at: 2024-12-05T22:18:39Z
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.5ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 28.5ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 91.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 124.1ms | GC: 0.0ms)
+Completed 200 OK in 144ms (Views: 124.9ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:45 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:39 UTC
+Current time: 2024-12-05 22:18:45 UTC
+Updated session last_seen_at: 2024-12-05T22:18:45Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+No template found for StoreItemsController#purchase, rendering head :no_content
+Completed 204 No Content in 22ms (ActiveRecord: 0.4ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:18:53 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:45 UTC
+Current time: 2024-12-05 22:18:53 UTC
+Updated session last_seen_at: 2024-12-05T22:18:53Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:31:in `current_user'
+No template found for StoreItemsController#purchase, rendering head :no_content
+Completed 204 No Content in 13ms (ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:20:53 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:18:53 UTC
+Current time: 2024-12-05 22:20:54 UTC
+Updated session last_seen_at: 2024-12-05T22:20:54Z
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:42:in `current_user'
+No template found for StoreItemsController#purchase, rendering head :no_content
+Completed 204 No Content in 209ms (ActiveRecord: 105.6ms (2 queries, 1 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:22:13 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:20:54 UTC
+Current time: 2024-12-05 22:22:15 UTC
+Updated session last_seen_at: 2024-12-05T22:22:15Z
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 78.6ms | GC: 0.3ms)
+  Rendered shared/_navigation.html.haml (Duration: 186.9ms | GC: 2.1ms)
+  Rendered shared/_flash.html.haml (Duration: 10.4ms | GC: 0.3ms)
+  [1m[36mGame Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (1.1ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 2606.2ms | GC: 14.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 2780.6ms | GC: 15.0ms)
+Completed 200 OK in 3828ms (Views: 2845.8ms | ActiveRecord: 77.4ms (3 queries, 0 cached) | GC: 16.8ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:22:21 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:22:15 UTC
+Current time: 2024-12-05 22:22:22 UTC
+Updated session last_seen_at: 2024-12-05T22:22:22Z
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 15.2ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 29.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 214.3ms | GC: 8.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 250.3ms | GC: 9.3ms)
+Completed 200 OK in 414ms (Views: 261.8ms | ActiveRecord: 5.9ms (1 query, 0 cached) | GC: 9.3ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:22:29 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:22:22 UTC
+Current time: 2024-12-05 22:22:29 UTC
+Updated session last_seen_at: 2024-12-05T22:22:29Z
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 46.3ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 89.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 306.9ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 410.8ms | GC: 0.6ms)
+Completed 200 OK in 463ms (Views: 412.2ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:22:35 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:22:29 UTC
+Current time: 2024-12-05 22:22:36 UTC
+Updated session last_seen_at: 2024-12-05T22:22:36Z
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:35:in `current_user'
+  [1m[36mUser Update (35.9ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", -751], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:24:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 95ms (ActiveRecord: 37.0ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:22:36 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:22:36 UTC
+Current time: 2024-12-05 22:22:36 UTC
+Updated session last_seen_at: 2024-12-05T22:22:36Z
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 11.1ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 47.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 105.2ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 144.4ms | GC: 1.2ms)
+Completed 200 OK in 163ms (Views: 145.4ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:23:36 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:22:36 UTC
+Current time: 2024-12-05 22:23:38 UTC
+Updated session last_seen_at: 2024-12-05T22:23:38Z
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 26.6ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 75.4ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 9.0ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.8ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 2877.5ms | GC: 20.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 2966.8ms | GC: 20.2ms)
+Completed 200 OK in 3939ms (Views: 3026.9ms | ActiveRecord: 76.2ms (3 queries, 0 cached) | GC: 32.5ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:23:46 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:23:38 UTC
+Current time: 2024-12-05 22:23:46 UTC
+Updated session last_seen_at: 2024-12-05T22:23:46Z
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 23.4ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 64.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 437.4ms | GC: 7.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 566.1ms | GC: 7.9ms)
+Completed 200 OK in 680ms (Views: 577.0ms | ActiveRecord: 3.4ms (1 query, 0 cached) | GC: 7.9ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:23:50 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"1", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:23:46 UTC
+Current time: 2024-12-05 22:23:51 UTC
+Updated session last_seen_at: 2024-12-05T22:23:51Z
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:38:in `current_user'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 44ms (ActiveRecord: 1.5ms (2 queries, 1 cached) | GC: 0.2ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:23:51 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:23:51 UTC
+Current time: 2024-12-05 22:23:51 UTC
+Updated session last_seen_at: 2024-12-05T22:23:51Z
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 47.5ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 96.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 308.5ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 431.4ms | GC: 0.7ms)
+Completed 200 OK in 479ms (Views: 432.4ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:24:05 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"25", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:23:51 UTC
+Current time: 2024-12-05 22:24:05 UTC
+Updated session last_seen_at: 2024-12-05T22:24:05Z
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:38:in `current_user'
+  [1m[36mUser Update (32.2ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", -726], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:15:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 84ms (ActiveRecord: 33.5ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:24:05 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:24:05 UTC
+Current time: 2024-12-05 22:24:06 UTC
+Updated session last_seen_at: 2024-12-05T22:24:06Z
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 44.0ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 89.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 312.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 411.9ms | GC: 0.0ms)
+Completed 200 OK in 463ms (Views: 414.0ms | ActiveRecord: 6.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:24:54 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:24:06 UTC
+Current time: 2024-12-05 22:24:56 UTC
+Updated session last_seen_at: 2024-12-05T22:24:56Z
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 33.5ms | GC: 0.3ms)
+  Rendered shared/_navigation.html.haml (Duration: 87.9ms | GC: 2.0ms)
+  Rendered shared/_flash.html.haml (Duration: 6.3ms | GC: 0.2ms)
+  [1m[36mGame Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 2335.6ms | GC: 14.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 2487.8ms | GC: 15.3ms)
+Completed 200 OK in 3386ms (Views: 2554.1ms | ActiveRecord: 93.7ms (3 queries, 0 cached) | GC: 16.6ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:25:02 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:24:56 UTC
+Current time: 2024-12-05 22:25:02 UTC
+Updated session last_seen_at: 2024-12-05T22:25:02Z
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 44.6ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 59.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 228.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 270.1ms | GC: 12.1ms)
+Completed 200 OK in 337ms (Views: 274.6ms | ActiveRecord: 3.5ms (1 query, 0 cached) | GC: 12.3ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:25:06 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3001", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:25:02 UTC
+Current time: 2024-12-05 22:25:07 UTC
+Updated session last_seen_at: 2024-12-05T22:25:07Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:38:in `current_user'
+  [1m[36mUser Update (28.6ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = ? WHERE "users"."id" = ?[0m  [["shards_balance", 2275], ["id", 1]]
+  ↳ app/controllers/store_items_controller.rb:15:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 51ms (ActiveRecord: 29.0ms (3 queries, 1 cached) | GC: 0.7ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:25:07 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:25:07 UTC
+Current time: 2024-12-05 22:25:07 UTC
+Updated session last_seen_at: 2024-12-05T22:25:07Z
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.5ms | GC: 0.3ms)
+  Rendered shared/_navigation.html.haml (Duration: 28.3ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 91.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 137.1ms | GC: 0.8ms)
+Completed 200 OK in 154ms (Views: 138.5ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:26:10 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:25:07 UTC
+Current time: 2024-12-05 22:26:11 UTC
+Updated session last_seen_at: 2024-12-05T22:26:11Z
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 35.7ms | GC: 0.1ms)
+  Rendered shared/_navigation.html.haml (Duration: 85.8ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 9.4ms | GC: 0.6ms)
+  [1m[36mGame Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.8ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 1714.2ms | GC: 18.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 1818.2ms | GC: 18.3ms)
+Completed 200 OK in 2487ms (Views: 1840.0ms | ActiveRecord: 103.3ms (3 queries, 0 cached) | GC: 19.3ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:26:16 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:26:11 UTC
+Current time: 2024-12-05 22:26:16 UTC
+Updated session last_seen_at: 2024-12-05T22:26:16Z
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 50.1ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 102.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 471.6ms | GC: 12.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 586.7ms | GC: 12.6ms)
+Completed 200 OK in 717ms (Views: 594.6ms | ActiveRecord: 5.3ms (1 query, 0 cached) | GC: 12.6ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:26:24 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:26:16 UTC
+Current time: 2024-12-05 22:26:25 UTC
+Updated session last_seen_at: 2024-12-05T22:26:25Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:38:in `current_user'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 28ms (ActiveRecord: 0.5ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:26:25 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:26:25 UTC
+Current time: 2024-12-05 22:26:25 UTC
+Updated session last_seen_at: 2024-12-05T22:26:25Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 12.5ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 26.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 84.5ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 118.1ms | GC: 0.4ms)
+Completed 200 OK in 133ms (Views: 118.8ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-05 16:27:12 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 22:26:25 UTC
+Current time: 2024-12-05 22:27:13 UTC
+Updated session last_seen_at: 2024-12-05T22:27:13Z
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 22.0ms | GC: 0.3ms)
+  Rendered shared/_navigation.html.haml (Duration: 56.2ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 6.8ms | GC: 0.3ms)
+  [1m[36mGame Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/landing/index.html.haml:38
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 1682.8ms | GC: 16.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 1881.7ms | GC: 16.1ms)
+Completed 200 OK in 2894ms (Views: 1952.8ms | ActiveRecord: 106.6ms (3 queries, 0 cached) | GC: 17.4ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:27:19 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:27:13 UTC
+Current time: 2024-12-05 22:27:19 UTC
+Updated session last_seen_at: 2024-12-05T22:27:19Z
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 21.2ms | GC: 0.2ms)
+  Rendered shared/_navigation.html.haml (Duration: 38.8ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 254.0ms | GC: 11.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 362.8ms | GC: 12.0ms)
+Completed 200 OK in 433ms (Views: 368.0ms | ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 12.0ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-05 16:27:24 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"3000", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-05 22:27:19 UTC
+Current time: 2024-12-05 22:27:25 UTC
+Updated session last_seen_at: 2024-12-05T22:27:25Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:38:in `current_user'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 21ms (ActiveRecord: 0.6ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-05 16:27:25 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-05 22:27:25 UTC
+Current time: 2024-12-05 22:27:25 UTC
+Updated session last_seen_at: 2024-12-05T22:27:25Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 15.0ms | GC: 0.0ms)
+  Rendered shared/_navigation.html.haml (Duration: 30.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered store_items/index.html.haml within layouts/application (Duration: 95.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 125.2ms | GC: 0.5ms)
+Completed 200 OK in 141ms (Views: 126.3ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.9ms)
+
+
