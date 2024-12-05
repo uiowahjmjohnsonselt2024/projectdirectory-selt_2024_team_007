@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
 
+  validates :teleport_count, :health_potion_count, :resurrection_count,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   VALID_NAME_REGEX = /\A[^\s]+(\s[^\s]+)*\z/
   validates :name, presence: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -56,8 +59,34 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def add_store_item(item_id)
+    case item_id
+    when 1
+      increment!(:teleport)
+    when 2
+      increment!(:health_potion)
+    when 3
+      increment!(:resurrection)
+    else
+      raise ArgumentError, 'Invalid store item'
+    end
+
+    def item_count(item_id)
+      case item_id
+      when 1
+        teleport
+      when 2
+        health_potion
+      when 3
+        resurrection_token
+      else
+        0
+      end
+    end
+  end
 
   private
+
   def password_required?
     password.present? || password_confirmation.present?
   end

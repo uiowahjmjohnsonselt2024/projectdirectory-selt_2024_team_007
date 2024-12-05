@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_081407) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_07_051416) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -96,6 +96,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_081407) do
     t.index ["game_id"], name: "index_tiles_on_game_id"
   end
 
+  create_table "user_store_items", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "store_item_id", null: false
+    t.index ["store_item_id"], name: "index_user_store_items_on_store_item_id"
+    t.index ["user_id", "store_item_id"], name: "index_user_store_items_on_user_id_and_store_item_id", unique: true
+    t.index ["user_id"], name: "index_user_store_items_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -107,8 +115,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_081407) do
     t.datetime "reset_sent_at"
     t.string "uid"
     t.integer "shards_balance", default: 0, null: false
+    t.integer "teleport", default: 0, null: false
+    t.integer "health_potion", default: 0, null: false
+    t.integer "resurrection_token", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["session_token"], name: "index_users_on_session_token", unique: true
+    t.index ["session_token"], name: "index_users_on_session_token"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -121,4 +132,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_081407) do
   add_foreign_key "games", "users", column: "current_turn_user_id"
   add_foreign_key "games", "users", column: "owner_id"
   add_foreign_key "tiles", "games"
+  add_foreign_key "user_store_items", "store_items"
+  add_foreign_key "user_store_items", "users"
 end

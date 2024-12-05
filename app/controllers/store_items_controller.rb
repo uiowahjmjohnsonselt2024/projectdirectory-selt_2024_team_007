@@ -7,6 +7,7 @@ class StoreItemsController < ApplicationController
   def index
     @store_items = StoreItem.all
     @shard_balance = session[:shard_balance] ||= 100 # Default balance
+    @user = current_user
     @shard_packages = [
       { shards: 50, price_usd: 5.00 },
       { shards: 120, price_usd: 10.00 },
@@ -14,19 +15,33 @@ class StoreItemsController < ApplicationController
     ]
   end
 
+
   def purchase
     shard_amount = params[:shard_amount].to_i
+    item_id = params[:item_id].to_i
+    user = current_user # Assuming `current_user` retrieves the logged-in user object
 
-    user = current_user  # Adjust based on how you get the current user
-    if shard_amount < 0
-      user.update_column(:shards_balance, user.shards_balance + shard_amount)
-      flash[:success] = "Purchase successful!"
-      redirect_to store_items_path
-    elsif shard_amount > 0
-      user.update_column(:shards_balance, user.shards_balance + shard_amount)
-      flash[:success] = "Purchase successful!"
-      redirect_to store_items_path
+    # Find the item based on the provided ID
+    item = StoreItem::STORE_ITEMS.find { |i| i[:id] == item_id }
+
+    if [50, 120, 250].include?(shard_amount)
+      # Add shards to user's balance
+      user.increment!(:shards_balance, shard_amount)
+      flash[:success] = "Shards added successfully! You now have #{user.shards_balance} shards."
+    elsif shard_amount > 0 && shard_amount < 5
+      # Deduct shards and update item count if the user has enough balance
+      if user.shards_balance >= shard_amount
+        user.decrement!(:shards_balance, shard_amount)
+        user.add_store_item(item_id) # Assuming `increment_item_count` updates the count for this item
+        flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
+      else
+        flash[:danger] = "Insufficient Shard Balance. You need #{shard_amount - user.shards_balance} more shards."
+      end
+    else
+      flash[:danger] = "Invalid shard amount! Please select a valid purchase option."
     end
+
+    redirect_to store_items_path
   end
 
   private
