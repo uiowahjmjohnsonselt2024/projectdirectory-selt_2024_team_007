@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   post "/register", to: 'users#create'
 
   #login routes
+  get '/login_firsttime', to: 'sessions#login_firsttime'  # only for the first time access the page
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
+
 
 
 
