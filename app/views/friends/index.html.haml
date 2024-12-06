@@ -1,0 +1,80 @@
+%section.friends{ style: "display: flex; height: 100vh; background-image: url(#{image_path('friends_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+
+  / Sidebar
+  %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
+    %div.logo
+    %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
+      Welcome to Your Friends Page!
+      %br
+      Connect, share, and grow your network.
+      %br
+      The Grid is better with friends.
+
+    = render 'shared/flash'
+
+    %div.refresh-container{ style: "text-align: center; margin: 20px;" }
+      %button.btn#refresh-button{ style: "padding: 10px 20px; font-size: 1rem;" }
+        Refresh
+
+    / Add Friend Button (Moved inside the sidebar)
+    %button.btn.btn-primary#add_friend_button{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendModal", style: "margin-top: 20px; padding: 10px; border-radius: 5px; width: 100%; font-size: 1.2rem;" }
+      Add New Friend
+
+  / Scrollable Friends List
+  %div.scrollable-friends-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Your Friends:
+    - @friends.each do |friend|
+      %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        %p{ style: "color: #BDC3C7;" } Adventurer of the Grid
+        %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
+
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Friend Requests:
+    - @pending_friend_requests.each do |friend|
+      %div.friend-card{ style: "background: rgba(255, 165, 0, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        = button_to 'Accept', accept_friend_path(friend), method: :post, class: 'btn btn-primary', style: 'margin-top: 10px; display: inline-block;'
+        = button_to 'Decline', reject_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
+
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Sent Friend Requests:
+    - @sent_friend_requests.each do |friend|
+      %div.friend-card{ style: "background: rgba(0, 0, 255, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+        = button_to 'Cancel', cancel_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
+
+
+/==============================
+/ Add Friend Modal
+/==============================
+.modal.fade#addFriendModal{ tabindex: "-1", "aria-labelledby" => "addFriendModalLabel", "aria-hidden" => "true" }
+  .modal-dialog
+    .modal-content
+      %div.modal-header
+        %h5.modal-title#addFriendModalLabel{ style: "color: black;" } Add a New Friend
+        %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+      %div.modal-body
+        = form_with url: friends_path, method: :post, local: true do |f|
+          %div.form-group
+            = f.label :friend_email, "Friend's Email", class: 'form-label', style: "color: black;"
+            = f.email_field :friend_email, class: 'form-control', required: true
+          %div.modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+            = f.submit "Send Friend Request", class: 'btn btn-primary'
+
+:javascript
+  document.addEventListener('DOMContentLoaded', () => {
+    const refreshButton = document.getElementById('refresh-button');
+    refreshButton.addEventListener('click', () => {
+      fetch('/friends')
+        .then(response => response.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const newContent = parser.parseFromString(html, 'text/html');
+          const newFriendsList = newContent.querySelector('.scrollable-friends-list');
+          document.querySelector('.scrollable-friends-list').innerHTML = newFriendsList.innerHTML;
+        })
+        .catch(err => console.error('Error refreshing friends list:', err));
+    });
+  });

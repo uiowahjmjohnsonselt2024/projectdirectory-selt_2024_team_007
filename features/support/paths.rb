@@ -12,6 +12,8 @@ module NavigationHelpers
     when /^the user profile page for "(.*)"$/ then user_path(User.find_by(name: $1))
     when /^the users page$/ then users_path
     when /^the sessions page$/ then sessions_path
+    when /^the landing page$/ then landing_path
+    when /^the settings page$/ then settings_path
 
     # Everyone, put new mappings here as you need them. I based this off of the routes file/
 

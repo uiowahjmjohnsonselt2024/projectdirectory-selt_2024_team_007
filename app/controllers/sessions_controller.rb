@@ -12,9 +12,9 @@ class SessionsController < ApplicationController
       session[:session_token] = user.session_token
       session[:last_seen_at] = Time.current
       flash[:notice] = "Welcome, #{user.name}!"
-      redirect_to user_path(user)
+      redirect_to landing_path
     else
-      flash.now[:warning] = "Invalid email/password combination"
+      flash[:warning] = "Invalid email/password combination"
       redirect_to login_path
     end
   end
@@ -34,10 +34,15 @@ class SessionsController < ApplicationController
     if user
       session[:session_token] = user.session_token
       flash[:notice] = "Welcome, #{user.name}!"
-      redirect_to user_path(user)
+      redirect_to landing_path
     else
       redirect_to login_path
     end
+  end
+  def auth_failure
+    Rails.logger.debug "OmniAuth Authentication Failure: #{params[:message]}"
+    flash[:warning] = "Authentication failed: #{params[:message]}"
+    redirect_to login_path
   end
 end
 

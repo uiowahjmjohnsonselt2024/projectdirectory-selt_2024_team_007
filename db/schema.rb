@@ -10,7 +10,92 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_15_152600) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_081407) do
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
+    t.string "status", default: "pending", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+  end
+
+  create_table "game_users", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "user_id", null: false
+    t.integer "health"
+    t.text "equipment"
+    t.integer "current_tile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["current_tile_id"], name: "index_game_users_on_current_tile_id"
+    t.index ["game_id", "user_id"], name: "index_game_users_on_game_id_and_user_id", unique: true
+    t.index ["game_id"], name: "index_game_users_on_game_id"
+    t.index ["user_id"], name: "index_game_users_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.text "context"
+    t.integer "current_turn_user_id"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "join_code"
+    t.string "map_size", default: "6x6", null: false
+    t.index ["current_turn_user_id"], name: "index_games_on_current_turn_user_id"
+    t.index ["join_code"], name: "index_games_on_join_code", unique: true
+    t.index ["owner_id"], name: "index_games_on_owner_id"
+  end
+
+  create_table "store_items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "shards_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tiles", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "x_coordinate"
+    t.integer "y_coordinate"
+    t.string "tile_type"
+    t.string "image_reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id", "x_coordinate", "y_coordinate"], name: "index_tiles_on_game_id_and_x_coordinate_and_y_coordinate", unique: true
+    t.index ["game_id"], name: "index_tiles_on_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -21,7 +106,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_152600) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.string "uid"
+    t.integer "shards_balance", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "game_users", "games"
+  add_foreign_key "game_users", "tiles", column: "current_tile_id"
+  add_foreign_key "game_users", "users"
+  add_foreign_key "games", "users", column: "current_turn_user_id"
+  add_foreign_key "games", "users", column: "owner_id"
+  add_foreign_key "tiles", "games"
 end

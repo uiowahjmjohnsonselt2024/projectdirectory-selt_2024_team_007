@@ -1,35 +1,134 @@
-%section.dashboard{ style: "display: flex; height: 100vh; background-color: #2C3E50; color: #ECF0F1; font-family: sans-serif;" }
+%section.dashboard{ style: "display: flex; height: 100vh; background-image: url(#{image_path('landing_page.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+
   / Sidebar
-  %aside.sidebar{ style: "width: 300px; background-color: #1ABC9C; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
+  %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
     %div.logo
-      %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
-        %span Shards of the Grid
-    %button{ style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;" }
-      Create Game
-    %div.placeholder-game
-      %div{ style: "background-color: #ECF0F1; padding: 10px; border-radius: 5px; margin-bottom: 10px;" }
-        %p{ style: "color: #2C3E50; font-weight: bold;" }
-          Game Name
-        %img{ src: image_path('logo.png'), alt: "Game Placeholder", style: "width: 100%; border-radius: 5px; margin-bottom: 10px;" }
-        %button{ style: "background-color: #1ABC9C; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" }
-          Join
-  / Scrollable Game List Placeholder
-  %div.scrollable-game-list{ style: "flex: 1; padding: 20px; overflow-y: auto;" }
+    %h1{ style: "color: #ECF0F1; font-size: 1.5rem; margin-bottom: 20px;" }
+      Welcome back, #{@current_user.name}!
+      %br
+      The Grid awaits your return to Shards of the Grid.
+      %br
+      Let the Adventure Begin!
+
+    = render 'shared/flash'
+    / Create Game Button
+
+    %button.btn.btn-primary{
+      id: "new_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#createGameModal",
+      style: "margin-bottom: 20px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
+    }
+      New Game
+    / Join Game Button
+    %button.btn.btn-secondary{
+      id: "join_game_button",
+      "data-bs-toggle" => "modal",
+      "data-bs-target" => "#joinGameModal",
+      style: "background-color: #3498DB; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%; font-size: 1.2rem;"
+    }
+      Join Existing Game
+
+  / Scrollable Game List
+  %div.scrollable-game-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
-    / Placeholder games
-    - 5.times do |i|
-      %div.game-card{ style: "background-color: #4A235A; padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-        %p{ style: "color: #ECF0F1; font-weight: bold;" }
-          Placeholder Game #{i + 1}
-        %p{ style: "color: #BDC3C7;" } Description or details here.
-        %button{ style: "background-color: #2ECC71; color: #ECF0F1; padding: 5px 10px; border: none; border-radius: 5px; margin-top: 10px;" }
-          Join
-  / User Settings Panel
-  %aside.user-settings{ style: "width: 300px; background-color: #4A235A; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;" }
-    %div.profile
-      %img{ src: image_path('logo.png'), alt: "Profile Picture", style: "width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" }
-      %button{ style: "margin-bottom: 10px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" }
-        = link_to 'StoreItem', store_items_path, style: "color: #ECF0F1; text-decoration: none; display: block;"
-      %button{ style: "margin-bottom: 10px; background-color: #2ECC71; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Settings
-      %button{ style: "margin-bottom: 10px; background-color: #1ABC9C; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Friends
-      %button{ style: "margin-tops: auto; background-color: #DB4437; color: #ECF0F1; padding: 10px; border: none; border-radius: 5px; width: 100%;" } Logout
+    - if @games.any?
+      - @games.each do |game|
+        %div.game-card{ id: "game-card-#{game.id}", style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
+          %p{ style: "color: #ECF0F1; font-weight: bold;" }
+            = game.name
+            - if game.owner == @current_user
+              %span.owner-flair{ style: "background-color: #F39C12; color: #ECF0F1; padding: 2px 5px; border-radius: 3px; margin-left: 10px;" }
+                Owner
+          %p{ style: "color: #ECF0F1;" }
+            = game.context
+          = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
+          - if game.owner == @current_user
+            %button.btn.btn-primary{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: 'margin-top: 10px; margin-left: 10px;' } Add Friends
+
+            / Add Friends Modal
+            .modal.fade{ :id => "addFriendsModal-#{game.id}", tabindex: "-1", "aria-labelledby" => "addFriendsModalLabel-#{game.id}", "aria-hidden" => "true" }
+              .modal-dialog
+                .modal-content
+                  %div.modal-header
+                    %h5.modal-title#addFriendsModalLabel{ style: "color: black;" } Invite Friends to #{game.name}
+                    %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+                  %div.modal-body
+                    = form_with url: invite_friends_game_path(game), method: :post, local: true do |f|
+                      - @friends = @current_user.friends + @current_user.inverse_friends
+                      - @friends_in_game = game.users
+                      - available_friends = @friends - @friends_in_game
+                      - if available_friends.empty?
+                        %p{ style: "color: black;" } You have no friends to invite.
+                      - else
+                        %p{ style: "color: black;" } Select up to 3 friends to invite:
+                        - available_friends.each do |friend|
+                          %div.form-check
+                            = check_box_tag "friend_ids[]", friend.id, false, id: "friend_ids_#{game.id}_#{friend.id}", class: 'form-check-input'
+                            = label_tag "friend_ids_#{game.id}_#{friend.id}", friend.name, class: 'form-check-label', style: "color: black;"
+                      .modal-footer
+                        = f.submit 'Invite Friends', class: 'btn btn-primary'
+                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+    - else
+      %p{ style: "color: #BDC3C7;" } No games available. Create one!
+
+  /==============================
+  / Create Game Modal
+  /==============================
+  .modal.fade#createGameModal{ tabindex: "-1", "aria-labelledby" => "createGameModalLabel", "aria-hidden" => "true" }
+    .modal-dialog
+      .modal-content
+        - game_object = @game || Game.new
+        = form_with model: game_object, url: games_path, local: true do |form|
+          .modal-header
+            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 500 Shards!)
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+          .modal-body
+            - if game_object.errors.any?
+              .alert.alert-danger
+                %ul
+                  - game_object.errors.full_messages.each do |message|
+                    %li= message
+            = render 'shared/flash'
+            .mb-3
+              = form.label :name, 'Name', class: 'form-label', style: 'color: black;', for: 'game_name'
+              = form.text_field :name, id: 'game_name', class: 'form-control', required: true
+            .mb-3
+              = form.label :join_code, 'Enter Join Code', for: 'create_game_join_code', class: 'form-label', style: 'color: black;'
+              = form.text_field :join_code, id: 'create_game_join_code', class: 'form-control', required: true, maxlength: 6, placeholder: "e.g., A1B2C3"
+            .mb-3
+              = form.label :map_size, 'Map Size (e.g., 6x6)', class: 'form-label', style: 'color: black;', for: 'game_map_size'
+              = form.text_field :map_size, id: 'game_map_size', class: 'form-control', required: true, placeholder: '6x6'
+          .modal-footer
+            = form.submit 'Create Game', class: 'btn btn-primary'
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+
+  /==============================
+  / Join Game Modal
+  /==============================
+  .modal.fade#joinGameModal{ tabindex: "-1", "aria-labelledby" => "joinGameModalLabel", "aria-hidden" => "true" }
+    .modal-dialog
+      .modal-content
+        = form_with url: join_games_path, method: :post, local: true do |form|
+          .modal-header
+            %h5.modal-title#joinGameModalLabel{ style: "color: black;" } Join a Game
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+          .modal-body
+            - if flash[:alert]
+              .alert.alert-danger= flash[:alert]
+            .mb-3
+              = form.label :join_code, 'Enter Join Code', for: 'join_game_join_code', class: 'form-label', style: 'color: black;'
+              = form.text_field :join_code, id: 'join_game_join_code', class: 'form-control', required: true, maxlength: 6, placeholder: "e.g., A1B2C3"
+          .modal-footer
+            = form.submit 'Join Game', class: 'btn btn-primary'
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+
+-# JavaScript to keep the modal open if there are validation errors
+- if game_object.errors.any?
+  :javascript
+    document.addEventListener('DOMContentLoaded', function() {
+      var createGameModal = new bootstrap.Modal(document.getElementById('createGameModal'));
+      createGameModal.show();
+    });

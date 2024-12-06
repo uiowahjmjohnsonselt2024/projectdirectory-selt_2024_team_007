@@ -19,12 +19,22 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
+gem 'actioncable', '~> 7.0'
+
 gem 'haml-rails', '~> 2.0'
 
 # This is for 3rd-party login(Google login in this case)
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
+# The two gem is to do country_code and currency_name conversion
+gem 'money-rails'
+gem 'countries'
+
+# To do the https mock request, not sure if it will be used in deployment
+gem 'webmock'
 
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]
@@ -33,6 +43,7 @@ gem 'sassc-rails'
 gem 'bootstrap', '~> 5.3.3'
 gem 'popper_js', '~> 2.11.8'
 gem 'jquery-rails'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -84,6 +95,7 @@ group :test do
 end
 
 group :production do
+  gem 'aws-sdk-s3', '~> 1.0', require: false
   gem "pg" # for Heroku deployment
   gem 'rails_12factor' # for heroku dep
 end

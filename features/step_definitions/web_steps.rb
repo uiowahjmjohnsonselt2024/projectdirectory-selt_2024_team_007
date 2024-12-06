@@ -176,6 +176,12 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
+Then('I should see the {string} modal') do |modal_title|
+  within(:css, '.modal', text: modal_title) do
+    expect(page).to have_content(modal_title)
+  end
+end
+
 
 
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
@@ -189,4 +195,12 @@ end
 
 Then /^show me the page$/ do
   save_and_open_page
+end
+
+Given /^(?:|I )am logged in as "([^"]*)" with password "([^"]*)"$/ do |email, password|
+  visit login_path
+  fill_in "email_field", with: email
+  fill_in "password_field", with: password
+  click_button "Sign in"
+  @current_user = User.find_by(email: email)
 end

@@ -13,7 +13,7 @@ Given(/^the following users have requested password reset:$/) do |users_table|
   users_table.hashes.each do |user_attrs|
     user = User.find_by(email: user_attrs['email'])
     user.create_reset_digest
-    @user = user # StoreItem for later use
+    @user = user # Store for later use
   end
 end
 
@@ -58,4 +58,8 @@ end
 Then(/^I am at my profile page$/) do
   user = User.find_by(email: @user.email) # Replace with the appropriate email or method
   expect(current_path).to eq(user_path(user))
+end
+
+Given(/^I simulate an email failure$/) do
+  allow(UserMailer).to receive(:password_reset).and_raise("Simulated email delivery failure")
 end

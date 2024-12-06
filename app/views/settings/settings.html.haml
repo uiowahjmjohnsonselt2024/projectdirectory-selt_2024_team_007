@@ -1,0 +1,178 @@
+%div.d-flex.align-items-start{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; margin: 0;" }
+
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+
+  %div.nav.flex-column.nav-pills{
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical",
+    style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
+  }
+    %button.nav-link.active{
+      id: "v-pills-account-details-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-account-details",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-account-details",
+      "aria-selected": "true",
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Account Details
+    %button.nav-link{
+      id: "v-pills-billings-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-billings",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-pills-billings",
+      "aria-selected": "false",
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Billings
+    %button.nav-link{
+      id: "v-pills-orders-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-orders",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-pills-orders",
+      "aria-selected": "false",
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Orders
+
+  / Main Content Area
+  %div.tab-content.flex-grow-1.d-flex.align-items-center.justify-content-center{
+    id: "v-pills-tabContent",
+    style: "padding: 50px; flex-grow: 1; "
+  }
+    %div.tab-pane.fade.show.active{
+      id: "v-pills-account-details",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-account-details-tab",
+      tabindex: "0",
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+    }
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Profile Settings
+
+      %div.profile-picture-container{
+        style: "text-align: center; margin-bottom: 20px;"
+      }
+        %img#profilePicture{
+          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('logo.png'),
+          alt: "pfp",
+          style: "width: 100px; height: 100px; border-radius: 50%; cursor: pointer;",
+          "data-bs-toggle" => "modal",
+          "data-bs-target" => "#uploadImageModal"
+        }
+
+      / Modal for Uploading a New Profile Picture
+      .modal.fade#uploadImageModal{ tabindex: "-1", "aria-labelledby" => "uploadImageModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#uploadImageModalLabel Upload Profile Picture
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            .modal-body
+              = form_with(url: update_profile_image_path, method: :patch, local: true, multipart: true) do |f|
+                .mb-3
+                  = f.label :profile_image, "Choose an image", class: 'form-label'
+                  = f.file_field :profile_image, class: 'form-control', required: true
+                .modal-footer
+                  = f.submit "Upload", class: "btn btn-primary"
+                  %button.btn.btn-secondary{
+                    type: "button",
+                    "data-bs-dismiss" => "modal"
+                  } Cancel
+
+      = render 'shared/flash'
+
+      / Display Current Email
+      %div{ style: "margin-top: 30px;" }
+        %label{ style: "color: #ECF0F1; font-weight: bold;" } Current Email
+        %input.form-control{
+          type: "email",
+          value: @current_user.email,
+          readonly: true,
+          style: "width: 100%; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #e9ecef; color: #495057;"
+        }
+
+      / Form for Updating User Name
+      = form_with(url: update_name_path, method: :patch, local: true) do |f|
+        %div{ style: "margin-top: 30px;" }
+          = f.label :name, "User Name", style: "color: #ECF0F1; font-weight: bold;"
+          = f.text_field :name, value: @current_user.name, class: "form-control", style: "width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px;"
+
+        %div.actions{ style: "margin-top: 20px;" }
+          = f.submit "Save", class: "btn btn-success", style: "width: 100%; padding: 10px; background-color: #28a745; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+      / Form for Reset Password and Change Email
+      = form_with(url: password_resets_path, method: :post, local: true) do |f|
+        - if @current_user&.email
+          = hidden_field_tag :email, @current_user.email
+        %div.actions{ style: "margin-top: 20px;" }
+          = f.submit "Reset Password", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+      %div.actions{ style: "margin-top: 20px;" }
+        %button.btn.btn-secondary#change-email-button{
+          type: "button",
+          "data-bs-toggle": "modal",
+          "data-bs-target": "#changeEmailModal",
+          style: "width: 100%; padding: 10px; background-color: #3498db; border: none; border-radius: 5px; color: white; font-weight: bold;"
+        } Change Email
+
+      %p{ style: "text-align: center; margin-top: 15px;" }
+        = link_to 'Back to home', root_path, style: "color: #1ABC9C;"
+
+  / Modal for Changing Email
+.modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
+        %button.btn-close{
+          type: "button",
+          "data-bs-dismiss" => "modal",
+          "aria-label" => "Close"
+        }
+      = form_with(url: change_email_path, method: :patch, local: true) do |f|
+        .modal-body
+          .mb-3
+            = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
+            = f.email_field :new_email, class: 'form-control', required: true
+          .mb-3
+            = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
+            = f.email_field :confirm_email, class: 'form-control', required: true
+          .mb-3
+            = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
+            = f.password_field :current_password, class: 'form-control', required: true
+        .modal-footer
+          = f.submit "Update Email", class: "btn btn-primary"
+          %button.btn.btn-secondary{
+            type: "button",
+            "data-bs-dismiss" => "modal"
+          } Close
+
+
+    %div.tab-pane.fade{
+      id: "v-pills-billings",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-billings-tab",
+      tabindex: "0",
+      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+    }
+      %h1{ style: "color: #2C3E50; text-align: center;" } Billing Information
+      %p Manage your billing details here.
+
+    %div.tab-pane.fade{
+      id: "v-pills-orders",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-orders-tab",
+      tabindex: "0",
+      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+    }
+      %h1{ style: "color: #2C3E50; text-align: center;" } Orders
+      %p Here are your order details.

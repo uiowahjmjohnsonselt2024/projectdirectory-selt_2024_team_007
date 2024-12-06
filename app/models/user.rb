@@ -1,15 +1,35 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_one_attached :profile_image
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
-  VALID_NAME_REGEX = /\A[^\s]+\z/
+
+  VALID_NAME_REGEX = /\A[^\s]+(\s[^\s]+)*\z/
   validates :name, presence: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
+  validates :password_confirmation, presence: true, if: :password_required?
+
+  validates :shards_balance, numericality: { greater_than_or_equal_to: 0 }
+
+  # Friendships where the user is the initiator
+  has_many :friendships, dependent: :destroy
+  has_many :friends, -> { where(friendships: { status: 'accepted' }) }, through: :friendships, source: :friend
+
+  # Friendships where the user is the recipient
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy
+  has_many :inverse_friends, -> { where(friendships: { status: 'accepted' }) }, through: :inverse_friendships, source: :user
+
+  # Pending friend requests sent by this user
+  has_many :pending_friendships, -> { where(status: 'pending') }, class_name: 'Friendship'
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
+  # Pending friend requests received by this user
+  has_many :received_friend_requests, -> { where(status: 'pending') }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :requesting_friends, through: :received_friend_requests, source: :user
 
   attr_accessor :reset_token
 
@@ -38,6 +58,9 @@ class User < ActiveRecord::Base
 
 
   private
+  def password_required?
+    password.present? || password_confirmation.present?
+  end
   def create_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end
@@ -48,9 +71,11 @@ class User < ActiveRecord::Base
 
     begin
       password = SecureRandom.base64(12)
+      name = auth['info']['name']&.gsub(/\s+/, '') || "UnknownUser"
+      random_suffix = Array.new(6) { ('A'..'Z').to_a.sample }.join
       user = self.create!(
         uid: auth['uid'],
-        name: auth['info']['name'] || "Unknown User",
+        name: "#{name}#{random_suffix}",
         email: auth['info']['email'] || "#{auth['uid']}@google.com",
         password: password,
         password_confirmation: password,
@@ -64,4 +89,9 @@ class User < ActiveRecord::Base
 
     user
   end
+
+  has_many :game_users, dependent: :destroy
+  has_many :games, through: :game_users
+  has_many :owned_games, class_name: 'Game', foreign_key: 'owner_id', dependent: :nullify
+  has_many :current_turn_games, class_name: 'Game', foreign_key: 'current_turn_user_id', dependent: :nullify
 end
