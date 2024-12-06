@@ -13640,3 +13640,523 @@ Processing by ActiveStorage::DiskController#show as PNG
 Completed 304 Not Modified in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2024-12-05 17:02:08 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-11-30 18:21:25 UTC
+Current time: 2024-12-05 23:02:08 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 19ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:02:08 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-05 23:02:08 UTC
+Updated session last_seen_at: 2024-12-05T23:02:08Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 15.0ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 47.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 59.3ms | GC: 0.0ms)
+Completed 200 OK in 73ms (Views: 71.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-05 17:02:10 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/login" for 127.0.0.1 at 2024-12-05 17:02:13 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 23:02:08 UTC
+Current time: 2024-12-05 23:02:13 UTC
+Updated session last_seen_at: 2024-12-05T23:02:13Z
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 268ms (ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 26.2ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:02:13 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:02:13 UTC
+Current time: 2024-12-05 23:02:13 UTC
+Updated session last_seen_at: 2024-12-05T23:02:13Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.7ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.4ms)
+
+
+Started GET "/register" for 127.0.0.1 at 2024-12-05 17:02:28 -0600
+Processing by UsersController#new as HTML
+Session last_seen_at: 2024-12-05 23:02:13 UTC
+Current time: 2024-12-05 23:02:28 UTC
+Updated session last_seen_at: 2024-12-05T23:02:28Z
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered users/new.html.haml within layouts/application (Duration: 27.0ms | GC: 2.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 27.8ms | GC: 2.1ms)
+Completed 200 OK in 32ms (Views: 29.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.1ms)
+
+
+Started POST "/register" for 127.0.0.1 at 2024-12-05 17:02:49 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"yusuf-halim@uiowa.edu", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+Session last_seen_at: 2024-12-05 23:02:28 UTC
+Current time: 2024-12-05 23:02:49 UTC
+Updated session last_seen_at: 2024-12-05T23:02:49Z
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+["Email has already been taken"]
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered users/new.html.haml within layouts/application (Duration: 1.9ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.3ms | GC: 0.2ms)
+Completed 200 OK in 204ms (Views: 2.6ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:02:56 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:02:49 UTC
+Current time: 2024-12-05 23:02:56 UTC
+Updated session last_seen_at: 2024-12-05T23:02:56Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3.4ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-05 17:02:59 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 23:02:56 UTC
+Current time: 2024-12-05 23:02:59 UTC
+Updated session last_seen_at: 2024-12-05T23:02:59Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 221ms (ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:02:59 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:02:59 UTC
+Current time: 2024-12-05 23:02:59 UTC
+Updated session last_seen_at: 2024-12-05T23:02:59Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-05 17:03:12 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 23:02:59 UTC
+Current time: 2024-12-05 23:03:12 UTC
+Updated session last_seen_at: 2024-12-05T23:03:12Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:03:12 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:03:12 UTC
+Current time: 2024-12-05 23:03:12 UTC
+Updated session last_seen_at: 2024-12-05T23:03:12Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-05 17:03:17 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 23:03:12 UTC
+Current time: 2024-12-05 23:03:17 UTC
+Updated session last_seen_at: 2024-12-05T23:03:17Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 205ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:03:17 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:03:17 UTC
+Current time: 2024-12-05 23:03:17 UTC
+Updated session last_seen_at: 2024-12-05T23:03:17Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/register" for 127.0.0.1 at 2024-12-05 17:03:20 -0600
+Processing by UsersController#new as HTML
+Session last_seen_at: 2024-12-05 23:03:17 UTC
+Current time: 2024-12-05 23:03:20 UTC
+Updated session last_seen_at: 2024-12-05T23:03:20Z
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered users/new.html.haml within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for 127.0.0.1 at 2024-12-05 17:03:46 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"yo", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+Session last_seen_at: 2024-12-05 23:03:20 UTC
+Current time: 2024-12-05 23:03:46 UTC
+Updated session last_seen_at: 2024-12-05T23:03:46Z
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+["Name is too short (minimum is 3 characters)"]
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered users/new.html.haml within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 233ms (Views: 2.1ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/register" for 127.0.0.1 at 2024-12-05 17:03:59 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"yoo", "email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+Session last_seen_at: 2024-12-05 23:03:46 UTC
+Current time: 2024-12-05 23:03:59 UTC
+Updated session last_seen_at: 2024-12-05T23:03:59Z
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email", "created_at", "updated_at", "session_token", "reset_digest", "reset_sent_at", "uid", "shards_balance") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "yoo"], ["password_digest", "[FILTERED]"], ["email", "[FILTERED]"], ["created_at", "2024-12-05 23:04:00.173986"], ["updated_at", "2024-12-05 23:04:00.173986"], ["session_token", "[FILTERED]"], ["reset_digest", nil], ["reset_sent_at", nil], ["uid", nil], ["shards_balance", 0]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 221ms (ActiveRecord: 4.3ms (2 queries, 0 cached) | GC: 9.5ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:04:00 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:03:59 UTC
+Current time: 2024-12-05 23:04:00 UTC
+Updated session last_seen_at: 2024-12-05T23:04:00Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/register" for 127.0.0.1 at 2024-12-05 17:04:23 -0600
+Processing by UsersController#new as HTML
+Session last_seen_at: 2024-12-05 23:04:00 UTC
+Current time: 2024-12-05 23:04:23 UTC
+Updated session last_seen_at: 2024-12-05T23:04:23Z
+  Rendering layout layouts/application.html.haml
+  Rendering users/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered users/new.html.haml within layouts/application (Duration: 3.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-05 17:04:31 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-05 23:04:23 UTC
+Current time: 2024-12-05 23:04:31 UTC
+Updated session last_seen_at: 2024-12-05T23:04:31Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-05 17:04:35 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-05 23:04:31 UTC
+Current time: 2024-12-05 23:04:35 UTC
+Updated session last_seen_at: 2024-12-05T23:04:35Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/landing
+Completed 302 Found in 216ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-05 17:04:35 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 23:04:35 UTC
+Current time: 2024-12-05 23:04:35 UTC
+Updated session last_seen_at: 2024-12-05T23:04:35Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 22.7ms | GC: 7.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 59.8ms | GC: 9.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 60.3ms | GC: 9.5ms)
+Completed 200 OK in 100ms (Views: 60.3ms | ActiveRecord: 1.1ms (3 queries, 0 cached) | GC: 9.9ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-05 17:04:44 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-05 23:04:35 UTC
+Current time: 2024-12-05 23:04:44 UTC
+Updated session last_seen_at: 2024-12-05T23:04:44Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.5ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 82.5ms | GC: 16.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 83.0ms | GC: 16.1ms)
+Completed 200 OK in 92ms (Views: 82.9ms | ActiveRecord: 0.9ms (3 queries, 0 cached) | GC: 16.6ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-05 17:11:59 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 23:04:44 UTC
+Current time: 2024-12-05 23:11:59 UTC
+Updated session last_seen_at: 2024-12-05T23:11:59Z
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.5ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 5.3ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 5.8ms | GC: 0.5ms)
+Completed 200 OK in 11ms (Views: 5.8ms | ActiveRecord: 1.2ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-05 17:12:01 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-05 23:11:59 UTC
+Current time: 2024-12-05 23:12:01 UTC
+Updated session last_seen_at: 2024-12-05T23:12:01Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 11.0ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 11.8ms | GC: 0.7ms)
+Completed 200 OK in 16ms (Views: 11.9ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 1.4ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-05 17:12:25 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"new card", "card_number"=>"6464563448635486", "expiration_date"=>"2024-12-03"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-05 23:12:01 UTC
+Current time: 2024-12-05 23:12:25 UTC
+Updated session last_seen_at: 2024-12-05T23:12:25Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "6464563448635486"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 28ms (ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-05 17:12:25 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-05 23:12:25 UTC
+Current time: 2024-12-05 23:12:25 UTC
+Updated session last_seen_at: 2024-12-05T23:12:25Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 8.7ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.1ms | GC: 0.2ms)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-05 17:12:43 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"John Doe", "card_number"=>"6464563448635486", "expiration_date"=>"2024-12-06"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-05 23:12:25 UTC
+Current time: 2024-12-05 23:12:43 UTC
+Updated session last_seen_at: 2024-12-05T23:12:43Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "6464563448635486"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.1ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "6464563448635486"], ["card_holder_name", "John Doe"], ["expiration_date", "2024-12-06"], ["created_at", "2024-12-05 23:12:43.544447"], ["updated_at", "2024-12-05 23:12:43.544447"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (32.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 43ms (ActiveRecord: 35.2ms (3 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-05 17:12:43 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-05 23:12:43 UTC
+Current time: 2024-12-05 23:12:43 UTC
+Updated session last_seen_at: 2024-12-05T23:12:43Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 9.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 10.5ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 10.6ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/delete_billing_method/15" for 127.0.0.1 at 2024-12-05 17:12:50 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"15"}
+Session last_seen_at: 2024-12-05 23:12:43 UTC
+Current time: 2024-12-05 23:12:50 UTC
+Updated session last_seen_at: 2024-12-05T23:12:50Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (1.4ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 12ms (ActiveRecord: 2.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-05 17:12:50 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-05 23:12:50 UTC
+Current time: 2024-12-05 23:12:50 UTC
+Updated session last_seen_at: 2024-12-05T23:12:50Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 11.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.1ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddCvvToBillingMethods (20241206235525)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "abilling_methods" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "card_number" varchar, "card_holder_name" varchar, "expiration_date" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_abilling_methods_on_user_id" ON "abilling_methods" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "abilling_methods" ("id","user_id","card_number","card_holder_name","expiration_date","created_at","updated_at")
+                     SELECT "id","user_id","card_number","card_holder_name","expiration_date","created_at","updated_at" FROM "billing_methods"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "billing_methods"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "billing_methods" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "card_number" varchar, "card_holder_name" varchar, "expiration_date" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "cvv" varchar NOT NULL, CONSTRAINT "fk_rails_71db8f22c9"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_billing_methods_on_user_id" ON "billing_methods" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "billing_methods" ("id","user_id","card_number","card_holder_name","expiration_date","created_at","updated_at")
+                     SELECT "id","user_id","card_number","card_holder_name","expiration_date","created_at","updated_at" FROM "abilling_methods"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "abilling_methods"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241206235525') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
