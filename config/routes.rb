@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
 
   # 3rd party login redirect
+  post '/auth/:provider', to: 'sessions#oauth_request', as: 'oauth_request'
   get '/auth/:provider/callback', to: 'sessions#oauth_create', as: 'oauth_create'
   get '/auth/failure', to: redirect('/login')
   #get '/auth/:provider', to: proc { [404, {}, ['404 - OmniAuth provider not found!']] }, via: [:get, :post]
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
 
   patch 'update_profile_image', to: 'settings#update_profile_image'
   patch 'update_name', to: 'settings#update_name'
+
+
+
 
 
 
@@ -64,9 +68,8 @@ Rails.application.routes.draw do
   root "landing#index"
 
   resources :store_items do
-    collection do
-      post 'purchase'
-    end
+      post :purchase, on: :collection
+
   end
 
   resources :friends, only: [:index, :create] do

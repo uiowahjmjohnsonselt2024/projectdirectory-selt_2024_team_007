@@ -8,7 +8,11 @@
   %div.center-content{ style: "display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" }
     = render 'shared/flash'
     %h1{ style: "font-size: 2.5rem; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" } STORE
-
+    %div{ style: "background-color: rgba(0, 255, 0, 0.8); padding: 10px; border-radius: 5px; display: inline-block; text-align: center;" }
+      %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
+        Your Country: #{@user_country_code}
+      %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
+        Your Currency: #{@currency}
     %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
     %div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 10px;" }
       %h2{ style: "margin-bottom: 20px; color: #2C3E50; text-align: center;" } Purchase Shards
@@ -17,24 +21,25 @@
       %div{ style: "display: flex; justify-content: space-around; align-items: center; gap: 20px; margin-bottom: 20px;" }
         %div.purchase-panel
           %img{ src: image_path('shards_normal.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
-          %strong $5.00 - 50 Shards
+          %strong= "#{display_price(5.00)} - 50 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "50 Shards for $5.00", shard_amount: 50 },
+                   data: { package: "50 Shards for #{display_price(5.00)}", shard_amount: 50 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
           %img{ src: image_path('shards_medium.png'), alt: "120 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
-          %strong $10.00 - 120 Shards
+          %strong= "#{display_price(10.00)} - 120 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "120 Shards for $10.00", shard_amount: 120 },
+                   data: { package: "120 Shards for #{display_price(10.00)}", shard_amount: 120 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
           %img{ src: image_path('shards_large.png'), alt: "250 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
-          %strong $20.00 - 250 Shards
+          %strong= "#{display_price(20.00)} - 250 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "250 Shards for $20.00", shard_amount: 250 },
+                   data: { package: "250 Shards for #{display_price(20.00)}", shard_amount: 250 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
+
       %button{ id: "close-popup-purchase", style: "margin-top: 20px; padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Close
 
     %div{ id: "popup-confirm-purchase", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1001;" }

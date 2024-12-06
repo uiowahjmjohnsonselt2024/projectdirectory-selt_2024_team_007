@@ -29,6 +29,12 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+# The two gem is to do country_code and currency_name conversion
+gem 'money-rails'
+gem 'countries'
+
+# To do the https mock request, not sure if it will be used in deployment
+gem 'webmock'
 
 # Manage environment variable
 gem 'dotenv-rails', groups: [:development, :test]
