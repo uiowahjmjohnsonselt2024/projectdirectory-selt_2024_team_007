@@ -34,6 +34,7 @@ class GamesController < ApplicationController
     if @game
       if @game.game_users.exists?(user: @current_user)
         redirect_to @game, notice: 'You have already joined this game.'
+        ActionCable.server.broadcast("game_channel", { message: "Hello, World!" })
       else
         @game.game_users.create(user: @current_user, health: 100)
         redirect_to @game, notice: 'You have successfully joined the game.'
