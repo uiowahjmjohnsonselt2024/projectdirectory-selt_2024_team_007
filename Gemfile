@@ -38,6 +38,8 @@ gem 'bootstrap', '~> 5.3.3'
 gem 'popper_js', '~> 2.11.8'
 gem 'jquery-rails'
 
+gem "ruby-openai"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -69,7 +71,6 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "letter_opener"
-  gem "ruby-openai"
 end
 
 group :test do
@@ -90,7 +91,6 @@ group :test do
 end
 
 group :production do
-  gem "ruby-openai"
   gem 'aws-sdk-s3', '~> 1.0', require: false
   gem "pg" # for Heroku deployment
   gem 'rails_12factor' # for heroku dep

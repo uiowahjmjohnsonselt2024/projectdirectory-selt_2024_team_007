@@ -66,10 +66,21 @@ class GamesController < ApplicationController
     gpt_service = GptDmService.new
     gpt_response = gpt_service.generate_dm_response(user_message)
 
-    render json: { response: gpt_response }, status: :ok
+    # Broadcast the GPT response to all connected clients for this game
+    ChatChannel.broadcast_to(@game, {
+      user: @current_user.name,
+      message: user_message,
+      gpt_response: gpt_response
+    })
+
+    # Respond with a simple success (no need to re-render or return JSON)
+    head :ok
   rescue => e
-    render json: { error: e.message }, status: :unprocessable_entity
+    # Flash error message on failure and redirect back to the same page
+    flash[:alert] = "Failed to process your message: #{e.message}"
+    head :unprocessable_entity
   end
+
 
   def invite_friends
     friend_ids = params[:friend_ids] || []

@@ -1,5 +1,5 @@
 = render 'shared/flash'
-%section.game-container.d-flex.h-100.overflow-hidden
+%section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
   / Sidebar
   %aside.sidebar.bg-dark.text-white.p-3.d-flex.flex-column
     
@@ -28,12 +28,11 @@
     
     = link_to 'Back to Landing Page', landing_path
 
-    / GPT Response Field
+    / Chat Response Field
     %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
       %h4 GPT Response
-      %p#chatbot-response.mb-0
-        -# Placeholder for GPT response text
-        No response yet.
+      %div#chatbot-response.chat-box.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
+        %p.text-muted No chat yet.
 
   / Main Content Area
   %main.content-area.flex-grow-1.p-3.d-flex.flex-column
@@ -46,51 +45,10 @@
 
     / Editable User Input Field
     %div.user-input.mt-3
-      = form_with url: chat_game_path(@game), local: true, data: { type: :json }, id: 'chat-form' do |form|
-        .mb-3
-          = form.label :message, 'Your Response', class: 'form-label fw-bold'
-          = form.text_area :message, id: 'user-message', class: 'form-control', rows: 3, placeholder: 'Type your message here...'
-        = form.submit 'Send', class: 'btn btn-primary'
-
-  %script
-    :javascript
-      document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('chat-form');
-        const responseField = document.getElementById('chatbot-response');
-
-        if (form) {
-          form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const message = document.getElementById('user-message').value;
-            const url = form.getAttribute('action');
-
-            try {
-              const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                },
-                body: JSON.stringify({ message }),
-              });
-
-              const data = await response.json();
-              if (data.response) {
-                responseField.textContent = data.response;
-              } else if (data.error) {
-                responseField.textContent = `Error: ${data.error}`;
-              } else {
-                responseField.textContent = 'An error occurred.';
-              }
-            } catch (error) {
-              responseField.textContent = 'Failed to fetch response.';
-            }
-          });
-        } else {
-          console.error('Chat form not found on the page.');
-        }
-      });
+      .mb-3
+        %label.form-label.fw-bold Your Response
+        %textarea#user-message.form-control{ rows: 3, placeholder: 'Type your message here...' }
+      %button#send-message.btn.btn-primary Send
 
 
 
@@ -126,3 +84,105 @@
         .modal-footer
           %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
 
+
+:javascript
+  // Inline ActionCable consumer setup
+  const ActionCable = (() => {
+    function createWebSocketURL(url) {
+      if (url && !url.match(/^wss?:\/\//)) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.href = a.href; // Ensures the URL is absolute
+        a.protocol = a.protocol.replace("http", "ws");
+        return a.href;
+      }
+      return url;
+    }
+
+    class Consumer {
+      constructor(url) {
+        this.url = createWebSocketURL(url);
+        this.subscriptions = [];
+      }
+
+      connect() {
+        this.connection = new WebSocket(this.url);
+        this.connection.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          this.subscriptions.forEach((sub) => sub.received(data));
+        };
+      }
+
+      subscribe(channel, params, received) {
+        const subscription = { channel, params, received };
+        this.subscriptions.push(subscription);
+      }
+    }
+
+    return {
+      createConsumer: (url) => new Consumer(url || "/cable"),
+    };
+  })();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const sendButton = document.getElementById("send-message");
+    const messageField = document.getElementById("user-message");
+    const responseField = document.getElementById("chatbot-response");
+    const gameElement = document.querySelector("[data-game-id]");
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    if (!gameElement || !sendButton || !messageField) return;
+
+    const gameId = gameElement.dataset.gameId;
+
+    // Set up Action Cable consumer
+    const consumer = ActionCable.createConsumer();
+
+    // Subscribe to the ChatChannel
+    consumer.subscribe("ChatChannel", { game_id: gameId }, (data) => {
+      if (responseField) {
+        const newMessage = `
+          <p><strong>${data.user}:</strong> ${data.message}</p>
+          <p><em>GPT:</em> ${data.gpt_response}</p>
+        `;
+        responseField.innerHTML += newMessage;
+        responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to bottom
+      }
+    });
+
+    // Handle message sending via fetch
+    sendButton.addEventListener("click", async () => {
+      const message = messageField.value.trim();
+
+      if (!message) {
+        alert("Please enter a message.");
+        return;
+      }
+
+      try {
+        const response = await fetch(`/games/${gameId}/chat`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-Token": csrfToken,
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        if (response.ok) {
+          messageField.value = "";
+          const flashDiv = document.createElement("div");
+          flashDiv.className = "alert alert-success";
+          flashDiv.textContent = "Message sent!";
+          document.body.prepend(flashDiv);
+          setTimeout(() => flashDiv.remove(), 3000);
+        } else {
+          alert("Failed to send your message. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+        alert("An error occurred while sending your message.");
+      }
+    });
+  });
