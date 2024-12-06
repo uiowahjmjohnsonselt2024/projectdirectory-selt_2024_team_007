@@ -16,3 +16,7 @@
         = f.text_field :email, required: true, id: "email_field", class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
       %div.actions{ style: "margin-top: 20px;" }
         = f.submit "Send Reset Email", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+    %p{ style: "text-align: center; margin-top: 20px; color: #BDC3C7;" }
+      Already have an account?
+      = link_to "Log in here", login_path, style: "color: #1ABC9C;"
