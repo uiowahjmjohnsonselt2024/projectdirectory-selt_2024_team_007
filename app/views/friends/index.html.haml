@@ -26,23 +26,38 @@
   %div.scrollable-friends-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Your Friends:
     - @friends.each do |friend|
-      %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
-        %p{ style: "color: #BDC3C7;" } Adventurer of the Grid
-        %a.btn.btn-success{ href: "#", style: "margin-top: 10px;" } View Profile
+      %div.friend-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center;" }
+        %img{ src: friend.profile_image.attached? ? url_for(friend.profile_image) : image_path('default_avatar.png'),
+              alt: "#{friend.name}'s Profile Picture",
+              style: "width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;"
+        }
+        %div.friend-info{ style: "display: flex; flex-direction: column;" }
+          %p{ style: "color: #ECF0F1; font-weight: bold; margin: 0;" }= friend.name
+          %p{ style: "color: #BDC3C7; margin: 0;" } Adventurer of the Grid
+          = button_to 'Remove Friend', unfriend_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
 
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Friend Requests:
     - @pending_friend_requests.each do |friend|
-      %div.friend-card{ style: "background: rgba(255, 165, 0, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
-        = button_to 'Accept', accept_friend_path(friend), method: :post, class: 'btn btn-primary', style: 'margin-top: 10px; display: inline-block;'
-        = button_to 'Decline', reject_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
+      %div.friend-card{ style: "background: rgba(255, 165, 0, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center;" }
+        %img{ src: friend.profile_image.attached? ? url_for(friend.profile_image) : image_path('default_avatar.png'),
+              alt: "#{friend.name}'s Profile Picture",
+              style: "width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;"
+        }
+        %div.friend-info{ style: "display: flex; flex-direction: column;" }
+          %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+          = button_to 'Accept', accept_friend_path(friend), method: :post, class: 'btn btn-primary', style: 'margin-top: 10px; display: inline-block;'
+          = button_to 'Decline', reject_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
 
     %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Sent Friend Requests:
     - @sent_friend_requests.each do |friend|
-      %div.friend-card{ style: "background: rgba(0, 0, 255, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
-        %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
-        = button_to 'Cancel', cancel_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
+      %div.friend-card{ style: "background: rgba(0, 0, 255, 0.3); padding: 20px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center;" }
+        %img{ src: friend.profile_image.attached? ? url_for(friend.profile_image) : image_path('default_avatar.png'),
+              alt: "#{friend.name}'s Profile Picture",
+              style: "width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;"
+        }
+        %div.friend-info{ style: "display: flex; flex-direction: column;" }
+          %p{ style: "color: #ECF0F1; font-weight: bold;" }= friend.name
+          = button_to 'Cancel', cancel_friend_path(friend), method: :delete, class: 'btn btn-danger', style: 'margin-top: 10px; display: inline-block;'
 
 
 /==============================

@@ -76,7 +76,8 @@ Rails.application.routes.draw do
     member do
       post 'accept', to: 'friends#accept'
       delete 'reject', to: 'friends#reject'
-      delete 'cancel', to: 'friends#cancel' # This is the missing route
+      delete 'cancel', to: 'friends#cancel'
+      delete 'unfriend', to: 'friends#unfriend'
     end
   end
 
