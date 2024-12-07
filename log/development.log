@@ -15155,3 +15155,1151 @@ Updated session last_seen_at: 2024-12-07T00:36:56Z
 Completed 200 OK in 159ms (Views: 141.0ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 56.1ms)
 
 
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:52:15 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:36:56 UTC
+Current time: 2024-12-07 00:52:15 UTC
+Updated session last_seen_at: 2024-12-07T00:52:15Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.7ms | GC: 0.2ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 24.9ms | GC: 7.4ms)
+  Rendered shared/_flash.html.haml (Duration: 6.6ms | GC: 0.4ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 147.4ms | GC: 32.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 152.2ms | GC: 32.6ms)
+Completed 200 OK in 217ms (Views: 155.3ms | ActiveRecord: 2.5ms (3 queries, 0 cached) | GC: 32.6ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 18:52:33 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"dfgfsg", "card_number"=>"5165165456465465", "expiration_date"=>"2024-12-13", "cvv"=>"6516"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 00:52:15 UTC
+Current time: 2024-12-07 00:52:33 UTC
+Updated session last_seen_at: 2024-12-07T00:52:33Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+[31mUnpermitted parameter: :cvv. Context: { controller: SettingsController, action: add_billing_method, request: #<ActionDispatch::Request:0x00007ba13a01ba60>, params: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"dfgfsg", "card_number"=>"5165165456465465", "expiration_date"=>"2024-12-13", "cvv"=>"6516"}, "commit"=>"Add Card", "controller"=>"settings", "action"=>"add_billing_method"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "5165165456465465"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 10ms (ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 18:52:33 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 00:52:33 UTC
+Current time: 2024-12-07 00:52:33 UTC
+Updated session last_seen_at: 2024-12-07T00:52:33Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 6.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 6.8ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 18:53:09 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"sfgsgsfgsfg", "card_number"=>"1254867524856232", "expiration_date"=>"2024-12-13", "cvv"=>"125"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 00:52:33 UTC
+Current time: 2024-12-07 00:53:09 UTC
+Updated session last_seen_at: 2024-12-07T00:53:09Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+[31mUnpermitted parameter: :cvv. Context: { controller: SettingsController, action: add_billing_method, request: #<ActionDispatch::Request:0x00007ba13dbcdae0>, params: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"sfgsgsfgsfg", "card_number"=>"1254867524856232", "expiration_date"=>"2024-12-13", "cvv"=>"125"}, "commit"=>"Add Card", "controller"=>"settings", "action"=>"add_billing_method"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1254867524856232"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 9ms (ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 18:53:09 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 00:53:09 UTC
+Current time: 2024-12-07 00:53:09 UTC
+Updated session last_seen_at: 2024-12-07T00:53:09Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 3.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 11.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.6ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-06 19:21:53 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 00:53:09 UTC
+Current time: 2024-12-07 01:21:53 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-06 19:21:53 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-07 01:21:53 UTC
+Updated session last_seen_at: 2024-12-07T01:21:53Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 6.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 19.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 24.2ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 28.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-06 19:21:57 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-07 01:21:53 UTC
+Current time: 2024-12-07 01:21:57 UTC
+Updated session last_seen_at: 2024-12-07T01:21:57Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/landing
+Completed 302 Found in 225ms (ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-06 19:21:57 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 01:21:57 UTC
+Current time: 2024-12-07 01:21:57 UTC
+Updated session last_seen_at: 2024-12-07T01:21:57Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.7ms | GC: 0.3ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 17.9ms | GC: 1.3ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 62.7ms | GC: 16.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 63.3ms | GC: 16.2ms)
+Completed 200 OK in 80ms (Views: 63.4ms | ActiveRecord: 1.1ms (3 queries, 0 cached) | GC: 16.2ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 19:21:59 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 01:21:57 UTC
+Current time: 2024-12-07 01:21:59 UTC
+Updated session last_seen_at: 2024-12-07T01:21:59Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 96.8ms | GC: 29.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 97.5ms | GC: 29.7ms)
+Completed 200 OK in 106ms (Views: 97.8ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 29.8ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:22:25 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"vgvhvhj", "card_number"=>"1234567891234567", "expiration_date"=>"2024-12-21", "cvv"=>"123"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:21:59 UTC
+Current time: 2024-12-07 01:22:25 UTC
+Updated session last_seen_at: 2024-12-07T01:22:25Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+[31mUnpermitted parameter: :cvv. Context: { controller: SettingsController, action: add_billing_method, request: #<ActionDispatch::Request:0x000079fc4889cf88>, params: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"vgvhvhj", "card_number"=>"1234567891234567", "expiration_date"=>"2024-12-21", "cvv"=>"123"}, "commit"=>"Add Card", "controller"=>"settings", "action"=>"add_billing_method"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1234567891234567"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 23ms (ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:22:25 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:22:25 UTC
+Current time: 2024-12-07 01:22:25 UTC
+Updated session last_seen_at: 2024-12-07T01:22:25Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.8ms | GC: 0.1ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 8.4ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.8ms | GC: 0.1ms)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-12-06 19:28:25 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 00:16:03 UTC
+Current time: 2024-12-07 01:28:25 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-06 19:28:25 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-07 01:28:25 UTC
+Updated session last_seen_at: 2024-12-07T01:28:25Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 5.2ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 19.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 25.8ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:28:47 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:22:25 UTC
+Current time: 2024-12-07 01:28:47 UTC
+Updated session last_seen_at: 2024-12-07T01:28:47Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 3.4ms | GC: 0.3ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 15.4ms | GC: 0.8ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 123.3ms | GC: 38.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 123.8ms | GC: 38.5ms)
+Completed 200 OK in 179ms (Views: 123.9ms | ActiveRecord: 2.7ms (3 queries, 0 cached) | GC: 38.5ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:28:48 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:28:47 UTC
+Current time: 2024-12-07 01:28:48 UTC
+Updated session last_seen_at: 2024-12-07T01:28:48Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 7.2ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 19:28:59 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:29:35 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"fdhfh", "card_number"=>"1234567891234567", "expiration_date"=>"2024-12-20", "cvv_no"=>"123"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:28:48 UTC
+Current time: 2024-12-07 01:29:35 UTC
+Updated session last_seen_at: 2024-12-07T01:29:35Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'cvv_no' for BillingMethod.):
+
+Causes:
+NoMethodError (undefined method `cvv_no=' for an instance of BillingMethod)
+  
+app/controllers/settings_controller.rb:5:in `add_billing_method'
+Started GET "/" for 127.0.0.1 at 2024-12-06 19:32:16 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 01:28:48 UTC
+Current time: 2024-12-07 01:32:16 UTC
+Updated session last_seen_at: 2024-12-07T01:32:16Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 19.7ms | GC: 15.8ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 38.3ms | GC: 16.6ms)
+  Rendered shared/_flash.html.haml (Duration: 9.1ms | GC: 2.2ms)
+  [1m[36mGame Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 115.8ms | GC: 18.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 128.3ms | GC: 19.4ms)
+Completed 200 OK in 214ms (Views: 130.9ms | ActiveRecord: 2.7ms (3 queries, 0 cached) | GC: 19.4ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 19:32:20 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 01:32:16 UTC
+Current time: 2024-12-07 01:32:20 UTC
+Updated session last_seen_at: 2024-12-07T01:32:20Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 96.8ms | GC: 30.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 97.3ms | GC: 30.1ms)
+Completed 200 OK in 107ms (Views: 97.5ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 30.3ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:32:39 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"adfadf", "card_number"=>"1234567891234567", "expiration_date"=>"2024-12-12", "cvv"=>"123"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:32:20 UTC
+Current time: 2024-12-07 01:32:39 UTC
+Updated session last_seen_at: 2024-12-07T01:32:39Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1234567891234567"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.2ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "1234567891234567"], ["card_holder_name", "adfadf"], ["expiration_date", "2024-12-12"], ["created_at", "2024-12-07 01:32:39.418352"], ["updated_at", "2024-12-07 01:32:39.418352"], ["cvv", "123"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 14ms (ActiveRecord: 2.9ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:32:39 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:32:39 UTC
+Current time: 2024-12-07 01:32:39 UTC
+Updated session last_seen_at: 2024-12-07T01:32:39Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 10.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 10.7ms | GC: 0.3ms)
+Completed 200 OK in 13ms (Views: 10.8ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:32:57 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"adfadf", "card_number"=>"6565561561515156", "expiration_date"=>"2024-12-20", "cvv"=>"5165"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:32:39 UTC
+Current time: 2024-12-07 01:32:57 UTC
+Updated session last_seen_at: 2024-12-07T01:32:57Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "6565561561515156"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.2ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "6565561561515156"], ["card_holder_name", "adfadf"], ["expiration_date", "2024-12-20"], ["created_at", "2024-12-07 01:32:57.922069"], ["updated_at", "2024-12-07 01:32:57.922069"], ["cvv", "5165"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 12ms (ActiveRecord: 2.3ms (3 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:32:57 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:32:57 UTC
+Current time: 2024-12-07 01:32:57 UTC
+Updated session last_seen_at: 2024-12-07T01:32:57Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 12.5ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 13.2ms | GC: 0.7ms)
+Completed 200 OK in 17ms (Views: 13.5ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-06 19:33:47 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 01:32:57 UTC
+Current time: 2024-12-07 01:33:47 UTC
+Updated session last_seen_at: 2024-12-07T01:33:47Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 25.2ms | GC: 19.5ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 46.1ms | GC: 20.3ms)
+  Rendered shared/_flash.html.haml (Duration: 10.8ms | GC: 2.6ms)
+  [1m[36mGame Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 117.1ms | GC: 22.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 127.6ms | GC: 23.4ms)
+Completed 200 OK in 202ms (Views: 130.0ms | ActiveRecord: 3.2ms (3 queries, 0 cached) | GC: 23.4ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 19:33:50 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 01:33:47 UTC
+Current time: 2024-12-07 01:33:50 UTC
+Updated session last_seen_at: 2024-12-07T01:33:50Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.7ms | GC: 0.4ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 93.4ms | GC: 28.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 93.9ms | GC: 28.4ms)
+Completed 200 OK in 103ms (Views: 94.2ms | ActiveRecord: 0.5ms (3 queries, 0 cached) | GC: 28.8ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:34:10 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"fdsfsv", "card_number"=>"1561651651651651", "expiration_date"=>"2024-12-20", "cvv"=>"5165"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:33:50 UTC
+Current time: 2024-12-07 01:34:10 UTC
+Updated session last_seen_at: 2024-12-07T01:34:10Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1561651651651651"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.3ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "1561651651651651"], ["card_holder_name", "fdsfsv"], ["expiration_date", "2024-12-20"], ["created_at", "2024-12-07 01:34:10.952472"], ["updated_at", "2024-12-07 01:34:10.952472"], ["cvv", "5165"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 13ms (ActiveRecord: 3.3ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:34:10 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:34:10 UTC
+Current time: 2024-12-07 01:34:10 UTC
+Updated session last_seen_at: 2024-12-07T01:34:10Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 9.7ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 10.1ms | GC: 0.5ms)
+Completed 200 OK in 12ms (Views: 10.2ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+Started DELETE "/delete_billing_method/1" for 127.0.0.1 at 2024-12-06 19:34:19 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"1"}
+Session last_seen_at: 2024-12-07 01:34:10 UTC
+Current time: 2024-12-07 01:34:19 UTC
+Updated session last_seen_at: 2024-12-07T01:34:19Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (0.5ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 5ms (ActiveRecord: 0.8ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:34:19 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:34:19 UTC
+Current time: 2024-12-07 01:34:19 UTC
+Updated session last_seen_at: 2024-12-07T01:34:19Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.0ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 7.8ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.2ms | GC: 0.4ms)
+Completed 200 OK in 11ms (Views: 8.3ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.8ms)
+
+
+Started DELETE "/delete_billing_method/2" for 127.0.0.1 at 2024-12-06 19:34:21 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"2"}
+Session last_seen_at: 2024-12-07 01:34:19 UTC
+Current time: 2024-12-07 01:34:21 UTC
+Updated session last_seen_at: 2024-12-07T01:34:21Z
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (2.4ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 17ms (ActiveRecord: 3.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:34:21 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:34:21 UTC
+Current time: 2024-12-07 01:34:21 UTC
+Updated session last_seen_at: 2024-12-07T01:34:21Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 8.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.8ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 9.0ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/delete_billing_method/3" for 127.0.0.1 at 2024-12-06 19:34:25 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"3"}
+Session last_seen_at: 2024-12-07 01:34:21 UTC
+Current time: 2024-12-07 01:34:25 UTC
+Updated session last_seen_at: 2024-12-07T01:34:25Z
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (2.0ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 20ms (ActiveRecord: 2.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:34:25 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:34:25 UTC
+Current time: 2024-12-07 01:34:25 UTC
+Updated session last_seen_at: 2024-12-07T01:34:25Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 9.3ms | GC: 1.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.7ms | GC: 1.2ms)
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:41:06 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:34:25 UTC
+Current time: 2024-12-07 01:41:06 UTC
+Updated session last_seen_at: 2024-12-07T01:41:06Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.4ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 13.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 6.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 109.1ms | GC: 21.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 113.8ms | GC: 21.4ms)
+Completed 200 OK in 138ms (Views: 114.5ms | ActiveRecord: 0.9ms (3 queries, 0 cached) | GC: 21.4ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 19:41:08 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:41:20 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"fsgdfg", "card_number"=>"4534534534345345", "expiration_date"=>"2024-12-20", "cvv"=>"4534"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:41:06 UTC
+Current time: 2024-12-07 01:41:20 UTC
+Updated session last_seen_at: 2024-12-07T01:41:20Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "4534534534345345"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.2ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "4534534534345345"], ["card_holder_name", "fsgdfg"], ["expiration_date", "2024-12-20"], ["created_at", "2024-12-07 01:41:20.753270"], ["updated_at", "2024-12-07 01:41:20.753270"], ["cvv", "4534"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 14ms (ActiveRecord: 3.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:41:20 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:41:20 UTC
+Current time: 2024-12-07 01:41:20 UTC
+Updated session last_seen_at: 2024-12-07T01:41:20Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 12.1ms | GC: 3.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.6ms | GC: 3.8ms)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 3.8ms)
+
+
+Started DELETE "/delete_billing_method/4" for 127.0.0.1 at 2024-12-06 19:42:48 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"4"}
+Session last_seen_at: 2024-12-07 01:41:20 UTC
+Current time: 2024-12-07 01:42:48 UTC
+Updated session last_seen_at: 2024-12-07T01:42:48Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (1.2ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 4]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 12ms (ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:42:48 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:42:48 UTC
+Current time: 2024-12-07 01:42:48 UTC
+Updated session last_seen_at: 2024-12-07T01:42:48Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 3.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 9.5ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 10.2ms | GC: 0.2ms)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:43:13 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"ghdgh", "card_number"=>"6516516516161616", "expiration_date"=>"2024-12-13", "cvv"=>"1515"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:42:48 UTC
+Current time: 2024-12-07 01:43:13 UTC
+Updated session last_seen_at: 2024-12-07T01:43:13Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "6516516516161616"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.2ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "6516516516161616"], ["card_holder_name", "ghdgh"], ["expiration_date", "2024-12-13"], ["created_at", "2024-12-07 01:43:13.930711"], ["updated_at", "2024-12-07 01:43:13.930711"], ["cvv", "1515"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 12ms (ActiveRecord: 2.4ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:43:13 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:43:13 UTC
+Current time: 2024-12-07 01:43:13 UTC
+Updated session last_seen_at: 2024-12-07T01:43:13Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.2ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 12.0ms | GC: 1.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 12.6ms | GC: 1.8ms)
+Completed 200 OK in 15ms (Views: 12.7ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 1.8ms)
+
+
+Started PATCH "/edit_billing_method/5" for 127.0.0.1 at 2024-12-06 19:43:27 -0600
+Processing by SettingsController#edit_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"ghdgh", "card_number"=>"6516516516161616", "expiration_date"=>"2024-12-13", "cvv"=>"1575"}, "commit"=>"Update Card", "id"=>"5"}
+Session last_seen_at: 2024-12-07 01:43:13 UTC
+Current time: 2024-12-07 01:43:27 UTC
+Updated session last_seen_at: 2024-12-07T01:43:27Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:17:in `edit_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mBillingMethod Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."id" != ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "6516516516161616"], ["id", 5], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mBillingMethod Update (0.1ms)[0m  [1m[33mUPDATE "billing_methods" SET "updated_at" = ?, "cvv" = ? WHERE "billing_methods"."id" = ?[0m  [["updated_at", "2024-12-07 01:43:27.969524"], ["cvv", "1575"], ["id", 5]]
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 7ms (ActiveRecord: 1.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:43:27 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:43:27 UTC
+Current time: 2024-12-07 01:43:27 UTC
+Updated session last_seen_at: 2024-12-07T01:43:27Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 14.4ms | GC: 4.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 15.0ms | GC: 4.5ms)
+Completed 200 OK in 17ms (Views: 15.0ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 4.5ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:43:33 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:43:27 UTC
+Current time: 2024-12-07 01:43:33 UTC
+Updated session last_seen_at: 2024-12-07T01:43:33Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.4ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.0ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 8.2ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 8.7ms | GC: 0.9ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 19:43:38 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started DELETE "/delete_billing_method/5" for 127.0.0.1 at 2024-12-06 19:43:50 -0600
+Processing by SettingsController#delete_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "commit"=>"Delete", "id"=>"5"}
+Session last_seen_at: 2024-12-07 01:43:33 UTC
+Current time: 2024-12-07 01:43:50 UTC
+Updated session last_seen_at: 2024-12-07T01:43:50Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:29:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mBillingMethod Destroy (1.1ms)[0m  [1m[31mDELETE FROM "billing_methods" WHERE "billing_methods"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:31:in `delete_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 11ms (ActiveRecord: 1.7ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:43:50 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:43:50 UTC
+Current time: 2024-12-07 01:43:50 UTC
+Updated session last_seen_at: 2024-12-07T01:43:50Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 3.9ms | GC: 1.3ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 8.8ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.3ms | GC: 1.3ms)
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-06 19:44:46 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 01:43:50 UTC
+Current time: 2024-12-07 01:44:46 UTC
+Updated session last_seen_at: 2024-12-07T01:44:46Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 13.1ms | GC: 10.2ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 25.7ms | GC: 10.8ms)
+  Rendered shared/_flash.html.haml (Duration: 6.2ms | GC: 1.3ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 67.4ms | GC: 12.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 71.9ms | GC: 12.7ms)
+Completed 200 OK in 124ms (Views: 73.3ms | ActiveRecord: 2.1ms (3 queries, 0 cached) | GC: 12.7ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 19:44:47 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 19:44:49 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 01:44:46 UTC
+Current time: 2024-12-07 01:44:49 UTC
+Updated session last_seen_at: 2024-12-07T01:44:49Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 90.1ms | GC: 24.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 90.6ms | GC: 24.5ms)
+Completed 200 OK in 99ms (Views: 90.9ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 24.5ms)
+
+
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 19:45:14 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"gvghvgh", "card_number"=>"1561561561651651", "expiration_date"=>"2024-12-07", "cvv"=>"5151"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 01:44:49 UTC
+Current time: 2024-12-07 01:45:14 UTC
+Updated session last_seen_at: 2024-12-07T01:45:14Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1561561561651651"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.2ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "1561561561651651"], ["card_holder_name", "gvghvgh"], ["expiration_date", "2024-12-07"], ["created_at", "2024-12-07 01:45:14.293701"], ["updated_at", "2024-12-07 01:45:14.293701"], ["cvv", "5151"]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 13ms (ActiveRecord: 3.1ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:45:14 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:45:14 UTC
+Current time: 2024-12-07 01:45:14 UTC
+Updated session last_seen_at: 2024-12-07T01:45:14Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 3.0ms | GC: 0.1ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 9.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 9.8ms | GC: 0.3ms)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:48:21 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:45:14 UTC
+Current time: 2024-12-07 01:48:21 UTC
+Updated session last_seen_at: 2024-12-07T01:48:21Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.6ms | GC: 0.2ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 18.9ms | GC: 4.7ms)
+  Rendered shared/_flash.html.haml (Duration: 4.9ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 103.8ms | GC: 20.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 108.8ms | GC: 20.8ms)
+Completed 200 OK in 134ms (Views: 109.2ms | ActiveRecord: 2.4ms (3 queries, 0 cached) | GC: 25.9ms)
+
+
+Started PATCH "/edit_billing_method/6" for 127.0.0.1 at 2024-12-06 19:48:35 -0600
+Processing by SettingsController#edit_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"gvghvgh", "card_number"=>"1561561561651651", "expiration_date"=>"2024-12-07"}, "commit"=>"Update Card", "id"=>"6"}
+Session last_seen_at: 2024-12-07 01:48:21 UTC
+Current time: 2024-12-07 01:48:35 UTC
+Updated session last_seen_at: 2024-12-07T01:48:35Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:17:in `edit_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mBillingMethod Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."id" != ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1561561561651651"], ["id", 6], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 8ms (ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:48:35 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:48:35 UTC
+Current time: 2024-12-07 01:48:35 UTC
+Updated session last_seen_at: 2024-12-07T01:48:35Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 7.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 7.8ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/edit_billing_method/6" for 127.0.0.1 at 2024-12-06 19:48:57 -0600
+Processing by SettingsController#edit_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"gvghvgh", "card_number"=>"1561561561651651", "expiration_date"=>"2024-12-06"}, "commit"=>"Update Card", "id"=>"6"}
+Session last_seen_at: 2024-12-07 01:48:35 UTC
+Current time: 2024-12-07 01:48:57 UTC
+Updated session last_seen_at: 2024-12-07T01:48:57Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ? AND "billing_methods"."id" = ? LIMIT ?[0m  [["user_id", 4], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:17:in `edit_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mBillingMethod Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."id" != ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1561561561651651"], ["id", 6], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mBillingMethod Update (0.1ms)[0m  [1m[33mUPDATE "billing_methods" SET "expiration_date" = ?, "updated_at" = ? WHERE "billing_methods"."id" = ?[0m  [["expiration_date", "2024-12-06"], ["updated_at", "2024-12-07 01:48:57.579130"], ["id", 6]]
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/settings_controller.rb:19:in `edit_billing_method'
+Redirected to http://127.0.0.1:3000/settings?active_tab=v-pills-billings
+Completed 302 Found in 21ms (ActiveRecord: 12.4ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings?active_tab=v-pills-billings" for 127.0.0.1 at 2024-12-06 19:48:57 -0600
+Processing by SettingsController#settings as HTML
+  Parameters: {"active_tab"=>"v-pills-billings"}
+Session last_seen_at: 2024-12-07 01:48:57 UTC
+Current time: 2024-12-07 01:48:57 UTC
+Updated session last_seen_at: 2024-12-07T01:48:57Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 13.4ms | GC: 3.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 14.1ms | GC: 3.4ms)
+Completed 200 OK in 17ms (Views: 14.3ms | ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 3.4ms)
+
+

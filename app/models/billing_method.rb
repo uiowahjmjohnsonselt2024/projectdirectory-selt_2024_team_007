@@ -8,6 +8,9 @@ class BillingMethod < ApplicationRecord
   validates :card_holder_name, presence: true
   validates :expiration_date, presence: true
   validate :expiration_date_cannot_be_in_the_past
+  validates :cvv, presence: true,
+            length: { in: 3..4, message: "CVV must be 3 or 4 digits" },
+            numericality: { only_integer: true, message: "CVV must contain only digits" }
 
   private
 

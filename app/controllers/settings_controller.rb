@@ -104,7 +104,7 @@ class SettingsController < ApplicationController
   private
 
   def billing_method_params
-    params.require(:billing_method).permit(:card_holder_name, :card_number, :expiration_date)
+    params.require(:billing_method).permit(:card_holder_name, :card_number, :expiration_date, :cvv)
   end
 
 end
