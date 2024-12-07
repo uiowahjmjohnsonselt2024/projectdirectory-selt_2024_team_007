@@ -26,6 +26,7 @@ Given('the following billing methods exist:') do |table|
       card_number: billing_method['Card Number'],
       card_holder_name: billing_method['Card Holder Name'],
       expiration_date: Date.strptime(billing_method['Expiration Date'], '%m/%y'),
+      cvv: billing_method['CVV'],
       user: @current_user # Ensure the billing method is tied to the correct user
     )
   end
