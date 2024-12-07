@@ -14160,3 +14160,998 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241206235525') RETURNING "version"[0m
   [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2024-12-06 18:03:18 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 23:12:50 UTC
+Current time: 2024-12-07 00:03:18 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 17ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-06 18:03:18 -0600
+Started GET "/login" for 127.0.0.1 at 2024-12-06 18:03:18 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-05 23:12:50 UTC
+Current time: 2024-12-07 00:03:18 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-07 00:03:18 UTC
+Updated session last_seen_at: 2024-12-07T00:03:18Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 4.9ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 22.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 28.0ms | GC: 0.0ms)
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-06 18:03:18 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-07 00:03:18 UTC
+Updated session last_seen_at: 2024-12-07T00:03:18Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:03:19 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:03:19 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/login" for 127.0.0.1 at 2024-12-06 18:03:33 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-07 00:03:18 UTC
+Current time: 2024-12-07 00:03:33 UTC
+Updated session last_seen_at: 2024-12-07T00:03:33Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:10:in `create'
+Redirected to http://127.0.0.1:3000/landing
+Completed 302 Found in 230ms (ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-06 18:03:33 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 00:03:33 UTC
+Current time: 2024-12-07 00:03:34 UTC
+Updated session last_seen_at: 2024-12-07T00:03:34Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.4ms | GC: 0.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 16.8ms | GC: 1.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 62.4ms | GC: 9.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 62.8ms | GC: 9.9ms)
+Completed 200 OK in 85ms (Views: 62.8ms | ActiveRecord: 1.3ms (3 queries, 0 cached) | GC: 9.9ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-06 18:03:34 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-07 00:03:34 UTC
+Current time: 2024-12-07 00:03:34 UTC
+Updated session last_seen_at: 2024-12-07T00:03:34Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:12:45 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:03:34 UTC
+Current time: 2024-12-07 00:12:45 UTC
+Updated session last_seen_at: 2024-12-07T00:12:45Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 1.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 84.9ms | GC: 20.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 85.4ms | GC: 20.6ms)
+Completed 200 OK in 94ms (Views: 85.7ms | ActiveRecord: 1.2ms (3 queries, 0 cached) | GC: 20.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2024-12-06 18:16:03 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 
+Current time: 2024-12-07 00:16:03 UTC
+Updated session last_seen_at: 2024-12-07T00:16:03Z
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :set_current_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-06 18:16:03 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 2024-12-07 00:16:03 UTC
+Current time: 2024-12-07 00:16:03 UTC
+Updated session last_seen_at: 2024-12-07T00:16:03Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 7.4ms | GC: 0.0ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 22.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 37.5ms | GC: 6.3ms)
+Completed 200 OK in 41ms (Views: 39.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.3ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:16:03 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 127.0.0.1 at 2024-12-06 18:16:21 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-07 00:12:45 UTC
+Current time: 2024-12-07 00:16:21 UTC
+Updated session last_seen_at: 2024-12-07T00:16:21Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 7.0ms | GC: 4.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 19.8ms | GC: 4.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 56.7ms | GC: 6.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 57.3ms | GC: 6.6ms)
+Completed 200 OK in 101ms (Views: 57.1ms | ActiveRecord: 3.6ms (3 queries, 0 cached) | GC: 8.4ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:16:24 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:16:21 UTC
+Current time: 2024-12-07 00:16:24 UTC
+Updated session last_seen_at: 2024-12-07T00:16:24Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 79.7ms | GC: 15.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 80.3ms | GC: 15.2ms)
+Completed 200 OK in 89ms (Views: 80.6ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 15.7ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:18:00 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:16:24 UTC
+Current time: 2024-12-07 00:18:00 UTC
+Updated session last_seen_at: 2024-12-07T00:18:00Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.9ms | GC: 0.2ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 16.4ms | GC: 3.4ms)
+  Rendered shared/_flash.html.haml (Duration: 5.6ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 123.9ms | GC: 46.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 131.9ms | GC: 46.6ms)
+Completed 200 OK in 157ms (Views: 132.3ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 50.3ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:18:01 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/add_billing_method" for 127.0.0.1 at 2024-12-06 18:18:50 -0600
+Processing by SettingsController#add_billing_method as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"dfgfg", "card_number"=>"1234567899874563", "expiration_date"=>"2024-12-07", "cvv"=>"523"}, "commit"=>"Add Card"}
+Session last_seen_at: 2024-12-07 00:18:00 UTC
+Current time: 2024-12-07 00:18:50 UTC
+Updated session last_seen_at: 2024-12-07T00:18:50Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+[31mUnpermitted parameter: :cvv. Context: { controller: SettingsController, action: add_billing_method, request: #<ActionDispatch::Request:0x000070a401750d30>, params: {"authenticity_token"=>"[FILTERED]", "billing_method"=>{"card_holder_name"=>"dfgfg", "card_number"=>"1234567899874563", "expiration_date"=>"2024-12-07", "cvv"=>"523"}, "commit"=>"Add Card", "controller"=>"settings", "action"=>"add_billing_method"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."card_number" = ? AND "billing_methods"."user_id" = ? LIMIT ?[0m  [["card_number", "1234567899874563"], ["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mBillingMethod Create (0.4ms)[0m  [1m[32mINSERT INTO "billing_methods" ("user_id", "card_number", "card_holder_name", "expiration_date", "created_at", "updated_at", "cvv") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["card_number", "1234567899874563"], ["card_holder_name", "dfgfg"], ["expiration_date", "2024-12-07"], ["created_at", "2024-12-07 00:18:50.747161"], ["updated_at", "2024-12-07 00:18:50.747161"], ["cvv", nil]]
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/settings_controller.rb:7:in `add_billing_method'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+ActiveRecord::NotNullViolation (SQLite3::ConstraintException: NOT NULL constraint failed: billing_methods.cvv):
+
+Causes:
+SQLite3::ConstraintException (NOT NULL constraint failed: billing_methods.cvv)
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:28:11 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:18:00 UTC
+Current time: 2024-12-07 00:28:11 UTC
+Updated session last_seen_at: 2024-12-07T00:28:11Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.4ms | GC: 0.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 12.0ms | GC: 0.4ms)
+  Rendered shared/_flash.html.haml (Duration: 5.0ms | GC: 0.3ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 119.3ms | GC: 44.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 124.6ms | GC: 45.4ms)
+Completed 200 OK in 143ms (Views: 125.3ms | ActiveRecord: 1.0ms (3 queries, 0 cached) | GC: 45.5ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:28:15 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:32:02 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:28:11 UTC
+Current time: 2024-12-07 00:32:03 UTC
+Updated session last_seen_at: 2024-12-07T00:32:03Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered settings/settings.html.haml within layouts/application (Duration: 100.1ms | GC: 45.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 100.4ms | GC: 45.9ms)
+Completed 500 Internal Server Error in 121ms (ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 46.5ms)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %div.d-flex.align-items-start{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; margin: 0;" }
+
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+
+  %div.nav.flex-column.nav-pills{
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical",
+    style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
+  }
+    - active_tab = params[:active_tab] || 'v-pills-account-details'
+    %button.nav-link{
+      id: "v-pills-account-details-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-account-details",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-pills-account-details",
+      "aria-selected": active_tab == 'v-pills-account-details',
+      class: ("active" if active_tab == 'v-pills-account-details'),
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Account Details
+    %button.nav-link{
+      id: "v-pills-billings-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-billings",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-pills-billings",
+      "aria-selected": active_tab == 'v-pills-billings',
+      class: ("active" if active_tab == 'v-pills-billings'),
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Billings
+    %button.nav-link{
+      id: "v-pills-orders-tab",
+      "data-bs-toggle": "pill",
+      "data-bs-target": "#v-pills-orders",
+      type: "button",
+      role: "tab",
+      "aria-controls": "v-pills-orders",
+      "aria-selected": active_tab == 'v-pills-orders',
+      class: ("active" if active_tab == 'v-pills-orders'),
+      style: "margin-bottom: 20px; width: 200px; text-align: center;"
+    } Orders
+
+  / Main Content Area
+  %div.tab-content.flex-grow-1.d-flex.align-items-center.justify-content-center{
+    id: "v-pills-tabContent",
+    style: "padding: 50px; flex-grow: 1; "
+  }
+    %div.tab-pane.fade{
+      id: "v-pills-account-details",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-account-details-tab",
+      tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-account-details'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+    }
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Profile Settings
+
+      %div.profile-picture-container{
+        style: "text-align: center; margin-bottom: 20px;"
+      }
+        %img#profilePicture{
+          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('logo.png'),
+          alt: "pfp",
+          style: "width: 100px; height: 100px; border-radius: 50%; cursor: pointer;",
+          "data-bs-toggle" => "modal",
+          "data-bs-target" => "#uploadImageModal"
+        }
+
+      / Modal for Uploading a New Profile Picture
+      .modal.fade#uploadImageModal{ tabindex: "-1", "aria-labelledby" => "uploadImageModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#uploadImageModalLabel Upload Profile Picture
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            .modal-body
+              = form_with(url: update_profile_image_path, method: :patch, local: true, multipart: true) do |f|
+                .mb-3
+                  = f.label :profile_image, "Choose an image", class: 'form-label'
+                  = f.file_field :profile_image, class: 'form-control', required: true
+                .modal-footer
+                  = f.submit "Upload", class: "btn btn-primary"
+                  %button.btn.btn-secondary{
+                    type: "button",
+                    "data-bs-dismiss" => "modal"
+                  } Cancel
+
+      = render 'shared/flash'
+
+      / Display Current Email
+      %div{ style: "margin-top: 30px;" }
+        %label{ style: "color: #ECF0F1; font-weight: bold;" } Current Email
+        %input.form-control{
+          type: "email",
+          value: @current_user.email,
+          readonly: true,
+          style: "width: 100%; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #e9ecef; color: #495057;"
+        }
+
+      / Form for Updating User Name
+      = form_with(url: update_name_path, method: :patch, local: true) do |f|
+        %div{ style: "margin-top: 30px;" }
+          = f.label :name, "User Name", style: "color: #ECF0F1; font-weight: bold;"
+          = f.text_field :name, value: @current_user.name, class: "form-control", style: "width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px;"
+
+        %div.actions{ style: "margin-top: 20px;" }
+          = f.submit "Save", class: "btn btn-success", style: "width: 100%; padding: 10px; background-color: #28a745; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+      / Form for Reset Password and Change Email
+      = form_with(url: password_resets_path, method: :post, local: true) do |f|
+        - if @current_user&.email
+          = hidden_field_tag :email, @current_user.email
+        %div.actions{ style: "margin-top: 20px;" }
+          = f.submit "Reset Password", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+      %div.actions{ style: "margin-top: 20px;" }
+        %button.btn.btn-secondary#change-email-button{
+          type: "button",
+          "data-bs-toggle": "modal",
+          "data-bs-target": "#changeEmailModal",
+          style: "width: 100%; padding: 10px; background-color: #3498db; border: none; border-radius: 5px; color: white; font-weight: bold;"
+        } Change Email
+
+      %p{ style: "text-align: center; margin-top: 15px;" }
+        = link_to 'Back to home', root_path, style: "color: #1ABC9C;"
+
+        / Modal for Changing Email
+      .modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(url: change_email_path, method: :patch, local: true) do |f|
+              .modal-body
+                .mb-3
+                  = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :new_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :confirm_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
+                  = f.password_field :current_password, class: 'form-control', required: true
+              .modal-footer
+                = f.submit "Update Email", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss" => "modal"
+                } Close
+
+
+    %div.tab-pane.fade{
+      id: "v-pills-billings",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-billings-tab",
+      tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-billings'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+    }
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
+      %div{ style: "margin-top: 20px;" }
+        = render 'shared/flash'
+        %ul.list-group
+          - @billing_methods.each do |method|
+            %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
+              %div
+                %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= method.card_holder_name
+                %p{ style: "margin: 0; color: #fff;" } **** **** **** #{method.card_number.last(4)}
+                %p{ style: "margin: 0; color: #888;" } Exp: #{method.expiration_date.strftime('%m/%y')}
+              %div
+                %button.btn.btn-sm.btn-outline-primary{
+                  type: "button",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#editCardModal-#{method.card_number.last(4)}",
+                  "data-card-last-four": "#{method.card_number.last(4)}",
+                  style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
+                } Edit
+
+                / Edit Modal for Each Card
+      - @billing_methods.each do |method|
+        .modal.fade{id: "editCardModal-#{method.card_number.last(4)}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %h5.modal-title{id: "editCardModalLabel-#{method.id}"} Edit Card
+                %button.btn-close{type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close"}
+
+              / Form for Editing the Billing Method
+              = form_with(model: method, url: edit_billing_method_path(method), method: :patch, local: true) do |f|
+                .modal-body
+                  .mb-3
+                    = f.label :card_holder_name, "Edit Card Holder Name", class: 'form-label'
+                    = f.text_field :card_holder_name, minlength: 16, maxlength: 16, inputmode: 'numeric', value: method.card_holder_name, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :card_number, "Edit Card Number", class: 'form-label'
+                    = f.text_field :card_number, value: method.card_number, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :expiration_date, "Edit Expiration Date (MM/YY)", class: 'form-label'
+                    = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
+                .modal-footer
+                  = f.submit "Update Card", class: "btn btn-primary"
+                  %button.btn.btn-secondary{
+                    type: "button",
+                    "data-bs-dismiss" => "modal"
+                  } Cancel
+
+              / Separate Form for Deleting the Billing Method
+              = form_with(url: delete_billing_method_path(method), method: :delete, local: true) do
+                .modal-footer{ style: "justify-content: start;" }
+                  = submit_tag "Delete", class: "btn btn-danger"
+
+      %button.btn.btn-primary#add-card-button{
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#addCardModal",
+        style: "margin-top: 20px; display: block; width: 100%;"
+      } Add New Card
+
+
+      / Modal for Adding a New Card
+      .modal.fade#addCardModal{ tabindex: "-1", "aria-labelledby" => "addCardModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#addCardModalLabel Add New Card
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(model: @billing_method, url: add_billing_method_path, method: :post, local: true) do |f|
+              .modal-body
+                - if @billing_method.errors.any?
+                  .alert.alert-danger
+                    %ul
+                      - @billing_method.errors.full_messages.each do |message|
+                        %li= message
+                .mb-3
+                  = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+                  = f.text_field :card_holder_name, minlength: 16, maxlength: 16, inputmode: 'numeric', class: 'form-control', required: true
+                .mb-3
+                  = f.label :card_number, "Card Number", class: 'form-label'
+                  = f.text_field :card_number, class: 'form-control', required: true
+                .mb-3
+                  = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+                  = f.date_field :expiration_date, class: 'form-control', required: true
+                .mb-3
+                  = f.label :cvv, "CVV", class: 'form-label'
+                  = f.text_field :cvv,
+                    class: 'form-control',
+                    required: true,
+                    maxlength: 4,
+                    minlength: 3,
+                    inputmode: 'numeric',
+                    pattern: '\d{3,4}',
+                    oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
+                    placeholder: 'Enter CVV (3-4 digits)'
+              .modal-footer
+                = f.submit "Add Card", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss": "modal"
+                } Cancel
+
+    %div.tab-pane.fade{
+      id: "v-pills-orders",
+      role: "tabpanel",
+      "aria-labelledby": "v-pills-orders-tab",
+      tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-orders'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+    }
+      %h1{ style: "color: #2C3E50; text-align: center;" } Orders
+      %p Here are your order details.
+):
+
+Causes:
+ActiveSupport::SyntaxErrorProxy (/home/yhalim/RubymineProjects/projectdirectory-selt_2024_team_007/app/views/settings/settings.html.haml:288: syntax error, unexpected `end'
+          end
+          ^~~
+)
+1:    %div.d-flex.align-items-start{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; margin: 0;" }
+2:    
+3:      %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+4:        = render 'shared/navigation'
+5:    
+6:      %div.nav.flex-column.nav-pills{
+7:        id: "v-pills-tab",
+8:        role: "tablist",
+9:        "aria-orientation": "vertical",
+10:        style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
+11:      }
+12:        - active_tab = params[:active_tab] || 'v-pills-account-details'
+13:        %button.nav-link{
+14:          id: "v-pills-account-details-tab",
+15:          "data-bs-toggle": "pill",
+16:          "data-bs-target": "#v-pills-account-details",
+17:          type: "button",
+18:          role: "tab",
+19:          "aria-controls": "v-pills-account-details",
+20:          "aria-selected": active_tab == 'v-pills-account-details',
+21:          class: ("active" if active_tab == 'v-pills-account-details'),
+22:          style: "margin-bottom: 20px; width: 200px; text-align: center;"
+23:        } Account Details
+24:        %button.nav-link{
+25:          id: "v-pills-billings-tab",
+26:          "data-bs-toggle": "pill",
+27:          "data-bs-target": "#v-pills-billings",
+28:          type: "button",
+29:          role: "tab",
+30:          "aria-controls": "v-pills-billings",
+31:          "aria-selected": active_tab == 'v-pills-billings',
+32:          class: ("active" if active_tab == 'v-pills-billings'),
+33:          style: "margin-bottom: 20px; width: 200px; text-align: center;"
+34:        } Billings
+35:        %button.nav-link{
+36:          id: "v-pills-orders-tab",
+37:          "data-bs-toggle": "pill",
+38:          "data-bs-target": "#v-pills-orders",
+39:          type: "button",
+40:          role: "tab",
+41:          "aria-controls": "v-pills-orders",
+42:          "aria-selected": active_tab == 'v-pills-orders',
+43:          class: ("active" if active_tab == 'v-pills-orders'),
+44:          style: "margin-bottom: 20px; width: 200px; text-align: center;"
+45:        } Orders
+46:    
+47:      / Main Content Area
+48:      %div.tab-content.flex-grow-1.d-flex.align-items-center.justify-content-center{
+49:        id: "v-pills-tabContent",
+50:        style: "padding: 50px; flex-grow: 1; "
+51:      }
+52:        %div.tab-pane.fade{
+53:          id: "v-pills-account-details",
+54:          role: "tabpanel",
+55:          "aria-labelledby": "v-pills-account-details-tab",
+56:          tabindex: "0",
+57:          class: ("show active" if active_tab == 'v-pills-account-details'),
+58:          style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+59:        }
+60:          %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Profile Settings
+61:    
+62:          %div.profile-picture-container{
+63:            style: "text-align: center; margin-bottom: 20px;"
+64:          }
+65:            %img#profilePicture{
+66:              src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('logo.png'),
+67:              alt: "pfp",
+68:              style: "width: 100px; height: 100px; border-radius: 50%; cursor: pointer;",
+69:              "data-bs-toggle" => "modal",
+70:              "data-bs-target" => "#uploadImageModal"
+71:            }
+72:    
+73:          / Modal for Uploading a New Profile Picture
+74:          .modal.fade#uploadImageModal{ tabindex: "-1", "aria-labelledby" => "uploadImageModalLabel", "aria-hidden" => "true" }
+75:            .modal-dialog
+76:              .modal-content
+77:                .modal-header
+78:                  %h5.modal-title#uploadImageModalLabel Upload Profile Picture
+79:                  %button.btn-close{
+80:                    type: "button",
+81:                    "data-bs-dismiss" => "modal",
+82:                    "aria-label" => "Close"
+83:                  }
+84:                .modal-body
+85:                  = form_with(url: update_profile_image_path, method: :patch, local: true, multipart: true) do |f|
+86:                    .mb-3
+87:                      = f.label :profile_image, "Choose an image", class: 'form-label'
+88:                      = f.file_field :profile_image, class: 'form-control', required: true
+89:                    .modal-footer
+90:                      = f.submit "Upload", class: "btn btn-primary"
+91:                      %button.btn.btn-secondary{
+92:                        type: "button",
+93:                        "data-bs-dismiss" => "modal"
+94:                      } Cancel
+95:    
+96:          = render 'shared/flash'
+97:    
+98:          / Display Current Email
+99:          %div{ style: "margin-top: 30px;" }
+100:            %label{ style: "color: #ECF0F1; font-weight: bold;" } Current Email
+101:            %input.form-control{
+102:              type: "email",
+103:              value: @current_user.email,
+104:              readonly: true,
+105:              style: "width: 100%; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #e9ecef; color: #495057;"
+106:            }
+107:    
+108:          / Form for Updating User Name
+109:          = form_with(url: update_name_path, method: :patch, local: true) do |f|
+110:            %div{ style: "margin-top: 30px;" }
+111:              = f.label :name, "User Name", style: "color: #ECF0F1; font-weight: bold;"
+112:              = f.text_field :name, value: @current_user.name, class: "form-control", style: "width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px;"
+113:    
+114:            %div.actions{ style: "margin-top: 20px;" }
+115:              = f.submit "Save", class: "btn btn-success", style: "width: 100%; padding: 10px; background-color: #28a745; border: none; border-radius: 5px; color: white; font-weight: bold;"
+116:    
+117:          / Form for Reset Password and Change Email
+118:          = form_with(url: password_resets_path, method: :post, local: true) do |f|
+119:            - if @current_user&.email
+120:              = hidden_field_tag :email, @current_user.email
+121:            %div.actions{ style: "margin-top: 20px;" }
+122:              = f.submit "Reset Password", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+123:    
+124:          %div.actions{ style: "margin-top: 20px;" }
+125:            %button.btn.btn-secondary#change-email-button{
+126:              type: "button",
+127:              "data-bs-toggle": "modal",
+128:              "data-bs-target": "#changeEmailModal",
+129:              style: "width: 100%; padding: 10px; background-color: #3498db; border: none; border-radius: 5px; color: white; font-weight: bold;"
+130:            } Change Email
+131:    
+132:          %p{ style: "text-align: center; margin-top: 15px;" }
+133:            = link_to 'Back to home', root_path, style: "color: #1ABC9C;"
+134:    
+135:            / Modal for Changing Email
+136:          .modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
+137:            .modal-dialog
+138:              .modal-content
+139:                .modal-header
+140:                  %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
+141:                  %button.btn-close{
+142:                    type: "button",
+143:                    "data-bs-dismiss" => "modal",
+144:                    "aria-label" => "Close"
+145:                  }
+146:                = form_with(url: change_email_path, method: :patch, local: true) do |f|
+147:                  .modal-body
+148:                    .mb-3
+149:                      = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
+150:                      = f.email_field :new_email, class: 'form-control', required: true
+151:                    .mb-3
+152:                      = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
+153:                      = f.email_field :confirm_email, class: 'form-control', required: true
+154:                    .mb-3
+155:                      = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
+156:                      = f.password_field :current_password, class: 'form-control', required: true
+157:                  .modal-footer
+158:                    = f.submit "Update Email", class: "btn btn-primary"
+159:                    %button.btn.btn-secondary{
+160:                      type: "button",
+161:                      "data-bs-dismiss" => "modal"
+162:                    } Close
+163:    
+164:    
+165:        %div.tab-pane.fade{
+166:          id: "v-pills-billings",
+167:          role: "tabpanel",
+168:          "aria-labelledby": "v-pills-billings-tab",
+169:          tabindex: "0",
+170:          class: ("show active" if active_tab == 'v-pills-billings'),
+171:          style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+172:        }
+173:          %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
+174:          %div{ style: "margin-top: 20px;" }
+175:            = render 'shared/flash'
+176:            %ul.list-group
+177:              - @billing_methods.each do |method|
+178:                %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
+179:                  %div
+180:                    %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= method.card_holder_name
+181:                    %p{ style: "margin: 0; color: #fff;" } **** **** **** #{method.card_number.last(4)}
+182:                    %p{ style: "margin: 0; color: #888;" } Exp: #{method.expiration_date.strftime('%m/%y')}
+183:                  %div
+184:                    %button.btn.btn-sm.btn-outline-primary{
+185:                      type: "button",
+186:                      "data-bs-toggle": "modal",
+187:                      "data-bs-target": "#editCardModal-#{method.card_number.last(4)}",
+188:                      "data-card-last-four": "#{method.card_number.last(4)}",
+189:                      style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
+190:                    } Edit
+191:    
+192:                    / Edit Modal for Each Card
+193:          - @billing_methods.each do |method|
+194:            .modal.fade{id: "editCardModal-#{method.card_number.last(4)}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
+195:              .modal-dialog
+196:                .modal-content
+197:                  .modal-header
+198:                    %h5.modal-title{id: "editCardModalLabel-#{method.id}"} Edit Card
+199:                    %button.btn-close{type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close"}
+200:    
+201:                  / Form for Editing the Billing Method
+202:                  = form_with(model: method, url: edit_billing_method_path(method), method: :patch, local: true) do |f|
+203:                    .modal-body
+204:                      .mb-3
+205:                        = f.label :card_holder_name, "Edit Card Holder Name", class: 'form-label'
+206:                        = f.text_field :card_holder_name, minlength: 16, maxlength: 16, inputmode: 'numeric', value: method.card_holder_name, class: 'form-control', required: true
+207:                      .mb-3
+208:                        = f.label :card_number, "Edit Card Number", class: 'form-label'
+209:                        = f.text_field :card_number, value: method.card_number, class: 'form-control', required: true
+210:                      .mb-3
+211:                        = f.label :expiration_date, "Edit Expiration Date (MM/YY)", class: 'form-label'
+212:                        = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
+213:                    .modal-footer
+214:                      = f.submit "Update Card", class: "btn btn-primary"
+215:                      %button.btn.btn-secondary{
+216:                        type: "button",
+217:                        "data-bs-dismiss" => "modal"
+218:                      } Cancel
+219:    
+220:                  / Separate Form for Deleting the Billing Method
+221:                  = form_with(url: delete_billing_method_path(method), method: :delete, local: true) do
+222:                    .modal-footer{ style: "justify-content: start;" }
+223:                      = submit_tag "Delete", class: "btn btn-danger"
+224:    
+225:          %button.btn.btn-primary#add-card-button{
+226:            type: "button",
+227:            "data-bs-toggle": "modal",
+228:            "data-bs-target": "#addCardModal",
+229:            style: "margin-top: 20px; display: block; width: 100%;"
+230:          } Add New Card
+231:    
+232:    
+233:          / Modal for Adding a New Card
+234:          .modal.fade#addCardModal{ tabindex: "-1", "aria-labelledby" => "addCardModalLabel", "aria-hidden" => "true" }
+235:            .modal-dialog
+236:              .modal-content
+237:                .modal-header
+238:                  %h5.modal-title#addCardModalLabel Add New Card
+239:                  %button.btn-close{
+240:                    type: "button",
+241:                    "data-bs-dismiss" => "modal",
+242:                    "aria-label" => "Close"
+243:                  }
+244:                = form_with(model: @billing_method, url: add_billing_method_path, method: :post, local: true) do |f|
+245:                  .modal-body
+246:                    - if @billing_method.errors.any?
+247:                      .alert.alert-danger
+248:                        %ul
+249:                          - @billing_method.errors.full_messages.each do |message|
+250:                            %li= message
+251:                    .mb-3
+252:                      = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+253:                      = f.text_field :card_holder_name, minlength: 16, maxlength: 16, inputmode: 'numeric', class: 'form-control', required: true
+254:                    .mb-3
+255:                      = f.label :card_number, "Card Number", class: 'form-label'
+256:                      = f.text_field :card_number, class: 'form-control', required: true
+257:                    .mb-3
+258:                      = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+259:                      = f.date_field :expiration_date, class: 'form-control', required: true
+260:                    .mb-3
+261:                      = f.label :cvv, "CVV", class: 'form-label'
+262:                      = f.text_field :cvv,
+263:                        class: 'form-control',
+264:                        required: true,
+265:                        maxlength: 4,
+266:                        minlength: 3,
+267:                        inputmode: 'numeric',
+268:                        pattern: '\d{3,4}',
+269:                        oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
+270:                        placeholder: 'Enter CVV (3-4 digits)'
+271:                  .modal-footer
+272:                    = f.submit "Add Card", class: "btn btn-primary"
+273:                    %button.btn.btn-secondary{
+274:                      type: "button",
+275:                      "data-bs-dismiss": "modal"
+276:                    } Cancel
+277:    
+278:        %div.tab-pane.fade{
+279:          id: "v-pills-orders",
+280:          role: "tabpanel",
+281:          "aria-labelledby": "v-pills-orders-tab",
+282:          tabindex: "0",
+283:          class: ("show active" if active_tab == 'v-pills-orders'),
+284:          style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
+285:        }
+286:          %h1{ style: "color: #2C3E50; text-align: center;" } Orders
+287:          %p Here are your order details.
+  
+app/views/settings/settings.html.haml:288: syntax error, unexpected `end'
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:32:04 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:32:20 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:28:11 UTC
+Current time: 2024-12-07 00:32:20 UTC
+Updated session last_seen_at: 2024-12-07T00:32:20Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 12.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 4.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 106.1ms | GC: 19.3ms)
+  Rendered layout layouts/application.html.haml (Duration: 111.8ms | GC: 20.4ms)
+Completed 200 OK in 140ms (Views: 112.6ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 21.4ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:32:33 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:33:12 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:32:20 UTC
+Current time: 2024-12-07 00:33:12 UTC
+Updated session last_seen_at: 2024-12-07T00:33:12Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 3.0ms | GC: 0.6ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 16.5ms | GC: 3.4ms)
+  Rendered shared/_flash.html.haml (Duration: 8.0ms | GC: 0.6ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 110.8ms | GC: 22.6ms)
+  Rendered layout layouts/application.html.haml (Duration: 118.6ms | GC: 23.2ms)
+Completed 200 OK in 141ms (Views: 119.0ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 23.2ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-06 18:33:15 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:34:11 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:33:12 UTC
+Current time: 2024-12-07 00:34:11 UTC
+Updated session last_seen_at: 2024-12-07T00:34:11Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.5ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 12.7ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 4.6ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 134.3ms | GC: 54.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 138.8ms | GC: 54.7ms)
+Completed 200 OK in 160ms (Views: 139.3ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 55.7ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:36:11 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:34:11 UTC
+Current time: 2024-12-07 00:36:11 UTC
+Updated session last_seen_at: 2024-12-07T00:36:11Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 5.1ms | GC: 2.4ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 16.3ms | GC: 2.8ms)
+  Rendered shared/_flash.html.haml (Duration: 6.8ms | GC: 1.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 106.1ms | GC: 21.9ms)
+  Rendered layout layouts/application.html.haml (Duration: 111.2ms | GC: 22.4ms)
+Completed 200 OK in 133ms (Views: 111.5ms | ActiveRecord: 1.9ms (3 queries, 0 cached) | GC: 23.2ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-06 18:36:56 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-07 00:36:11 UTC
+Current time: 2024-12-07 00:36:56 UTC
+Updated session last_seen_at: 2024-12-07T00:36:56Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.5ms | GC: 0.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 13.0ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 5.0ms | GC: 0.4ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:177
+  Rendered settings/settings.html.haml within layouts/application (Duration: 136.1ms | GC: 56.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 140.6ms | GC: 56.1ms)
+Completed 200 OK in 159ms (Views: 141.0ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 56.1ms)
+
+

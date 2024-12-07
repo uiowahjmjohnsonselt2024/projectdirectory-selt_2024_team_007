@@ -206,10 +206,10 @@
                     = f.text_field :card_holder_name, value: method.card_holder_name, class: 'form-control', required: true
                   .mb-3
                     = f.label :card_number, "Edit Card Number", class: 'form-label'
-                    = f.text_field :card_number, value: method.card_number, class: 'form-control', required: true
+                    = f.text_field :card_number, minlength: 16, maxlength: 16, inputmode: 'numeric', value: method.card_number, class: 'form-control', required: true
                   .mb-3
                     = f.label :expiration_date, "Edit Expiration Date (MM/YY)", class: 'form-label'
-                    = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
+                    = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);", required: true
                 .modal-footer
                   = f.submit "Update Card", class: "btn btn-primary"
                   %button.btn.btn-secondary{
@@ -253,10 +253,21 @@
                   = f.text_field :card_holder_name, class: 'form-control', required: true
                 .mb-3
                   = f.label :card_number, "Card Number", class: 'form-label'
-                  = f.text_field :card_number, class: 'form-control', required: true
+                  = f.text_field :card_number, minlength: 16, maxlength: 16, inputmode: 'numeric', class: 'form-control', oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);", required: true
                 .mb-3
                   = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
                   = f.date_field :expiration_date, class: 'form-control', required: true
+                .mb-3
+                  = f.label :cvv, "CVV", class: 'form-label'
+                  = f.text_field :cvv,
+                    class: 'form-control',
+                    required: true,
+                    maxlength: 4,
+                    minlength: 3,
+                    inputmode: 'numeric',
+                    pattern: '\d{3,4}',
+                    placeholder: 'Enter CVV (3-4 digits)',
+                    oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
               .modal-footer
                 = f.submit "Add Card", class: "btn btn-primary"
                 %button.btn.btn-secondary{
