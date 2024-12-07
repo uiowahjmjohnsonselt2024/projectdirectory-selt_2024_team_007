@@ -2,7 +2,8 @@ require 'rails_helper.rb'
 
 RSpec.describe SessionsController, type: :controller do
   describe "GET #new" do
-    it "returns a success response" do
+    it "returns a success response when firsttime_shown is set" do
+      session[:firsttime_shown] = true
       get :new
       expect(response).to be_successful
     end
