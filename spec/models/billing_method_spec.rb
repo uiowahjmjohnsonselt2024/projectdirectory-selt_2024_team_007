@@ -9,7 +9,8 @@ RSpec.describe BillingMethod, type: :model do
         user: user,
         card_number: "1234567812345678",
         card_holder_name: "John Doe",
-        expiration_date: Date.today + 1.year
+        expiration_date: Date.today + 1.year,
+        cvv: "123",
       )
       expect(billing_method).to be_valid
     end
@@ -18,7 +19,8 @@ RSpec.describe BillingMethod, type: :model do
       billing_method = BillingMethod.new(
         user: user,
         card_holder_name: "John Doe",
-        expiration_date: Date.today + 1.year
+        expiration_date: Date.today + 1.year,
+        cvv: "123",
       )
       expect(billing_method).to_not be_valid
       expect(billing_method.errors[:card_number]).to include("can't be blank")
@@ -30,7 +32,8 @@ RSpec.describe BillingMethod, type: :model do
         user: user,
         card_number: "1234567812345678",
         card_holder_name: "John Doe",
-        expiration_date: Date.today + 1.year
+        expiration_date: Date.today + 1.year,
+        cvv: "145"
       )
 
       # Attempt to create a duplicate billing method
@@ -38,7 +41,8 @@ RSpec.describe BillingMethod, type: :model do
         user: user,
         card_number: "1234567812345678", # Same card number
         card_holder_name: "John Doe",
-        expiration_date: Date.today + 1.year
+        expiration_date: Date.today + 1.year,
+        cvv: "145"
       )
 
       # Validate that the duplicate is invalid
@@ -51,7 +55,8 @@ RSpec.describe BillingMethod, type: :model do
         user: user,
         card_number: "123",
         card_holder_name: "John Doe",
-        expiration_date: Date.today + 1.year
+        expiration_date: Date.today + 1.year,
+        cvv: "145"
       )
       expect(billing_method).to_not be_valid
       expect(billing_method.errors[:card_number]).to include("Card number must be exactly 16 digits")
@@ -62,7 +67,8 @@ RSpec.describe BillingMethod, type: :model do
         user: user,
         card_number: "1234567812345678",
         card_holder_name: "John Doe",
-        expiration_date: Date.today - 1.day
+        expiration_date: Date.today - 1.day,
+        cvv: "145"
       )
       expect(billing_method).to_not be_valid
       expect(billing_method.errors[:expiration_date]).to include("can't be in the past")

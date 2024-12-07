@@ -7,7 +7,8 @@ RSpec.describe SettingsController, type: :controller do
       user: user,
       card_number: "1234567812345678",
       card_holder_name: "John Doe",
-      expiration_date: Date.today + 1.year
+      expiration_date: Date.today + 1.year,
+      cvv: "235"
     )
   end
 
@@ -160,7 +161,8 @@ RSpec.describe SettingsController, type: :controller do
             billing_method: {
               card_number: "1234567812345876",
               card_holder_name: "John Doe",
-              expiration_date: Date.today + 1.year
+              expiration_date: Date.today + 1.year,
+              cvv: 542
             }
           }
         }.to change(BillingMethod, :count).by(1)
@@ -176,7 +178,8 @@ RSpec.describe SettingsController, type: :controller do
             billing_method: {
               card_number: nil,
               card_holder_name: "John Doe",
-              expiration_date: Date.today + 1.year
+              expiration_date: Date.today + 1.year,
+              cvv: nil
             }
           }
         }.to_not change(BillingMethod, :count)
