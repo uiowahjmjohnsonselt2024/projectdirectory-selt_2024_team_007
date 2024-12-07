@@ -22,20 +22,24 @@ class StoreItemsController < ApplicationController
     user = current_user # Assuming `current_user` retrieves the logged-in user object
 
     # Find the item based on the provided ID
-    item = StoreItem::STORE_ITEMS.find { |i| i[:id] == item_id }
+    item = StoreItem.find_by(id: item_id)
 
     if [50, 120, 250].include?(shard_amount)
       # Add shards to user's balance
       user.increment!(:shards_balance, shard_amount)
-      flash[:success] = "Shards added successfully! You now have #{user.shards_balance} shards."
-    elsif shard_amount > 0 && shard_amount < 5
-      # Deduct shards and update item count if the user has enough balance
-      if user.shards_balance >= shard_amount
-        user.decrement!(:shards_balance, shard_amount)
-        user.add_store_item(item_id) # Assuming `increment_item_count` updates the count for this item
-        flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
+      flash[:success] = "Purchase successful!"
+    elsif shard_amount > 0 && shard_amount <= 5
+      if item_id > 3 && user.owns_item?(item_id)
+        flash[:warning] = "You already own #{item[:name]}!"
       else
-        flash[:danger] = "Insufficient Shard Balance. You need #{shard_amount - user.shards_balance} more shards."
+        # Deduct shards and update item count if the user has enough balance
+        if user.shards_balance >= shard_amount
+          user.decrement!(:shards_balance, shard_amount)
+          user.add_store_item(item_id) # Assuming `add_store_item` updates ownership or count
+          flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
+        else
+          flash[:danger] = "Insufficient Shard Balance. You need #{shard_amount - user.shards_balance} more shards."
+        end
       end
     else
       flash[:danger] = "Invalid shard amount! Please select a valid purchase option."

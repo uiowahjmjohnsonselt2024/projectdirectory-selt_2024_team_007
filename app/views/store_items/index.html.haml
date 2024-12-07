@@ -78,16 +78,18 @@
                      action_url: purchase_store_items_path},
                      style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; border: none; border-radius: 5px;" } Purchase
             %p{ style: "color: #BDC3C7; margin: 5px 0;" }
-              Owned:
-              - case item.id
-              - when 1
-                = @user.teleport
-              - when 2
-                = @user.health_potion
-              - when 3
-                = @user.resurrection_token
-              - else
-                0
+              - if item.id == 1
+                - if @user.teleport > 0
+                  Owned: #{@user.teleport}
+              - elsif item.id == 2
+                - if @user.health_potion > 0
+                  Owned: #{@user.health_potion}
+              - elsif item.id == 3
+                - if @user.resurrection_token > 0
+                  Owned: #{@user.resurrection_token}
+              - elsif item.id > 3
+                - if UserStoreItem.exists?(user_id: @user.id, store_item_id: item.id)
+                  Owned
 
 :javascript
   document.addEventListener("DOMContentLoaded", () => {

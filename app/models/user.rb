@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
 
-  validates :teleport_count, :health_potion_count, :resurrection_count,
+  validates :teleport, :health_potion, :resurrection_token,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   VALID_NAME_REGEX = /\A[^\s]+(\s[^\s]+)*\z/
@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   # Pending friend requests received by this user
   has_many :received_friend_requests, -> { where(status: 'pending') }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :requesting_friends, through: :received_friend_requests, source: :user
+
+  has_and_belongs_to_many :store_items, join_table: :user_store_items
 
   attr_accessor :reset_token
 
@@ -68,22 +70,29 @@ class User < ActiveRecord::Base
     when 3
       increment!(:resurrection_token)
     else
-      raise ArgumentError, 'Invalid store item'
-    end
-
-    def item_count(item_id)
-      case item_id
-      when 1
-        teleport
-      when 2
-        health_potion
-      when 3
-        resurrection_token
-      else
-        0
+      unless UserStoreItem.exists?(user_id: self.id, store_item_id: item_id)
+        UserStoreItem.create!(user_id: self.id, store_item_id: item_id)
       end
     end
   end
+
+  def owns_item?(item_id)
+    store_items.exists?(id: item_id) # Assuming a relationship `store_items` exists
+  end
+
+  def item_count(item_id)
+    case item_id
+    when 1
+      teleport
+    when 2
+      health_potion
+    when 3
+      resurrection_token
+    else
+      0
+    end
+  end
+
 
   private
 

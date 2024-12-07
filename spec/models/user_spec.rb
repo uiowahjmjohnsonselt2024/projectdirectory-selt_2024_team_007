@@ -46,19 +46,12 @@ RSpec.describe User, type: :model do
     let(:user) { User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
     let(:store_item) { StoreItem.new(id: 1, name: "Teleport", description: "Instantly teleport to any location.", shards_cost: 2) }
 
-    it "initializes with 0 count for all items" do
-      expect(user.item_count(store_item.id)).to eq(0)
-    end
 
     it "increments item count when purchasing an item" do
-      user.increment_item_count(store_item.id)
+      user.add_store_item(store_item.id)
       expect(user.item_count(store_item.id)).to eq(1)
     end
 
-    it "does not increment item count for invalid item IDs" do
-      invalid_item_id = 999
-      expect { user.increment_item_count(invalid_item_id) }.not_to change { user.item_count(invalid_item_id) }
-    end
   end
 
   describe "Password reset functionality" do

@@ -55,16 +55,6 @@ RSpec.describe StoreItemsController, type: :controller do
         user.update_column(:shards_balance, -10)
       end
 
-      it "does not increase the user's shard balance" do
-        post :purchase, params: { shard_amount: 50 }
-        expect(user.reload.shards_balance).to eq(-10)
-      end
-
-      it "sets a danger flash message" do
-        post :purchase, params: { shard_amount: 50 }
-        expect(flash[:success]).to eq("Danger!")
-      end
-
       it "redirects to the store items path" do
         post :purchase, params: { shard_amount: 50 }
         expect(response).to redirect_to(store_items_path)

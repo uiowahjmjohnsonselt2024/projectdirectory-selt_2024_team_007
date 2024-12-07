@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_07_051416) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_07_085934) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,6 +82,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_07_051416) do
     t.integer "shards_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_store_items_on_item_id", unique: true
   end
 
   create_table "tiles", force: :cascade do |t|
@@ -119,7 +121,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_07_051416) do
     t.integer "health_potion", default: 0, null: false
     t.integer "resurrection_token", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["session_token"], name: "index_users_on_session_token"
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
