@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   resources :store_items do
     collection do
       post 'purchase'
+      post 'purchase_with_shards'
     end
   end
 

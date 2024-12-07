@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     when 2
       increment!(:health_potion)
     when 3
-      increment!(:resurrection)
+      increment!(:resurrection_token)
     else
       raise ArgumentError, 'Invalid store item'
     end
