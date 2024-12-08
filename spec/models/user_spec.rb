@@ -204,4 +204,48 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  let(:user) { create(:user, shards_balance: 100) }
+
+  describe "#add_store_item" do
+    context "when adding a unique, non-consumable item" do
+      let(:store_item) { create(:store_item, id: 4, name: "Exclusive Item", shards_cost: 30) }
+
+      it "adds the item to the user's owned items" do
+        user.add_store_item(store_item.id)
+        expect(user.owns_item?(store_item.id)).to be true
+      end
+    end
+
+    context "when adding a consumable item" do
+      it "increments teleport count" do
+        user.add_store_item(1)
+        expect(user.teleport).to eq(1)
+      end
+
+      it "increments health potion count" do
+        user.add_store_item(2)
+        expect(user.health_potion).to eq(1)
+      end
+
+      it "increments resurrection token count" do
+        user.add_store_item(3)
+        expect(user.resurrection_token).to eq(1)
+      end
+    end
+  end
+
+  describe "#owns_item?" do
+    let(:store_item) { create(:store_item, id: 4, name: "Exclusive Item", shards_cost: 30) }
+
+    it "returns true if the user owns the item" do
+      user.add_store_item(store_item.id)
+      expect(user.owns_item?(store_item.id)).to be true
+    end
+
+    it "returns false if the user does not own the item" do
+      expect(user.owns_item?(store_item.id)).to be false
+    end
+  end
+
 end

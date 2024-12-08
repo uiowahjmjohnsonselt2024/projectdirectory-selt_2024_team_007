@@ -19,29 +19,37 @@ class StoreItemsController < ApplicationController
   def purchase
     shard_amount = params[:shard_amount].to_i
     item_id = params[:item_id].to_i
-    user = current_user # Assuming `current_user` retrieves the logged-in user object
-
-    # Find the item based on the provided ID
+    user = current_user
     item = StoreItem.find_by(id: item_id)
 
+    # Handle shard packages
     if [50, 120, 250].include?(shard_amount)
-      # Add shards to user's balance
       user.increment!(:shards_balance, shard_amount)
       flash[:success] = "Purchase successful!"
-    elsif shard_amount > 0 && shard_amount <= 5
+      redirect_to store_items_path and return
+    end
+
+    # Handle store items based on item_id and item existence
+    if item.present?
+      # Use the item's cost, not the passed shard_amount parameter
+      actual_cost = item.shards_cost
+
+      # Check if user already owns the item
       if item_id > 3 && user.owns_item?(item_id)
         flash[:warning] = "You already own #{item[:name]}!"
       else
-        # Deduct shards and update item count if the user has enough balance
-        if user.shards_balance >= shard_amount
-          user.decrement!(:shards_balance, shard_amount)
-          user.add_store_item(item_id) # Assuming `add_store_item` updates ownership or count
+        # Check for sufficient balance
+        if user.shards_balance >= actual_cost
+          user.decrement!(:shards_balance, actual_cost)
+          user.add_store_item(item_id)
           flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
         else
-          flash[:danger] = "Insufficient Shard Balance. You need #{shard_amount - user.shards_balance} more shards."
+          needed = actual_cost - user.shards_balance
+          flash[:danger] = "Insufficient Shard Balance. You need #{needed} more shards."
         end
       end
     else
+      # If it's not a shard package and there's no valid item, mark invalid
       flash[:danger] = "Invalid shard amount! Please select a valid purchase option."
     end
 

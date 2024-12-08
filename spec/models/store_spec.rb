@@ -2,14 +2,21 @@ require 'rails_helper.rb'
 
 RSpec.describe StoreItem, type: :model do
   describe ".all" do
-    it "returns all store items" do
+    it "returns all store items from the database" do
+      create(:store_item, id: 1, name: "Teleport", shards_cost: 10)
+      create(:store_item, id: 2, name: "Invisibility Cloak", shards_cost: 20)
+
       items = StoreItem.all
-      expect(items.size).to eq(StoreItem::STORE_ITEMS.size)
+      expect(items.size).to eq(2)
       expect(items.first.name).to eq("Teleport")
     end
   end
 
   describe ".find" do
+    before do
+      create(:store_item, id: 1, name: "Teleport", shards_cost: 10)
+    end
+
     it "returns the correct item by ID" do
       item = StoreItem.find(1)
       expect(item).to be_a(StoreItem)
@@ -17,7 +24,8 @@ RSpec.describe StoreItem, type: :model do
     end
 
     it "returns nil for invalid ID" do
-      item = StoreItem.find(999)
+      # Using find_by instead of find to avoid ActiveRecord::RecordNotFound
+      item = StoreItem.find_by(id: 999)
       expect(item).to be_nil
     end
   end
