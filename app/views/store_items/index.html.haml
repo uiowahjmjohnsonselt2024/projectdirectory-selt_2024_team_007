@@ -1,5 +1,5 @@
 -# app/views/store_items/index.html.haml
-
+- content_for :mute_background_music, true
 %section.store-page{ style: "position: relative; height: 100vh; background-image: url(#{image_path('store_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; background-attachment: fixed; color: #ECF0F1; font-family: sans-serif;" }
   / Navigation Bar
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
