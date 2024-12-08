@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "legal_compliance/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,13 +14,13 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new', as: 'register'
   post "/register", to: 'users#create'
 
-  #login routes
+  # Login routes
   get '/login_firsttime', to: 'sessions#login_firsttime'  # only for the first time access the page
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
 
-
-
+  # Legal compliance routes
+  get 'legal_compliance', to: 'legal_compliance#index'
 
   # 3rd party login redirect
   post '/auth/:provider', to: 'sessions#oauth_request', as: 'oauth_request'
