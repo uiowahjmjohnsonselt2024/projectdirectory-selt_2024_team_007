@@ -42,3 +42,12 @@ end
 Then('I should see an error message') do
   expect(page).to have_content('Insufficient balance')
 end
+
+Then('I should see prices in {string}') do |expected_currency|
+  expect(page).to have_content("#{expected_currency}")
+end
+
+Given('I am a user from {string}') do |nothing|
+  # This sentence is just for customer to read
+  # The country already written on the top of scenario
+end

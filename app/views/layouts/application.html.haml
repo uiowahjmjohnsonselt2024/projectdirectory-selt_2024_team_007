@@ -22,6 +22,8 @@
     %script{src: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"}
 
   %body{ style: "margin: 0; padding: 0; height: 100%; width: 100%;" }
+
+  - unless content_for?(:mute_background_music)
     %audio#background-music{ autoplay: true, loop: true, style: "display: none;" }
       - if content_for?(:background_music)
         %source{ src: asset_path(yield(:background_music)), type: "audio/mpeg" }
@@ -29,4 +31,5 @@
         %source{ src: asset_path('shards_of_the_grid_landing.mp3'), type: "audio/mpeg" }
       | Your browser does not support the audio element.
 
-    = yield
+  = yield
+
