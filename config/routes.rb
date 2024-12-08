@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get '/favicon.ico', to: redirect('/assets/favicon.ico')
+
+
   # Register path
   get '/register', to: 'users#new', as: 'register'
   post "/register", to: 'users#create'
