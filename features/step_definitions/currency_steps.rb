@@ -1,11 +1,9 @@
 Given('there are store items available') do
-  # 创建一些模拟的 StoreItem
   StoreItem.create(name: 'Item 1', price_usd: 5.00)
   StoreItem.create(name: 'Item 2', price_usd: 10.00)
 end
 
 Given('I have a shard balance of {int}') do |balance|
-  # 设置会话或用户的初始余额
   page.set_rack_session(shard_balance: balance)
 end
 
