@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   end
 
   get '/store_items', to: 'store_items#index', as: 'store_items'
-  post 'store_items/purchase', to: 'store_items#purchase'
+  post '/store_items/purchase', to: 'store_items#purchase'
 
   resources :users
   resources :sessions, only: [ :new, :create, :destroy ]
@@ -95,8 +95,9 @@ Rails.application.routes.draw do
   root "landing#index"
 
   resources :store_items do
-      post :purchase, on: :collection
-
+    collection do
+      post 'purchase'
+    end
   end
 
   resources :friends, only: [:index, :create] do
@@ -105,6 +106,7 @@ Rails.application.routes.draw do
       delete 'reject', to: 'friends#reject'
       delete 'cancel', to: 'friends#cancel' # This is the missing route
     end
+
   end
 
   resources :password_resets, only: [:new, :create, :edit, :update]

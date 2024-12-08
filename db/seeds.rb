@@ -7,7 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+puts "Clearing Users, Games, Store Items"
+
 User.destroy_all
+Game.destroy_all
+StoreItem.destroy_all
+
 User.create!(
   name: "TestUser",
   email: "t@t.t",
@@ -42,3 +47,10 @@ end
 
 puts "Seeded #{Game.count} games."
 
+
+StoreItem.create!(name: 'Teleport', description: 'Instantly teleport to any location on the Grid(Map).', shards_cost: 2, item_id: 1)
+StoreItem.create!(name: 'Small Health Potion', description: 'Restores 50% HP', shards_cost: 1, item_id: 2)
+StoreItem.create!(name: 'Resurrection Token', description: 'Brings players or other entities back to life', shards_cost: 3, item_id: 3)
+StoreItem.create!(name: "Trickster's Relic", description: 'An enchanted artifact that channels chaotic magic, transforming anything it touches into something unpredictable and bizarre.', shards_cost: 5, item_id: 4)
+
+puts "Initialized Store Items!"

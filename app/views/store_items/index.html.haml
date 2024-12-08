@@ -1,18 +1,18 @@
 -# app/views/store_items/index.html.haml
 
-%section.store-page{ style: "position: relative; height: 100vh; background-image: url(#{image_path('store_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif;" }
+%section.store-page{ style: "position: relative; height: 100vh; background-image: url(#{image_path('store_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; background-attachment: fixed; color: #ECF0F1; font-family: sans-serif;" }
   / Navigation Bar
-  %div.nav-container{ style: "position: relative; height: 80px; width: 100%; display: flex; align-items: center; justify-content: space-between;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
     = render 'shared/navigation'
+  %div{ style: "position: absolute; bottom: 20px; left: 20px; background-color: rgba(0, 0, 0, 0.6); padding: 10px; border-radius: 5px; display: inline-block; text-align: center; z-index: 10;" }
+    %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
+      Your Country: #{@user_country_code}
+    %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
+      Your Currency: #{@currency}
 
   %div.center-content{ style: "display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;" }
     = render 'shared/flash'
     %h1{ style: "font-size: 2.5rem; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" } STORE
-    %div{ style: "background-color: rgba(0, 255, 0, 0.8); padding: 10px; border-radius: 5px; display: inline-block; text-align: center;" }
-      %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
-        Your Country: #{@user_country_code}
-      %p{ style: "margin: 5px 0; color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;" }
-        Your Currency: #{@currency}
     %div{ id: "overlay", style: "display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;" }
     %div{ id: "popup-purchase-shards", style: "display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; padding: 20px; background-color: rgba(0, 0, 0, 0.75); border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; border-radius: 10px;" }
       %h2{ style: "margin-bottom: 20px; color: #2C3E50; text-align: center;" } Purchase Shards
@@ -21,6 +21,7 @@
       %div{ style: "display: flex; justify-content: space-around; align-items: center; gap: 20px; margin-bottom: 20px;" }
         %div.purchase-panel
           %img{ src: image_path('shards_normal.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
+
           %strong= "#{display_price(5.00)} - 50 Shards"
           %button{ class: "purchase-button",
                    data: { package: "50 Shards for #{display_price(5.00)}", shard_amount: 50 },
@@ -28,6 +29,7 @@
 
         %div.purchase-panel
           %img{ src: image_path('shards_medium.png'), alt: "120 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
+
           %strong= "#{display_price(10.00)} - 120 Shards"
           %button{ class: "purchase-button",
                    data: { package: "120 Shards for #{display_price(10.00)}", shard_amount: 120 },
@@ -35,6 +37,7 @@
 
         %div.purchase-panel
           %img{ src: image_path('shards_large.png'), alt: "250 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
+
           %strong= "#{display_price(20.00)} - 250 Shards"
           %button{ class: "purchase-button",
                    data: { package: "250 Shards for #{display_price(20.00)}", shard_amount: 250 },
@@ -48,22 +51,45 @@
 
       = form_with url: purchase_store_items_path, method: :post, local: true, id: "purchase-form" do |f|
         = hidden_field_tag :shard_amount, nil, id: "shard-amount-field"
-        %button{ type: "submit", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
+        = hidden_field_tag :item_id, nil, id: "item-id-field"
+        = hidden_field_tag :package, nil, id: "package-field"
+        = hidden_field_tag :action_url, purchase_store_items_path, id: "action-url-field" # Hidden field for dynamic URL
+
+        %button{ type: "submit", id: "confirm-purchase", style: "margin-right: 10px; padding: 10px 20px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Confirm
         %button{ type: "button", id: "cancel-purchase", style: "padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Cancel
 
     %button{ id: "open-popup-purchase", style: "margin: 20px; padding: 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" }
       Purchase Shards
 
-
-%div.store-items
-  - @store_items.each do |item|
-    %div.store-item
-      %h2= item.name
-      %p= item.description
-      %p Cost: #{item.shards_cost} shards
-      %button{ class: "purchase-button",
-                data: { package: "#{item.name} for #{item.shards_cost} shards", shard_amount: item.shards_cost },
-                style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
+    %div.scrollable-store-items{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
+      %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Available Items:
+      - @store_items.each do |item|
+        %div.store-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px;" }
+          %img{ src: image_path('shards_normal.png'), alt: "Shards Icon", style: "width: 75px; height: 75px; border-radius: 5px;" }
+          %div{ style: "flex: 1;" }
+            %p{ style: "color: #ECF0F1; font-weight: bold; margin: 0;" }= item.name
+            %p{ style: "color: #BDC3C7; margin: 5px 0;" }= item.description
+          %p{ style: "color: #ECF0F1; margin: 0;" } Cost: #{item.shards_cost} shards
+          %div{ style: "display: flex; flex-direction: column; align-items: center; margin-left: 20px;" }
+            %button{ class: "purchase-button",
+                     data: { package: "#{item.name} for #{item.shards_cost} Shards",
+                     item_id: item.id,
+                     shard_amount: item.shards_cost,
+                     action_url: purchase_store_items_path},
+                     style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; border: none; border-radius: 5px;" } Purchase
+            %p{ style: "color: #BDC3C7; margin: 5px 0;" }
+              - if item.id == 1
+                - if @user.teleport > 0
+                  Owned: #{@user.teleport}
+              - elsif item.id == 2
+                - if @user.health_potion > 0
+                  Owned: #{@user.health_potion}
+              - elsif item.id == 3
+                - if @user.resurrection_token > 0
+                  Owned: #{@user.resurrection_token}
+              - elsif item.id > 3
+                - if UserStoreItem.exists?(user_id: @user.id, store_item_id: item.id)
+                  Owned
 
 :javascript
   document.addEventListener("DOMContentLoaded", () => {
@@ -89,9 +115,10 @@
       overlay.style.display = "block";
     };
 
-    const openConfirmation = (packageInfo, shardAmount) => {
+    const openConfirmation = (packageInfo, shardAmount, itemId) => {
       confirmationMessage.textContent = `Are you sure you want to purchase ${packageInfo}?`;
       document.getElementById('shard-amount-field').value = shardAmount;
+      document.getElementById('item-id-field').value = itemId;
 
       openPopup(confirmationPopup);
       closePopup(purchasePopup);
@@ -101,14 +128,16 @@
     openPurchaseButton.addEventListener("click", () => openPopup(purchasePopup));
 
     // Close "Purchase Shards" pop-up
-    closePurchaseButton.addEventListener("click", () => closePopup(purchasePopup));
+    closePurchaseButton.addEventListener("click", () => closePopup  (purchasePopup));
 
     // Open confirmation pop-up when a purchase button is clicked
     document.querySelectorAll('.purchase-button').forEach(button => {
       button.addEventListener('click', (event) => {
         const packageInfo = event.target.getAttribute('data-package');
-        const shardAmount = event.target.getAttribute('data-shard-amount'); // Retrieve from button
-        openConfirmation(packageInfo, shardAmount);
+        const shardAmount = event.target.getAttribute('data-shard-amount');
+        const itemId = event.target.getAttribute('data-item-id');
+        openConfirmation(packageInfo, shardAmount, itemId);
+
       });
     });
 

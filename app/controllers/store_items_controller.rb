@@ -7,6 +7,7 @@ class StoreItemsController < ApplicationController
   def index
     @store_items = StoreItem.all
     @shard_balance = session[:shard_balance] ||= 100 # Default balance
+    @user = current_user
     @shard_packages = [
       { shards: 50, price_usd: 5.00 },
       { shards: 120, price_usd: 10.00 },
@@ -14,20 +15,45 @@ class StoreItemsController < ApplicationController
     ]
   end
 
+
   def purchase
     shard_amount = params[:shard_amount].to_i
+    item_id = params[:item_id].to_i
+    user = current_user
+    item = StoreItem.find_by(id: item_id)
 
-    user = current_user  # Adjust based on how you get the current user
-
-    if user.shards_balance >= 0
-      user.update_column(:shards_balance, user.shards_balance + shard_amount)
+    # Handle shard packages
+    if [50, 120, 250].include?(shard_amount)
+      user.increment!(:shards_balance, shard_amount)
       flash[:success] = "Purchase successful!"
-      redirect_to store_items_path
-
-    else
-      flash[:success] = "Danger!"
-      redirect_to store_items_path
+      redirect_to store_items_path and return
     end
+
+    # Handle store items based on item_id and item existence
+    if item.present?
+      # Use the item's cost, not the passed shard_amount parameter
+      actual_cost = item.shards_cost
+
+      # Check if user already owns the item
+      if item_id > 3 && user.owns_item?(item_id)
+        flash[:warning] = "You already own #{item[:name]}!"
+      else
+        # Check for sufficient balance
+        if user.shards_balance >= actual_cost
+          user.decrement!(:shards_balance, actual_cost)
+          user.add_store_item(item_id)
+          flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
+        else
+          needed = actual_cost - user.shards_balance
+          flash[:danger] = "Insufficient Shard Balance. You need #{needed} more shards."
+        end
+      end
+    else
+      # If it's not a shard package and there's no valid item, mark invalid
+      flash[:danger] = "Invalid shard amount! Please select a valid purchase option."
+    end
+
+    redirect_to store_items_path
   end
 
   private
