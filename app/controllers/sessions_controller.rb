@@ -42,6 +42,7 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(auth)
     if user
       session[:session_token] = user.session_token
+      session[:oauth_login] = true
       flash[:notice] = "Welcome, #{user.name}!"
       redirect_to landing_path
     else
