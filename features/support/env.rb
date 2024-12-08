@@ -1,5 +1,6 @@
 require 'cucumber/rails'
 require 'rack_session_access/capybara'
+require 'webmock/cucumber'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 Capybara.default_driver = :rack_test

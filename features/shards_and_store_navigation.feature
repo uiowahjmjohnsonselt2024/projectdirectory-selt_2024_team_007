@@ -17,6 +17,7 @@ Feature: Shards and Store Navigation
     Given I am on the landing page
     Then I should see "Shards: 0"
 
+  @US
   Scenario: Navigate to the in-game purchases page from the landing page
     Given I am on the landing page
     When I click the store button
@@ -27,6 +28,7 @@ Feature: Shards and Store Navigation
     When I click "Friends" in the dropdown menu
     Then I should see "Shards: 0"
 
+  @US
   Scenario: Navigate to the in-game purchases page from the settings page
     When I click the profile picture
     When I click "Friends" in the dropdown menu
