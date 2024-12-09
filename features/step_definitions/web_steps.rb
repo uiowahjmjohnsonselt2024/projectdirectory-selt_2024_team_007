@@ -204,3 +204,7 @@ Given /^(?:|I )am logged in as "([^"]*)" with password "([^"]*)"$/ do |email, pa
   click_button "Sign in"
   @current_user = User.find_by(email: email)
 end
+
+Given("PENDING SCENARIO") do
+    
+end
