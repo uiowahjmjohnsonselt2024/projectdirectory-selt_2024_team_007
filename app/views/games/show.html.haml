@@ -1,17 +1,11 @@
-%div.nav-container{
-  style: "width: 100%; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;"
-}
-  = render 'shared/navigation'
-
-= render 'shared/flash'
-%div{data: {game_id: @game.id}}
-%div{data: {user_id: @current_user.id}}
-%div.main-content
+%section.dashboard{ style: " height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+  %div{data: {game_id: @game.id}}
+  %div{data: {user_id: @current_user.id}}
   %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
-    
     / Sidebar
-    %aside.sidebar.bg-dark.text-white.p-3.d-flex.flex-column
-      
+    %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px;" }
       %h2.mb-3 Game Info
       %p
         %strong Game Name:
@@ -33,8 +27,6 @@
 
       %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
         Inventory
-      
-      = link_to 'Back to Landing Page', landing_path
 
       / Chat Response Field
       %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
@@ -50,6 +42,9 @@
           View Map
         %div.square-container.d-flex.align-items-center.justify-content-center
           %p.text-muted.mb-0 GPT-generated images will appear here.
+
+      %div#flash-messages
+        = render 'shared/flash'
 
       / Editable User Input Field
       %div.user-input.mt-3
@@ -180,10 +175,11 @@
 
         if (response.ok) {
           messageField.value = "";
+          const flashContainer = document.getElementById("flash-messages");
           const flashDiv = document.createElement("div");
           flashDiv.className = "alert alert-success";
           flashDiv.textContent = "Message sent!";
-          document.body.prepend(flashDiv);
+          flashContainer.appendChild(flashDiv);
           setTimeout(() => flashDiv.remove(), 3000);
         } else {
           alert("Failed to send your message. Please try again.");
