@@ -47,7 +47,10 @@ Rails.application.configure do
     "https://#{ENV['HOST_URL']}",
     "http://#{ENV['HOST_URL']}"
   ]
-  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
+  config.action_cable.disable_request_forgery_protection = true
+
+  # Assume all access to the app
+  # is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
   # config.assume_ssl = true
 
