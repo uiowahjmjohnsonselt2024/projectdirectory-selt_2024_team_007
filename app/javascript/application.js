@@ -5,6 +5,8 @@ import consumer from "./channels/consumer";
 //import "app/javascript/controllers"
 // import "bootstrap";
 // import "popper.js";
+import "channels"
+import { application } from "controllers/application"
 
 export function openConnection() {
     return new WebSocket('ws://localhost:3000/cable');
