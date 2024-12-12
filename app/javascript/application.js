@@ -1,6 +1,6 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 // import "@hotwired/turbo-rails"
-import consumer from "./channels/consumer";
+// import consumer from "./channels/consumer";
 // import "./chat";
 //import "app/javascript/controllers"
 // import "bootstrap";
