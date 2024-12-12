@@ -1,5 +1,4 @@
 import consumer from "./consumer";
-import {openConnection} from "../application";
 
 document.addEventListener("DOMContentLoaded", () => {
 
