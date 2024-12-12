@@ -162,6 +162,7 @@
         return;
       }
 
+      console.log("Sending message:", message);
       try {
         const response = await fetch(`/games/${gameId}/chat`, {
           method: "POST",
