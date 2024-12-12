@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   before_save { |user| user.email=user.email.downcase }
   before_create :create_session_token
 
+  validates :teleport, :health_potion, :resurrection_token,
+            numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   VALID_NAME_REGEX = /\A[^\s]+(\s[^\s]+)*\z/
   validates :name, presence: true, length: { in: 3..50 }, format: { with: VALID_NAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -30,6 +33,9 @@ class User < ActiveRecord::Base
   # Pending friend requests received by this user
   has_many :received_friend_requests, -> { where(status: 'pending') }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :requesting_friends, through: :received_friend_requests, source: :user
+  has_many :billing_methods, dependent: :destroy
+
+  has_and_belongs_to_many :store_items, join_table: :user_store_items
 
   attr_accessor :reset_token
 
@@ -56,8 +62,41 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def add_store_item(item_id)
+    case item_id
+    when 1
+      increment!(:teleport)
+    when 2
+      increment!(:health_potion)
+    when 3
+      increment!(:resurrection_token)
+    else
+      unless UserStoreItem.exists?(user_id: self.id, store_item_id: item_id)
+        UserStoreItem.create!(user_id: self.id, store_item_id: item_id)
+      end
+    end
+  end
+
+  def owns_item?(item_id)
+    store_items.exists?(id: item_id) # Assuming a relationship `store_items` exists
+  end
+
+  def item_count(item_id)
+    case item_id
+    when 1
+      teleport
+    when 2
+      health_potion
+    when 3
+      resurrection_token
+    else
+      0
+    end
+  end
+
 
   private
+
   def password_required?
     password.present? || password_confirmation.present?
   end

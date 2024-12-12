@@ -1,3 +1,4 @@
+- content_for :background_music, 'log_in.mp3'
 %section.vh-100{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; background-attachment: fixed; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;" }
   %div{ style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);" }
     %div{ style: "text-align: center; margin-bottom: 20px;" }
@@ -9,22 +10,118 @@
           - @user.errors.full_messages.each do |msg|
             %li= msg
     = render 'shared/flash'
+
     = form_with model: @user, url: register_path, local: true, class: "space-y-4" do |form|
       %div.form-group
         = form.label :name, "Name", style: "color: #BDC3C7; font-weight: bold;"
-        = form.text_field :name, id: 'name_field', class: "form-control", placeholder: "Enter your name", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.form-group{ style: "margin-top: 20px;" }
+        = form.text_field :name, id: 'name_field', class: "form-control", placeholder: "Enter your name", style: "width: 100%; padding: 8px; border: 1px solid #1ABC9C; border-radius: 4px;"
+      %div.form-group{ style: "margin-top: 15px;" }
         = form.label :email, "Email", style: "color: #BDC3C7; font-weight: bold;"
-        = form.email_field :email, id: 'email_field', class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.form-group{ style: "margin-top: 20px;" }
+        = form.email_field :email, id: 'email_field', class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 8px; border: 1px solid #1ABC9C; border-radius: 4px;"
+      %div.form-group{ style: "margin-top: 15px;" }
         = form.label :password, "Password", style: "color: #BDC3C7; font-weight: bold;"
-        = form.password_field :password, id: 'password_field', class: "form-control", placeholder: "Enter your password", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
-      %div.form-group{ style: "margin-top: 20px;" }
+        = form.password_field :password, id: 'password_field', class: "form-control", placeholder: "Enter your password", style: "width: 100%; padding: 8px; border: 1px solid #1ABC9C; border-radius: 4px;"
+      %div.form-group{ style: "margin-top: 15px;" }
         = form.label :password_confirmation, "Confirm Password", style: "color: #BDC3C7; font-weight: bold;"
-        = form.password_field :password_confirmation, id: 'password_confirmation_field', class: "form-control", placeholder: "Confirm your password", style: "width: 100%; padding:10px; border:1px solid #1ABC9C; border-radius:5px;"
+        = form.password_field :password_confirmation, id: 'password_confirmation_field', class: "form-control", placeholder: "Confirm your password", style: "width: 100%; padding:8px; border:1px solid #1ABC9C; border-radius:4px;"
+
+      %p{ style: "text-align: left; margin-top: 15px; color: #BDC3C7; font-size: 0.9em;" }
+        By clicking "Create my account", you agree to our
+        %a{ id: "openModalLink", style:"color:#1ABC9C; text-decoration: underline; cursor: pointer;" } User Agreement
+
       %div.actions{ style: "margin-top: 20px;" }
         = form.submit "Create my account", id: 'create_account_button', class: "btn btn-primary", style: "width:100%; padding:10px; background-color:#1ABC9C; border:none; border-radius:5px; color:white; font-weight:bold;"
 
     %p{ style: "text-align: center; margin-top: 20px; color: #BDC3C7;" }
       Already have an account?
       = link_to "Log in here", login_path, style: "color: #1ABC9C;"
+
+
+.modal-overlay#userAgreementModal{
+  style:"display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;"
+}
+  .modal-content{
+    style:"position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+    background:black; color:white; padding:30px; border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1); width:80%; max-width:800px;
+    max-height:80vh; overflow-y: auto; text-align:left;"
+  }
+    %h2{ style:"margin-bottom:20px; font-size:2.5em;text-align: center;" } User Agreement
+
+    %p
+      Welcome to the Legal Compliance Notice for Shards of the Grid. Please read the following information carefully to understand our Terms of Service and Privacy Policy.
+    %p
+    %p
+    %h2 Terms of Service
+    %ul
+      %li Shards of the Grid is a role-playing game (RPG) developed solely for educational purposes as part of a coursework project. By registering or logging in for the first time, you agree to comply with and be bound by the following terms and conditions. If you do not agree with these terms, please do not use our services.
+
+    %h3 Usage
+    %ul
+      %li Non-Profit Use: This game is currently non-commercial and is intended solely for educational purposes. No real financial transactions will take place.
+      %li Credit Card Information: The game does not process real credit card information. Any simulated payment processes are part of the educational project and do not involve actual financial transactions.
+      %li Content Ownership: All content within the game, including graphics, music, and dialogues, are either original, used with permission, or fall under fair use for educational purposes.
+
+    %h3 Prohibited Activities
+    %ul
+      %li Users must not engage in any activities that could harm the game’s functionality or other users' experience.
+      %li Distribution of malicious software, hacking, or attempting to breach the game’s security is strictly forbidden.
+      %li Any form of harassment, hate speech, or inappropriate behavior towards other users is not tolerated.
+
+    %h2 Privacy Policy
+    %ul
+      %li Shards of the Grid is committed to protecting your privacy. This policy outlines how we collect, use, and safeguard your personal information.
+
+    %h3 Information Collection
+    %ul
+      %li Personal Data: We may collect personal information such as your name, email address, and other relevant details during registration.
+      %li Usage Data: Information about how you interact with the game, including gameplay statistics and preferences.
+
+    %h3 Information Usage
+    %ul
+      %li Personal data is used solely to enhance your gaming experience, provide customer support, and improve the game’s functionality.
+      %li We do not sell, trade, or otherwise transfer your personal information to outside parties without your consent, except as required by law.
+
+    %h3 Data Security
+    %ul
+      %li We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure.
+
+    %h2 Disclaimer
+    %ul
+      %li Shards of the Grid is an educational project and is not intended for commercial use. All content is provided "as is" without any warranties, express or implied. We do not guarantee the accuracy, completeness, or usefulness of any information provided within the game.
+
+    %h2 Limitation of Liability
+    %ul
+      %li In no event shall Shards of the Grid, its developers, or affiliates be liable for any damages arising out of the use or inability to use the game, including but not limited to direct, indirect, incidental, or consequential damages.
+
+    %h2 Intellectual Property
+    %ul
+      %li All intellectual property rights in the game are owned by the developers or their licensors. Unauthorized use, reproduction, or distribution of any content from the game is prohibited and may result in legal action.
+
+    %h2 User Agreement
+    %ul
+      %li By registering or logging in for the first time, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and Privacy Policy. If you do not agree, please refrain from using **Shards of the Grid**.
+
+    %ul
+      %li For any concerns regarding potential infringements or legal issues, please contact us immediately at hans-johnson@gmail.com.
+
+    %button#closeModal{
+      style:"margin-top:20px; padding:10px 20px; background-color:#3498DB; color:white; border:none; border-radius:4px; cursor:pointer;"
+    } Close
+
+
+
+:javascript
+  document.addEventListener("DOMContentLoaded", function() {
+    var openModalLink = document.getElementById('openModalLink');
+    var userAgreementModal = document.getElementById('userAgreementModal');
+    var closeModal = document.getElementById('closeModal');
+
+    openModalLink.addEventListener('click', function() {
+      userAgreementModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', function() {
+      userAgreementModal.style.display = 'none';
+    });
+  });

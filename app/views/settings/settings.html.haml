@@ -1,3 +1,4 @@
+`- content_for :background_music, 'log_in.mp3'
 %div.d-flex.align-items-start{ style: "background-image: url('#{image_path('profile_settings_background.png')}'); background-size: cover; background-position: center; height: 100vh; margin: 0;" }
 
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
@@ -9,14 +10,16 @@
     "aria-orientation": "vertical",
     style: "background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); width: 250px; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 200px; padding-left: 50px; padding-right: 250px;"
   }
-    %button.nav-link.active{
+    - active_tab = params[:active_tab] || 'v-pills-account-details'
+    %button.nav-link{
       id: "v-pills-account-details-tab",
       "data-bs-toggle": "pill",
       "data-bs-target": "#v-pills-account-details",
       type: "button",
       role: "tab",
-      "aria-controls": "v-account-details",
-      "aria-selected": "true",
+      "aria-controls": "v-pills-account-details",
+      "aria-selected": active_tab == 'v-pills-account-details',
+      class: ("active" if active_tab == 'v-pills-account-details'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Account Details
     %button.nav-link{
@@ -26,7 +29,8 @@
       type: "button",
       role: "tab",
       "aria-controls": "v-pills-billings",
-      "aria-selected": "false",
+      "aria-selected": active_tab == 'v-pills-billings',
+      class: ("active" if active_tab == 'v-pills-billings'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Billings
     %button.nav-link{
@@ -36,7 +40,8 @@
       type: "button",
       role: "tab",
       "aria-controls": "v-pills-orders",
-      "aria-selected": "false",
+      "aria-selected": active_tab == 'v-pills-orders',
+      class: ("active" if active_tab == 'v-pills-orders'),
       style: "margin-bottom: 20px; width: 200px; text-align: center;"
     } Orders
 
@@ -45,11 +50,12 @@
     id: "v-pills-tabContent",
     style: "padding: 50px; flex-grow: 1; "
   }
-    %div.tab-pane.fade.show.active{
+    %div.tab-pane.fade{
       id: "v-pills-account-details",
       role: "tabpanel",
       "aria-labelledby": "v-pills-account-details-tab",
       tabindex: "0",
+      class: ("show active" if active_tab == 'v-pills-account-details'),
       style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
       %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Profile Settings
@@ -127,34 +133,34 @@
       %p{ style: "text-align: center; margin-top: 15px;" }
         = link_to 'Back to home', root_path, style: "color: #1ABC9C;"
 
-  / Modal for Changing Email
-.modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
-        %button.btn-close{
-          type: "button",
-          "data-bs-dismiss" => "modal",
-          "aria-label" => "Close"
-        }
-      = form_with(url: change_email_path, method: :patch, local: true) do |f|
-        .modal-body
-          .mb-3
-            = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
-            = f.email_field :new_email, class: 'form-control', required: true
-          .mb-3
-            = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
-            = f.email_field :confirm_email, class: 'form-control', required: true
-          .mb-3
-            = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
-            = f.password_field :current_password, class: 'form-control', required: true
-        .modal-footer
-          = f.submit "Update Email", class: "btn btn-primary"
-          %button.btn.btn-secondary{
-            type: "button",
-            "data-bs-dismiss" => "modal"
-          } Close
+        / Modal for Changing Email
+      .modal.fade#changeEmailModal{ tabindex: "-1", "aria-labelledby" => "changeEmailModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#changeEmailModalLabel{ style: "color: black;" } Change Email
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(url: change_email_path, method: :patch, local: true) do |f|
+              .modal-body
+                .mb-3
+                  = f.label :new_email, "Enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :new_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :confirm_email, "Re-enter New Email", class: 'form-label', style: 'color: black;'
+                  = f.email_field :confirm_email, class: 'form-control', required: true
+                .mb-3
+                  = f.label :current_password, "Enter Current Password", class: 'form-label', style: 'color: black;'
+                  = f.password_field :current_password, class: 'form-control', required: true
+              .modal-footer
+                = f.submit "Update Email", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss" => "modal"
+                } Close
 
 
     %div.tab-pane.fade{
@@ -162,17 +168,130 @@
       role: "tabpanel",
       "aria-labelledby": "v-pills-billings-tab",
       tabindex: "0",
-      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      class: ("show active" if active_tab == 'v-pills-billings'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
-      %h1{ style: "color: #2C3E50; text-align: center;" } Billing Information
-      %p Manage your billing details here.
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
+      %div{ style: "margin-top: 20px;" }
+        = render 'shared/flash'
+        %ul.list-group
+          - @billing_methods.each do |method|
+            %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
+              %div
+                %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= method.card_holder_name
+                %p{ style: "margin: 0; color: #fff;" } **** **** **** #{method.card_number.last(4)}
+                %p{ style: "margin: 0; color: #888;" } Exp: #{method.expiration_date.strftime('%m/%y')}
+              %div
+                %button.btn.btn-sm.btn-outline-primary{
+                  type: "button",
+                  "data-bs-toggle": "modal",
+                  "data-bs-target": "#editCardModal-#{method.card_number.last(4)}",
+                  "data-card-last-four": "#{method.card_number.last(4)}",
+                  style: "margin-left: 10px; border: none; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);"
+                } Edit
+
+                / Edit Modal for Each Card
+      - @billing_methods.each do |method|
+        .modal.fade{id: "editCardModal-#{method.card_number.last(4)}", tabindex: "-1", "aria-labelledby" => "editCardModalLabel-#{method.id}", "aria-hidden" => "true"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %h5.modal-title{id: "editCardModalLabel-#{method.id}"} Edit Card
+                %button.btn-close{type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close"}
+
+              / Form for Editing the Billing Method
+              = form_with(model: method, url: edit_billing_method_path(method), method: :patch, local: true) do |f|
+                .modal-body
+                  .mb-3
+                    = f.label :card_holder_name, "Edit Card Holder Name", class: 'form-label'
+                    = f.text_field :card_holder_name, value: method.card_holder_name, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :card_number, "Edit Card Number", class: 'form-label'
+                    = f.text_field :card_number, minlength: 16, maxlength: 16, inputmode: 'numeric', value: method.card_number, class: 'form-control', oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);", required: true
+                  .mb-3
+                    = f.label :expiration_date, "Edit Expiration Date (MM/YY)", class: 'form-label'
+                    = f.date_field :expiration_date, value: method.expiration_date, class: 'form-control', required: true
+                  .mb-3
+                    = f.label :cvv, "Edit CVV", class: 'form-label'
+                    = f.text_field :cvv,
+                      class: 'form-control',
+                      maxlength: 4,
+                      inputmode: 'numeric',
+                      placeholder: 'Enter CVV (3-4 digits)',
+                      value: method.cvv,
+                      oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
+                .modal-footer
+                  = f.submit "Update Card", class: "btn btn-primary"
+                  %button.btn.btn-secondary{
+                    type: "button",
+                    "data-bs-dismiss" => "modal"
+                  } Cancel
+
+              / Separate Form for Deleting the Billing Method
+              = form_with(url: delete_billing_method_path(method), method: :delete, local: true) do
+                .modal-footer{ style: "justify-content: start;" }
+                  = submit_tag "Delete", class: "btn btn-danger"
+
+      %button.btn.btn-primary#add-card-button{
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#addCardModal",
+        style: "margin-top: 20px; display: block; width: 100%;"
+      } Add New Card
+
+
+      / Modal for Adding a New Card
+      .modal.fade#addCardModal{ tabindex: "-1", "aria-labelledby" => "addCardModalLabel", "aria-hidden" => "true" }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %h5.modal-title#addCardModalLabel Add New Card
+              %button.btn-close{
+                type: "button",
+                "data-bs-dismiss" => "modal",
+                "aria-label" => "Close"
+              }
+            = form_with(model: @billing_method, url: add_billing_method_path, method: :post, local: true) do |f|
+              .modal-body
+                - if @billing_method.errors.any?
+                  .alert.alert-danger
+                    %ul
+                      - @billing_method.errors.full_messages.each do |message|
+                        %li= message
+                .mb-3
+                  = f.label :card_holder_name, "Card Holder Name", class: 'form-label'
+                  = f.text_field :card_holder_name, class: 'form-control', required: true
+                .mb-3
+                  = f.label :card_number, "Card Number", class: 'form-label'
+                  = f.text_field :card_number, minlength: 16, maxlength: 16, inputmode: 'numeric', class: 'form-control', oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);", required: true
+                .mb-3
+                  = f.label :expiration_date, "Expiration Date (MM/YY)", class: 'form-label'
+                  = f.date_field :expiration_date, class: 'form-control', required: true
+                .mb-3
+                  = f.label :cvv, "CVV", class: 'form-label'
+                  = f.text_field :cvv,
+                    class: 'form-control',
+                    required: true,
+                    maxlength: 4,
+                    minlength: 3,
+                    inputmode: 'numeric',
+                    pattern: '\d{3,4}',
+                    placeholder: 'Enter CVV (3-4 digits)',
+                    oninput: "this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);"
+              .modal-footer
+                = f.submit "Add Card", class: "btn btn-primary"
+                %button.btn.btn-secondary{
+                  type: "button",
+                  "data-bs-dismiss": "modal"
+                } Cancel
 
     %div.tab-pane.fade{
       id: "v-pills-orders",
       role: "tabpanel",
       "aria-labelledby": "v-pills-orders-tab",
       tabindex: "0",
-      style: "width: 100%; max-width: 800px; padding: 30px; background-color: #ffffff; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);"
+      class: ("show active" if active_tab == 'v-pills-orders'),
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
       %h1{ style: "color: #2C3E50; text-align: center;" } Orders
       %p Here are your order details.
