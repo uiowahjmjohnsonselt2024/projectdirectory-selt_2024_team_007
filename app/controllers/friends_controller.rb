@@ -74,6 +74,19 @@ class FriendsController < ApplicationController
     redirect_to friends_path
   end
 
+  def unfriend
+    friendship = @user.friendships.find_by(friend_id: params[:id]) ||
+      @user.inverse_friendships.find_by(user_id: params[:id])
+
+    if friendship&.destroy
+      flash[:notice] = 'Friend removed successfully.'
+    else
+      flash[:error] = 'Unable to remove friend.'
+    end
+
+    redirect_to friends_path
+  end
+
   private
 
   def set_user

@@ -278,3 +278,11 @@ $body-color: $text-default;
   }
 }
 
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+

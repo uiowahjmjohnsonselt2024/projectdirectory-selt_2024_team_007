@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  mount ActionCable.server => '/cable'
+  resources :channels
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
@@ -52,6 +54,7 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :show] do
     member do
       post 'start'  # This creates start_game_path(@game)
+      post 'chat'            # For the chat feature
     end
 
     collection do
@@ -108,7 +111,8 @@ Rails.application.routes.draw do
     member do
       post 'accept', to: 'friends#accept'
       delete 'reject', to: 'friends#reject'
-      delete 'cancel', to: 'friends#cancel' # This is the missing route
+      delete 'cancel', to: 'friends#cancel'
+      delete 'unfriend', to: 'friends#unfriend'
     end
 
   end
