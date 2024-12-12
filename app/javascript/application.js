@@ -7,6 +7,9 @@
 // import "popper.js";
 // import "channels"
 import { application } from "controllers/application"
+import { createConsumer } from "@rails/actioncable"
+
+export default createConsumer()
 
 export function openConnection() {
     return new WebSocket('ws://localhost:3000/cable');
