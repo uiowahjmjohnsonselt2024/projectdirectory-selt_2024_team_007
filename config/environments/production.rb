@@ -48,6 +48,7 @@ Rails.application.configure do
     "http://#{ENV['HOST_URL']}"
   ]
   config.action_cable.disable_request_forgery_protection = true
+  Rails.application.routes.default_url_options[:host] = ENV['HOST_URL']
 
   # Assume all access to the app
   # is happening through a SSL-terminating reverse proxy.
