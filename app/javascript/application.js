@@ -5,7 +5,7 @@
 //import "app/javascript/controllers"
 // import "bootstrap";
 // import "popper.js";
-import "channels"
+// import "channels"
 import { application } from "controllers/application"
 
 export function openConnection() {
