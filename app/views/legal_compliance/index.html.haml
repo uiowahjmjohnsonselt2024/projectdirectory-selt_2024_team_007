@@ -2,9 +2,17 @@
 %section.vh-100{
   style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
 }
+  %div#goodbyeModalOverlay{
+    style: "display: none; background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; max-width: 90%; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); color: white; overflow-y: auto; max-height: 90vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+  }
+    %div{ style: "text-align:center; margin-bottom:20px;" }
+      %img{ src: image_path('logo.png'), alt:"Logo", style:"max-width:100px;" }
+    %h1{ style:"color:#ECF0F1; text-align:center; margin-bottom:20px;" } Goodbye, Adventurer
+
   %div#legalModalOverlay{
     style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 800px; max-width: 90%; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); color: white; overflow-y: auto; max-height: 90vh;"
   }
+
     %div{ style: "text-align: center; margin-bottom: 20px;" }
       %img{ src: image_path('logo.png'), alt: "Logo", style: "max-width: 100px;" }
     %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Legal Compliance Notice
@@ -100,10 +108,18 @@
       });
     });
 
-    function closeModalOnly() {
-      var modal = document.getElementById('legalModalOverlay');
-      modal.style.display = 'none';
+    function closeModal() {
+      // 隐藏法律模态框
+      var legalModal = document.getElementById('legalModalOverlay');
+      legalModal.style.display = 'none';
+
+      var goodbyeModal = document.getElementById('goodbyeModalOverlay');
+      goodbyeModal.style.display = 'block';
+
+      goodbyeAudio.muted = false;
+      goodbyeAudio.play().catch((err) => console.error('Goodbye audio playback error:', err));
     }
+
 
     function closeAndRedirect() {
       var modal = document.getElementById('legalModalOverlay');
@@ -112,5 +128,5 @@
     }
 
     agreeButton.addEventListener('click', closeAndRedirect);
-    disagreeButton.addEventListener('click', closeModalOnly);
+    disagreeButton.addEventListener('click', closeModal);
   });
