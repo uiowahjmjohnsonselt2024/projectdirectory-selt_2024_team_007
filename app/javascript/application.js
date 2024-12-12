@@ -1,15 +1,12 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 // import "@hotwired/turbo-rails"
-// import consumer from "./channels/consumer";
+import consumer from "./channels/consumer";
 // import "./chat";
 //import "app/javascript/controllers"
 // import "bootstrap";
 // import "popper.js";
-// import "channels"
+import "channels"
 import { application } from "controllers/application"
-import { createConsumer } from "@rails/actioncable"
-
-export default createConsumer()
 
 export function openConnection() {
     return new WebSocket('ws://localhost:3000/cable');
