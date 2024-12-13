@@ -352,6 +352,63 @@ You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragon
       "An error occurred while generating the response."
   end
 
+  def generate_image_prompt(context)
+    # System prompt for refining the image prompt
+    system_prompt = <<~PROMPT
+    You are a creative assistant specialized in generating descriptive prompts for fantasy-themed illustrations. 
+    Your task is to distill the key elements from the given context to create a concise and vivid prompt 
+    for an AI image generation model. Prioritize visual elements, especially actions or settings, 
+    while keeping the prompt under 900 characters.
+
+    # Instructions:
+    - Focus on the most visually striking actions, settings, and details.
+    - Highlight key interactions described in the response.
+    - If multiple actions are described, creatively combine them to depict a coherent and engaging scene.
+    - Ensure the prompt is optimized for creating a single, dynamic fantasy-themed image.
+    PROMPT
+
+    # Prepare messages for GPT call
+    messages = [
+      { role: "system", content: system_prompt },
+      { role: "user", content: "Context: #{context}" },
+    ]
+
+    # Call GPT API
+    response = @client.chat(
+      parameters: {
+        model: "gpt-4",
+        messages: messages,
+        temperature: 0.7
+      }
+    )
+
+    # Extract the refined image prompt
+    response.dig("choices", 0, "message", "content").strip
+  rescue => e
+    Rails.logger.error("Image Prompt Refinement Error: #{e.message}")
+    "Fantasy-themed illustration of a dynamic Dungeons & Dragons scene."
+  end
+
+
+  # New method to generate a single small (256x256) DALL·E 3 image
+  def generate_image(prompt)
+    response = @client.images.generate(
+      parameters: {
+        prompt: prompt,
+        quality: "standard",
+        size: "1024x1024" # Smallest square size
+      }
+    )
+
+
+    response.dig("data", 0, "url")
+  rescue => e
+    Rails.logger.error("Image Generation Error: #{e.message}")
+    nil
+  end
+
+
+
   private
 
   def define_tools

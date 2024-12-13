@@ -91,7 +91,7 @@ class GamesController < ApplicationController
     current_messages_from_db_without_game_state << { "role" => "user", "content" => user_message }
 
     # COPY IT ALL separate so we can save it in a smaller form without the game state for history’s sake
-    message_to_send_to_gpt_as_user_msg_with_game_state = current_messages_from_db_without_game_state
+    message_to_send_to_gpt_as_user_msg_with_game_state = current_messages_from_db_without_game_state.dup
 
     # Build complex game state prompt
     players = @game.game_users.includes(:user).map do |game_user|
@@ -146,6 +146,7 @@ class GamesController < ApplicationController
     # Append the user message
     message_to_send_to_gpt_as_user_msg_with_game_state << { "role" => "user", "content" => json_string } # We give GPT All this stuff.
 
+    # GPT Chat portion
     gpt_service = GptDmService.new
     gpt_response = gpt_service.generate_dm_response(message_to_send_to_gpt_as_user_msg_with_game_state)
 
@@ -155,11 +156,47 @@ class GamesController < ApplicationController
     # Store updated conversation back to the database, minimize db calls by doing this once at the end.
     @game.update!(context: JSON.dump(current_messages_from_db_without_game_state))
 
+    # Fetch current user's position and tile description
+    current_user_game_user = @game.game_users.find_by(user: @current_user)
+    current_user_tile = Tile.find_by(id: current_user_game_user&.current_tile_id)
+    tile_description = current_user_tile&.description || "No specific details are available for this tile."
+
+    # Enhanced player description with prompt engineering
+    player_description = <<~PROMPT
+This is a description of the player and their surroundings for generating a Dungeons & Dragons-style fantasy-themed image:
+- Player Name: #{@current_user.name}
+- Position: #{current_user_tile&.x_coordinate}, #{current_user_tile&.y_coordinate}
+- Tile Description: #{tile_description}
+    PROMPT
+
+
+    # Now we want to get an image and include it in the broadcase
+    # Enhance the image prompt with tile description and player description
+    image_prompt = <<~PROMPT
+Create a detailed Dungeons & Dragons fantasy-themed illustration based on the following:
+1. The player's interaction: "#{user_message} #{gpt_response}".
+2. Current player's information:
+    #{player_description}.
+The illustration should depict a scene matching the player's position and the tile's description in the game world.
+PROMPT
+
+    # Dont want image prompts to be too big and fail.
+    refined_image_prompt = gpt_service.generate_image_prompt(image_prompt)
+
+    # Generate image using the new GptImgService
+    image_response = gpt_service.generate_image(refined_image_prompt)
+
+    Rails.logger.info("Generated image URL: #{image_response.inspect}")
+    puts "Generated image URL: #{image_response.inspect}"
+
     # Broadcast the GPT response to all connected clients for this game
     ChatChannel.broadcast_to(@game, {
       user: @current_user.name,
       message: user_message,
-      gpt_response: gpt_response
+      gpt_response: gpt_response,
+      image_response: image_response,
+      image_prompt: refined_image_prompt,
+
     })
 
     # Respond with a simple success (no need to re-render or return JSON)

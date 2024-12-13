@@ -28,6 +28,8 @@
 
       %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
         Inventory
+      %button#map_button.btn.btn-primary.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
+        View Map
 
       / Chat Response Field
       %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
@@ -39,9 +41,7 @@
     %main.content-area.flex-grow-1.p-3.d-flex.flex-column
       / GPT Image Placeholder
       %div.gpt-image-box.position-relative.mb-3.bg-light
-        %button#map_button.btn.btn-primary.position-absolute.top-0.end-0.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
-          View Map
-        %div.square-container.d-flex.align-items-center.justify-content-center
+        %div#gpt-image-box.image-container.square-container.d-flex.align-items-center.justify-content-center
           %p.text-muted.mb-0 GPT-generated images will appear here.
 
       %div#flash-messages
@@ -151,6 +151,38 @@
         `;
         responseField.innerHTML += newMessage;
         responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to bottom
+      }
+
+      const imageContainer = document.getElementById("gpt-image-box");
+      if (imageContainer) {
+        imageContainer.innerHTML = ''; // Clear previous content
+
+        if (data.image_response) {
+          // Add the generated image
+          const img = document.createElement('img');
+          img.src = data.image_response;
+          img.alt = data.refined_image_prompt || "GPT-generated illustration";
+          img.style.maxWidth = '100%';
+          img.style.maxHeight = '100%';
+          imageContainer.appendChild(img);
+          console.log("Image successfully added to container.");
+        } else if (data.refined_image_prompt) {
+          // Fallback to displaying the image prompt
+          const promptText = document.createElement('p');
+          promptText.textContent = `Image prompt: ${data.refined_image_prompt}`;
+          promptText.className = "text-muted mb-0";
+          imageContainer.appendChild(promptText);
+          console.log("Image prompt displayed.");
+        } else {
+          // Final fallback
+          const noImageMessage = document.createElement('p');
+          noImageMessage.textContent = "No image available.";
+          noImageMessage.className = "text-muted mb-0";
+          imageContainer.appendChild(noImageMessage);
+          console.log("Fallback message displayed.");
+        }
+      } else {
+        console.log("Could not find gpt-image-box");
       }
     });
 
