@@ -1,25 +1,31 @@
 Rails.application.routes.draw do
+  get "legal_compliance/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  mount ActionCable.server => '/cable'
+  resources :channels
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+
+  get '/favicon.ico', to: redirect('/assets/favicon.ico')
+
 
   # Register path
   get '/register', to: 'users#new', as: 'register'
   post "/register", to: 'users#create'
 
-  #login routes
+  # Login routes
   get '/login_firsttime', to: 'sessions#login_firsttime'  # only for the first time access the page
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
 
-
-
+  # Legal compliance routes
+  get 'legal_compliance', to: 'legal_compliance#index'
 
   # 3rd party login redirect
   post '/auth/:provider', to: 'sessions#oauth_request', as: 'oauth_request'
@@ -48,6 +54,7 @@ Rails.application.routes.draw do
   resources :games, only: [:create, :show] do
     member do
       post 'start'  # This creates start_game_path(@game)
+      post 'chat'            # For the chat feature
     end
 
     collection do
@@ -104,7 +111,8 @@ Rails.application.routes.draw do
     member do
       post 'accept', to: 'friends#accept'
       delete 'reject', to: 'friends#reject'
-      delete 'cancel', to: 'friends#cancel' # This is the missing route
+      delete 'cancel', to: 'friends#cancel'
+      delete 'unfriend', to: 'friends#unfriend'
     end
 
   end

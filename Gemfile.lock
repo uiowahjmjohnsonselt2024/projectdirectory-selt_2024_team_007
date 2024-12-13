@@ -173,6 +173,7 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
+    event_stream_parser (1.0.0)
     execjs (2.10.0)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
@@ -185,6 +186,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     ffi (1.17.0-aarch64-linux-gnu)
@@ -283,6 +286,7 @@ GEM
     multi_test (1.1.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    multipart-post (2.4.1)
     nenv (0.3.0)
     net-http (0.5.0)
       uri
@@ -463,6 +467,10 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    ruby-openai (7.3.1)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -599,6 +607,7 @@ DEPENDENCIES
   rspec-expectations
   rspec-rails
   rubocop-rails-omakase
+  ruby-openai
   sassc-rails
   selenium-webdriver
   shoulda-matchers

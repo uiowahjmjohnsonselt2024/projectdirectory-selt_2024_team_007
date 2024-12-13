@@ -44,6 +44,8 @@ gem 'bootstrap', '~> 5.3.3'
 gem 'popper_js', '~> 2.11.8'
 gem 'jquery-rails'
 
+gem "ruby-openai"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

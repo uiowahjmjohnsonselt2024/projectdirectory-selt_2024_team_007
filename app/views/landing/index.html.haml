@@ -124,6 +124,20 @@
           .modal-footer
             = form.submit 'Join Game', class: 'btn btn-primary'
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+  /==============================
+  / Message Modal
+  /==============================
+  .modal.fade#messageModal{ tabindex: "-1", "aria-labelledby" => "messageModalLabel", "aria-hidden" => "true" }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title#messageModalLabel{ style: "color: black;" } Welcome Google User!
+          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+        .modal-body
+          %p{ style: "color: black;" } Exclusive for Google users: 20% off everything in the store!
+        .modal-footer
+          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+          = link_to 'Go to Store', '/store_items', class: 'btn btn-primary'
 
 -# JavaScript to keep the modal open if there are validation errors
 - if game_object.errors.any?
@@ -132,3 +146,28 @@
       var createGameModal = new bootstrap.Modal(document.getElementById('createGameModal'));
       createGameModal.show();
     });
+
+- if session[:oauth_login]
+  :javascript
+    document.addEventListener('DOMContentLoaded', function() {
+      var messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+      messageModal.show();
+    });
+  - session.delete(:oauth_login)
+:javascript
+  document.addEventListener('DOMContentLoaded', function () {
+    const backgroundMusic = document.getElementById('background-music');
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (backgroundMusic.paused) {
+          backgroundMusic.play().catch((error) => {
+            console.error('Error playing audio:', error);
+          });
+        }
+      });
+    });
+  });
+
+

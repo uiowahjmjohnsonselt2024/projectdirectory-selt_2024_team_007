@@ -1,0 +1,131 @@
+- content_for :background_music, 'log_in.mp3'
+%section.vh-100{
+  style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
+}
+  %div#goodbyeModalOverlay{
+    style: "display: none; background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 400px; max-width: 90%; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); color: white; overflow-y: auto; max-height: 90vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
+  }
+    %div{ style: "text-align:center; margin-bottom:20px;" }
+      %img{ src: image_path('logo.png'), alt:"Logo", style:"max-width:100px;" }
+    %h1{ style:"color:#ECF0F1; text-align:center; margin-bottom:20px;" } Goodbye, Adventurer
+
+  %div#legalModalOverlay{
+    style: "background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 8px; width: 800px; max-width: 90%; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); color: white; overflow-y: auto; max-height: 90vh;"
+  }
+
+    %div{ style: "text-align: center; margin-bottom: 20px;" }
+      %img{ src: image_path('logo.png'), alt: "Logo", style: "max-width: 100px;" }
+    %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Legal Compliance Notice
+
+    %div{ style: " max-height: 70vh;" }
+      %p
+        Welcome to the Legal Compliance Notice for **Shards of the Grid**. Please read the following information carefully to understand our Terms of Service and Privacy Policy.
+
+      %h2 Terms of Service
+      %p
+        **Shards of the Grid** is a role-playing game (RPG) developed solely for educational purposes as part of a coursework project. By registering or logging in for the first time, you agree to comply with and be bound by the following terms and conditions. If you do not agree with these terms, please do not use our services.
+
+      %h3 Usage
+      %ul
+        %li **Non-Profit Use:** This game is currently non-commercial and is intended solely for educational purposes. No real financial transactions will take place.
+        %li **Credit Card Information:** The game does not process real credit card information. Any simulated payment processes are part of the educational project and do not involve actual financial transactions.
+        %li **Content Ownership:** All content within the game, including graphics, music, and dialogues, are either original, used with permission, or fall under fair use for educational purposes.
+
+      %h3 Prohibited Activities
+      %ul
+        %li Users must not engage in any activities that could harm the game’s functionality or other users' experience.
+        %li Distribution of malicious software, hacking, or attempting to breach the game’s security is strictly forbidden.
+        %li Any form of harassment, hate speech, or inappropriate behavior towards other users is not tolerated.
+
+      %h2 Privacy Policy
+      %p
+        **Shards of the Grid** is committed to protecting your privacy. This policy outlines how we collect, use, and safeguard your personal information.
+
+      %h3 Information Collection
+      %ul
+        %li **Personal Data:** We may collect personal information such as your name, email address, and other relevant details during registration.
+        %li **Usage Data:** Information about how you interact with the game, including gameplay statistics and preferences.
+
+      %h3 Information Usage
+      %ul
+        %li Personal data is used solely to enhance your gaming experience, provide customer support, and improve the game’s functionality.
+        %li We do not sell, trade, or otherwise transfer your personal information to outside parties without your consent, except as required by law.
+
+      %h3 Data Security
+      %p
+        We implement a variety of security measures to maintain the safety of your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure.
+
+      %h2 Disclaimer
+      %p
+        **Shards of the Grid** is an educational project and is not intended for commercial use. All content is provided "as is" without any warranties, express or implied. We do not guarantee the accuracy, completeness, or usefulness of any information provided within the game.
+
+      %h2 Limitation of Liability
+      %p
+        In no event shall **Shards of the Grid**, its developers, or affiliates be liable for any damages arising out of the use or inability to use the game, including but not limited to direct, indirect, incidental, or consequential damages.
+
+      %h2 Intellectual Property
+      %p
+        All intellectual property rights in the game are owned by the developers or their licensors. Unauthorized use, reproduction, or distribution of any content from the game is prohibited and may result in legal action.
+
+      %h2 User Agreement
+      %p
+        By registering or logging in for the first time, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and Privacy Policy. If you do not agree, please refrain from using **Shards of the Grid**.
+
+      %p
+        For any concerns regarding potential infringements or legal issues, please contact us immediately at hans-johnson@gmail.com.
+
+
+      .modal-footer
+        %button{
+          id: "agreeButton",
+          style: "padding: 10px 20px; background-color: #2ECC71; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;"
+        } Agree
+        %button{
+          id: "disagreeButton",
+          style: "padding: 10px 20px; background-color: #E74C3C; color: white; border: none; border-radius: 4px; cursor: pointer;"
+        } Disagree
+
+:javascript
+  document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById('background-music');
+    var agreeButton = document.getElementById('agreeButton');
+    var disagreeButton = document.getElementById('disagreeButton');
+
+    function playMusic() {
+      audio.muted = false;
+      audio.play().catch((err) => console.error('Audio playback error:', err));
+    }
+
+    audio.muted = true;
+    audio.play().then(() => {
+      console.log('Music auto-played in muted mode.');
+    }).catch((err) => {
+      console.error('Auto-play failed. Awaiting user interaction.', err);
+
+      document.addEventListener('click', function enableSound() {
+        playMusic();
+        document.removeEventListener('click', enableSound);
+      });
+    });
+
+    function closeModal() {
+      var legalModal = document.getElementById('legalModalOverlay');
+      legalModal.style.display = 'none';
+
+      var goodbyeModal = document.getElementById('goodbyeModalOverlay');
+      goodbyeModal.style.display = 'block';
+
+      goodbyeAudio.muted = false;
+      goodbyeAudio.play().catch((err) => console.error('Goodbye audio playback error:', err));
+    }
+
+
+    function closeAndRedirect() {
+      var modal = document.getElementById('legalModalOverlay');
+      modal.style.display = 'none';
+      window.location.href = '/login?play_music=true';
+    }
+
+    agreeButton.addEventListener('click', closeAndRedirect);
+    disagreeButton.addEventListener('click', closeModal);
+  });
