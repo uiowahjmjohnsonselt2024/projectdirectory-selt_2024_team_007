@@ -23,7 +23,7 @@ class StoreItemsController < ApplicationController
     item = StoreItem.find_by(id: item_id)
 
     # Handle shard packages
-    if [50, 120, 250].include?(shard_amount)
+    if [10, 20, 50].include?(shard_amount)
       if BillingMethod.exists?(user_id: current_user.id)
         user.increment!(:shards_balance, shard_amount)
         flash[:success] = "Purchase successful!"
