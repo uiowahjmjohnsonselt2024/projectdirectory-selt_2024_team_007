@@ -7,5 +7,6 @@ if ENV['COVERAGE']
     add_filter '/app/helpers/'
     add_filter '/app/channels/'
     add_filter '/app/jobs/'
+    add_filter '/app/services/'
   end
 end
