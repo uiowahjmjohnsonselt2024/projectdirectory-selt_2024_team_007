@@ -194,9 +194,8 @@ PROMPT
       user: @current_user.name,
       message: user_message,
       gpt_response: gpt_response,
-      image_response: image_response,
-      image_prompt: refined_image_prompt,
-
+      gpt_img_resp: image_response,
+      image_prompt: refined_image_prompt
     })
 
     # Respond with a simple success (no need to re-render or return JSON)

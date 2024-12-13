@@ -27,11 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     
     const responseField = document.getElementById("chatbot-response");
-    if (!responseField) return;
-  
-  
-    // if (!gameElement || !responseField) return;
-  
+    const imageContainer = document.getElementById("gpt-image-box");
+
+    if (!responseField || !gameElement || !imageContainer) return;
+
     // const gameId = gameElement.dataset.gameId;
     console.log(`Connecting to ChatChannel for game ${gameId}`);
   
@@ -49,6 +48,26 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         responseField.innerHTML += newMessage;
         responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to the bottom
+
+        // Update GPT image box
+        if (imageContainer) {
+            imageContainer.innerHTML = ""; // Clear existing content
+
+            if (data.gpt_img_resp) {
+                const img = document.createElement("img");
+                img.src = data.gpt_img_resp;
+                img.alt = data.image_prompt || "Generated image";
+                img.style.maxWidth = "100%";
+                img.style.maxHeight = "100%";
+                imageContainer.appendChild(img);
+                console.log("Image updated in gpt-image-box.");
+            } else {
+                const noImageMessage = document.createElement("p");
+                noImageMessage.textContent = "No image available.";
+                noImageMessage.className = "text-muted";
+                imageContainer.appendChild(noImageMessage);
+            }
+        }
       },
     });
   });
