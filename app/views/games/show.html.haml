@@ -1,87 +1,194 @@
 - content_for :mute_background_music, true
-= render 'shared/flash'
-%section.game-container.d-flex.h-100.overflow-hidden
-  / Sidebar
-  %aside.sidebar.bg-dark.text-white.p-3.d-flex.flex-column
-    
 
-    %h2.mb-3 Game Info
-    %p
-      %strong Game Name:
-      = @game.name
-    %p
-      %strong Join Code:
-      = @game.join_code
-    %p
-      %strong Current Turn:
-      - if @game.current_turn_user
-        = @game.current_turn_user.name
-      - else
-        Not started
+%section.dashboard{ style: " height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+  %div{data: {game_id: @game.id}}
+  %div{data: {user_id: @current_user.id}}
+  %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
+    / Sidebar
+    %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px;" }
+      %h2.mb-3 Game Info
+      %p
+        %strong Game Name:
+        = @game.name
+      %p
+        %strong Join Code:
+        = @game.join_code
+      %p
+        %strong Current Turn:
+        - if @game.current_turn_user
+          = @game.current_turn_user.name
+        - else
+          Not started
+        %h3.mt-4 Players
+        %ul#presence-list
+          -# - @game_users.each do |game_user|
+          -#   %li= "#{game_user.user.name} (Health: #{game_user.health})"
 
-    %h3.mt-4 Players
-    %ul
-      - @game_users.each do |game_user|
-        %li= "#{game_user.user.name} (Health: #{game_user.health})"
+      %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
+        Inventory
 
-    %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
-      Inventory
-    
-    = link_to 'Back to Landing Page', landing_path
+      / Chat Response Field
+      %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
+        %h4 GPT Response
+        %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
+          -# %p.text-muted No chat yet.
 
-    / GPT Response Field
-    %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
-      %h4 GPT Response
-      %p#chatbot-response.mb-0
-        -# Placeholder for GPT response text
-        No response yet.
+    / Main Content Area
+    %main.content-area.flex-grow-1.p-3.d-flex.flex-column
+      / GPT Image Placeholder
+      %div.gpt-image-box.position-relative.mb-3.bg-light
+        %button#map_button.btn.btn-primary.position-absolute.top-0.end-0.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
+          View Map
+        %div.square-container.d-flex.align-items-center.justify-content-center
+          %p.text-muted.mb-0 GPT-generated images will appear here.
 
-  / Main Content Area
-  %main.content-area.flex-grow-1.p-3.d-flex.flex-column
-    / GPT Image Placeholder
-    %div.gpt-image-box.position-relative.mb-3.bg-light
-      %button#map_button.btn.btn-primary.position-absolute.top-0.end-0.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
-        View Map
-      %div.square-container.d-flex.align-items-center.justify-content-center
-        %p.text-muted.mb-0 GPT-generated images will appear here.
+      %div#flash-messages
+        = render 'shared/flash'
 
-    / Editable User Input Field
-    %div.user-input.mt-3
-      = form_with url: '#', local: true do |form|
+      / Editable User Input Field
+      %div.user-input.mt-3
         .mb-3
-          = form.label :message, 'Your Response', class: 'form-label fw-bold'
-          = form.text_area :message, id: 'user-message', class: 'form-control', rows: 3, placeholder: 'Type your message here...'
-        = form.submit 'Send', class: 'btn btn-primary'
+          %label.form-label.fw-bold Your Response
+          %textarea#user-message.form-control{ rows: 3, placeholder: 'Type your message here...' }
+        %button#send-message.btn.btn-primary Send
 
-  / Map Modal
-  .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
-    .modal-dialog.modal-lg
-      .modal-content
-        .modal-header
-          %h5#mapModalLabel.modal-title Map
-          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-        .modal-body
-          = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
 
-        .modal-footer
-          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
 
-  / Inventory Modal
-  .modal.fade#inventoryModal{ tabindex: "-1", "aria-labelledby" => "inventoryModalLabel", "aria-hidden" => "true" }
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %h5#inventoryModalLabel.modal-title Inventory
-          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-        .modal-body
-          / Inventory Items
-          - current_game_user = @game_users.find_by(user: @current_user)
-          - if current_game_user && current_game_user.equipment.present?
-            %ul
-              - current_game_user.equipment.each do |item|
-                %li= item
-          - else
-            %p No items in your inventory.
-        .modal-footer
-          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+    / Map Modal
+    .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %h5#mapModalLabel.modal-title Map
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+          .modal-body
+            = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
 
+          .modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+
+    / Inventory Modal
+    .modal.fade#inventoryModal{ tabindex: "-1", "aria-labelledby" => "inventoryModalLabel", "aria-hidden" => "true" }
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %h5#inventoryModalLabel.modal-title Inventory
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+          .modal-body
+            / Inventory Items
+            - current_game_user = @game_users.find_by(user: @current_user)
+            - if current_game_user && current_game_user.equipment.present?
+              %ul
+                - current_game_user.equipment.each do |item|
+                  %li= item
+            - else
+              %p No items in your inventory.
+          .modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+
+
+:javascript
+  // Inline ActionCable consumer setup
+  const ActionCable = (() => {
+    function createWebSocketURL(url) {
+      if (url && !url.match(/^wss?:\/\//)) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.href = a.href; // Ensures the URL is absolute
+        a.protocol = a.protocol.replace("http", "ws");
+        return a.href;
+      }
+      return url;
+    }
+
+    class Consumer {
+      constructor(url) {
+        this.url = createWebSocketURL(url);
+        this.subscriptions = [];
+      }
+
+      connect() {
+        this.connection = new WebSocket(this.url);
+        this.connection.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          this.subscriptions.forEach((sub) => sub.received(data));
+        };
+      }
+
+      subscribe(channel, params, received) {
+        const subscription = { channel, params, received };
+        this.subscriptions.push(subscription);
+      }
+    }
+
+    return {
+      createConsumer: (url) => new Consumer(url || "/cable"),
+    };
+  })();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const sendButton = document.getElementById("send-message");
+    const messageField = document.getElementById("user-message");
+    const responseField = document.getElementById("chatbot-response");
+    const gameElement = document.querySelector("[data-game-id]");
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    if (!gameElement || !sendButton || !messageField) return;
+
+    const gameId = gameElement.dataset.gameId;
+
+    // Set up Action Cable consumer
+    const consumer = ActionCable.createConsumer();
+
+    // Subscribe to the ChatChannel
+    consumer.subscribe("ChatChannel", { game_id: gameId }, (data) => {
+      if (responseField) {
+        const newMessage = `
+          <p><strong>${data.user}:</strong> ${data.message}</p>
+          <p><em>GPT:</em> ${data.gpt_response}</p>
+        `;
+        responseField.innerHTML += newMessage;
+        responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to bottom
+      }
+    });
+
+    // Handle message sending via fetch
+    sendButton.addEventListener("click", async () => {
+      const message = messageField.value.trim();
+
+      if (!message) {
+        alert("Please enter a message.");
+        return;
+      }
+
+      console.log("Sending message:", message);
+      try {
+        const response = await fetch(`/games/${gameId}/chat`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-Token": csrfToken,
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        if (response.ok) {
+          messageField.value = "";
+          const flashContainer = document.getElementById("flash-messages");
+          const flashDiv = document.createElement("div");
+          flashDiv.className = "alert alert-success";
+          flashDiv.textContent = "Message sent!";
+          flashContainer.appendChild(flashDiv);
+          setTimeout(() => flashDiv.remove(), 3000);
+        } else {
+          alert("Failed to send your message. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+        alert("An error occurred while sending your message.");
+      }
+    });
+  });

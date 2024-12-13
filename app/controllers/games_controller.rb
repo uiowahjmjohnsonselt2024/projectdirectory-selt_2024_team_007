@@ -1,6 +1,8 @@
+
 class GamesController < ApplicationController
   before_action :set_current_user  # Ensure user is authenticated
-  before_action :set_game, only: [:show, :invite_friends]
+  before_action :set_game, only: [:show, :invite_friends, :chat]
+  before_action :authorize_game_user, only: [:chat]  # Ensure user belongs to the game
 
   # POST /games
   def create
@@ -44,11 +46,41 @@ class GamesController < ApplicationController
     end
   end
 
+  def dm_response
+    user_message = params[:message] # Assume the user sends a message in the params
+    dm_service = GptDmService.new
+    response = dm_service.generate_dm_response(user_message)
+
+    render json: { response: response }
+  end
+
   # GET /games/:id
   def show
     @game_users = @game.game_users.includes(:user)
     @tiles = @game.tiles.order(:x_coordinate, :y_coordinate)
   end
+
+  # POST /games/:id/chat
+  def chat
+    user_message = params[:message]
+    gpt_service = GptDmService.new
+    gpt_response = gpt_service.generate_dm_response(user_message)
+
+    # Broadcast the GPT response to all connected clients for this game
+    ChatChannel.broadcast_to(@game, {
+      user: @current_user.name,
+      message: user_message,
+      gpt_response: gpt_response
+    })
+
+    # Respond with a simple success (no need to re-render or return JSON)
+    head :ok
+  rescue => e
+    # Flash error message on failure and redirect back to the same page
+    flash[:alert] = "Failed to process your message: #{e.message}"
+    head :unprocessable_entity
+  end
+
 
   def invite_friends
     friend_ids = params[:friend_ids] || []
@@ -88,6 +120,13 @@ class GamesController < ApplicationController
   end
 
   private
+
+  # Ensure the user is part of the game
+  def authorize_game_user
+    unless @game.game_users.exists?(user_id: @current_user.id)
+      render json: { error: "You are not authorized to chat in this game." }, status: :forbidden
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game
