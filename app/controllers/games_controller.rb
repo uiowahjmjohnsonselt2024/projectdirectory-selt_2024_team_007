@@ -58,14 +58,6 @@ class GamesController < ApplicationController
     redirect_to root_path
   end
 
-  def dm_response
-    user_message = params[:message] # Assume the user sends a message in the params
-    dm_service = GptDmService.new
-    response = dm_service.generate_dm_response(user_message)
-
-    render json: { response: response }
-  end
-
   # GET /games/:id
   def show
     @game_users = @game.game_users.includes(:user)
@@ -94,7 +86,7 @@ class GamesController < ApplicationController
 
     # Check if we need to summarize older messages
     # Let's say we consider anything above 40 messages is too big.
-    if current_messages_from_db_without_game_state.size > 40
+    if current_messages_from_db_without_game_state.size > 15
       flash[:notice] = "The conversation history has been summarized to improve performance and manage token usage."
       gpt_service = GptDmService.new
       summary = gpt_service.summarize_conversation(JSON.dump(current_messages_from_db_without_game_state))
@@ -203,13 +195,30 @@ PROMPT
     Rails.logger.info("Generated image URL: #{image_response.inspect}")
     puts "Generated image URL: #{image_response.inspect}"
 
+    # After GPT response and after updating the @game context
+    @game.reload # Ensure we have the latest data from the database
+
+    # Re-fetch players with updated equipment and health
+    updated_players = @game.game_users.includes(:user).map do |game_user|
+      {
+        id: game_user.user_id,
+        name: game_user.user.name,
+        position: fetch_player_position(game_user),
+        inventory: fetch_inventory(game_user.user_id),
+        equipment: fetch_equipment(game_user),
+        health: game_user.health || 100,
+        status: "active"
+      }
+    end
+
     # Broadcast the GPT response to all connected clients for this game
     ChatChannel.broadcast_to(@game, {
       user: @current_user.name,
       message: user_message,
       gpt_response: gpt_response,
       gpt_img_resp: image_response,
-      image_prompt: refined_image_prompt
+      image_prompt: refined_image_prompt,
+      updated_players: updated_players
     })
 
     # Respond with a simple success (no need to re-render or return JSON)

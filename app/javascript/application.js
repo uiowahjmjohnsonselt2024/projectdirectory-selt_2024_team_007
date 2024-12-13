@@ -16,8 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gameElement = document.querySelector("[data-game-id]");
     if (!gameElement) return;
-    const gameId = gameElement.dataset.gameId;  
-  
+    const gameId = gameElement.dataset.gameId;
+
+    // Define userId here so it’s available to all code inside this DOMContentLoaded block
+    const userElement = document.querySelector("[data-user-id]");
+    const userId = userElement ? userElement.dataset.userId : null;
+
+    // Select inventory modal elements if needed
+    const inventoryModal = document.getElementById("inventoryModal");
+    const inventoryModalBody = inventoryModal ? inventoryModal.querySelector('.modal-body') : null;
+
+
     const connection = openConnection();
       connection.onopen = () => {
           const identifier = JSON.stringify({ channel: "ChatChannel", game_id: gameId });
@@ -25,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // const subscribeMessage = {"command": "subscribe", "identifier": "{\"channel\":\"ChatChannel\"}"};
           connection.send(JSON.stringify(subscribeMessage));
       };
-    
+
     const responseField = document.getElementById("chatbot-response");
     const imageContainer = document.getElementById("gpt-image-box");
 
@@ -33,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // const gameId = gameElement.dataset.gameId;
     console.log(`Connecting to ChatChannel for game ${gameId}`);
-  
+
     consumer.subscriptions.create({ channel: "ChatChannel", game_id: gameId }, {
       connected() {
         console.log(`Connected to ChatChannel for game ${gameId}`);
@@ -68,10 +77,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 imageContainer.appendChild(noImageMessage);
             }
         }
+
+        // Update players list
+        if (data.updated_players) {
+            const presenceList = document.getElementById("presence-list");
+            if (presenceList) {
+                presenceList.innerHTML = "";
+                data.updated_players.forEach((player) => {
+                    const li = document.createElement("li");
+                    li.textContent = `${player.name} (Health: ${player.health})`;
+                    presenceList.appendChild(li);
+                });
+            }
+
+            // Update the current user's inventory modal
+            if (userId && inventoryModalBody) {
+                const currentUser = data.updated_players.find(p => p.id === userId);
+                if (currentUser) {
+                    inventoryModalBody.innerHTML = "";
+                    if (currentUser.inventory && currentUser.inventory.length > 0) {
+                        const ul = document.createElement('ul');
+                        currentUser.inventory.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item.name;
+                            ul.appendChild(li);
+                        });
+                        inventoryModalBody.appendChild(ul);
+                    } else {
+                        const p = document.createElement('p');
+                        p.textContent = "No items in your inventory.";
+                        inventoryModalBody.appendChild(p);
+                    }
+                }
+            }
+        }
       },
     });
   });
-  
+
 
 // document.addEventListener('DOMContentLoaded', () => {
 //     // const connection = openConnection();
