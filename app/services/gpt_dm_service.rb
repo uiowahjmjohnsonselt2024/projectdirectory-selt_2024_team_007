@@ -395,6 +395,7 @@ You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragon
     response = @client.images.generate(
       parameters: {
         prompt: prompt,
+        model: "dall-e-3",
         quality: "standard",
         size: "1024x1024" # Smallest square size
       }
