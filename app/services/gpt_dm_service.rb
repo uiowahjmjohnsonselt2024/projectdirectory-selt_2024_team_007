@@ -3,7 +3,9 @@ class GptDmService
     @client = client
   end
 
-  def generate_dm_response(messages_array)
+  def generate_dm_response(messages_array, game_id, user_id, game_state)
+    @game = Game.find(game_id) # Ensure @game is accessible here
+    @user_id = user_id
     system_prompt = <<~PROMPT
 You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragons. Your task is to craft an engaging story filled with thrilling encounters, rich lore, and unexpected twists. Players can choose any genre or setting, and your role is to adapt and provide vivid descriptions, balanced challenges, and fair outcomes for player actions.
 
@@ -21,6 +23,12 @@ You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragon
 - **Map and Player Positions**: The input includes a JSON with the world state, player positions, and inventory lists.
 - **Quest Integration**: Incorporate quests as long-term story arcs, subtly influencing the narrative.
 - **Rule Enforcement**: Ensure players play according to the rules to maintain fairness.
+
+# Additional Instructions for Quests
+- **Quest Summarization**: If the total quest data is too large to process within the token limit, summarize the quests. Focus on the essential details:
+  - Summarize active quests with a short description, current progress, and key assigned players.
+  - Retain critical elements of the quests necessary for the current gameplay.
+- Always prioritize preserving quest details relevant to the current player actions and context.
 
 # Steps
 
@@ -409,6 +417,48 @@ You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragon
   end
 
 
+  def summarize_conversation(messages)
+    # We will take all messages and ask GPT to summarize them into a concise form.
+    # Instructions: produce a short summary highlighting key narrative points, player actions,
+    # and any important story developments, without extraneous details.
+
+    # We only need the content from these messages. We can ignore system and developer role
+    # instructions since the summary should focus on user/assistant narrative and actions.
+
+    system_prompt = <<~PROMPT
+You are a summarizing assistant. The user has a long D&D style conversation history with a Dungeon Master (assistant).
+Your task is to produce a concise summary of the conversation so far, focusing on:
+- Major plot points
+- Important player actions or decisions
+- Notable outcomes or changes in the game state (if mentioned)
+- Key challenges or conflicts introduced
+- Any significant NPCs or locations mentioned repeatedly
+
+The summary should be as short as possible, ideally under 500 characters, while preserving essential context.
+Do not include formatting like bullet points, just a compact paragraph or two.
+
+Keep it factual and do not add new information. This summary will be used to refresh the assistant
+on what has happened so far without reading the entire transcript.
+    PROMPT
+
+    response = @client.chat(
+      parameters: {
+        model: "gpt-4",
+        messages: [
+          { role: "system", content: system_prompt },
+          { role: "user", content: messages }
+        ],
+        temperature: 0.5
+      }
+    )
+
+    summary_text = response.dig("choices", 0, "message", "content")
+    summary_text.strip
+  rescue => e
+    Rails.logger.error("Error summarizing conversation: #{e.message}")
+    # If error, return a fallback summary
+    "A brief summary of past events: The party has interacted with the world and taken various actions. Specific details are omitted due to an error."
+  end
 
   private
 
@@ -561,118 +611,122 @@ You are a Dungeon Master for a dynamic and imaginative game of Dungeons & Dragon
 
   # Handle map state updates by modifying the tiles in the database
   def handle_update_map_state(args)
-    # game_map_state = args[:game_map_state]
-    # return unless game_map_state
-    #
-    # # Assuming `@game` is available via the controller context or a ref;
-    # # if not, you'd need to pass it in or find a way to access the current game.
-    # # For this snippet, assume we have a way to know which game we're updating.
-    # # Example: If needed, store @current_game_id in thread-local or pass as param.
-    # # Here we just assume it's accessible somehow (or adapt to your environment).
-    #
-    # # Update tiles
-    # tiles = game_map_state[:tiles]
-    # tiles.each do |tile|
-    #   db_tile = @game.tiles.find_by(x_coordinate: tile[:x], y_coordinate: tile[:y])
-    #   if db_tile
-    #     db_tile.update(tile_type: tile[:type], image_reference: tile[:description])
-    #   else
-    #     # Create a new tile if it doesn't exist
-    #     @game.tiles.create!(
-    #       x_coordinate: tile[:x],
-    #       y_coordinate: tile[:y],
-    #       tile_type: tile[:type],
-    #       image_reference: tile[:description]
-    #     )
-    #   end
-    #end
+    game_map_state = args[:game_map_state]
+    return unless game_map_state
+
+    tiles = game_map_state[:tiles] || []
+    # Preload existing tiles to reduce queries
+    existing_tiles = @game.tiles.index_by { |t| [t.x_coordinate, t.y_coordinate] }
+
+    tiles.each do |tile|
+      key = [tile[:x], tile[:y]]
+      db_tile = existing_tiles[key]
+
+      if db_tile
+        db_tile.update(tile_type: tile[:type], image_reference: tile[:description])
+      else
+        # Create a new tile if it doesn't exist
+        new_tile = @game.tiles.create!(
+          x_coordinate: tile[:x],
+          y_coordinate: tile[:y],
+          tile_type: tile[:type],
+          image_reference: tile[:description]
+        )
+        existing_tiles[key] = new_tile
+      end
+    end
 
     Rails.logger.info("Map state updated: #{tiles.size} tiles processed.")
+    "Map state updated successfully."
   end
 
   # Handle quests updates (do nothing for now)
-  # TODO Ziad add new item to DB fro a game (text data type)
-  # Will be stored as JSON, see input example, but just bDUMP is into String to store in DB
- def handle_update_quests(args)
-    # quests = args[:quests]
-    # Currently do nothing as requested
-    Rails.logger.info("Quests updated (no action taken).")
- end
+  def handle_update_quests(args)
+    quests = args[:quests]
+    return "No quests provided." unless quests
+
+    @game.update!(quests: quests.to_json)
+    Rails.logger.info("Quests updated successfully.")
+    "Quests updated successfully."
+  end
 
   # Handle player updates: position, equipment, consumables, meaningful_action, health
   def handle_update_players(args)
-    # players = args[:players]
-    # return unless players
-    #
-    # players.each do |player|
-    #   user_id = player[:id]
-    #   game_user = @game.game_users.find_by(user_id: user_id)
-    #   next unless game_user
-    #
-    #   user = game_user.user
-    #
-    #   # Update position
-    #   # Find the tile by x,y and update current_tile_id
-    #   tile = @game.tiles.find_by(x_coordinate: player[:position][:x], y_coordinate: player[:position][:y])
-    #   if tile
-    #     game_user.update(current_tile_id: tile.id)
-    #   else
-    #     Rails.logger.warn("Tile at #{player[:position]} not found. Position not updated.")
-    #   end
-    #
-    #   # Update equipment
-    #   # player[:equipment] is an array of {name, description}, store as JSON in equipment field
-    #   game_user.update(equipment: player[:equipment].to_json)
-    #
-    #   # Update consumables
-    #   # If consumable is used (true), decrement from user's inventory
-    #   # Consumables: teleport, health_potion, resurrection_token
-    #   consumables = player[:consumables]
-    #   if consumables[:teleport]
-    #     if user.teleport > 0
-    #       user.teleport -= 1
-    #       user.save
-    #     else
-    #       Rails.logger.warn("Tried to use a teleport token but none available.")
-    #     end
-    #   end
-    #
-    #   if consumables[:health_potion]
-    #     if user.health_potion > 0
-    #       user.health_potion -= 1
-    #       user.save
-    #       # Health potions restore half health (50 points)
-    #       # Update health accordingly, but ensure max is 100 if needed
-    #       new_health = [game_user.health + 50, 100].min
-    #       game_user.update(health: new_health)
-    #     else
-    #       Rails.logger.warn("Tried to use a health_potion but none available.")
-    #     end
-    #   else
-    #     # If not used, set health as given by player[:health]
-    #     game_user.update(health: player[:health])
-    #   end
-    #
-    #   if consumables[:resurrection_token]
-    #     if user.resurrection_token > 0
-    #       user.resurrection_token -= 1
-    #       user.save
-    #       # Using resurrection_token: If player's health <= 0, restore to full 100
-    #       if game_user.health <= 0
-    #         game_user.update(health: 100)
-    #       end
-    #     else
-    #       Rails.logger.warn("Tried to use resurrection_token but none available.")
-    #     end
-    #   end
-    #
-    #   # Meaningful action
-    #   if player[:meaningful_action]
-    #     # Add 2 shards to user
-    #     user.update(shards_balance: user.shards_balance + 2)
-    #   end
-    # end
-    #
-    # Rails.logger.info("Players updated successfully.")
+    players = args[:players] || []
+    return "No players to update." if players.empty?
+
+    # Preload all game_users and their users
+    game_users = @game.game_users.includes(:user).index_by(&:user_id)
+
+    # Preload tiles by coordinates to minimize queries
+    tiles_by_coords = @game.tiles.index_by { |t| [t.x_coordinate, t.y_coordinate] }
+
+    players.each do |player|
+      game_user = game_users[player[:id]]
+      next unless game_user # Skip if no such player in this game
+
+      user = game_user.user
+
+      # Update position
+      tile_key = [player[:position][:x], player[:position][:y]]
+      tile = tiles_by_coords[tile_key]
+
+      if tile
+        game_user.update(current_tile_id: tile.id)
+      else
+        Rails.logger.warn("Tile at #{player[:position]} not found. Position not updated.")
+      end
+
+      # Update equipment (store as JSON)
+      game_user.update(equipment: player[:equipment].to_json)
+
+      # Update consumables usage
+      consumables = player[:consumables]
+
+      # Teleport usage
+      if consumables[:teleport]
+        if user.teleport > 0
+          user.update(teleport: user.teleport - 1)
+        else
+          Rails.logger.warn("Tried to use a teleport token but none available for user #{user.id}.")
+        end
+      end
+
+      # Health potion usage
+      if consumables[:health_potion]
+        if user.health_potion > 0
+          user.update(health_potion: user.health_potion - 1)
+          # Restore half health (50 points), capped at 100
+          new_health = [game_user.health + 50, 100].min
+          game_user.update(health: new_health)
+        else
+          Rails.logger.warn("Tried to use a health_potion but none available for user #{user.id}.")
+        end
+      else
+        # If health potion not used, set health as given by player[:health]
+        game_user.update(health: player[:health])
+      end
+
+      # Resurrection token usage
+      if consumables[:resurrection_token]
+        if user.resurrection_token > 0
+          user.update(resurrection_token: user.resurrection_token - 1)
+          # If player's health <= 0, restore to 100
+          if game_user.health <= 0
+            game_user.update(health: 100)
+          end
+        else
+          Rails.logger.warn("Tried to use resurrection_token but none available for user #{user.id}.")
+        end
+      end
+
+      # Meaningful action (add 2 shards)
+      if player[:meaningful_action]
+        user.update(shards_balance: user.shards_balance + 2)
+      end
+    end
+
+    Rails.logger.info("Players updated successfully.")
+    "Players updated successfully."
   end
 end

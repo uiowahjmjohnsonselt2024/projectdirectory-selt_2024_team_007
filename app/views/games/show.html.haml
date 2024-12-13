@@ -81,11 +81,10 @@
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             / Inventory Items
-            - current_game_user = @game_users.find_by(user: @current_user)
-            - if current_game_user && current_game_user.equipment.present?
+            - if @equipment_items.present?
               %ul
-                - current_game_user.equipment.each do |item|
-                  %li= item
+                - @equipment_items.each do |item|
+                  %li= item[:name]
             - else
               %p No items in your inventory.
           .modal-footer
@@ -179,6 +178,7 @@
       sendingFlash.className = "alert alert-info";
       sendingFlash.textContent = "Message sent! Please wait for a response...";
       flashContainer.appendChild(sendingFlash);
+      setTimeout(() => sendingFlash.remove(), 3000); // Auto-clear message
 
       try {
         const response = await fetch(`/games/${gameId}/chat`, {
@@ -201,7 +201,7 @@
           // Clear the input field
           messageField.value = "";
 
-          setTimeout(() => flashContainer.remove(), 3000);
+          setTimeout(() => successFlash.remove(), 3000);
         } else {
           alert("Failed to send your message. Please try again.");
         }

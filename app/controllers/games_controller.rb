@@ -70,6 +70,8 @@ class GamesController < ApplicationController
   def show
     @game_users = @game.game_users.includes(:user)
     @tiles = @game.tiles.order(:x_coordinate, :y_coordinate)
+    current_game_user = @game_users.find_by(user: @current_user)
+    @equipment_items = fetch_equipment(current_game_user)
   end
 
   # POST /games/:id/chat
@@ -89,6 +91,18 @@ class GamesController < ApplicationController
 
     # Append the user message (local storage)
     current_messages_from_db_without_game_state << { "role" => "user", "content" => user_message }
+
+    # Check if we need to summarize older messages
+    # Let's say we consider anything above 40 messages is too big.
+    if current_messages_from_db_without_game_state.size > 40
+      flash[:notice] = "The conversation history has been summarized to improve performance and manage token usage."
+      gpt_service = GptDmService.new
+      summary = gpt_service.summarize_conversation(JSON.dump(current_messages_from_db_without_game_state))
+      # Replace all but the last few messages with the summary
+      # Let's keep the last 5 messages for more recent context, and replace the rest
+      recent_messages = current_messages_from_db_without_game_state.last(5)
+      current_messages_from_db_without_game_state = [{"role" => "assistant", "content" => summary}] + recent_messages
+    end
 
     # COPY IT ALL separate so we can save it in a smaller form without the game state for history’s sake
     message_to_send_to_gpt_as_user_msg_with_game_state = current_messages_from_db_without_game_state.dup
@@ -148,7 +162,7 @@ class GamesController < ApplicationController
 
     # GPT Chat portion
     gpt_service = GptDmService.new
-    gpt_response = gpt_service.generate_dm_response(message_to_send_to_gpt_as_user_msg_with_game_state)
+    gpt_response = gpt_service.generate_dm_response(message_to_send_to_gpt_as_user_msg_with_game_state, @game.id, @current_user.id, game_state)
 
     # Append the assistant's response to the conversation
     current_messages_from_db_without_game_state << { "role" => "assistant", "content" => gpt_response }
@@ -159,7 +173,7 @@ class GamesController < ApplicationController
     # Fetch current user's position and tile description
     current_user_game_user = @game.game_users.find_by(user: @current_user)
     current_user_tile = Tile.find_by(id: current_user_game_user&.current_tile_id)
-    tile_description = current_user_tile&.description || "No specific details are available for this tile."
+    tile_description = current_user_tile&.image_reference || "No specific details are available for this tile."
 
     # Enhanced player description with prompt engineering
     player_description = <<~PROMPT
@@ -318,16 +332,7 @@ PROMPT
   end
 
   def fetch_active_quests(game)
-    # Example of quests associated with the game, adjust based on your data model
-    [
-      {
-        id: 101,
-        name: "Retrieve the Sacred Gem",
-        description: "Find the Sacred Gem hidden in the Cave of Wonders.",
-        progress: "in-progress",
-        assigned_to: game.game_users.pluck(:user_id)
-      }
-    ]
+    game.quests || "[]" # Return the quests string or an empty array as a string if no quests are set
   end
 
 end
