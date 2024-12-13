@@ -19,11 +19,11 @@ Then('the game {string} should not be listed in my games') do |game_name|
   expect(page).not_to have_content(game_name)
 end
 
-When('I click the Leave Game link inside the {string} game card') do |game_name|
+When('I click the Leave Game button inside the {string} game card') do |game_name|
   game = Game.find_by(name: game_name)
   raise "Game with name #{game_name} not found" unless game
 
   within("#game-card-#{game.id}") do
-    click_link 'Leave Game'
+    click_button 'Leave Game'
   end
 end

@@ -15,7 +15,7 @@ Feature: Leave a Game
   Scenario: Successfully leaving an existing game lobby
     Given I am logged in as "test@example.com" with password "testpass"
     When I navigate to the landing page
-    And I click the Leave Game link inside the "Mystic Quest" game card
+    And I click the Leave Game button inside the "Mystic Quest" game card
     Then I should see "You have successfully left the game."
     When I navigate back to the landing page
     Then the game "Mystic Quest" should not be listed in my games
