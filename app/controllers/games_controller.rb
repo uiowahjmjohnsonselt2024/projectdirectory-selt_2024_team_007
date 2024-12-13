@@ -1,7 +1,7 @@
 
 class GamesController < ApplicationController
   before_action :set_current_user  # Ensure user is authenticated
-  before_action :set_game, only: [:show, :invite_friends, :chat]
+  before_action :set_game, only: [:show, :invite_friends, :chat, :leave]
   before_action :authorize_game_user, only: [:chat]  # Ensure user belongs to the game
 
   # POST /games
@@ -44,6 +44,17 @@ class GamesController < ApplicationController
       flash[:alert] = 'Invalid join code.'
       redirect_to root_path
     end
+  end
+
+  def leave
+    game_user = @game.game_users.find_by(user: @current_user)
+    if game_user
+      game_user.destroy
+      flash[:notice] = 'You have successfully left the game.'
+    else
+      flash[:alert] = 'You are not part of this game.'
+    end
+    redirect_to root_path
   end
 
   def dm_response

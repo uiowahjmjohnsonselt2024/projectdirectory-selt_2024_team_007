@@ -45,8 +45,10 @@
           %p{ style: "color: #ECF0F1;" }
             = game.context
           = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
+          = link_to 'Leave Game', leave_game_path(game), method: :post, class: 'btn btn-danger', style: 'margin-top: 10px; margin-left: 10px;'
           - if game.owner == @current_user
             %button.btn.btn-primary{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: 'margin-top: 10px; margin-left: 10px;' } Add Friends
+          
 
             / Add Friends Modal
             .modal.fade{ :id => "addFriendsModal-#{game.id}", tabindex: "-1", "aria-labelledby" => "addFriendsModalLabel-#{game.id}", "aria-hidden" => "true" }
@@ -71,6 +73,7 @@
                       .modal-footer
                         = f.submit 'Invite Friends', class: 'btn btn-primary'
                         %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+            
     - else
       %p{ style: "color: #BDC3C7;" } No games available. Create one!
 
