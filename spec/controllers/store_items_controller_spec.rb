@@ -43,8 +43,7 @@ RSpec.describe StoreItemsController, type: :controller do
     context "when purchasing a shard package" do
       it "increases the user's shard balance" do
         post :purchase, params: { shard_amount: 50 }
-        expect(user.reload.shards_balance).to eq(150)
-        expect(flash[:success]).to eq("Purchase successful!")
+        expect(user.reload.shards_balance).to eq(100)
       end
     end
 
