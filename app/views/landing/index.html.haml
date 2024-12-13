@@ -42,8 +42,12 @@
             - if game.owner == @current_user
               %span.owner-flair{ style: "background-color: #F39C12; color: #ECF0F1; padding: 2px 5px; border-radius: 3px; margin-left: 10px;" }
                 Owner
-          %p{ style: "color: #ECF0F1;" }
-            = game.context
+            %span.player-count{ style: "background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px; margin-left: 10px;" }
+              = "Players: #{game.users.count}/4"
+                
+          -# %span.player-count{ style: "float: right; background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px;" }
+          -#   = "Players: #{game.users.count}/4"
+
 
           .button-container{ style: "display: flex; gap: 10px; margin-top: 10px;" }
             = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "flex: 1; max-width: 150px; max-height: 38px;"
