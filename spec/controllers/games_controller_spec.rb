@@ -25,9 +25,9 @@ RSpec.describe GamesController, type: :controller do
         }.to change(Game, :count).by(1)
       end
 
-      it 'reduces the user’s shard balance by 500' do
+      it 'reduces the user’s shard balance by 5' do
         post :create, params: { game: valid_params }
-        expect(user.reload.shards_balance).to eq(100)
+        expect(user.reload.shards_balance).to eq(595)
       end
 
       it 'sets a success flash message' do
@@ -37,7 +37,7 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context 'when the user has insufficient shards' do
-      before { user.update_column(:shards_balance, 400) }
+      before { user.update_column(:shards_balance, 4) }
 
       it 'does not create a new game' do
         expect {
