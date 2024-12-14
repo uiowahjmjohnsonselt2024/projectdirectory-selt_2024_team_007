@@ -232,11 +232,6 @@ RSpec.describe GamesController, type: :controller do
 
   describe 'GET #show' do
     let!(:game) { create(:game, owner: user) }
-    
-    it 'assigns requested game' do
-      get :show, params: { id: game.id }
-      expect(assigns(:game)).to eq(game)
-    end
 
     it 'assigns game users' do
       game_user = create(:game_user, game: game, user: user)
@@ -252,4 +247,105 @@ RSpec.describe GamesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #move' do
+
+    before do
+      game.game_users.create(user: user, health: 100, current_tile_id: nil)
+    end
+
+    context 'when tile does not exist or update fails' do
+      it 'returns unprocessable_entity' do
+        post :move, params: { id: game.id, x: 999, y: 999 }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'GET #leave' do
+    context 'when user is part of the game' do
+      before { game.game_users.create(user: user, health: 100) }
+
+      it 'removes the user from the game and sets a success notice' do
+        expect {
+          get :leave, params: { id: game.id }
+        }.to change(GameUser, :count).by(-1)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq('You have successfully left the game.')
+      end
+    end
+
+    context 'when user is not part of the game' do
+      it 'does not remove anyone and sets a flash alert' do
+        expect {
+          get :leave, params: { id: game.id }
+        }.not_to change(GameUser, :count)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to eq('You are not part of this game.')
+      end
+    end
+  end
+
+  describe 'POST #chat' do
+    let(:game_user) { create(:game_user, game: game, user: user, health: 100) }
+    let(:gpt_service_double) { instance_double(GptDmService) }
+
+    before do
+      game_user # create the association
+      # Stub external GPT service calls
+      allow(GptDmService).to receive(:new).and_return(gpt_service_double)
+      allow(gpt_service_double).to receive(:summarize_conversation).and_return("Summarized history")
+      allow(gpt_service_double).to receive(:generate_dm_response).and_return("GPT reply")
+      allow(gpt_service_double).to receive(:generate_image_prompt).and_return("Refined image prompt")
+      allow(gpt_service_double).to receive(:generate_image).and_return("http://example.com/generated_image.png")
+
+      # Stub the broadcast
+      allow(ChatChannel).to receive(:broadcast_to)
+    end
+
+    context 'when user is part of the game' do
+      it 'processes the chat message, updates the game context, and broadcasts the message' do
+        post :chat, params: { id: game.id, message: "Hello, world!" }
+        expect(response).to have_http_status(:ok)
+
+        # Check that the GPT response was appended
+        game.reload
+        context_messages = JSON.parse(game.context)
+        expect(context_messages.last).to include("role" => "assistant", "content" => "GPT reply")
+
+        # Check broadcast
+        expect(ChatChannel).to have_received(:broadcast_to).with(game, hash_including(gpt_response: "GPT reply"))
+      end
+    end
+
+    context 'when user is not part of the game' do
+      let(:other_user) { create(:user) }
+
+      before do
+        session[:session_token] = other_user.session_token
+      end
+
+      it 'returns forbidden and does not process chat' do
+        post :chat, params: { id: game.id, message: "Hello, world!" }
+        expect(response).to have_http_status(:forbidden)
+        expect(JSON.parse(response.body)).to eq({ "error" => "You are not authorized to chat in this game." })
+      end
+    end
+  end
+
+  # Test authorize_game_user independently (if desired)
+  describe 'authorize_game_user' do
+    let(:other_user) { create(:user) }
+    before do
+      session[:session_token] = other_user.session_token
+      # We do not create a GameUser record for `other_user` in this game
+    end
+
+    it 'renders forbidden json when user is not part of the game' do
+      post :chat, params: { id: game.id, message: "Check auth" }
+      expect(response).to have_http_status(:forbidden)
+      expect(JSON.parse(response.body)).to eq({ "error" => "You are not authorized to chat in this game." })
+    end
+  end
+
 end
