@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define userId here so it’s available to all code inside this DOMContentLoaded block
     const userElement = document.querySelector("[data-user-id]");
     const userId = userElement ? userElement.dataset.userId : null;
+    console.log("Retrieved userId from DOM:", userId);
 
     // Select inventory modal elements if needed
     const inventoryModal = document.getElementById("inventoryModal");
@@ -96,23 +97,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Update the current user's inventory modal
             if (userId && inventoryModalBody) {
-                const currentUser = data.updated_players.find(p => p.id === userId);
-                if (currentUser) {
-                    inventoryModalBody.innerHTML = "";
-                    if (currentUser.inventory && currentUser.inventory.length > 0) {
-                        const ul = document.createElement('ul');
-                        currentUser.inventory.forEach(item => {
-                            const li = document.createElement('li');
-                            li.textContent = item.name;
-                            ul.appendChild(li);
-                        });
-                        inventoryModalBody.appendChild(ul);
+                const inGameItemsContainer = document.querySelector("#in-game-items");
+                if (inGameItemsContainer) {
+                    const currentUser = data.updated_players.find(p => String(p.id) === String(userId));
+                    if (currentUser) {
+                        inGameItemsContainer.innerHTML = ""; // Clear existing in-game items
+
+                        if (currentUser.equipment && currentUser.equipment.length > 0) {
+                            const ul = document.createElement('ul');
+                            currentUser.equipment.forEach(item => {
+                                const li = document.createElement('li');
+                                li.textContent = item.name; // Add item name
+                                ul.appendChild(li);
+                            });
+                            inGameItemsContainer.appendChild(ul);
+                        } else {
+                            const p = document.createElement('p');
+                            p.textContent = "No items in your inventory.";
+                            inGameItemsContainer.appendChild(p);
+                        }
                     } else {
-                        const p = document.createElement('p');
-                        p.textContent = "No items in your inventory.";
-                        inventoryModalBody.appendChild(p);
+                        console.warn("Current user not found in updated_players. Data received:", data.updated_players);
                     }
                 }
+
             }
         }
       },

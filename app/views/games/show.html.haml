@@ -98,48 +98,50 @@
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close", style: "color: #BDC3C7;" }
           .modal-body{ style: "color: #ECF0F1; padding: 20px; overflow-y: auto; max-height: 70vh;" }
             / Store Items
-            - if @current_user.store_items.present? || @current_user.teleport > 0 || @current_user.health_potion > 0 || @current_user.resurrection_token > 0
-              %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
-              %ul
-                / Display owned consumables first
-                - if @current_user.teleport > 0
-                  %li.d-flex.align-items-center.mb-2
-                    %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
-                    %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                    %div{ style: "margin-left: -10px;" }
-                      %strong{ style: "color: #ECF0F1;" } Teleport
-                - if @current_user.health_potion > 0
-                  %li.d-flex.align-items-center.mb-2
-                    %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
-                    %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                    %div{ style: "margin-left: -10px;" }
-                      %strong{ style: "color: #ECF0F1;" } Health Potion
-                - if @current_user.resurrection_token > 0
-                  %li.d-flex.align-items-center.mb-2
-                    %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
-                    %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                    %div{ style: "margin-left: -10px;" }
-                      %strong{ style: "color: #ECF0F1;" } Resurrection Token
+            %div#store-items
+              - if @current_user.store_items.present? || @current_user.teleport > 0 || @current_user.health_potion > 0 || @current_user.resurrection_token > 0
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %ul
+                  / Display owned consumables first
+                  - if @current_user.teleport > 0
+                    %li.d-flex.align-items-center.mb-2
+                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
+                      %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                      %div{ style: "margin-left: -10px;" }
+                        %strong{ style: "color: #ECF0F1;" } Teleport
+                  - if @current_user.health_potion > 0
+                    %li.d-flex.align-items-center.mb-2
+                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
+                      %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                      %div{ style: "margin-left: -10px;" }
+                        %strong{ style: "color: #ECF0F1;" } Health Potion
+                  - if @current_user.resurrection_token > 0
+                    %li.d-flex.align-items-center.mb-2
+                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
+                      %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                      %div{ style: "margin-left: -10px;" }
+                        %strong{ style: "color: #ECF0F1;" } Resurrection Token
 
-                / Display other store items
-                - @current_user.store_items.each do |store_item|
-                  %li.d-flex.align-items-center.mb-2
-                    %img{ src: image_path("store_icon_#{store_item.id}.png"), alt: store_item.name, style: "width: 75px; height: 75px; border-radius: 5px; margin-right: 10px;" }
-                    %div
-                      %strong{ style: "color: #ECF0F1;" }= store_item.name
-            - else
-              %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
-              %p{ style: "color: #BDC3C7;" } No items purchased from the store.
+                  / Display other store items
+                  - @current_user.store_items.each do |store_item|
+                    %li.d-flex.align-items-center.mb-2
+                      %img{ src: image_path("store_icon_#{store_item.id}.png"), alt: store_item.name, style: "width: 75px; height: 75px; border-radius: 5px; margin-right: 10px;" }
+                      %div
+                        %strong{ style: "color: #ECF0F1;" }= store_item.name
+              - else
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %p{ style: "color: #BDC3C7;" } No items purchased from the store.
 
             / Found In-Game Items
-            - if @equipment_items.present?
-              %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
-              %ul
-                - @equipment_items.each do |item|
-                  %li{ style: "color: #ECF0F1;" }= item[:name]
-            - else
-              %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
-              %p{ style: "color: #BDC3C7;" } No items in your inventory.
+            %div#in-game-items
+              - if @equipment_items.present?
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %ul
+                  - @equipment_items.each do |item|
+                    %li{ style: "color: #ECF0F1;" }= item[:name]
+              - else
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %p{ style: "color: #BDC3C7;" } No items in your inventory.
           .modal-footer
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal", style: "background-color: #2ECC71; border: none; color: #ECF0F1;" } Close
 

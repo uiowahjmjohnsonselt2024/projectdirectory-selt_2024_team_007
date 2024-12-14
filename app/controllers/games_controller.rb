@@ -33,11 +33,7 @@ class GamesController < ApplicationController
       @game.chat_image_url ||= "login_register_background.jpg"
 
       if @game.save
-<<<<<<< HEAD
-        @current_user.update_column(:shards_balance, @current_user.shards_balance - 5)
-=======
         @current_user.update_column(:shards_balance, @current_user.shards_balance - 40)
->>>>>>> origin/devel
         @game.game_users.create(user: @current_user, health: 100)
         @game.update(context: "[]") if @game.context.blank?
         redirect_to @game, notice: 'Game was successfully created.'
