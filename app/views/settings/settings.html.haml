@@ -64,7 +64,7 @@
         style: "text-align: center; margin-bottom: 20px;"
       }
         %img#profilePicture{
-          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('logo.png'),
+          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('default_avatar.png'),
           alt: "pfp",
           style: "width: 100px; height: 100px; border-radius: 50%; cursor: pointer;",
           "data-bs-toggle" => "modal",
@@ -293,23 +293,21 @@
       class: ("show active" if active_tab == 'v-pills-orders'),
       style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
-      %h1{ style: "color: #2C3E50; text-align: center;" } Orders
-      - if @orders.present?
-        %ul.list-group
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Orders
+      %p{ style: "color: #BDC3C7; text-align: center; margin-bottom: 20px;" } Here are your order details:
+
+      %ul.list-group
+        - if @orders.empty?
+          %li.list-group-item{ style: "background: rgba(50, 50, 50, 0.8); color: #ECF0F1; text-align: center; border-radius: 10px;" }
+            %p{ style: "margin: 0;" } No orders found.
+        - else
           - @orders.each do |order|
-            %li.list-group-item{ style: "display: flex; align-items: center; margin-top: 10px; background: rgba(50, 50, 50, 0.8); border-radius: 10px; padding: 10px;" }
-              - # Dynamically determine the correct icon for the order
-              - if order.item_type == "Shard Package"
-                %img{ src: image_path("shards_icon.png"), alt: "Shard Icon", style: "width: 50px; height: 50px; margin-right: 10px;" }
-              - elsif order.item_type == "Store Item"
-                - # Extract item_id from the item_name if applicable (e.g., "Store Item 5")
-                - item_id = order.item_name.match(/\d+/).to_s
+            %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
+              %div{ style: "display: flex; align-items: center;" }
                 %img{ src: image_path(item_icon_path(order.item_name)), alt: order.item_name, style: "width: 50px; height: 50px; margin-right: 10px;" }
-              %div{ style: "flex: 1;" }
-                %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= order.item_name
-                %p{ style: "margin: 0; color: #888;" } Type: #{order.item_type}
-                %p{ style: "margin: 0; color: #888;" } Cost: #{order.item_cost} shards
-                %p{ style: "margin: 0; color: #888;" } Purchased At: #{order.purchased_at.strftime('%Y-%m-%d %H:%M:%S')}
-      - else
-        %p{ style: "color: #ECF0F1; text-align: center;" } No orders found.
+                %div{ style: "flex: 1;" }
+                  %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= order.item_name
+                  %p{ style: "margin: 0; color: #888;" } Type: #{order.item_type}
+                  %p{ style: "margin: 0; color: #888;" } Cost: #{order.item_cost} shards
+                  %p{ style: "margin: 0; color: #888;" } Purchased At: #{order.purchased_at.strftime('%b %d, %Y %I:%M %p')}
 

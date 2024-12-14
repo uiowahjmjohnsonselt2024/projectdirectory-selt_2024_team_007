@@ -15724,3 +15724,208 @@ Updated session last_seen_at: 2024-12-14T21:02:14Z
 Completed 200 OK in 100ms (Views: 91.7ms | ActiveRecord: 0.4ms (4 queries, 0 cached) | GC: 14.4ms)
 
 
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:09:38 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 21:02:14 UTC
+Current time: 2024-12-14 21:09:38 UTC
+Updated session last_seen_at: 2024-12-14T21:09:38Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.6ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 14.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 10.8ms | GC: 5.6ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:297
+  Rendered settings/settings.html.haml within layouts/application (Duration: 112.2ms | GC: 17.2ms)
+  Rendered layout layouts/application.html.haml (Duration: 121.9ms | GC: 18.8ms)
+Completed 200 OK in 147ms (Views: 122.4ms | ActiveRecord: 1.0ms (4 queries, 0 cached) | GC: 18.8ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-14 15:16:00 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-14 21:09:38 UTC
+Current time: 2024-12-14 21:16:00 UTC
+Updated session last_seen_at: 2024-12-14T21:16:00Z
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+****user_ip=127.0.0.1
+user_country_code=
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:100:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.8ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mStoreItem Load (0.1ms)[0m  [1m[34mSELECT "store_items".* FROM "store_items"[0m
+  ↳ app/views/store_items/index.html.haml:66
+  Rendered store_items/index.html.haml within layouts/application (Duration: 40.3ms | GC: 3.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 41.0ms | GC: 3.8ms)
+Completed 200 OK in 261ms (Views: 41.4ms | ActiveRecord: 1.1ms (4 queries, 1 cached) | GC: 3.8ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:21:35 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 21:16:00 UTC
+Current time: 2024-12-14 21:21:35 UTC
+Updated session last_seen_at: 2024-12-14T21:21:35Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.5ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 13.9ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 5.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.2ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:297
+  Rendered settings/settings.html.haml within layouts/application (Duration: 111.1ms | GC: 10.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 125.0ms | GC: 16.2ms)
+Completed 200 OK in 157ms (Views: 125.5ms | ActiveRecord: 2.6ms (4 queries, 0 cached) | GC: 17.2ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:38:21 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 21:21:35 UTC
+Current time: 2024-12-14 21:38:21 UTC
+Updated session last_seen_at: 2024-12-14T21:38:21Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.9ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 14.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 6.2ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/settings/settings.html.haml:300
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:304
+  Rendered settings/settings.html.haml within layouts/application (Duration: 131.1ms | GC: 14.8ms)
+  Rendered layout layouts/application.html.haml (Duration: 142.7ms | GC: 14.8ms)
+Completed 200 OK in 177ms (Views: 143.8ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 21.0ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-14 15:38:37 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-14 21:38:21 UTC
+Current time: 2024-12-14 21:38:37 UTC
+Updated session last_seen_at: 2024-12-14T21:38:37Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+****user_ip=127.0.0.1
+user_country_code=
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:100:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.4ms | GC: 0.2ms)
+  Rendered shared/_flash.html.haml (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mStoreItem Load (0.1ms)[0m  [1m[34mSELECT "store_items".* FROM "store_items"[0m
+  ↳ app/views/store_items/index.html.haml:66
+  Rendered store_items/index.html.haml within layouts/application (Duration: 37.7ms | GC: 9.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 38.3ms | GC: 9.7ms)
+Completed 200 OK in 283ms (Views: 38.6ms | ActiveRecord: 0.3ms (4 queries, 1 cached) | GC: 9.7ms)
+
+
+Started POST "/store_items/purchase" for 127.0.0.1 at 2024-12-14 15:38:41 -0600
+Processing by StoreItemsController#purchase as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "shard_amount"=>"20", "item_id"=>"", "package"=>"", "action_url"=>"/store_items/purchase"}
+Session last_seen_at: 2024-12-14 21:38:37 UTC
+Current time: 2024-12-14 21:38:41 UTC
+Updated session last_seen_at: 2024-12-14T21:38:41Z
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+****user_ip=127.0.0.1
+user_country_code=
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:100:in `current_user'
+  [1m[36mStoreItem Load (0.1ms)[0m  [1m[34mSELECT "store_items".* FROM "store_items" WHERE "store_items"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:23:in `purchase'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:100:in `current_user'
+  [1m[36mBillingMethod Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "billing_methods" WHERE "billing_methods"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:27:in `purchase'
+  [1m[36mUser Update All (0.1ms)[0m  [1m[33mUPDATE "users" SET "shards_balance" = COALESCE("shards_balance", 0) + ? WHERE "users"."id" = ?[0m  [["shards_balance", 20], ["id", 4]]
+  ↳ app/controllers/store_items_controller.rb:28:in `purchase'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/store_items_controller.rb:29:in `purchase'
+  [1m[36mOrder Create (3.3ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "item_name", "item_type", "item_cost", "purchased_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["user_id", 4], ["item_name", "20 Shards"], ["item_type", "Shard Package"], ["item_cost", 20], ["purchased_at", "2024-12-14 21:38:41.912641"], ["created_at", "2024-12-14 21:38:41.913190"], ["updated_at", "2024-12-14 21:38:41.913190"]]
+  ↳ app/controllers/store_items_controller.rb:29:in `purchase'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/store_items_controller.rb:29:in `purchase'
+Redirected to http://127.0.0.1:3000/store_items
+Completed 302 Found in 182ms (ActiveRecord: 4.2ms (7 queries, 2 cached) | GC: 2.4ms)
+
+
+Started GET "/store_items" for 127.0.0.1 at 2024-12-14 15:38:41 -0600
+Processing by StoreItemsController#index as HTML
+Session last_seen_at: 2024-12-14 21:38:41 UTC
+Current time: 2024-12-14 21:38:41 UTC
+Updated session last_seen_at: 2024-12-14T21:38:41Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+****user_ip=127.0.0.1
+user_country_code=
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/store_items_controller.rb:100:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering store_items/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.8ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 10.4ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mStoreItem Load (0.2ms)[0m  [1m[34mSELECT "store_items".* FROM "store_items"[0m
+  ↳ app/views/store_items/index.html.haml:66
+  Rendered store_items/index.html.haml within layouts/application (Duration: 18.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.haml (Duration: 21.3ms | GC: 0.0ms)
+Completed 200 OK in 203ms (Views: 22.2ms | ActiveRecord: 0.7ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:38:44 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 21:38:41 UTC
+Current time: 2024-12-14 21:38:44 UTC
+Updated session last_seen_at: 2024-12-14T21:38:44Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 3.6ms | GC: 0.7ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/settings/settings.html.haml:300
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:304
+  Rendered settings/settings.html.haml within layouts/application (Duration: 12.9ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.haml (Duration: 14.1ms | GC: 1.1ms)
+Completed 200 OK in 17ms (Views: 14.0ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 1.1ms)
+
+
