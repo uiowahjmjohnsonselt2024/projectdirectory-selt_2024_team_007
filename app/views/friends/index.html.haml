@@ -72,8 +72,9 @@
       %div.modal-body
         = form_with url: friends_path, method: :post, local: true do |f|
           %div.form-group
-            = f.label :friend_email, "Friend's Email", class: 'form-label', style: "color: black;"
-            = f.email_field :friend_email, class: 'form-control', required: true
+            = f.label :friend_email, "Friend's User Name: (Case sensitive)", class: 'form-label', style: "color: black;"
+            -# = f.email_field :friend_email, class: 'form-control', required: true
+            = f.text_field :friend_name, class: 'form-control', required: true
           %div.modal-footer
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
             = f.submit "Send Friend Request", class: 'btn btn-primary'
