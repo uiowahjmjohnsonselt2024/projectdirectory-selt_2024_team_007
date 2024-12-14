@@ -41,6 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const responseField = document.getElementById("chatbot-response");
     const imageContainer = document.getElementById("gpt-image-box");
+    const messageInput = document.getElementById("user-message");
+    const sendButton = document.getElementById("send-message");
+
+    // Add turn indicator
+    const turnIndicator = document.createElement('div');
+    turnIndicator.id = 'turn-indicator';
+    turnIndicator.className = 'text-center mb-3';
+    responseField.parentElement.insertBefore(turnIndicator, responseField);
 
     if (!responseField || !gameElement || !imageContainer) return;
 
@@ -55,6 +63,22 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Disconnected from ChatChannel for game ${gameId}`);
       },
       received(data) {
+
+        // Handle turn updates
+        if (data.current_turn) {
+          const isMyTurn = data.current_turn === currentUserName;
+          turnIndicator.textContent = isMyTurn ? 
+              "It's your turn!" : 
+              `Waiting for ${data.current_turn}'s turn...`;
+          turnIndicator.className = isMyTurn ? 'text-success' : 'text-muted';
+          
+          // Enable/disable input
+          if (messageInput && sendButton) {
+              messageInput.disabled = !isMyTurn;
+              sendButton.disabled = !isMyTurn;
+          }
+      }
+
         const newMessage = `
           <p><strong>${data.user}:</strong> ${data.message}</p>
           <p><em>GPT:</em> ${data.gpt_response}</p>
@@ -190,15 +214,18 @@ document.addEventListener("DOMContentLoaded", () => {
 function generateMoveMessage(newX, newY, isAdjacent) {
   const mapModal = bootstrap.Modal.getInstance(document.getElementById('mapModal'));
   mapModal.hide();
-  return isAdjacent ? 
-    `I move to (${newX},${newY}).` : 
-    `I use teleport token to go to (${newX},${newY}).`;
+  
+  // Get current player position
+  const currentPlayer = document.querySelector(`.players [data-player="${currentUserName}"]`);
+  const currentTile = currentPlayer ? currentPlayer.closest('.tile') : null;
+  
+  return `I move to (${newX},${newY}).` 
 }
 
 // Modify the click listener
 document.addEventListener('click', async (e) => {
   const tile = e.target.closest('.tile');
-  const gridMap = document.querySelector('.grid-map');
+  // const gridMap = document.querySelector('.grid-map');
   
   if (tile && tile.closest('.grid-map') && !isProcessingMove) {
     const newX = parseInt(tile.dataset.x);
@@ -248,8 +275,6 @@ document.addEventListener('click', async (e) => {
         if (chatResponse.ok) {
           updatePlayerPosition(currentUserName, newX, newY);
         }
-        // const mapModal = bootstrap.Modal.getInstance(document.getElementById('mapModal'));
-        // mapModal.hide();
       } else {
         throw new Error('Move failed');
       }
@@ -276,7 +301,7 @@ function showNoTeleportsMessage() {
 
 function updatePlayerPosition(username, x, y) {
   if (!username) {
-    console.error('Username is missing:', username);
+    // console.error('Username is missing:', username);
     return false;
   }
 
