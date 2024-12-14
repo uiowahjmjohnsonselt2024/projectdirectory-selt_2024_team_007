@@ -293,5 +293,18 @@
       class: ("show active" if active_tab == 'v-pills-orders'),
       style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px;"
     }
-      %h1{ style: "color: #2C3E50; text-align: center;" } Orders
-      %p Here are your order details.
+      %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Orders
+      %div{ style: "margin-top: 20px;" }
+        = render 'shared/flash'
+        - if @orders.present?
+          %ul.list-group
+            - @orders.each do |order|
+              %li.list-group-item{ style: "margin-top: 10px; background: rgba(50, 50, 50, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; color: #fff;" }
+                %div
+                  %p{ style: "margin: 0; font-weight: bold;" }= order.item_name
+                  %p{ style: "margin: 0;" } Type: #{order.item_type}
+                  %p{ style: "margin: 0;" } Cost: #{order.item_cost} shards
+                  %p{ style: "margin: 0; font-size: 0.85rem;" } Purchased at: #{order.purchased_at.strftime('%b %d, %Y %H:%M')}
+        - else
+          %p{ style: "color: #ECF0F1; text-align: center; margin-top: 20px;" } No orders found.
+

@@ -98,7 +98,7 @@ class SettingsController < ApplicationController
   def settings
     @billing_methods = @current_user.billing_methods
     @billing_method = BillingMethod.new
-
+    @orders = @current_user.orders.order(purchased_at: :desc) # Retrieve user orders
   end
 
   private
