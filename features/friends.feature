@@ -19,20 +19,20 @@ Feature: Friends Management
 
   Scenario: Send a Friend Request
     Given I am on the friends page
-    When I fill in "Friend's Email" with "jane@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JaneSmith"
     And I press "Send Friend Request"
     Then I should see "Friend request sent to JaneSmith!"
     And "JaneSmith" should be in "Sent Friend Requests"
 
   Scenario: Prevent Sending Friend Request to Nonexistent User
     Given I am on the friends page
-    When I fill in "Friend's Email" with "nonexistent@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "nonexistentUser"
     And I press "Send Friend Request"
-    Then I should see "No user found with the email nonexistent@example.com."
+    Then I should see "No user found with the name nonexistentUser."
 
   Scenario: Prevent Sending Friend Request to Oneself
     Given I am on the friends page
-    When I fill in "Friend's Email" with "john@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JohnDoe"
     And I press "Send Friend Request"
     Then I should see "You cannot send a friend request to yourself."
 
@@ -52,7 +52,7 @@ Feature: Friends Management
 
   Scenario: Cancel a Sent Friend Request
     Given I am on the friends page
-    When I fill in "Friend's Email" with "jane@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JaneSmith"
     And I press "Send Friend Request"
     Then I should see "Friend request sent to JaneSmith!"
     And "JaneSmith" should be in "Sent Friend Requests"

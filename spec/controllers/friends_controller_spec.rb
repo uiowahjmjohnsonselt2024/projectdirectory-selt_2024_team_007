@@ -25,9 +25,9 @@ RSpec.describe FriendsController, type: :controller do
   describe "POST #create" do
     context "when the friend exists and is valid" do
       it "creates a friend request" do
-        new_friend = create(:user, email: "newfriend@example.com")
+        new_friend = create(:user, name: "newfriend")
         expect {
-          post :create, params: { friend_email: new_friend.email }
+          post :create, params: { friend_name: new_friend.name }
         }.to change(Friendship, :count).by(1)
 
         expect(flash[:notice]).to eq("Friend request sent to #{new_friend.name}!")
@@ -37,15 +37,15 @@ RSpec.describe FriendsController, type: :controller do
 
     context "when the friend does not exist" do
       it "sets a flash alert and redirects" do
-        post :create, params: { friend_email: "nonexistent@example.com" }
-        expect(flash[:alert]).to eq("No user found with the email nonexistent@example.com.")
+        post :create, params: { friend_name: "nonexistentUser" }
+        expect(flash[:alert]).to eq("No user found with the name nonexistentUser.")
         expect(response).to redirect_to(friends_path)
       end
     end
 
     context "when trying to friend oneself" do
       it "sets a flash alert and redirects" do
-        post :create, params: { friend_email: user.email }
+        post :create, params: { friend_name: user.name }
         expect(flash[:alert]).to eq("You cannot send a friend request to yourself.")
         expect(response).to redirect_to(friends_path)
       end
