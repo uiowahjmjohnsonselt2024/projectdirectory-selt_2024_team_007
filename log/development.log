@@ -15514,3 +15514,213 @@ Updated session last_seen_at: 2024-12-14T20:36:13Z
 Completed 200 OK in 22ms (Views: 16.8ms | ActiveRecord: 0.7ms (4 queries, 0 cached) | GC: 0.8ms)
 
 
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 14:47:47 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 20:36:13 UTC
+Current time: 2024-12-14 20:47:47 UTC
+Updated session last_seen_at: 2024-12-14T20:47:47Z
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.5ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 13.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 6.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:297
+  Rendered settings/settings.html.haml within layouts/application (Duration: 159.2ms | GC: 61.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 159.4ms | GC: 61.4ms)
+Completed 500 Internal Server Error in 186ms (ActiveRecord: 0.9ms (4 queries, 0 cached) | GC: 61.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `item_id' for an instance of Order):
+
+Causes:
+NoMethodError (undefined method `item_id' for an instance of Order)
+    302:               - if order.item_type == "Shard Package"
+    303:                 %img{ src: image_path("shards_icon.png"), alt: "Shard Icon", style: "width: 50px; height: 50px; margin-right: 10px;" }
+    304:               - elsif order.item_type == "Store Item"
+    305:                 %img{ src: image_path("store_icon_#{order.item_id}.png"), alt: order.item_name, style: "width: 50px; height: 50px; margin-right: 10px;" }
+    306:               %div{ style: "flex: 1;" }
+    307:                 %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= order.item_name
+    308:                 %p{ style: "margin: 0; color: #888;" } Type: #{order.item_type}
+  
+app/views/settings/settings.html.haml:305
+app/views/settings/settings.html.haml:299
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-14 14:47:48 -0600
+Redirected to http://127.0.0.1:3000/assets/favicon.ico
+Completed 301 Moved Permanently in 0ms
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 14:51:36 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 20:36:13 UTC
+Current time: 2024-12-14 20:51:36 UTC
+Updated session last_seen_at: 2024-12-14T20:51:36Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.5ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 13.7ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 5.3ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:297
+  Rendered settings/settings.html.haml within layouts/application (Duration: 114.3ms | GC: 8.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 114.6ms | GC: 8.5ms)
+Completed 500 Internal Server Error in 143ms (ActiveRecord: 2.0ms (4 queries, 0 cached) | GC: 11.0ms)
+
+
+  
+ActionView::Template::Error (The asset "store_icon_.png" is not present in the asset pipeline.
+):
+
+Causes:
+Sprockets::Rails::Helper::AssetNotFound (The asset "store_icon_.png" is not present in the asset pipeline.
+)
+    304:               - elsif order.item_type == "Store Item"
+    305:                 - # Extract item_id from the item_name if applicable (e.g., "Store Item 5")
+    306:                 - item_id = order.item_name.match(/\d+/).to_s
+    307:                 %img{ src: image_path("store_icon_#{item_id}.png"), alt: order.item_name, style: "width: 50px; height: 50px; margin-right: 10px;" }
+    308:               %div{ style: "flex: 1;" }
+    309:                 %p{ style: "margin: 0; font-weight: bold; color: #fff;" }= order.item_name
+    310:                 %p{ style: "margin: 0; color: #888;" } Type: #{order.item_type}
+  
+app/views/settings/settings.html.haml:307
+app/views/settings/settings.html.haml:299
+Started GET "/favicon.ico" for 127.0.0.1 at 2024-12-14 14:51:37 -0600
+Redirected to http://127.0.0.1:3000/assets/favicon.ico
+Completed 301 Moved Permanently in 0ms
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:02:07 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 20:36:13 UTC
+Current time: 2024-12-14 21:02:07 UTC
+Flash set: 
+Session reset
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :check_session_timeout rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2024-12-14 15:02:07 -0600
+Processing by SessionsController#new as HTML
+Session last_seen_at: 
+Current time: 2024-12-14 21:02:07 UTC
+Updated session last_seen_at: 2024-12-14T21:02:07Z
+Redirected to http://127.0.0.1:3000/login_firsttime
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login_firsttime" for 127.0.0.1 at 2024-12-14 15:02:07 -0600
+Processing by SessionsController#login_firsttime as HTML
+Session last_seen_at: 2024-12-14 21:02:07 UTC
+Current time: 2024-12-14 21:02:07 UTC
+Updated session last_seen_at: 2024-12-14T21:02:07Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/login_firsttime.html.haml within layouts/application
+  Rendered sessions/login_firsttime.html.haml within layouts/application (Duration: 15.7ms | GC: 5.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 24.9ms | GC: 6.4ms)
+Completed 200 OK in 29ms (Views: 27.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.7ms)
+
+
+Started GET "/audio/log_in.mp3" for 127.0.0.1 at 2024-12-14 15:02:07 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/audio/log_in.mp3"):
+  
+Started GET "/login?play_music=true" for 127.0.0.1 at 2024-12-14 15:02:08 -0600
+Processing by SessionsController#new as HTML
+  Parameters: {"play_music"=>"true"}
+Session last_seen_at: 2024-12-14 21:02:07 UTC
+Current time: 2024-12-14 21:02:08 UTC
+Updated session last_seen_at: 2024-12-14T21:02:08Z
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered shared/_flash.html.haml (Duration: 8.6ms | GC: 0.1ms)
+  Rendered sessions/new.html.haml within layouts/application (Duration: 25.4ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.haml (Duration: 26.0ms | GC: 0.5ms)
+Completed 200 OK in 29ms (Views: 26.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2024-12-14 15:02:10 -0600
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "commit"=>"Sign in"}
+Session last_seen_at: 2024-12-14 21:02:08 UTC
+Current time: 2024-12-14 21:02:10 UTC
+Updated session last_seen_at: 2024-12-14T21:02:10Z
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:19:in `create'
+Redirected to http://127.0.0.1:3000/landing
+Completed 302 Found in 215ms (ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/landing" for 127.0.0.1 at 2024-12-14 15:02:10 -0600
+Processing by LandingController#index as HTML
+Session last_seen_at: 2024-12-14 21:02:10 UTC
+Current time: 2024-12-14 21:02:10 UTC
+Updated session last_seen_at: 2024-12-14T21:02:10Z
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering landing/index.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 2.8ms | GC: 0.1ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 12.7ms | GC: 0.5ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mGame Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:37
+  [1m[36mGame Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" INNER JOIN "game_users" ON "games"."id" = "game_users"."game_id" WHERE "game_users"."user_id" = ? ORDER BY "games"."created_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/landing/index.html.haml:38
+  [1m[36mGameUser Load (0.1ms)[0m  [1m[34mSELECT "game_users".* FROM "game_users" WHERE "game_users"."game_id" = ?[0m  [["game_id", 2]]
+  ↳ app/views/landing/index.html.haml:38
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/landing/index.html.haml:42
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = ? AND "friendships"."status" = ?[0m  [["user_id", 4], ["status", "accepted"]]
+  ↳ app/views/landing/index.html.haml:60
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."user_id" WHERE "friendships"."friend_id" = ? AND "friendships"."status" = ?[0m  [["friend_id", 4], ["status", "accepted"]]
+  ↳ app/views/landing/index.html.haml:60
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "game_users" ON "users"."id" = "game_users"."user_id" WHERE "game_users"."game_id" = ?[0m  [["game_id", 2]]
+  ↳ app/views/landing/index.html.haml:62:in `-'
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered landing/index.html.haml within layouts/application (Duration: 65.6ms | GC: 7.7ms)
+  Rendered layout layouts/application.html.haml (Duration: 66.3ms | GC: 7.7ms)
+Completed 200 OK in 85ms (Views: 65.7ms | ActiveRecord: 1.8ms (9 queries, 0 cached) | GC: 12.8ms)
+
+
+Started GET "/settings" for 127.0.0.1 at 2024-12-14 15:02:14 -0600
+Processing by SettingsController#settings as HTML
+Session last_seen_at: 2024-12-14 21:02:10 UTC
+Current time: 2024-12-14 21:02:14 UTC
+Updated session last_seen_at: 2024-12-14T21:02:14Z
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `set_current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering settings/settings.html.haml within layouts/application
+  Rendered shared/_store_button.html.haml (Duration: 0.2ms | GC: 0.0ms)
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_image"], ["LIMIT", 1]]
+  ↳ app/views/shared/_navigation.html.haml:11
+  Rendered shared/_navigation.html.haml (Duration: 2.1ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  Rendered shared/_flash.html.haml (Duration: 0.0ms | GC: 0.0ms)
+  [1m[36mBillingMethod Load (0.1ms)[0m  [1m[34mSELECT "billing_methods".* FROM "billing_methods" WHERE "billing_methods"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:178
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."user_id" = ? ORDER BY "orders"."purchased_at" DESC[0m  [["user_id", 4]]
+  ↳ app/views/settings/settings.html.haml:297
+  Rendered settings/settings.html.haml within layouts/application (Duration: 90.6ms | GC: 14.4ms)
+  Rendered layout layouts/application.html.haml (Duration: 91.4ms | GC: 14.4ms)
+Completed 200 OK in 100ms (Views: 91.7ms | ActiveRecord: 0.4ms (4 queries, 0 cached) | GC: 14.4ms)
+
+
