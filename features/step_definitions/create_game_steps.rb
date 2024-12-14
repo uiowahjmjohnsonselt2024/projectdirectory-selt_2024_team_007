@@ -19,6 +19,33 @@ When("I navigate to the landing page") do
 end
 
 When("I submit the create game form") do
+  # Add WebMock stub for OpenAI API
+  # Add WebMock stub for OpenAI API
+  stub_request(:post, "https://api.openai.com/v1/chat/completions")
+    .with(
+      body: hash_including(
+        model: "gpt-4",
+        messages: lambda { |messages|
+          messages.is_a?(Array) &&
+            messages.any? { |msg| msg["role"] == "system" && msg["content"].include?("world-building assistant") } &&
+            messages.any? { |msg| msg["role"] == "user" && msg["content"].include?("Genre: Fantasy") }
+        }
+      ),
+      headers: {
+        'Authorization' => /Bearer .+/,
+        'Content-Type' => 'application/json'
+      }
+    )
+    .to_return(
+      status: 200,
+      body: {
+        choices: [
+          { message: { content: "A vast and mystical forest filled with ancient ruins and magical creatures." } }
+        ]
+      }.to_json,
+      headers: { 'Content-Type' => 'application/json' }
+    )
+
   within("#createGameModal") do
     click_button "Create Game"
   end
