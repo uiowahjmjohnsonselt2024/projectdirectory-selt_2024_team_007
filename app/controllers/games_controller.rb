@@ -52,9 +52,22 @@ class GamesController < ApplicationController
     @game_user = @game.game_users.find_by(user: @current_user)
     @tile = @game.tiles.find_by(x_coordinate: params[:x], y_coordinate: params[:y])
   
-    if @current_user.teleport > 0
+    # Get current position
+    current_tile = @game_user.current_tile
+    
+    # Check if move is to an adjacent tile
+    is_adjacent = if current_tile
+      (current_tile.x_coordinate - @tile.x_coordinate).abs <= 1 &&
+      (current_tile.y_coordinate - @tile.y_coordinate).abs <= 1
+    else
+      true # Allow first move to any tile
+    end
+  
+    if is_adjacent || @current_user.teleport > 0
       if @tile && @game_user.update(current_tile: @tile)
-        @current_user.decrement!(:teleport)
+        # Only decrement teleport if using non-adjacent movement
+        @current_user.decrement!(:teleport) unless is_adjacent
+        
         ActionCable.server.broadcast "presence_channel_#{@game.id}", {
           user: @current_user.name,
           status: 'moved',
@@ -66,7 +79,7 @@ class GamesController < ApplicationController
         head :unprocessable_entity
       end
     else
-      flash[:alert] = 'No teleports left'
+      flash[:alert] = 'Can only move to adjacent tiles without teleport'
       redirect_to game_path(@game)
     end
   end
@@ -306,6 +319,8 @@ PROMPT
   end
 
   private
+
+  
 
   # Ensure the user is part of the game
   def authorize_game_user
