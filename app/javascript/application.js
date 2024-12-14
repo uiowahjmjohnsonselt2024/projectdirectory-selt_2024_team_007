@@ -115,11 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+        updateMapModal();
       },
     });
   });
   
-
+//PresenceChannel subscription
 let gameId;
 let userId;
 let currentUserName;
@@ -199,7 +200,7 @@ document.addEventListener('click', async (e) => {
 
     isProcessingMove = true;
     const x = tile.dataset.x;
-    const y = tile.dataset.y;
+    const y = tile.datasetupdateMapModal.y;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
     try {
