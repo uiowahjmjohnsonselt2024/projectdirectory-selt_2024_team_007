@@ -9,9 +9,9 @@ class StoreItemsController < ApplicationController
     @shard_balance = session[:shard_balance] ||= 100 # Default balance
     @user = current_user
     @shard_packages = [
-      { shards: 50, price_usd: 5.00 },
-      { shards: 120, price_usd: 10.00 },
-      { shards: 250, price_usd: 20.00 }
+      { shards: 10, price_usd: 7.50 },
+      { shards: 20, price_usd: 15.00 },
+      { shards: 50, price_usd: 37.50 }
     ]
   end
 
@@ -23,10 +23,15 @@ class StoreItemsController < ApplicationController
     item = StoreItem.find_by(id: item_id)
 
     # Handle shard packages
-    if [50, 120, 250].include?(shard_amount)
-      user.increment!(:shards_balance, shard_amount)
-      flash[:success] = "Purchase successful!"
-      redirect_to store_items_path and return
+    if [10, 20, 50].include?(shard_amount)
+      if BillingMethod.exists?(user_id: current_user.id)
+        user.increment!(:shards_balance, shard_amount)
+        flash[:success] = "Purchase successful!"
+        redirect_to store_items_path and return
+      elsif
+        flash[:danger] = "Please add a Payment Method"
+        redirect_to store_items_path and return
+      end
     end
 
     # Handle store items based on item_id and item existence

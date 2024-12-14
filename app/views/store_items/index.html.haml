@@ -22,25 +22,25 @@
         %div.purchase-panel
           %img{ src: image_path('shards_normal.png'), alt: "50 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
 
-          %strong= "#{display_price(5.00)} - 50 Shards"
+          %strong= "#{display_price(7.50)} - 10 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "50 Shards for #{display_price(5.00)}", shard_amount: 50 },
+                   data: { package: "10 Shards for #{display_price(7.50)}", shard_amount: 10 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #2ECC71; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
           %img{ src: image_path('shards_medium.png'), alt: "120 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
 
-          %strong= "#{display_price(10.00)} - 120 Shards"
+          %strong= "#{display_price(15.00)} - 20 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "120 Shards for #{display_price(10.00)}", shard_amount: 120 },
+                   data: { package: "20 Shards for #{display_price(15.00)}", shard_amount: 20 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #1ABC9C; color: #fff; border: none; border-radius: 5px;" } Purchase
 
         %div.purchase-panel
           %img{ src: image_path('shards_large.png'), alt: "250 Shards Icon", style: "width: 75px; height: 75px; margin-bottom: 10px;" }
 
-          %strong= "#{display_price(20.00)} - 250 Shards"
+          %strong= "#{display_price(37.50)} - 50 Shards"
           %button{ class: "purchase-button",
-                   data: { package: "250 Shards for #{display_price(20.00)}", shard_amount: 250 },
+                   data: { package: "50 Shards for #{display_price(37.50)}", shard_amount: 50 },
                    style: "margin-left: 10px; padding: 5px 10px; background-color: #3498DB; color: #fff; border: none; border-radius: 5px;" } Purchase
 
       %button{ id: "close-popup-purchase", style: "margin-top: 20px; padding: 10px 20px; background-color: #DB4437; color: #fff; border: none; border-radius: 5px;" } Close
@@ -65,10 +65,11 @@
       %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Available Items:
       - @store_items.each do |item|
         %div.store-card{ style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px;" }
-          %img{ src: image_path('shards_normal.png'), alt: "Shards Icon", style: "width: 75px; height: 75px; border-radius: 5px;" }
+          %img{ src: image_path("store_icon_#{item.id}.png"), alt: "Shards Icon", style: "width: 75px; height: 75px; border-radius: 5px;" }
           %div{ style: "flex: 1;" }
             %p{ style: "color: #ECF0F1; font-weight: bold; margin: 0;" }= item.name
-            %p{ style: "color: #BDC3C7; margin: 5px 0;" }= item.description
+            %p{ style: "color: #BDC3C7; margin: 5px 0; white-space: pre-wrap;" }
+              = word_wrap(item.description, line_width: 80)
           %p{ style: "color: #ECF0F1; margin: 0;" } Cost: #{item.shards_cost} shards
           %div{ style: "display: flex; flex-direction: column; align-items: center; margin-left: 20px;" }
             %button{ class: "purchase-button",
