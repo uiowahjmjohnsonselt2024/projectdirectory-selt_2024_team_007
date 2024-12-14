@@ -23,29 +23,16 @@
           Not started
         %h3.mt-4 Players
         %ul#presence-list
-          -# - @game_users.each do |game_user|
-          -#   %li= "#{game_user.user.name} (Health: #{game_user.health})"
+          
 
       %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
         Inventory
-
-      / Chat Response Field
-      %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
-        %h4 GPT Response
-        %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
-          -# %p.text-muted No chat yet.
-
-    / Main Content Area
-    %main.content-area.flex-grow-1.p-3.d-flex.flex-column
-      / GPT Image Placeholder
-      %div.gpt-image-box.position-relative.mb-3.bg-light
-        %button#map_button.btn.btn-primary.position-absolute.top-0.end-0.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
-          View Map
-        %div.square-container.d-flex.align-items-center.justify-content-center
-          %p.text-muted.mb-0 GPT-generated images will appear here.
+      %button#map_button.btn.btn-primary.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
+        View Map
 
       %div#flash-messages
         = render 'shared/flash'
+
 
       / Editable User Input Field
       %div.user-input.mt-3
@@ -55,13 +42,28 @@
         %button#send-message.btn.btn-primary Send
 
 
+    / Main Content Area
+    %main.content-area.flex-grow-1.p-3.d-flex.flex-column.align-items-center
+      / GPT Image Placeholder (on top)
+      %div.gpt-image-box.position-relative.bg-light.square-container
+        %div#gpt-image-box.image-container.square-container.d-flex.align-items-center.justify-content-center
+          %p.text-muted.mb-0 GPT-generated images will appear here.
+
+      / GPT Response Field (below the image)
+      %div.gpt-response-container.bg-secondary.text-white.p-3.mt-4
+        %h4 GPT Response
+        %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.overflow-auto
+          -# %p.text-muted No chat yet.
+
+
+
 
     / Map Modal
     .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
       .modal-dialog.modal-lg
         .modal-content
           .modal-header
-            %h5#mapModalLabel.modal-title Map
+            %h5#mapModalLabel.modal-title{ style: "color: black;" } Map
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
@@ -74,15 +76,14 @@
       .modal-dialog
         .modal-content
           .modal-header
-            %h5#inventoryModalLabel.modal-title Inventory
+            %h5#inventoryModalLabel.modal-title{ style: "color: black;" } Inventory
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-          .modal-body
+          .modal-body{ style: "color: black;" }
             / Inventory Items
-            - current_game_user = @game_users.find_by(user: @current_user)
-            - if current_game_user && current_game_user.equipment.present?
+            - if @equipment_items.present?
               %ul
-                - current_game_user.equipment.each do |item|
-                  %li= item
+                - @equipment_items.each do |item|
+                  %li= item[:name]
             - else
               %p No items in your inventory.
           .modal-footer
@@ -148,6 +149,7 @@
         const newMessage = `
           <p><strong>${data.user}:</strong> ${data.message}</p>
           <p><em>GPT:</em> ${data.gpt_response}</p>
+          <p><em>GPT:</em> ${data.gpt_img_resp}</p>
         `;
         responseField.innerHTML += newMessage;
         responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to bottom
@@ -156,14 +158,27 @@
 
     // Handle message sending via fetch
     sendButton.addEventListener("click", async () => {
+      const flashContainer = document.getElementById("flash-messages");
+
       const message = messageField.value.trim();
 
       if (!message) {
-        alert("Please enter a message.");
+        // Show a flash message for empty input
+        const flashDiv = document.createElement("div");
+        flashDiv.className = "alert alert-warning";
+        flashDiv.textContent = "Please enter a message.";
+        flashContainer.appendChild(flashDiv);
+        setTimeout(() => flashDiv.remove(), 3000); // Auto-clear message
         return;
       }
 
-      console.log("Sending message:", message);
+      // Show "sending" flash message
+      const sendingFlash = document.createElement("div");
+      sendingFlash.className = "alert alert-info";
+      sendingFlash.textContent = "Message sent! Please wait for a response...";
+      flashContainer.appendChild(sendingFlash);
+      setTimeout(() => sendingFlash.remove(), 3000); // Auto-clear message
+
       try {
         const response = await fetch(`/games/${gameId}/chat`, {
           method: "POST",
@@ -176,19 +191,32 @@
         });
 
         if (response.ok) {
+          // Show success flash message
+          const successFlash = document.createElement("div");
+          successFlash.className = "alert alert-success";
+          successFlash.textContent = "Message sent successfully!";
+          flashContainer.appendChild(successFlash);
+
+          // Clear the input field
           messageField.value = "";
-          const flashContainer = document.getElementById("flash-messages");
-          const flashDiv = document.createElement("div");
-          flashDiv.className = "alert alert-success";
-          flashDiv.textContent = "Message sent!";
-          flashContainer.appendChild(flashDiv);
-          setTimeout(() => flashDiv.remove(), 3000);
+
+          setTimeout(() => successFlash.remove(), 3000);
         } else {
           alert("Failed to send your message. Please try again.");
         }
       } catch (error) {
-        console.error("Error sending message:", error);
-        alert("An error occurred while sending your message.");
+          console.error("Error sending message:", error);
+
+          // Remove "sending" flash message
+          sendingFlash.remove();
+
+          // Show error flash message
+          const errorFlash = document.createElement("div");
+          errorFlash.className = "alert alert-danger";
+          errorFlash.textContent = "An error occurred while sending your message.";
+          flashContainer.appendChild(errorFlash);
+
+          setTimeout(() => errorFlash.remove(), 3000); // Auto-clear error message
       }
     });
   });

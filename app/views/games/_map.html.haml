@@ -3,7 +3,7 @@
 - rows, columns = game.map_size.split('x').map(&:to_i)
 - grid_style = "grid-template-columns: repeat(#{columns}, 1fr); grid-template-rows: repeat(#{rows}, 1fr);"
 
-%div.grid-map{ style: "#{grid_style};" }
+%div.grid-map{ style: grid_style }
   - tile_hash = tiles.index_by { |t| [t.x_coordinate, t.y_coordinate] }
   - player_positions = {}
   - game_users.each do |gu|
@@ -11,17 +11,15 @@
       - key = [gu.current_tile.x_coordinate, gu.current_tile.y_coordinate]
       - player_positions[key] ||= []
       - player_positions[key] << gu
+
   - (0...rows).each do |y|
     - (0...columns).each do |x|
       - tile = tile_hash[[x, y]]
-      - tile_classes = 'tile d-flex align-items-center justify-content-center'
-      - tile_content = ''
-      - if tile
-        - tile_content = tile.tile_type.capitalize
-        - if player_positions[[x, y]]
-          - players = player_positions[[x, y]].map { |gu| gu.user.name }.join(', ')
-          - tile_content += " (#{players})"
-      - else
-        - tile_content = 'Unknown'
-      %div{ class: tile_classes }
+      - tile_classes = 'tile d-flex flex-column align-items-center justify-content-center'
+      - tile_content = tile ? tile.tile_type.capitalize : 'Unknown'
+      %div{ class: tile_classes, data: { x: x, y: y }, style: "color: black;" }
         = tile_content
+        - if player_positions[[x, y]]
+          .players
+            - player_positions[[x, y]].each do |gu|
+              %span.player-name{ data: { player: gu.user.name } }= "(#{gu.user.name})"

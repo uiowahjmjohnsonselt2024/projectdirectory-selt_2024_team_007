@@ -25,3 +25,12 @@
       %div{ class: "alert", style: "padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 10px; color: #383d41; background-color: #e2e3e5; border: 1px solid #d6d8db;" }
         %strong= type.capitalize
         = ": #{message}"
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      document.querySelectorAll('#flash_messages .alert').forEach(function(alert) {
+        alert.remove();
+      });
+    }, 14000); // 14seconds delay
+  });

@@ -42,12 +42,22 @@
             - if game.owner == @current_user
               %span.owner-flair{ style: "background-color: #F39C12; color: #ECF0F1; padding: 2px 5px; border-radius: 3px; margin-left: 10px;" }
                 Owner
-          %p{ style: "color: #ECF0F1;" }
-            = game.context
-          = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
-          - if game.owner == @current_user
-            %button.btn.btn-primary{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: 'margin-top: 10px; margin-left: 10px;' } Add Friends
+            %span.player-count{ style: "background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px; margin-left: 10px;" }
+              = "Players: #{game.users.count}/4"
+                
+          -# %span.player-count{ style: "float: right; background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px;" }
+          -#   = "Players: #{game.users.count}/4"
 
+
+          .button-container{ style: "display: flex; gap: 10px; margin-top: 10px;" }
+            = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "flex: 1; max-width: 150px; max-height: 38px;"
+            
+            = button_to 'Leave Game', leave_game_path(game), class: 'btn btn-danger', data: { confirm: "Are you sure you want to leave this game?" }
+            - if game.owner == @current_user
+              %button.btn.btn-primary{"data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: "flex: 1; max-width: 150px; max-height: 38px;"}
+                Add Friends
+          
+            / You can add hidden fields here if needed
             / Add Friends Modal
             .modal.fade{ :id => "addFriendsModal-#{game.id}", tabindex: "-1", "aria-labelledby" => "addFriendsModalLabel-#{game.id}", "aria-hidden" => "true" }
               .modal-dialog
@@ -70,7 +80,8 @@
                             = label_tag "friend_ids_#{game.id}_#{friend.id}", friend.name, class: 'form-check-label', style: "color: black;"
                       .modal-footer
                         = f.submit 'Invite Friends', class: 'btn btn-primary'
-                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close 
+            
     - else
       %p{ style: "color: #BDC3C7;" } No games available. Create one!
 
