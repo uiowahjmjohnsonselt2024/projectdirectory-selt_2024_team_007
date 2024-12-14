@@ -52,16 +52,22 @@ class GamesController < ApplicationController
     @game_user = @game.game_users.find_by(user: @current_user)
     @tile = @game.tiles.find_by(x_coordinate: params[:x], y_coordinate: params[:y])
   
-    if @tile && @game_user.update(current_tile: @tile)
-      ActionCable.server.broadcast "presence_channel_#{@game.id}", {
-        user: @current_user.name,
-        status: 'moved',
-        x: @tile.x_coordinate,
-        y: @tile.y_coordinate
-      }
-      head :ok
+    if @current_user.teleport > 0
+      if @tile && @game_user.update(current_tile: @tile)
+        @current_user.decrement!(:teleport)
+        ActionCable.server.broadcast "presence_channel_#{@game.id}", {
+          user: @current_user.name,
+          status: 'moved',
+          x: @tile.x_coordinate,
+          y: @tile.y_coordinate
+        }
+        head :ok
+      else
+        head :unprocessable_entity
+      end
     else
-      head :unprocessable_entity
+      flash[:alert] = 'No teleports left'
+      redirect_to game_path(@game)
     end
   end
   

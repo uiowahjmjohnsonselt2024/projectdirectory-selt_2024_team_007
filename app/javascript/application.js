@@ -119,51 +119,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-// application.js
 
 let gameId;
 let userId;
 let currentUserName;
+let currentUserTeleports;
+
+let isProcessingMove = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   const gameElement = document.querySelector("[data-game-id]");
   if (!gameElement) return;
   gameId = gameElement.dataset.gameId;
   userId = document.querySelector("[data-user-id]").dataset.userId;
-  currentUserName = document.querySelector("[data-user-id]").dataset.userName;
+  const userElement = document.querySelector("[data-user-id]");
+  currentUserName = userElement ? userElement.dataset.userName || "" : "";
 
-  // Use event delegation for tile click events
-  const gridMap = document.querySelector('.grid-map');
-  if (gridMap) {
-    gridMap.addEventListener('click', async (e) => {
-      const tile = e.target.closest('.tile');
-      if (tile) {
-        const x = tile.dataset.x;
-        const y = tile.dataset.y;
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-
-        try {
-          const response = await fetch(`/games/${gameId}/move`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken
-            },
-            body: JSON.stringify({ x, y })
-          });
-
-          if (response.ok) {
-            // Update the player's position on the map
-            updatePlayerPosition(currentUserName, x, y);
-          } else {
-            throw new Error('Move failed');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          alert('Failed to move. Please try again.');
-        }
-      }
-    });
+  const userTeleportsElement = document.querySelector("[data-user-teleports]");
+  if (userTeleportsElement) {
+    currentUserTeleports = parseInt(userTeleportsElement.dataset.userTeleports, 10);
+  } else {
+    currentUserTeleports = 0;
   }
 
   // Updated PresenceChannel subscription
@@ -210,10 +186,18 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
-// Attach the event listener to the document
+// Modified document-level click listener
 document.addEventListener('click', async (e) => {
   const tile = e.target.closest('.tile');
-  if (tile && tile.closest('.grid-map')) {
+  const gridMap = document.querySelector('.grid-map');
+  
+  if (tile && tile.closest('.grid-map') && !isProcessingMove) {
+    if (gridMap.dataset.disable === 'true' || currentUserTeleports <= 0) {
+      showNoTeleportsMessage();
+      return;
+    }
+
+    isProcessingMove = true;
     const x = tile.dataset.x;
     const y = tile.dataset.y;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -230,15 +214,30 @@ document.addEventListener('click', async (e) => {
 
       if (response.ok) {
         updatePlayerPosition(currentUserName, x, y);
+        currentUserTeleports -= 1;
+        if (currentUserTeleports <= 0) {
+          gridMap.dataset.disable = 'true';
+          showNoTeleportsMessage();
+        }
       } else {
         throw new Error('Move failed');
       }
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to move. Please try again.');
+    } finally {
+      isProcessingMove = false;
     }
   }
 });
+
+// Add new helper function
+function showNoTeleportsMessage() {
+  const modalFlashMessages = document.querySelector('#mapModal #map-flash-messages');
+  if (modalFlashMessages) {
+    modalFlashMessages.innerHTML = '<div class="alert alert-danger" style="margin: 10px;">No teleports left</div>';
+  }
+}
 
 
 // Function to update player position on the map
