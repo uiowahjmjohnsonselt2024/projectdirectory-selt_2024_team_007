@@ -6,13 +6,34 @@ class GamesController < ApplicationController
 
   # POST /games
   def create
-    if @current_user.shards_balance >= 500
+    if @current_user.shards_balance >= 40
       @game = Game.new(game_params)
       @game.owner = @current_user
       @game.current_turn_user = @current_user
 
+      # If genre/setting not provided, either set defaults or generate via GPT
+      if @game.genre.blank?
+        # Example default or GPT generationer here:
+        @game.genre = "Fantasy"
+      end
+
+      gpt_service = GptDmService.new
+      begin
+        # Attempt to generate a setting from GPT based on the chosen genre
+        generated_setting = gpt_service.generate_setting(@game.genre)
+        # If GPT returns nil or empty, use a fallback
+        @game.setting = generated_setting.presence || default_setting_for_genre(@game.genre)
+      rescue => e
+        Rails.logger.error("GPT Setting Generation Failed: #{e.message}")
+        # Use a genre-relevant fallback if GPT fails
+        @game.setting = default_setting_for_genre(@game.genre)
+      end
+
+      # Set a default internal image URL if none is provided
+      @game.chat_image_url ||= "login_register_background.jpg"
+
       if @game.save
-        @current_user.update_column(:shards_balance, @current_user.shards_balance - 500)
+        @current_user.update_column(:shards_balance, @current_user.shards_balance - 40)
         @game.game_users.create(user: @current_user, health: 100)
         @game.update(context: "[]") if @game.context.blank?
         redirect_to @game, notice: 'Game was successfully created.'
@@ -51,7 +72,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game_user = @game.game_users.find_by(user: @current_user)
     @tile = @game.tiles.find_by(x_coordinate: params[:x], y_coordinate: params[:y])
-  
+
     if @tile && @game_user.update(current_tile: @tile)
       ActionCable.server.broadcast "presence_channel_#{@game.id}", {
         user: @current_user.name,
@@ -91,6 +112,22 @@ class GamesController < ApplicationController
     @tiles = @game.tiles.order(:x_coordinate, :y_coordinate)
     current_game_user = @game_users.find_by(user: @current_user)
     @equipment_items = fetch_equipment(current_game_user)
+
+    # Parse the game.context to find the last assistant message
+    messages = []
+    if @game.context.present?
+      begin
+        messages = JSON.parse(@game.context)
+      rescue JSON::ParserError
+        messages = []
+      end
+    end
+
+    # Find the last assistant message
+    @last_assistant_message = messages.reverse.find { |m| m["role"] == "assistant" }&.dig("content")
+
+    # Get the most recent image URL from the game record
+    @last_chat_image_url = @game.chat_image_url
   end
 
   # POST /games/:id/chat
@@ -153,8 +190,8 @@ class GamesController < ApplicationController
     game_state = {
       game_state: {
         # TODO Add dynamic setting/genre on game creation
-        genre: "Fantasy",
-        setting: "A vast kingdom at war with neighboring realms",
+        genre: @game.genre || "Fantasy",
+        setting: @game.setting || "A vast kingdom at war with neighboring realms",
         players: players,
         map: {
           size: {
@@ -221,6 +258,9 @@ PROMPT
 
     Rails.logger.info("Generated image URL: #{image_response.inspect}")
     puts "Generated image URL: #{image_response.inspect}"
+
+    # Save the generated image URL to the games table
+    @game.update!(chat_image_url: image_response)
 
     # After GPT response and after updating the @game context
     @game.reload # Ensure we have the latest data from the database
@@ -318,7 +358,7 @@ PROMPT
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :join_code, :map_size)
+    params.require(:game).permit(:name, :join_code, :map_size, :genre)
   end
 
   def ensure_owner
@@ -369,6 +409,25 @@ PROMPT
 
   def fetch_active_quests(game)
     game.quests || "[]" # Return the quests string or an empty array as a string if no quests are set
+  end
+
+  # Provide a default setting for each genre as a fallback if GPT fails
+  def default_setting_for_genre(genre)
+    case genre
+    when "High fantasy"
+      "A lush and magical world full of mystical creatures and ancient forests."
+    when "Realistic Medieval"
+      "A gritty medieval kingdom where lords and peasants struggle to survive amidst constant war."
+    when "American West"
+      "A rugged frontier of endless plains, dusty towns, and opportunistic outlaws."
+    when "Nuclear Apocalypse"
+      "A ruined landscape of blasted cities, scarce resources, and lurking mutants."
+    when "Zombie Apocalypse"
+      "A devastated world overrun by the undead, where survivors cling to life in fortified enclaves."
+    else
+      # Fallback for unexpected or default genre
+      "A vast kingdom at war with neighboring realms"
+    end
   end
 
 end
