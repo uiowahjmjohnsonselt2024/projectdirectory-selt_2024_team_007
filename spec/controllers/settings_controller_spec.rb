@@ -12,6 +12,26 @@ RSpec.describe SettingsController, type: :controller do
     )
   end
 
+  let!(:order1) do
+    Order.create!(
+      user: user,
+      item_name: "10 Shards",
+      item_type: "Shard Package",
+      item_cost: 10,
+      purchased_at: Time.zone.now - 2.days
+    )
+  end
+
+  let!(:order2) do
+    Order.create!(
+      user: user,
+      item_name: "Teleport",
+      item_type: "Store Item",
+      item_cost: 2,
+      purchased_at: Time.zone.now - 1.day
+    )
+  end
+
   before do
     allow(controller).to receive(:set_current_user) do
       controller.instance_variable_set(:@current_user, user)
@@ -147,9 +167,20 @@ RSpec.describe SettingsController, type: :controller do
       expect(assigns(:billing_method)).to be_a_new(BillingMethod)
     end
 
+    it "assigns @orders with the user's orders sorted by purchased_at in descending order" do
+      get :settings
+      expect(assigns(:orders)).to eq([order2, order1]) # Most recent order first
+    end
+
     it "renders the settings template" do
       get :settings
       expect(response).to render_template(:settings)
+    end
+
+    it "assigns an empty @orders if the user has no orders" do
+      user.orders.destroy_all
+      get :settings
+      expect(assigns(:orders)).to be_empty
     end
   end
 
