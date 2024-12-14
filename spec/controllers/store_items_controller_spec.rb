@@ -2,6 +2,15 @@ require 'rails_helper'
 
 RSpec.describe StoreItemsController, type: :controller do
   let(:user) { create(:user, shards_balance: 100) }
+  let!(:billing_method) do
+    BillingMethod.create!(
+      user: user,
+      card_number: "1234567812345678",
+      card_holder_name: "Test User",
+      expiration_date: Date.today + 1.year,
+      cvv: "123"
+    )
+  end
   let!(:store_item) { create(:store_item, id: 4, name: "Exclusive Item", shards_cost: 30) }
 
   before do
@@ -43,11 +52,23 @@ RSpec.describe StoreItemsController, type: :controller do
     context "when purchasing a shard package" do
       it "increases the user's shard balance" do
         post :purchase, params: { shard_amount: 50 }
-        expect(user.reload.shards_balance).to eq(100)
+        expect(user.reload.shards_balance).to eq(150)
+      end
+
+      it "creates an order for the shard package" do
+        expect {
+          post :purchase, params: { shard_amount: 50 }
+        }.to change(Order, :count).by(1)
+
+        order = Order.last
+        expect(order.user).to eq(user)
+        expect(order.item_name).to eq("50 Shards")
+        expect(order.item_type).to eq("Shard Package")
+        expect(order.item_cost).to eq(50)
       end
     end
 
-    context "when purchasing a store item with exact shard amount" do
+    context "when purchasing a store item" do
       before { user.update_column(:shards_balance, 30) }
 
       it "deducts the exact shard amount and adds the item" do
@@ -56,6 +77,18 @@ RSpec.describe StoreItemsController, type: :controller do
         expect(user.shards_balance).to eq(0)
         expect(user.owns_item?(store_item.id)).to be true
         expect(flash[:success]).to include("Successfully purchased #{store_item.name}")
+      end
+
+      it "creates an order for the store item" do
+        expect {
+          post :purchase, params: { shard_amount: 30, item_id: store_item.id }
+        }.to change(Order, :count).by(1)
+
+        order = Order.last
+        expect(order.user).to eq(user)
+        expect(order.item_name).to eq(store_item.name)
+        expect(order.item_type).to eq("Store Item")
+        expect(order.item_cost).to eq(30)
       end
     end
 
@@ -66,6 +99,12 @@ RSpec.describe StoreItemsController, type: :controller do
         post :purchase, params: { shard_amount: 30, item_id: store_item.id }
         expect(user.reload.shards_balance).to eq(10)
         expect(flash[:danger]).to eq("Insufficient Shard Balance. You need 20 more shards.")
+      end
+
+      it "does not create an order" do
+        expect {
+          post :purchase, params: { shard_amount: 30, item_id: store_item.id }
+        }.to_not change(Order, :count)
       end
     end
 
@@ -80,12 +119,24 @@ RSpec.describe StoreItemsController, type: :controller do
         expect(user.reload.shards_balance).to eq(100)
         expect(flash[:warning]).to eq("You already own #{store_item.name}!")
       end
+
+      it "does not create an order" do
+        expect {
+          post :purchase, params: { shard_amount: 30, item_id: store_item.id }
+        }.to_not change(Order, :count)
+      end
     end
 
     context "when shard_amount is invalid" do
       it "sets a danger flash message for invalid shard amount" do
         post :purchase, params: { shard_amount: 999 }
         expect(flash[:danger]).to eq("Invalid shard amount! Please select a valid purchase option.")
+      end
+
+      it "does not create an order" do
+        expect {
+          post :purchase, params: { shard_amount: 999 }
+        }.to_not change(Order, :count)
       end
     end
   end
