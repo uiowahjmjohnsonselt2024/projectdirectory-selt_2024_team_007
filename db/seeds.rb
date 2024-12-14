@@ -7,14 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-puts "Clearing Users and Store Items"
+puts "Clearing Store Items"
 
 StoreItem.destroy_all
 
 StoreItem.create!(name: 'Teleport', description: 'Instantly teleport to any location on the Grid(Map).', shards_cost: 2, item_id: 1)
 StoreItem.create!(name: 'Small Health Potion', description: 'Restores 50% HP', shards_cost: 1, item_id: 2)
 StoreItem.create!(name: 'Resurrection Token', description: 'Brings players or other entities back to life', shards_cost: 3, item_id: 3)
-StoreItem.create!(name: "Trickster's Relic", description: 'An enchanted artifact that channels chaotic magic, transforming anything it touches into something unpredictable and bizarre.', shards_cost: 10, item_id: 4)
+StoreItem.create!(name: "Trickster's Relic", description: 'An enchanted artifact that channels chaotic magic, transforming anything it touches into something unpredictable and bizarre.', shards_cost: 8, item_id: 4)
 StoreItem.create!(name: 'Emberscale, Fang of the Crimson Wyrm', description: 'A sword with draconic lineage with scales that shimmer with fiery embers.', shards_cost: 5, item_id: 5)
 StoreItem.create!(name: "Bloodwood's Whisper", description: 'A beautiful mahogany bow once wielded by the renowned gladiator Bloodwood, famed for felling countless foes with unerring precision. Its craftsmanship surpasses ordinary bows, offering unmatched accuracy and power with every shot.', shards_cost: 5, item_id: 6)
 StoreItem.create!(name: 'Hearthsteel', description: "A worn blade with a simple hilt, unassuming at first glance, yet they say the sword still holds the echoes of a kings' discipline and skill, granting its wielder uncanny precision and endurance in battle.", shards_cost: 5, item_id: 7)
@@ -26,6 +26,6 @@ StoreItem.create!(name: "Aegis of the Arcane Sentinel", description: 'This heavy
 StoreItem.create!(name: "Warbringer's Bulwark", description: "Crafted from the bones of fallen beasts and reinforced with dark iron, this plate armor bears the scars of countless battles.", shards_cost: 5, item_id: 13)
 StoreItem.create!(name: "Shadowstalker's Vestments", description: 'Made from the supple hide of a shadowed beast, this lightweight leather armor allows for unparalleled agility and silence.', shards_cost: 5, item_id: 14)
 StoreItem.create!(name: "Veil of the Arcane Weaver", description: "This delicate cloth armor is woven from enchanted threads that shimmer with an ethereal glow. Light as a whisper, it offers minimal protection but enhances the wearer's magical abilities", shards_cost: 5, item_id: 15)
-StoreItem.create!(name: "Walter", description: "No one really knows what this teddy bear does, but it's definitely something special. Whether it's granting luck, causing random bursts of laughter, or secretly plotting to take over the world, you should use this in a time of need to see.", shards_cost: 10, item_id: 16)
+StoreItem.create!(name: "Walter", description: "No one really knows what this teddy bear does, but it's definitely something special. Whether it's granting luck, causing random bursts of laughter, or secretly plotting to take over the world, you should use this in a time of need to see.", shards_cost: 8, item_id: 16)
 
 puts "Initialized Store Items!"

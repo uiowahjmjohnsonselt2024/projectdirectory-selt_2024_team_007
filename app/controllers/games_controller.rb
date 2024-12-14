@@ -6,13 +6,13 @@ class GamesController < ApplicationController
 
   # POST /games
   def create
-    if @current_user.shards_balance >= 500
+    if @current_user.shards_balance >= 5
       @game = Game.new(game_params)
       @game.owner = @current_user
       @game.current_turn_user = @current_user
 
       if @game.save
-        @current_user.update_column(:shards_balance, @current_user.shards_balance - 500)
+        @current_user.update_column(:shards_balance, @current_user.shards_balance - 5)
         @game.game_users.create(user: @current_user, health: 100)
         @game.update(context: "[]") if @game.context.blank?
         redirect_to @game, notice: 'Game was successfully created.'
