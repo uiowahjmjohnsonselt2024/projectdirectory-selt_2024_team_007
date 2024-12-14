@@ -47,6 +47,33 @@ class GamesController < ApplicationController
     end
   end
 
+  def move
+    @game = Game.find(params[:id])
+    @game_user = @game.game_users.find_by(user: @current_user)
+    @tile = @game.tiles.find_by(x_coordinate: params[:x], y_coordinate: params[:y])
+  
+    if @tile && @game_user.update(current_tile: @tile)
+      ActionCable.server.broadcast "presence_channel_#{@game.id}", {
+        user: @current_user.name,
+        status: 'moved',
+        x: @tile.x_coordinate,
+        y: @tile.y_coordinate
+      }
+      head :ok
+    else
+      head :unprocessable_entity
+    end
+  end
+  
+
+  def map
+    @game = Game.find(params[:id])
+    @tiles = @game.tiles.order(:x_coordinate, :y_coordinate)
+    @game_users = @game.game_users.includes(:user, :current_tile)
+    render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
+  end
+  
+
   def leave
     game_user = @game.game_users.find_by(user: @current_user)
     if game_user

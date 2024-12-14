@@ -23,8 +23,7 @@
           Not started
         %h3.mt-4 Players
         %ul#presence-list
-          -# - @game_users.each do |game_user|
-          -#   %li= "#{game_user.user.name} (Health: #{game_user.health})"
+          
 
       %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
         Inventory
@@ -64,7 +63,7 @@
       .modal-dialog.modal-lg
         .modal-content
           .modal-header
-            %h5#mapModalLabel.modal-title Map
+            %h5#mapModalLabel.modal-title{ style: "color: black;" } Map
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
@@ -77,9 +76,9 @@
       .modal-dialog
         .modal-content
           .modal-header
-            %h5#inventoryModalLabel.modal-title Inventory
+            %h5#inventoryModalLabel.modal-title{ style: "color: black;" } Inventory
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-          .modal-body
+          .modal-body{ style: "color: black;" }
             / Inventory Items
             - if @equipment_items.present?
               %ul

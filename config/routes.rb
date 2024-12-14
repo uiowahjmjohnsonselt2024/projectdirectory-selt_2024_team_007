@@ -56,6 +56,8 @@ Rails.application.routes.draw do
       post 'start'  # This creates start_game_path(@game)
       post 'chat'            # For the chat feature
       post 'leave' #Deletes the current user from the game
+      post 'move'
+      get 'map'
     end
 
     collection do
