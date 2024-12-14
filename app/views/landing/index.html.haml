@@ -94,7 +94,7 @@
         - game_object = @game || Game.new
         = form_with model: game_object, url: games_path, local: true do |form|
           .modal-header
-            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 500 Shards!)
+            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 50 Shards!)
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             - if game_object.errors.any?
@@ -112,6 +112,24 @@
             .mb-3
               = form.label :map_size, 'Map Size (e.g., 6x6)', class: 'form-label', style: 'color: black;', for: 'game_map_size'
               = form.text_field :map_size, id: 'game_map_size', class: 'form-control', required: true, placeholder: '6x6'
+            .mb-3
+              %label.form-label{ for: 'game_genre', style: 'color: black;' } Genre
+              %div{style: 'color: black;'}
+                %div.form-check
+                  = form.radio_button :genre, 'High fantasy', id: 'genre_high_fantasy', class: 'form-check-input'
+                  = form.label :genre_high_fantasy, 'High fantasy', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Realistic Medieval', id: 'genre_realistic_medieval', class: 'form-check-input'
+                  = form.label :genre_realistic_medieval, 'Realistic Medieval', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'American West', id: 'genre_american_west', class: 'form-check-input'
+                  = form.label :genre_american_west, 'American West', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Nuclear Apocalypse', id: 'genre_nuclear_apocalypse', class: 'form-check-input'
+                  = form.label :genre_nuclear_apocalypse, 'Nuclear Apocalypse', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Zombie Apocalypse', id: 'genre_zombie_apocalypse', class: 'form-check-input'
+                  = form.label :genre_zombie_apocalypse, 'Zombie Apocalypse', class: 'form-check-label'
           .modal-footer
             = form.submit 'Create Game', class: 'btn btn-primary'
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close

@@ -41,7 +41,7 @@ Feature: Shards and Store Navigation
     Then I should see "Shards: 200"
 
   Scenario: Insufficient shards to create a game
-    Given the user "aliyo@email.com" has a shards balance of 4
+    Given the user "aliyo@email.com" has a shards balance of 30
     When I submit the create game form
     Then I should see "Insufficient Shards Balance"
     And I should be on "/landing"

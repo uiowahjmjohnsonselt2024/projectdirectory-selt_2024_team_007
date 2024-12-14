@@ -18,6 +18,12 @@
         %strong Join Code:
         = @game.join_code
       %p
+        %strong Genre:
+        = @game.genre
+      %p
+        %strong Setting:
+        = @game.setting
+      %p
         %strong Current Turn:
         - if @game.current_turn_user
           = @game.current_turn_user.name
@@ -52,13 +58,20 @@
       / GPT Image Placeholder (on top)
       %div.gpt-image-box.position-relative.bg-light.square-container
         %div#gpt-image-box.image-container.square-container.d-flex.align-items-center.justify-content-center
-          %p.text-muted.mb-0 GPT-generated images will appear here.
+          - if @last_chat_image_url.present?
+            = image_tag @last_chat_image_url, alt: "GPT Generated Image", class: "img-fluid h-100 w-auto"
+          - else
+            %p.text-muted.mb-0 No image generated yet.
+
 
       / GPT Response Field (below the image)
       %div.gpt-response-container.bg-secondary.text-white.p-3.mt-4
         %h4 GPT Response
         %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.overflow-auto
-          -# %p.text-muted No chat yet.
+          - if @last_assistant_message.present?
+            %p= @last_assistant_message
+          - else
+            %p.text-muted No chat yet.
 
 
 
