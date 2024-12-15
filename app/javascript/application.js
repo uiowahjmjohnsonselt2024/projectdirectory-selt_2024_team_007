@@ -85,15 +85,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update players list
         if (data.updated_players) {
-            const presenceList = document.getElementById("presence-list");
-            if (presenceList) {
-                presenceList.innerHTML = "";
-                data.updated_players.forEach((player) => {
-                    const li = document.createElement("li");
-                    li.textContent = `${player.name} (Health: ${player.health})`;
-                    presenceList.appendChild(li);
-                });
-            }
+            data.updated_players.forEach((player) => {
+                // Find the corresponding li by player.id
+                const li = document.querySelector(`#player-health-list [data-player-id="${player.id}"]`);
+                if (li) {
+                    // Update the health text
+                    const healthText = li.querySelector('span:first-child');
+                    if (healthText) {
+                        healthText.textContent = `${player.name} (${player.health}/100)`;
+                    }
+
+                    // Update the health bar width
+                    const healthBar = li.querySelector('span > span'); // The inner red bar
+                    if (healthBar) {
+                        const healthPercentage = (player.health / 100) * 100;
+                        healthBar.style.width = `${healthPercentage}%`;
+                    }
+                }
+            });
 
             // Update the current user's inventory modal
             if (userId && inventoryModalBody) {
@@ -213,8 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             userItem.innerHTML = `
               <img src="${data.profile_image}" alt="${data.user}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
-              ${data.user} (Health: ${data.health || 'N/A'})
-            `;
+              ${data.user}`;
           } else if (data.status === 'offline') {
             const userItem = document.getElementById(`user-${data.user}`);
             if (userItem) {

@@ -60,6 +60,7 @@ class GamesController < ApplicationController
         redirect_to @game, notice: 'You have already joined this game.'
       else
         @game.game_users.create(user: @current_user, health: 100)
+
         redirect_to @game, notice: 'You have successfully joined the game.'
       end
     else
