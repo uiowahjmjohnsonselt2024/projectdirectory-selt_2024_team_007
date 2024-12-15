@@ -1,10 +1,21 @@
 - content_for :mute_background_music, true
 
-%section.dashboard{ style: " height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+%section.dashboard{ style: "height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
     = render 'shared/navigation'
-  %div{data: {game_id: @game.id}}
-  %div{data: {user_id: @current_user.id}}
+    = render 'shared/flash'
+    = render 'quests', quests: JSON.parse(@game.quests || "[]")
+
+    %button#quest_button.btn.btn-warning{ type: "button", style: "margin-left: 10px;" }
+      Quest
+    %div.quest-overlay{ style: "position: fixed; top: 80px; right: 20px; width: 300px; background: rgba(0,0,0,0.8); color: white; padding: 20px; display: none; z-index: 999;" }
+
+
+
+
+  %div{ data: { game_id: @game.id } }
+  %div{ data: { user_id: @current_user.id } }
+
   %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
     / Sidebar
     %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px;" }
@@ -21,9 +32,8 @@
           = @game.current_turn_user.name
         - else
           Not started
-        %h3.mt-4 Players
-        %ul#presence-list
-          
+      %h3.mt-4 Players
+      %ul#presence-list
 
       %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
         Inventory
@@ -31,7 +41,6 @@
         View Map
 
       %div#flash-messages
-        = render 'shared/flash'
 
 
       / Editable User Input Field
@@ -40,7 +49,6 @@
           %label.form-label.fw-bold Your Response
           %textarea#user-message.form-control{ rows: 3, placeholder: 'Type your message here...' }
         %button#send-message.btn.btn-primary Send
-
 
     / Main Content Area
     %main.content-area.flex-grow-1.p-3.d-flex.flex-column.align-items-center
@@ -55,9 +63,6 @@
         %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.overflow-auto
           -# %p.text-muted No chat yet.
 
-
-
-
     / Map Modal
     .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
       .modal-dialog.modal-lg
@@ -67,7 +72,6 @@
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
-
           .modal-footer
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
 
@@ -91,6 +95,24 @@
 
 
 :javascript
+  document.addEventListener("DOMContentLoaded", () => {
+    const questButton = document.getElementById("quest_button");
+    const questOverlay = document.querySelector(".quest-overlay");
+    const closeQuestOverlay = document.getElementById("close-quest-overlay");
+
+    if (questButton && questOverlay) {
+      questButton.addEventListener("click", () => {
+        questOverlay.style.display = (questOverlay.style.display === "none" || questOverlay.style.display === "") ? "block" : "none";
+      });
+
+      if (closeQuestOverlay) {
+        closeQuestOverlay.addEventListener("click", () => {
+          questOverlay.style.display = "none";
+        });
+      }
+    }
+  });
+
   // Inline ActionCable consumer setup
   const ActionCable = (() => {
     function createWebSocketURL(url) {
@@ -202,7 +224,7 @@
 
           setTimeout(() => successFlash.remove(), 3000);
         } else {
-          alert("Failed to send your message. Please try again.");
+          alert(`Failed to send your message. Please try again. (Error: ${response.status})`);
         }
       } catch (error) {
           console.error("Error sending message:", error);
@@ -219,4 +241,6 @@
           setTimeout(() => errorFlash.remove(), 3000); // Auto-clear error message
       }
     });
+
+
   });
