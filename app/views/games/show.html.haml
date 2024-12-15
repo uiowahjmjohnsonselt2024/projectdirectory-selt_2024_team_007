@@ -30,12 +30,7 @@
       %p
         %strong Setting:
         = @game.setting
-      %p
-        %strong Current Turn:
-        - if @game.current_turn_user
-          = @game.current_turn_user.name
-        - else
-          Not started
+      
       %h3.mt-4 Players
       %ul#presence-list
 

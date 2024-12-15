@@ -259,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <img src="${data.profile_image}" alt="${data.user}'s avatar" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
               ${data.user} (Health: ${data.health || 'N/A'})
             `;
+            updateMapModal();
           } else if (data.status === 'offline') {
             const userItem = document.getElementById(`user-${data.user}`);
             if (userItem) {

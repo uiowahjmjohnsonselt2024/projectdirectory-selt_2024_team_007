@@ -33,8 +33,16 @@ class GamesController < ApplicationController
       @game.chat_image_url ||= "login_register_background.jpg"
 
       if @game.save
-        @current_user.update_column(:shards_balance, @current_user.shards_balance - 40)
-        @game.game_users.create(user: @current_user, health: 100)
+        starting_tile = @game.tiles.find_by(x_coordinate: 0, y_coordinate: 0)
+        Rails.logger.debug "Starting tile: #{starting_tile.inspect}"
+        
+        game_user = @game.game_users.create(
+          user: @current_user, 
+          health: 100,
+          current_tile: starting_tile
+        )
+        Rails.logger.debug "Game user position: (#{game_user.current_tile&.x_coordinate}, #{game_user.current_tile&.y_coordinate})"
+        
         @game.update(context: "[]") if @game.context.blank?
         redirect_to @game, notice: 'Game was successfully created.'
       else
@@ -59,8 +67,21 @@ class GamesController < ApplicationController
       if @game.game_users.exists?(user: @current_user)
         redirect_to @game, notice: 'You have already joined this game.'
       else
-        @game.game_users.create(user: @current_user, health: 100)
-        redirect_to @game, notice: 'You have successfully joined the game.'
+        starting_tile = @game.tiles.find_by(x_coordinate: 0, y_coordinate: 0)
+        Rails.logger.debug "Starting tile for join: #{starting_tile.inspect}"
+        
+        if starting_tile
+          game_user = @game.game_users.create(
+            user: @current_user,
+            health: 100,
+            current_tile: starting_tile
+          )
+          Rails.logger.debug "New game user position: (#{game_user.current_tile&.x_coordinate}, #{game_user.current_tile&.y_coordinate})"
+          redirect_to @game, notice: 'You have successfully joined the game.'
+        else
+          Rails.logger.error "Failed to find starting tile at (0,0) for game #{@game.id}"
+          redirect_to root_path, alert: 'Error finding starting position.'
+        end
       end
     else
       flash[:alert] = 'Invalid join code.'
@@ -147,6 +168,24 @@ class GamesController < ApplicationController
 
     # Get the most recent image URL from the game record
     @last_chat_image_url = @game.chat_image_url
+
+    # Get all player positions
+    player_positions = @game.game_users.includes(:user, :current_tile).map do |game_user|
+      {
+        user: game_user.user.name,
+        x: game_user.current_tile&.x_coordinate,
+        y: game_user.current_tile&.y_coordinate,
+        health: game_user.health,
+        profile_image: game_user.user.profile_image.attached? ? 
+          url_for(game_user.user.profile_image) : 
+          ActionController::Base.helpers.asset_path("default_avatar.png")
+      }
+    end
+
+    ActionCable.server.broadcast("presence_channel_#{@game.id}", {
+      action: 'update_positions',
+      positions: player_positions
+    })
   end
 
   # POST /games/:id/chat
