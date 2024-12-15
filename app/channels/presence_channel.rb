@@ -31,11 +31,31 @@ class PresenceChannel < ApplicationCable::Channel
     end
   end
 
-  def unsubscribed
+    def unsubscribed
     game = Game.find_by(id: params[:game_id])
     if game && @user
       # Remove user from active users list
-      $redis.srem("active_users_#{game.id}", @user.id) 
+      $redis.srem("active_users_#{game.id}", @user.id)
+      
+      # Rotate turn if it was this user's turn
+      if game.current_turn_user_id == @user.id
+        active_user_ids = $redis.smembers("active_users_#{game.id}")
+        active_users = User.where(id: active_user_ids)
+        
+        if active_users.present?
+          next_user = active_users.first
+          game.update(current_turn_user: next_user)
+          
+          # Broadcast turn update
+          ActionCable.server.broadcast("presence_channel_#{game.id}", {
+            action: 'update_turn',
+            current_turn_user_id: next_user.id,
+            current_turn_user_name: next_user.name
+          })
+        end
+      end
+  
+      # Broadcast offline status
       ActionCable.server.broadcast("presence_channel_#{game.id}", {
         user: @user.name,
         status: "offline"
