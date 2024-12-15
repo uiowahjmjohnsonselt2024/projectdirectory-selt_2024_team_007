@@ -2,8 +2,8 @@
   %h3 Quests
   - quests.each do |quest|
     - quest_type = quest["quest_type"]
-    - condition = quest["condition"]
-    - progress = quest["progress"]
+    - condition = quest["condition"] ||= 1
+    - progress = quest["progress"]||= 0
     - reward = quest["reward"]
     %div.quest-item
       - if quest_type == 1
