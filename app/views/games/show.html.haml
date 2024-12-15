@@ -97,32 +97,31 @@
             %h5#inventoryModalLabel.modal-title{ style: "color: #ECF0F1;" } Inventory
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close", style: "color: #BDC3C7;" }
           .modal-body{ style: "color: #ECF0F1; padding: 20px; overflow-y: auto; max-height: 70vh;" }
+            / Consumable Items
+            %div#consumable-items
+              %h6.mb-3{ style: "color: #ECF0F1;" } Consumable Items
+              %ul
+                %li.d-flex.align-items-center.mb-2
+                  %span#teleport-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
+                  %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Teleport
+                %li.d-flex.align-items-center.mb-2
+                  %span#health-potion-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
+                  %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Health Potion
+                %li.d-flex.align-items-center.mb-2
+                  %span#resurrection-token-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
+                  %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Resurrection Token
+
             / Store Items
             %div#store-items
-              - if @current_user.store_items.present? || @current_user.teleport > 0 || @current_user.health_potion > 0 || @current_user.resurrection_token > 0
+              - if @current_user.store_items.present?
                 %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
                 %ul
-                  / Display owned consumables first
-                  - if @current_user.teleport > 0
-                    %li.d-flex.align-items-center.mb-2
-                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
-                      %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                      %div{ style: "margin-left: -10px;" }
-                        %strong{ style: "color: #ECF0F1;" } Teleport
-                  - if @current_user.health_potion > 0
-                    %li.d-flex.align-items-center.mb-2
-                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
-                      %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                      %div{ style: "margin-left: -10px;" }
-                        %strong{ style: "color: #ECF0F1;" } Health Potion
-                  - if @current_user.resurrection_token > 0
-                    %li.d-flex.align-items-center.mb-2
-                      %span{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
-                      %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
-                      %div{ style: "margin-left: -10px;" }
-                        %strong{ style: "color: #ECF0F1;" } Resurrection Token
-
-                  / Display other store items
                   - @current_user.store_items.each do |store_item|
                     %li.d-flex.align-items-center.mb-2
                       %img{ src: image_path("store_icon_#{store_item.id}.png"), alt: store_item.name, style: "width: 75px; height: 75px; border-radius: 5px; margin-right: 10px;" }

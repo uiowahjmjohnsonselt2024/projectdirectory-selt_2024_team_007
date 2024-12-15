@@ -97,10 +97,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Update the current user's inventory modal
             if (userId && inventoryModalBody) {
-                const inGameItemsContainer = document.querySelector("#in-game-items");
-                if (inGameItemsContainer) {
-                    const currentUser = data.updated_players.find(p => String(p.id) === String(userId));
-                    if (currentUser) {
+                const currentUser = data.updated_players.find(p => String(p.id) === String(userId));
+
+                if (currentUser) {
+                    // Update consumable quantities
+                    const consumables = [
+                        { id: "teleport-quantity", value: currentUser.teleport_token },
+                        { id: "health-potion-quantity", value: currentUser.health_potion },
+                        { id: "resurrection-token-quantity", value: currentUser.resurrection_token },
+                    ];
+
+                    consumables.forEach(consumable => {
+                        const quantitySpan = document.getElementById(consumable.id);
+                        if (quantitySpan) {
+                            quantitySpan.textContent = consumable.value || 0; // Default to 0 if value is undefined
+                        } else {
+                            console.warn(`Element with ID ${consumable.id} not found.`);
+                        }
+                    });
+
+                    // Handle in-game items if needed
+                    const inGameItemsContainer = document.querySelector("#in-game-items");
+                    if (inGameItemsContainer) {
                         inGameItemsContainer.innerHTML = ""; // Clear existing in-game items
 
                         if (currentUser.equipment && currentUser.equipment.length > 0) {
@@ -116,11 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             p.textContent = "No items in your inventory.";
                             inGameItemsContainer.appendChild(p);
                         }
-                    } else {
-                        console.warn("Current user not found in updated_players. Data received:", data.updated_players);
                     }
+                } else {
+                    console.warn("Current user not found in updated_players. Data received:", data.updated_players);
                 }
-
             }
         }
       },

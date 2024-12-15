@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_13_171223) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -83,6 +83,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_171223) do
     t.string "join_code"
     t.string "map_size", default: "6x6", null: false
     t.text "quests"
+    t.string "genre"
+    t.string "setting"
+    t.text "chat_image_url"
     t.index ["current_turn_user_id"], name: "index_games_on_current_turn_user_id"
     t.index ["join_code"], name: "index_games_on_join_code", unique: true
     t.index ["owner_id"], name: "index_games_on_owner_id"
