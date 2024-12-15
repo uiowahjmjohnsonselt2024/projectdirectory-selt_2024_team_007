@@ -9,11 +9,11 @@ class FriendsController < ApplicationController
   end
 
   def create
-    friend = User.find_by(email: params[:friend_email].downcase)
+    friend = User.find_by(name: params[:friend_name])
 
     # Check if the user exists
     if friend.nil?
-      flash[:alert] = "No user found with the email #{params[:friend_email]}."
+      flash[:alert] = "No user found with the name #{params[:friend_name]}."
       redirect_to friends_path
       return
     end

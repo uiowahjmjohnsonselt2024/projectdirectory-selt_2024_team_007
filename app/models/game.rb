@@ -21,6 +21,7 @@ class Game < ApplicationRecord
   # Callbacks
   after_validation :normalize_join_code
   after_create :generate_tiles
+  after_create :set_default_quests
 
   def non_owner_players_count
     game_users.where.not(user_id: owner_id).count
@@ -62,4 +63,14 @@ class Game < ApplicationRecord
   def default_tile_type
     'grassland' # You can customize this method to assign different tile types
   end
+
+  def set_default_quests
+    default_quests = [
+      {"quest_type":1, "refresh_times":1, "condition":3, "reward":3, "progress":0},
+      {"quest_type":2, "refresh_times":1, "condition":1, "reward":5, "progress":0},
+      {"quest_type":3, "refresh_times":1, "condition":1, "reward":10, "progress":0}
+    ]
+    update!(quests: default_quests.to_json) unless self.quests.present?
+  end
+
 end

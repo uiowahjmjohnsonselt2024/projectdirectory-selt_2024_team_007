@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
     t.integer "current_tile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "quests", default: []
     t.index ["current_tile_id"], name: "index_game_users_on_current_tile_id"
     t.index ["game_id", "user_id"], name: "index_game_users_on_game_id_and_user_id", unique: true
     t.index ["game_id"], name: "index_game_users_on_game_id"
