@@ -1,4 +1,4 @@
-Feature: Create a Game 
+Feature: Create a Game
   As a player
   I want to create a game lobby
   So that I can play the game with other players
@@ -13,7 +13,7 @@ Feature: Create a Game
     And the user "test@example.com" has a shards balance of 1000
 
 
-  Scenario: Creating a game with valid map size
+Scenario: Creating a game with valid map size
   When I navigate to the landing page
   And I click on the "New Game" button
   And I fill in "game_name" with "Map Game"
@@ -23,6 +23,7 @@ Feature: Create a Game
   Then I should see "Game was successfully created."
   When I navigate back to the landing page
   Then the game "Map Game" should be listed in my games
+
 
 Scenario: Cannot create game with invalid map size format
   When I navigate to the landing page
