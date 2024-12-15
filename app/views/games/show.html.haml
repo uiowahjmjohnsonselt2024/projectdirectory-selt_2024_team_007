@@ -9,7 +9,8 @@
       user_id: @current_user.id,
       user_teleports: @current_user.teleport,
       current_turn_user_id: @game.current_turn_user&.id,
-      current_turn_user_name: @game.current_turn_user&.name
+      current_turn_user_name: @game.current_turn_user&.name,
+      user_name: @current_user.name
     }
   }
   %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
@@ -195,6 +196,8 @@
     const responseField = document.getElementById("chatbot-response");
     const gameElement = document.querySelector("[data-game-id]");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const userElement = document.querySelector("[data-user-name]");
+    const currentUserName = userElement ? userElement.dataset.userName : "";
 
     if (!gameElement || !sendButton || !messageField) return;
 
@@ -220,7 +223,8 @@
     sendButton.addEventListener("click", async () => {
       const flashContainer = document.getElementById("flash-messages");
 
-      const message = messageField.value.trim();
+      const message = `${messageField.value.trim()} - I am ${currentUserName}`;
+
 
       if (!message) {
         // Show a flash message for empty input
@@ -261,9 +265,8 @@
           messageField.value = "";
 
           setTimeout(() => successFlash.remove(), 3000);
-        } else {
-          alert("Failed to send your message. Please try again.");
-        }
+        } 
+        
       } catch (error) {
           console.error("Error sending message:", error);
 

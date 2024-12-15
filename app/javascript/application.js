@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gameId = gameElement.dataset.gameId;
   userId = document.querySelector("[data-user-id]").dataset.userId;
   const userElement = document.querySelector("[data-user-id]");
-  currentUserName = userElement ? userElement.dataset.userName || "" : "";
+  currentUserName = document.querySelector("[data-user-name]").dataset.userName;
 
   const userTeleportsElement = document.querySelector("[data-user-teleports]");
   if (userTeleportsElement) {
@@ -288,7 +288,7 @@ function generateMoveMessage(newX, newY, isAdjacent) {
   const currentPlayer = document.querySelector(`.players [data-player="${currentUserName}"]`);
   const currentTile = currentPlayer ? currentPlayer.closest('.tile') : null;
   
-  return `I move to (${newX},${newY}).` 
+  return `I am ${currentUserName}. I move to (${newX},${newY}).` 
 }
 
 // Modify the click listener
