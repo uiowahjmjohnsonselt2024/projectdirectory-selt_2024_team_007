@@ -249,17 +249,83 @@ RSpec.describe GamesController, type: :controller do
       end
     end
   end
-
+  
   describe 'POST #move' do
-
+    let(:game) { create(:game) }
+    let(:user) { create(:user) }
+    let(:current_tile) { create(:tile, game: game, x_coordinate: 0, y_coordinate: 0) }
+    let(:adjacent_tile) { create(:tile, game: game, x_coordinate: 1, y_coordinate: 0) }
+    let(:far_tile) { create(:tile, game: game, x_coordinate: 3, y_coordinate: 3) }
+    
     before do
-      game.game_users.create(user: user, health: 100, current_tile_id: nil)
-    end
+      # Ensure the game has no tiles to start with
+      game.tiles.destroy_all
 
-    context 'when tile does not exist or update fails' do
-      it 'returns unprocessable_entity' do
-        post :move, params: { id: game.id, x: 999, y: 999 }
-        expect(response).to have_http_status(:unprocessable_entity)
+      # Create only the tiles needed for the test
+      current_tile
+      adjacent_tile
+      far_tile
+
+      # Set up authentication
+      session[:session_token] = user.session_token
+
+      # Set current user in controller (if necessary)
+      allow(controller).to receive(:set_current_user) do
+        controller.instance_variable_set(:@current_user, user)
+      end
+
+      game.game_users.create(user: user, health: 100, current_tile: current_tile)
+    end
+  
+    context 'when moving to adjacent tile' do
+      it 'allows movement without using teleport' do
+        expect {
+          post :move, params: { id: game.id, x: adjacent_tile.x_coordinate, y: adjacent_tile.y_coordinate }
+        }.not_to change { user.reload.teleport }
+        
+        expect(response).to have_http_status(:ok)
+        expect(game.game_users.find_by(user: user).current_tile).to eq(adjacent_tile)
+      end
+    end
+  
+    context 'when teleporting to non-adjacent tile' do
+      before { user.update!(teleport: 1) }
+  
+      it 'uses teleport and updates position' do
+        expect {
+          post :move, params: { id: game.id, x: far_tile.x_coordinate, y: far_tile.y_coordinate }
+        }.to change { user.reload.teleport }.by(-1)
+        
+        expect(response).to have_http_status(:ok)
+        expect(game.game_users.find_by(user: user).current_tile).to eq(far_tile)
+      end
+    end
+  
+    context 'when attempting non-adjacent move without teleport' do
+      before { user.update!(teleport: 0) }
+  
+      it 'prevents movement and shows error' do
+        post :move, params: { id: game.id, x: far_tile.x_coordinate, y: far_tile.y_coordinate }
+        
+        expect(response).to redirect_to(game_path(game))
+        expect(flash[:alert]).to eq('Can only move to adjacent tiles without teleport')
+        expect(game.game_users.find_by(user: user).current_tile).to eq(current_tile)
+      end
+    end
+  
+    context 'when broadcasting move' do
+      it 'broadcasts position update through ActionCable' do
+        expect(ActionCable.server).to receive(:broadcast).with(
+          "presence_channel_#{game.id}",
+          {
+            user: user.name,
+            status: 'moved',
+            x: adjacent_tile.x_coordinate,
+            y: adjacent_tile.y_coordinate
+          }
+        )
+  
+        post :move, params: { id: game.id, x: adjacent_tile.x_coordinate, y: adjacent_tile.y_coordinate }
       end
     end
   end

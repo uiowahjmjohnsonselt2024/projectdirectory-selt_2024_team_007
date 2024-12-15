@@ -2,8 +2,10 @@
 - game_users = game.game_users.includes(:user, :current_tile)
 - rows, columns = game.map_size.split('x').map(&:to_i)
 - grid_style = "grid-template-columns: repeat(#{columns}, 1fr); grid-template-rows: repeat(#{rows}, 1fr);"
+- disable_grid = @current_user.teleport <= 0
 
-%div.grid-map{ style: grid_style }
+#map-flash-messages
+%div.grid-map{ style: grid_style, data: { disable: disable_grid } }
   - tile_hash = tiles.index_by { |t| [t.x_coordinate, t.y_coordinate] }
   - player_positions = {}
   - game_users.each do |gu|

@@ -3,13 +3,18 @@
 %section.dashboard{ style: "height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
     = render 'shared/navigation'
-    = render 'shared/flash'
-    = render 'quests', quests: JSON.parse(@game.quests || "[]")
-    %button#quest_button.btn.btn-warning{
-      type: "button",
-      style: "position: absolute; top: 20px; right: 170px; padding: 10px 15px;  width: 80px; height: 50px; display: flex; align-items: center; justify-content: center;"
+  %div{
+    data: {
+      game_id: @game.id,
+      user_id: @current_user.id,
+      user_teleports: @current_user.teleport,
+      current_turn_user_id: @game.current_turn_user&.id,
+      current_turn_user_name: @game.current_turn_user&.name,
+      user_name: @current_user.name
     }
-      Quest
+  }
+    = render 'shared/flash'
+    
 
 
 
@@ -31,16 +36,31 @@
       %p
         %strong Genre:
         = @game.genre
-      %p
-        %strong Setting:
-        = @game.setting
-      %p
-        %strong Current Turn:
-        - if @game.current_turn_user
-          = @game.current_turn_user.name
-        - else
-          Not started
-      %h3.mt-4 Players
+
+      = render 'quests', quests: JSON.parse(@game.quests || "[]")
+      %button#quest_button.btn.btn-warning{
+        type: "button",
+        style: "width: 80px; height: 50px; display: flex; align-items: center; justify-content: center;"
+      }
+        Quest
+      
+
+      / Player Health Section
+      %h3.mt-4 Party:
+      %ul#player-health-list
+        - @game.game_users.includes(:user).each do |game_user|
+          - current_health = game_user.health || 100
+          - max_health = 100
+          - health_percentage = (current_health.to_f / max_health) * 100
+
+          %li{ style: "margin-bottom: 20px; display: inline-block;", "data-player-id" => game_user.user.id }
+            %span{ style: "color: #ECF0F1; display: block; margin-bottom: 5px; text-align: left;" }
+              = "#{game_user.user.name} (#{current_health}/#{max_health})"
+
+            %span{ style: "display: inline-block; width: 150px; border: 1px solid #FFFFFF; background-color: #2c3e50; position: relative; vertical-align: middle;" }
+              %span{ style: "display: block; height: 10px; width: #{health_percentage}%; background-color: red;" }
+
+      %h3.mt-4 Online:
       %ul#presence-list
 
       %div{ style: "text-align: center;" }
@@ -88,9 +108,13 @@
         .modal-content
           .modal-header
             %h5#mapModalLabel.modal-title{ style: "color: black;" } Map
+            %div#flash-messages
+              = render 'shared/flash'
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
+            %div#map-flash-messages
             = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
+    
           .modal-footer
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
 
@@ -213,6 +237,8 @@
     const responseField = document.getElementById("chatbot-response");
     const gameElement = document.querySelector("[data-game-id]");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const userElement = document.querySelector("[data-user-name]");
+    const currentUserName = userElement ? userElement.dataset.userName : "";
 
     if (!gameElement || !sendButton || !messageField) return;
 
@@ -238,7 +264,8 @@
     sendButton.addEventListener("click", async () => {
       const flashContainer = document.getElementById("flash-messages");
 
-      const message = messageField.value.trim();
+      const message = `${messageField.value.trim()} - I am ${currentUserName}`;
+
 
       if (!message) {
         // Show a flash message for empty input

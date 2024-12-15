@@ -21,5 +21,7 @@
             = link_to 'Friends', friends_path, class: 'dropdown-item custom-dropdown-item'
           %li
             = link_to 'Dashboard', landing_path, class: 'dropdown-item custom-dropdown-item'
+          %li.nav-item
+            = link_to 'User Guide', user_guide_path, class: 'dropdown-item custom-dropdown-item' # Add the User Guide link
           %li
             = button_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item custom-dropdown-item', id: 'logout_button'
