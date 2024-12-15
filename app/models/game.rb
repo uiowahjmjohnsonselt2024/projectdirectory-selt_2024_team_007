@@ -190,7 +190,6 @@ class Game < ApplicationRecord
     end
   end
 
-
   def set_default_quests
     default_quests = [
       {"quest_type":1, "refresh_times":1, "condition":3, "reward":3, "progress":0},
@@ -201,3 +200,4 @@ class Game < ApplicationRecord
   end
 
 end
+

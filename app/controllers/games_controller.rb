@@ -250,7 +250,7 @@ class GamesController < ApplicationController
         x: tile.x_coordinate,
         y: tile.y_coordinate,
         type: tile.tile_type,
-        description: tile.image_reference || "No description provided"
+        description: tile.image_reference || "The player has not visited this location yet."
       }
     end
 
