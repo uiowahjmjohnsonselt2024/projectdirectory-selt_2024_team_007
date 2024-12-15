@@ -230,8 +230,10 @@ class GamesController < ApplicationController
     # COPY IT ALL separate so we can save it in a smaller form without the game state for history’s sake
     message_to_send_to_gpt_as_user_msg_with_game_state = current_messages_from_db_without_game_state.dup
 
+    old_health = 0
     # Build complex game state prompt
     players = @game.game_users.includes(:user).map do |game_user|
+      old_health = old_health + (game_user.health || 100)
       {
         id: game_user.user_id,
         name: game_user.user.name,
@@ -353,10 +355,11 @@ PROMPT
     
     @game.reload # Ensure we have the latest data from the database
 
+    new_health_sum = 0
     # Re-fetch players with updated equipment and health
     updated_players = @game.game_users.includes(:user).map do |game_user|
-
       user = game_user.user
+      new_health_sum = new_health_sum + (game_user.health || 100)
       {
         id: game_user.user_id,
         name: game_user.user.name,
@@ -372,16 +375,14 @@ PROMPT
     end
 
     #eq.size check again
-    new_inventory_count_total = updated_players.sum { |p| p[:inventory]&.size.to_i}
     new_equipment_count_total = updated_players.sum { |p| p[:equipment]&.size.to_i}
     puts "Debug: Current value of old_equipment_count_total is #{old_equipment_count_total}"
-    puts "Debug: Current value of old_inventory_count_total is #{old_inventory_count_total}"
+    puts "Debug: Current value of old_inventory_count_total is #{old_health}"
     puts "Debug: Current value of new_equipment_count_total is #{new_equipment_count_total}"
-    puts "Debug: Current value of new_inventory_count_total is #{new_inventory_count_total}"
+    puts "Debug: Current value of new_inventory_count_total is #{new_health_sum}"
 
 
-    if new_inventory_count_total < old_inventory_count_total
-      used_amount = old_inventory_count_total - new_inventory_count_total
+    if new_health_sum < old_health
       update_quests(@game, 2)
     end
 

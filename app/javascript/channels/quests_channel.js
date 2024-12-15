@@ -17,11 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     let questDescription;
                     switch(quest_type){
                         case 1: questDescription = `Type ${condition} times in the chat box`; break
-                        case 2: questDescription = `Use the item ${condition} times`; break
-                        case 3: questDescription = `Successfully found ${condition} equipments`; break
+                        case 2: questDescription = `"Hit someone ${condition} times"`; break
+                        case 3: questDescription = `Pick up new equipments ${condition} times`; break
                         default: questDescription = "Unknown quest"
                     }
-
                     const progressPercentage = (progress / condition) * 100;
                     const questItem = document.createElement("div");
                     questItem.innerHTML = `
