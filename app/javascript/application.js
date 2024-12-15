@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const responseField = document.getElementById("chatbot-response");
     const imageContainer = document.getElementById("gpt-image-box");
+    const messageInput = document.getElementById("user-message");
+    const sendButton = document.getElementById("send-message");
+
+    // Add turn indicator
+    const turnIndicator = document.createElement('div');
+    turnIndicator.id = 'turn-indicator';
+    turnIndicator.className = 'text-center mb-3';
+    responseField.parentElement.insertBefore(turnIndicator, responseField);
 
     if (!responseField || !gameElement || !imageContainer) return;
 
@@ -56,6 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Disconnected from ChatChannel for game ${gameId}`);
       },
       received(data) {
+
+        // Handle turn updates
+        if (data.current_turn) {
+          const isMyTurn = data.current_turn === currentUserName;
+          turnIndicator.textContent = isMyTurn ? 
+              "It's your turn!" : 
+              `Waiting for ${data.current_turn}'s turn...`;
+          turnIndicator.className = isMyTurn ? 'text-success' : 'text-muted';
+          
+          // Enable/disable input
+          if (messageInput && sendButton) {
+              messageInput.disabled = !isMyTurn;
+              sendButton.disabled = !isMyTurn;
+          }
+      }
+
         const newMessage = `
           <p><strong>${data.user}:</strong> ${data.message}</p>
           <p><em>GPT:</em> ${data.gpt_response}</p>
@@ -149,56 +173,65 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+        updateMapModal();
       },
     });
   });
   
-// application.js
-
+//PresenceChannel subscription
 let gameId;
 let userId;
 let currentUserName;
+let currentUserTeleports;
+
+let isProcessingMove = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   const gameElement = document.querySelector("[data-game-id]");
   if (!gameElement) return;
   gameId = gameElement.dataset.gameId;
   userId = document.querySelector("[data-user-id]").dataset.userId;
-  currentUserName = document.querySelector("[data-user-id]").dataset.userName;
+  const userElement = document.querySelector("[data-user-id]");
+  currentUserName = document.querySelector("[data-user-name]").dataset.userName;
 
-  // Use event delegation for tile click events
-  const gridMap = document.querySelector('.grid-map');
-  if (gridMap) {
-    gridMap.addEventListener('click', async (e) => {
-      const tile = e.target.closest('.tile');
-      if (tile) {
-        const x = tile.dataset.x;
-        const y = tile.dataset.y;
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-
-        try {
-          const response = await fetch(`/games/${gameId}/move`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken
-            },
-            body: JSON.stringify({ x, y })
-          });
-
-          if (response.ok) {
-            // Update the player's position on the map
-            updatePlayerPosition(currentUserName, x, y);
-          } else {
-            throw new Error('Move failed');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          alert('Failed to move. Please try again.');
-        }
-      }
-    });
+  const userTeleportsElement = document.querySelector("[data-user-teleports]");
+  if (userTeleportsElement) {
+    currentUserTeleports = parseInt(userTeleportsElement.dataset.userTeleports, 10);
+  } else {
+    currentUserTeleports = 0;
   }
+
+  const currentTurnElement = document.querySelector("[data-current-turn-user-id]");
+  const messageInput = document.getElementById("user-message");
+  const sendButton = document.getElementById("send-message");
+  const responseField = document.getElementById("chatbot-response");
+  const mapButton = document.getElementById("map_button");
+
+
+  // Add turn indicator
+  const turnIndicator = document.createElement('div');
+  turnIndicator.id = 'turn-indicator';
+  turnIndicator.className = 'text-center mb-3';
+  
+  if (responseField) {
+    responseField.parentElement.insertBefore(turnIndicator, responseField);
+  }
+
+  // Safely check current turn
+  const isCurrentUserTurn = currentTurnElement ? 
+    currentTurnElement.dataset.currentTurnUserId == userId : 
+    false;
+
+  // Initialize the turn indicator
+  if (currentTurnElement && currentTurnElement.dataset.currentTurnUserName) {
+    turnIndicator.textContent = `Current Turn: ${currentTurnElement.dataset.currentTurnUserName}`;
+  }
+
+  // Safely enable/disable controls
+  if (messageInput) messageInput.disabled = !isCurrentUserTurn;
+  if (sendButton) sendButton.disabled = !isCurrentUserTurn;
+  if (mapButton) mapButton.disabled = !isCurrentUserTurn;
+
 
   // Updated PresenceChannel subscription
   consumer.subscriptions.create(
@@ -211,6 +244,17 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Disconnected from PresenceChannel for game ${gameId}`);
       },
       received(data) {
+
+        if (data.action === 'update_turn') {
+          if (turnIndicator) {
+            turnIndicator.textContent = `Current Turn: ${data.current_turn_user_name}`;
+          }
+
+          const isCurrentUserTurn = data.current_turn_user_id == userId;
+          messageInput.disabled = !isCurrentUserTurn;
+          sendButton.disabled = !isCurrentUserTurn;
+          mapButton.disabled = !isCurrentUserTurn;
+        }
         const presenceList = document.getElementById("presence-list");
         if (presenceList) {
           if (data.status === 'online') {
@@ -243,46 +287,128 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
-// Attach the event listener to the document
+function generateMoveMessage(newX, newY, isAdjacent) {
+  const mapModal = bootstrap.Modal.getInstance(document.getElementById('mapModal'));
+  mapModal.hide();
+  
+  // Get current player position
+  const currentPlayer = document.querySelector(`.players [data-player="${currentUserName}"]`);
+  const currentTile = currentPlayer ? currentPlayer.closest('.tile') : null;
+  
+  return `I am ${currentUserName}. I move to (${newX},${newY}).` 
+}
+
+// Modify the click listener
 document.addEventListener('click', async (e) => {
   const tile = e.target.closest('.tile');
-  if (tile && tile.closest('.grid-map')) {
-    const x = tile.dataset.x;
-    const y = tile.dataset.y;
+  // const gridMap = document.querySelector('.grid-map');
+  
+  if (tile && tile.closest('.grid-map') && !isProcessingMove) {
+    const newX = parseInt(tile.dataset.x);
+    const newY = parseInt(tile.dataset.y);
+    
+    const currentPlayer = document.querySelector(`.players [data-player="${currentUserName}"]`);
+    const currentTile = currentPlayer ? currentPlayer.closest('.tile') : null;
+    
+    const isAdjacent = currentTile ? (
+      Math.abs(parseInt(currentTile.dataset.x) - newX) <= 1 &&
+      Math.abs(parseInt(currentTile.dataset.y) - newY) <= 1
+    ) : true;
+    
+    if (!isAdjacent) {
+      if (currentUserTeleports <= 0) {
+        showNoTeleportsMessage();
+        return;
+      }
+    }
+
+    isProcessingMove = true;
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
     try {
-      const response = await fetch(`/games/${gameId}/move`, {
+      // First send the move command
+      const moveResponse = await fetch(`/games/${gameId}/move`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': csrfToken
         },
-        body: JSON.stringify({ x, y })
+        body: JSON.stringify({ x: newX, y: newY })
       });
 
-      if (response.ok) {
-        updatePlayerPosition(currentUserName, x, y);
+      if (moveResponse.ok) {
+        // If move successful, send the chat message
+        const moveMessage = generateMoveMessage(newX, newY, isAdjacent);
+        const chatResponse = await fetch(`/games/${gameId}/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify({ message: moveMessage })
+        });
+
+        if (chatResponse.ok) {
+          updatePlayerPosition(currentUserName, newX, newY);
+        }
       } else {
         throw new Error('Move failed');
       }
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to move. Please try again.');
+    } finally {
+      isProcessingMove = false;
     }
   }
 });
 
+// Update helper function to show error more prominently
+function showNoTeleportsMessage() {
+  const modalFlashMessages = document.querySelector('#mapModal #map-flash-messages');
+  if (modalFlashMessages) {
+    modalFlashMessages.innerHTML = '<div class="alert alert-danger" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; padding: 15px;">Cannot move to non-adjacent tiles! No more teleports left!</div>';
+    setTimeout(() => {
+      modalFlashMessages.innerHTML = '';
+    }, 2000);
+  }
+}
 
-// Function to update player position on the map
+
 function updatePlayerPosition(username, x, y) {
+  if (!username) {
+    // console.error('Username is missing:', username);
+    return false;
+  }
+
   // Remove the player from their current position
   const currentPlayer = document.querySelector(`.players [data-player="${username}"]`);
+  const currentTile = currentPlayer ? currentPlayer.closest('.tile') : null;
+  
+  // Calculate if move is adjacent
+  const isAdjacent = currentTile ? (
+    Math.abs(parseInt(currentTile.dataset.x) - x) <= 1 &&
+    Math.abs(parseInt(currentTile.dataset.y) - y) <= 1
+  ) : true;
+
+  // Handle non-adjacent moves
+  if (!isAdjacent) {
+    if (currentUserTeleports <= 0) {
+      showNoTeleportsMessage();
+      return false;
+    }
+    // Decrement teleports only for the current user
+    if (username === currentUserName) {
+      currentUserTeleports--;
+    }
+  }
+
+  // Remove from current position
   if (currentPlayer) {
     currentPlayer.remove();
   }
 
-  // Add the player to their new position
+  // Add to new position
   const newTile = document.querySelector(`.tile[data-x="${x}"][data-y="${y}"]`);
   if (newTile) {
     let playersContainer = newTile.querySelector('.players');
@@ -297,7 +423,15 @@ function updatePlayerPosition(username, x, y) {
     playerSpan.dataset.player = username;
     playerSpan.textContent = `(${username})`;
     playersContainer.appendChild(playerSpan);
+
+    // Close map modal after successful move
+    const mapModal = bootstrap.Modal.getInstance(document.getElementById('mapModal'));
+    if (mapModal) {
+      mapModal.hide();
+    }
   }
+
+  return true;
 }
 
 function updateMapModal() {
