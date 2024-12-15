@@ -7,7 +7,9 @@ end
 Then('I should be redirected to the settings page') do
   expect(current_path).to eq(settings_path)
 end
-
+Then('I should be redirected to the User Guide page') do
+  expect(current_path).to eq(user_guide_path)
+end
 Then('I should be redirected to the friends page') do
   expect(current_path).to eq(friends_path)
 end
