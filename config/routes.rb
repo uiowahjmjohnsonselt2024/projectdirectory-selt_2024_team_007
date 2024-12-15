@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "static_pages/user_guide"
   get "legal_compliance/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   #
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   get 'settings', to: 'settings#settings', as: 'settings'
   patch 'change_email', to: 'settings#change_email'
   get 'friends', to: 'friends#index', as: 'friends'
+  get 'user_guide', to: 'static_pages#user_guide'
 
   patch 'update_profile_image', to: 'settings#update_profile_image'
   patch 'update_name', to: 'settings#update_name'
