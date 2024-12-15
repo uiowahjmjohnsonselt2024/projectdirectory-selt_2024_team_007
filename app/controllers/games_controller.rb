@@ -269,11 +269,16 @@ PROMPT
     # Save the generated image URL to the games table
     @game.update!(chat_image_url: image_response)
 
+    old_inventory_count_total = players.sum { |p| p[:inventory_count].to_i }
+    old_equipment_count_total = players.sum { |p| p[:equipment_count].to_i }
+
     # After GPT response and after updating the @game context
     @game.reload # Ensure we have the latest data from the database
 
     # Re-fetch players with updated equipment and health
     updated_players = @game.game_users.includes(:user).map do |game_user|
+      inv = fetch_inventory(game_user.user_id)
+      eq = fetch_equipment(game_user)
       user = game_user.user
       {
         id: game_user.user_id,
@@ -290,6 +295,18 @@ PROMPT
     end
 
     #eq.size check again
+    new_inventory_count_total = updated_players.sum { |p| p[:inventory_count].to_i }
+    new_equipment_count_total = updated_players.sum { |p| p[:equipment_count].to_i }
+
+    if new_inventory_count_total < old_inventory_count_total
+      used_amount = old_inventory_count_total - new_inventory_count_total
+      update_quests_with_increment(@game, 2, used_amount)  # played used some items
+    end
+
+    if new_equipment_count_total > old_equipment_count_total
+      gained_amount = new_equipment_count_total - old_equipment_count_total
+      update_quests_with_increment(@game, 3, gained_amount)  # player gained equipment
+    end
     #
     # Broadcast the GPT response to all connected clients for this game
     ChatChannel.broadcast_to(@game, {

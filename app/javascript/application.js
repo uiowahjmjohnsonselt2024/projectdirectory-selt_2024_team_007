@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     switch(quest_type){
                         case 1: questDescription = `Type ${condition} times in the chat box`; break
                         case 2: questDescription = `Use the item ${condition} times`; break
-                        case 3: questDescription = `Successfully defeat ${condition} players`; break
+                        case 3: questDescription = `Successfully found ${condition} equipments`; break
                         default: questDescription = "Unknown quest"
                     }
 
