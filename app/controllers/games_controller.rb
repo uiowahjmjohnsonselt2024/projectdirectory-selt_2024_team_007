@@ -242,6 +242,23 @@ PROMPT
     puts "Generated image URL: #{image_response.inspect}"
 
     # After GPT response and after updating the @game context
+    active_user_ids = $redis.smembers("active_users_#{@game.id}")
+    active_user_ids.map!(&:to_i)
+
+    active_users = User.where(id: active_user_ids)
+    if active_users.present?
+      current_index = active_users.index(@game.current_turn_user) || -1
+      next_user = active_users[(current_index + 1) % active_users.length]
+      @game.update(current_turn_user: next_user)
+    end
+
+    # Broadcast the updated current turn
+    ActionCable.server.broadcast("presence_channel_#{@game.id}", {
+      action: 'update_turn',
+      current_turn_user_id: @game.current_turn_user.id,
+      current_turn_user_name: @game.current_turn_user.name
+    })
+    
     @game.reload # Ensure we have the latest data from the database
 
     # Re-fetch players with updated equipment and health

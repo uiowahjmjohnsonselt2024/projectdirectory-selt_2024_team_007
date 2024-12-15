@@ -167,6 +167,38 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUserTeleports = 0;
   }
 
+  const currentTurnElement = document.querySelector("[data-current-turn-user-id]");
+  const messageInput = document.getElementById("user-message");
+  const sendButton = document.getElementById("send-message");
+  const responseField = document.getElementById("chatbot-response");
+  const mapButton = document.getElementById("map_button");
+
+
+  // Add turn indicator
+  const turnIndicator = document.createElement('div');
+  turnIndicator.id = 'turn-indicator';
+  turnIndicator.className = 'text-center mb-3';
+  
+  if (responseField) {
+    responseField.parentElement.insertBefore(turnIndicator, responseField);
+  }
+
+  // Safely check current turn
+  const isCurrentUserTurn = currentTurnElement ? 
+    currentTurnElement.dataset.currentTurnUserId == userId : 
+    false;
+
+  // Initialize the turn indicator
+  if (currentTurnElement && currentTurnElement.dataset.currentTurnUserName) {
+    turnIndicator.textContent = `Current Turn: ${currentTurnElement.dataset.currentTurnUserName}`;
+  }
+
+  // Safely enable/disable controls
+  if (messageInput) messageInput.disabled = !isCurrentUserTurn;
+  if (sendButton) sendButton.disabled = !isCurrentUserTurn;
+  if (mapButton) mapButton.disabled = !isCurrentUserTurn;
+
+
   // Updated PresenceChannel subscription
   consumer.subscriptions.create(
     { channel: "PresenceChannel", game_id: gameId, user_id: userId },
@@ -178,6 +210,17 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`Disconnected from PresenceChannel for game ${gameId}`);
       },
       received(data) {
+
+        if (data.action === 'update_turn') {
+          if (turnIndicator) {
+            turnIndicator.textContent = `Current Turn: ${data.current_turn_user_name}`;
+          }
+
+          const isCurrentUserTurn = data.current_turn_user_id == userId;
+          messageInput.disabled = !isCurrentUserTurn;
+          sendButton.disabled = !isCurrentUserTurn;
+          mapButton.disabled = !isCurrentUserTurn;
+        }
         const presenceList = document.getElementById("presence-list");
         if (presenceList) {
           if (data.status === 'online') {
