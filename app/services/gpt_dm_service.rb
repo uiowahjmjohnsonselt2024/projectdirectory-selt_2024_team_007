@@ -7,11 +7,105 @@ class GptDmService
     @game = Game.find(game_id) # Ensure @game is accessible here
     @user_id = user_id
     system_prompt = <<~PROMPT
+**System Prompt:**
+
+You are a Dungeon Master for a dynamic, imaginative role-playing game. Your role is to:  
+- Craft an engaging story filled with thrilling encounters, rich lore, and unexpected twists.  
+- Adapt to any genre or setting chosen by the players.  
+- Provide vivid descriptions, balanced challenges, and fair outcomes for player actions.  
+- Enforce game rules and reflect all changes to the game state by calling the provided tool functions.  
+- At the end of processing each turn or action, you **MUST** call the `dungeon_master_text_response` function exactly once, providing the narrative text. Not calling it will result in no player-facing output.
+
+**Key Rules and Instructions:**
+
+0. **At the end of every turn or action:**  
+   **Call `dungeon_master_text_response`** with a narrative text conclusion. This is mandatory.
+
+1.) **Update Players Requirement:**
+  - When calling `update_players`, you must include **all fields for all players** in the game, even if certain fields have not changed. Treat `update_players` as a **set operation**, where you provide the complete state of each player. For example, if a player’s `health` remains 75, include `health: 75` in the `update_players` call for that player. If no changes occur for a player, pass their state exactly as it was. This ensures the entire game state is synchronized correctly.
+
+2. **Consumable Items (Health Potion, Teleport Token, Resurrection Token):**  
+   - These items are in the player’s inventory and can be used if available.  
+   - If a player uses one this turn, set its corresponding `consumables` boolean to `true` in `update_players`.
+   - If not used, set its corresponding `consumables` boolean to `false`.
+   - Always mention by name which of these items were used or not used when calling `update_players`.
+
+   Example:  
+   - If a player uses a health potion, then `health_potion` = `true`. If not, `health_potion` = `false`.  
+   - Same logic applies for `teleport` and `resurrection_token`.
+
+   Default if no items are used:  
+   - `health_potion` = `false`  
+   - `teleport` = `false`  
+   - `resurrection_token` = `false`
+
+3. **Inventory and Equipment Distinction:**  
+   - Inventory = Premium items (e.g., teleport tokens, health potions, resurrection tokens). Cannot be added or removed except by their intended consumption.  
+   - Equipment = Regular non-premium items found or obtained in the world.  
+     - Players can pick up non-premium items and have them added to their `equipment`.  
+     - They can discard equipment, which you can remove from `equipment`.
+
+4. **Movement Rules:**  
+   - Players move on a grid. Adjacent moves are free unless story constraints prevent movement.  
+   - Moving to a non-adjacent tile requires using a teleport token (`teleport` = `true`).  
+   - If a player tries to move non-adjacently without a teleport token, deny the move with a lore reason.  
+   - If story constraints prevent movement (e.g., locked doors, traps), deny the move unless a teleport token is used.
+
+5. **Health and Resurrection:**  
+   - Health potion restores half max health (assume max health = 100, so heals 50).  
+   - If a player is at 0 health, they cannot act unless revived with a resurrection token (`resurrection_token` = `true`).
+
+6. **Quest Integration:**  
+   - Incorporate quests as subtle narrative arcs.  
+   - If quest data is too large, summarize relevant parts.
+
+7. **Updating State:**  
+   After processing actions, call the appropriate functions with updated states:  
+   - `update_map_state` if the map changes.  
+   - `update_quests` if quests update.  
+   - `update_players` if players move, change equipment, health, or use consumables.  
+   - Finally, `dungeon_master_text_response` with the narrative text.
+
+8. **Denying Invalid Actions:**  
+   - Deny usage of inventory items not owned by the player. Provide a narrative reason.  
+   - Deny movement that doesn’t follow rules. Provide a narrative reason.  
+   - Deny attempts to add or remove premium items (inventory) unless they are being properly consumed.
+
+**Remember:**  
+- The last tool call must be `dungeon_master_text_response` with a narrative conclusion.  
+- If no action occurred, still provide a narrative response calling `dungeon_master_text_response`.
+
+    PROMPT
+
+    system_prompt_old = <<~PROMPT
 You are a Dungeon Master for a dynamic and imaginative role-playing game. Your task is to craft an engaging story filled with thrilling encounters, rich lore, and unexpected twists. Players can choose any genre or setting, and your role is to adapt and provide vivid descriptions, balanced challenges, and fair outcomes for player actions.
 
 # IMPORTANT:
-    At the end of processing, you MUST call the `dungeon_master_text_response` tool. If you do not call it, the user will have no narrative text to read. Provide a narrative conclusion in that function call every time. Even if there's no story progress, call `dungeon_master_text_response` with some message.
+    At the end of processing, you MUST call the `dungeon_master_text_response` tool. If you do not call it, the user will have no narrative text to read. Provide a narrative conclusion in that function call every time. Even if there's no story progress, call `dungeon_master_text_response` with the 
 
+**Additional Item Usage Instructions**:  
+- The following inventory items: **health potion**, **teleport token**, and **resurrection token** are consumable items. If a player uses one of these items during their turn, set the corresponding flag in the `consumables` object to `true` in the `update_players` function call.
+- If the player does not use the corresponding item this turn, set its flag to `false`.
+- Always explicitly mention the name of the item(s) used or not used in the `consumables` field.  
+- For example:
+  - If a player drinks a health potion this turn, when calling `update_players` for that player, make sure `health_potion` is set to `true`. If they do not drink a health potion this turn, set `health_potion` to `false`.
+  - If a player uses a teleport token this turn (e.g., to move to a non-adjacent tile), `teleport` should be set to `true`. If they don’t, `teleport` should be set to `false`.
+  - If a player uses a resurrection token this turn (e.g., to revive themselves or another), set `resurrection_token` to `true`. If no resurrection action is taken, `resurrection_token` should be `false`.
+
+**Note on Default State**: If a player does not perform any action involving these items, default to `false` for all three.
+
+---
+
+**Example Implementation Detail**:
+
+1. Determine player actions each turn (e.g., did they use a health potion, teleport token, or resurrection token?).  
+2. Before calling `update_players`, reflect the used items:
+    - `health_potion: true` if used, else `false`
+    - `teleport: true` if used, else `false`
+    - `resurrection_token: true` if used, else `false`
+3. Call `update_players` with the updated `consumables` object along with any other state changes.
+
+**Always** call `dungeon_master_text_response` after all updates to provide the final narrative.
 
 # Instructions
 
@@ -383,12 +477,10 @@ You are a Dungeon Master for a dynamic and imaginative role-playing game. Your t
      "ERROR! GPT failed to call functions to update game state!"
     end
 
-    # After handling tools, check if we got a DM response
+    # Ensure we retrieve dungeon_master_text_response before falling back
     if dungeon_master_text_response_to_return == "No response generated by GPT."
-      Rails.logger.warn("No DM response was provided, attempting fallback DM response.")
-      # Attempt a fallback call to GPT to get a narrative text
-      fallback_text = generate_fallback_dm_response(messages)
-      dungeon_master_text_response_to_return = fallback_text.presence || "The world falls silent, with no further guidance."
+      Rails.logger.warn("No DM response was directly provided. Checking for a missed response.")
+      dungeon_master_text_response_to_return = verify_and_fallback_response(message, messages_array)
     end
 
     # When done calling functions, return DM string so it can be broadcast
@@ -531,27 +623,36 @@ on what has happened so far without reading the entire transcript.
     nil
   end
 
+  private
+
   # Fallback DM response if no response was generated
-  def generate_fallback_dm_response(messages_array)
-    # We'll prompt GPT again to produce a simple narrative closing.
-    # Since we need a narrative response, we can reference the last user action or just close the scenario gracefully.
+  def generate_fallback_dm_response(messages_array, attempted_tool_calls)
+    # Construct a detailed prompt for GPT based on the attempted tool calls and full message history.
+    fallback_prompt = <<~PROMPT
+    You are a Dungeon Master, and a narrative response is missing. GPT attempted to process the following tool calls: 
+    #{attempted_tool_calls.any? ? attempted_tool_calls.join(", ") : "No tool calls were made."}
 
-    fallback_system_prompt = <<~PROMPT
-      You are a Dungeon Master. We attempted to generate a narrative response but did not receive one.
-      Provide a short, conclusive narrative message to the user based on the previous conversation.
-      This message should feel like the DM responding to the last user action, even if minimal.
-      You are NOT calling any tools now; just produce a short narrative as a normal assistant message.
-    PROMPT
+    Based on the full conversation history provided, generate a short and conclusive narrative response that naturally progresses the story. 
+    Use the player's most recent actions and the tool calls as a guide to ensure your response aligns with the story's direction.
 
-    # We'll include the last user message or a snippet from messages_array for context.
-    last_user_message = messages_array.reverse.find { |m| m["role"] == "user" }&.dig("content") || "No specific user request found."
+    This response should:
+    - Feel like a continuation of the existing story.
+    - Resolve any open-ended player actions or events.
+    - Provide closure or guidance for the next steps, even if minimal.
+    - Be concise but engaging, avoiding unnecessary repetition.
+  PROMPT
 
+    # Include the full conversation history for context
+    conversation_history = messages_array.map { |msg| "#{msg['role'].capitalize}: #{msg['content']}" }.join("\n")
+
+    # Messages for GPT
     messages = [
-      { role: "system", content: fallback_system_prompt },
-      { role: "user", content: "The last player action/message was: #{last_user_message}" }
+      { role: "system", content: fallback_prompt },
+      { role: "user", content: "Conversation history:\n#{conversation_history}" }
     ]
 
     begin
+      # Generate fallback narrative
       response = @client.chat(
         parameters: {
           model: "gpt-4",
@@ -567,7 +668,31 @@ on what has happened so far without reading the entire transcript.
     end
   end
 
-  private
+  def verify_and_fallback_response(message, messages_array)
+    dungeon_master_text_response_to_return = "No response generated by GPT."
+
+    # Check if `dungeon_master_text_response` was called
+    if message["role"] == "assistant" && message["tool_calls"]
+      message["tool_calls"].each do |tool_call|
+        if tool_call.dig("function", "name") == "dungeon_master_text_response"
+          dungeon_master_text_response_to_return = tool_call.dig("function", "arguments", "content")
+          break if dungeon_master_text_response_to_return.present?
+        end
+      end
+    end
+
+    # Generate fallback if no response
+    if dungeon_master_text_response_to_return == "No response generated by GPT."
+      attempted_tool_calls = message["tool_calls"]&.map { |tc| tc.dig("function", "name") } || []
+
+      Rails.logger.warn("DM response missing. Generating fallback narrative.")
+      fallback_narrative = generate_fallback_dm_response(messages_array, attempted_tool_calls)
+      dungeon_master_text_response_to_return = fallback_narrative || "The world falls silent, with no further guidance."
+    end
+
+    dungeon_master_text_response_to_return
+  end
+
 
   def define_tools
     [
@@ -802,90 +927,92 @@ on what has happened so far without reading the entire transcript.
 
     players.each do |player|
       Rails.logger.debug("Processing player: #{player.inspect}")
-      game_user = game_users[player[:id]]
-      unless game_user
-        Rails.logger.warn("No game_user found for player ID: #{player[:id]}")
-        next
-      end
-
-      user = game_user.user
-      Rails.logger.debug("Found game_user: #{game_user.inspect}, user: #{user.inspect}")
-
-
-      # Update position
-      if player[:position]
-        tile_key = [player[:position][:x], player[:position][:y]]
-        Rails.logger.debug("Looking up tile_key: #{tile_key}")
-        tile = tiles_by_coords[tile_key]
-
-        if tile
-          game_user.update(current_tile_id: tile.id)
-          Rails.logger.debug("Updated game_user's current_tile_id to: #{tile.id}")
-        else
-          Rails.logger.warn("Tile at #{player[:position]} not found. Position not updated.")
+      if player[:id]
+        game_user = game_users[player[:id]]
+        unless game_user
+          Rails.logger.warn("No game_user found for player ID: #{player[:id]}")
+          next
         end
-      end
 
-      # Update equipment (store as JSON)
-      if player[:equipment]
-        game_user.update(equipment: player[:equipment].to_json)
-        Rails.logger.debug("Updated equipment for game_user #{game_user.id}: #{player[:equipment].to_json}")
-      end
+        user = game_user.user
+        Rails.logger.debug("Found game_user: #{game_user.inspect}, user: #{user.inspect}")
 
-      # Update consumables usage
-      if player[:consumables]
-        consumables = player[:consumables]
-        Rails.logger.debug("Player consumables: #{consumables.inspect}")
-      end
 
-      # Teleport usage
-      if consumables[:teleport]
-        if user.teleport > 0
-          user.update(teleport: user.teleport - 1)
-          Rails.logger.debug("Decremented teleport for user #{user.id}. New value: #{user.teleport - 1}")
-        else
-          Rails.logger.warn("Tried to use a teleport token but none available for user #{user.id}.")
-        end
-      end
+        # Update position
+        if player[:position]
+          tile_key = [player[:position][:x], player[:position][:y]]
+          Rails.logger.debug("Looking up tile_key: #{tile_key}")
+          tile = tiles_by_coords[tile_key]
 
-      # Health potion usage
-      if consumables[:health_potion]
-        if user.health_potion > 0
-          user.update(health_potion: user.health_potion - 1)
-          # Restore half health (50 points), capped at 100
-          new_health = [game_user.health + 50, 100].min
-          game_user.update(health: new_health)
-          Rails.logger.debug("Used health_potion for user #{user.id}. New health: #{new_health}")
-        else
-          Rails.logger.warn("Tried to use a health_potion but none available for user #{user.id}.")
-        end
-      elsif player[:health]
-        # If health potion not used, set health as given by player[:health]
-        game_user.update(health: player[:health])
-      end
-
-      # Resurrection token usage
-      if consumables[:resurrection_token]
-        if user.resurrection_token > 0
-          user.update(resurrection_token: user.resurrection_token - 1)
-          Rails.logger.debug("Decremented resurrection_token for user #{user.id}.")
-          # If player's health <= 0, restore to 100
-          if game_user.health <= 0
-            game_user.update(health: 100)
+          if tile
+            game_user.update(current_tile_id: tile.id)
+            Rails.logger.debug("Updated game_user's current_tile_id to: #{tile.id}")
+          else
+            Rails.logger.warn("Tile at #{player[:position]} not found. Position not updated.")
           end
-        else
-          Rails.logger.warn("Tried to use resurrection_token but none available for user #{user.id}.")
+        end
+
+        # Update equipment (store as JSON)
+        if player[:equipment]
+          game_user.update(equipment: player[:equipment].to_json)
+          Rails.logger.debug("Updated equipment for game_user #{game_user.id}: #{player[:equipment].to_json}")
+        end
+
+        # Update consumables usage
+        if player[:consumables]
+          consumables = player[:consumables]
+          Rails.logger.debug("Player consumables: #{consumables.inspect}")
+        end
+
+        # Teleport usage
+        if consumables[:teleport]
+          if user.teleport > 0
+            user.update(teleport: user.teleport - 1)
+            Rails.logger.debug("Decremented teleport for user #{user.id}. New value: #{user.teleport - 1}")
+          else
+            Rails.logger.warn("Tried to use a teleport token but none available for user #{user.id}.")
+          end
+        end
+
+        # Health potion usage
+        if consumables[:health_potion]
+          if user.health_potion > 0
+            user.update(health_potion: user.health_potion - 1)
+            # Restore half health (50 points), capped at 100
+            new_health = [game_user.health + 50, 100].min
+            game_user.update(health: new_health)
+            Rails.logger.debug("Used health_potion for user #{user.id}. New health: #{new_health}")
+          else
+            Rails.logger.warn("Tried to use a health_potion but none available for user #{user.id}.")
+          end
+        elsif player[:health]
+          # If health potion not used, set health as given by player[:health]
+          game_user.update(health: player[:health])
+        end
+
+        # Resurrection token usage
+        if consumables[:resurrection_token]
+          if user.resurrection_token > 0
+            user.update(resurrection_token: user.resurrection_token - 1)
+            Rails.logger.debug("Decremented resurrection_token for user #{user.id}.")
+            # If player's health <= 0, restore to 100
+            if game_user.health <= 0
+              game_user.update(health: 100)
+            end
+          else
+            Rails.logger.warn("Tried to use resurrection_token but none available for user #{user.id}.")
+          end
+        end
+
+        # Meaningful action (add 2 shards)
+        if player[:meaningful_action]
+          Rails.logger.debug("Added 2 shards to user #{user.id}. New shards_balance: #{user.shards_balance + 2}")
+          user.update(shards_balance: user.shards_balance + 2)
         end
       end
 
-      # Meaningful action (add 2 shards)
-      if player[:meaningful_action]
-        Rails.logger.debug("Added 2 shards to user #{user.id}. New shards_balance: #{user.shards_balance + 2}")
-        user.update(shards_balance: user.shards_balance + 2)
-      end
+      Rails.logger.info("Players updated successfully.")
+      "Players updated successfully."
     end
-
-    Rails.logger.info("Players updated successfully.")
-    "Players updated successfully."
   end
 end

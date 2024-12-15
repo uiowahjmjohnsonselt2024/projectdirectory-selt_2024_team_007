@@ -267,6 +267,7 @@ PROMPT
 
     # Re-fetch players with updated equipment and health
     updated_players = @game.game_users.includes(:user).map do |game_user|
+      user = game_user.user
       {
         id: game_user.user_id,
         name: game_user.user.name,
@@ -274,6 +275,9 @@ PROMPT
         inventory: fetch_inventory(game_user.user_id),
         equipment: fetch_equipment(game_user),
         health: game_user.health || 100,
+        resurrection_token: user.resurrection_token || 0, # Include resurrection token count
+        health_potion: user.health_potion || 0,         # Include health potion count
+        teleport_token: user.teleport || 0,             # Include teleport token count
         status: "active"
       }
     end

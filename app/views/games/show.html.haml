@@ -7,7 +7,9 @@
   %div{data: {user_id: @current_user.id}}
   %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
     / Sidebar
-    %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px;" }
+    %aside.sidebar{
+      style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;"
+    }
       %h2.mb-3 Game Info
       %p
         %strong Game Name:
@@ -27,21 +29,24 @@
           = @game.current_turn_user.name
         - else
           Not started
-        %h3.mt-4 Players
-        %ul#presence-list
-          
+      %h3.mt-4 Players
+      %ul#presence-list
 
-      %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
-        Inventory
-      %button#map_button.btn.btn-primary.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
-        View Map
+      %div{ style: "text-align: center;" }
+        %button#inventory_button.btn.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal",
+          style: "border: none; background: transparent; padding: 0; width: 75px; height: 75px; display: inline-block;"
+        }
+          %img{ src: image_path("inventory_icon.png"), alt: "Inventory", style: "width: 100%; height: 100%; object-fit: cover;" }
+        %button#map_button.btn.btn-primary.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal",
+          style: "border: none; background: transparent; padding: 0; width: 100px; height: 100px; display: inline-block;"
+        }
+          %img{ src: image_path("map_icon.png"), alt: "Map", style: "width: 100%; height: 100%; object-fit: cover;" }
 
       %div#flash-messages
         = render 'shared/flash'
 
-
-      / Editable User Input Field
-      %div.user-input.mt-3
+      / Send Button Area
+      %div.user-input.mt-3{ style: "padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.2);" }
         .mb-3
           %label.form-label.fw-bold Your Response
           %textarea#user-message.form-control{ rows: 3, placeholder: 'Type your message here...' }
@@ -87,20 +92,57 @@
     / Inventory Modal
     .modal.fade#inventoryModal{ tabindex: "-1", "aria-labelledby" => "inventoryModalLabel", "aria-hidden" => "true" }
       .modal-dialog
-        .modal-content
+        .modal-content{ style: "background: rgba(0, 0, 0, 0.6); border-radius: 5px;" }
           .modal-header
-            %h5#inventoryModalLabel.modal-title{ style: "color: black;" } Inventory
-            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-          .modal-body{ style: "color: black;" }
-            / Inventory Items
-            - if @equipment_items.present?
+            %h5#inventoryModalLabel.modal-title{ style: "color: #ECF0F1;" } Inventory
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close", style: "color: #BDC3C7;" }
+          .modal-body{ style: "color: #ECF0F1; padding: 20px; overflow-y: auto; max-height: 70vh;" }
+            / Consumable Items
+            %div#consumable-items
+              %h6.mb-3{ style: "color: #ECF0F1;" } Consumable Items
               %ul
-                - @equipment_items.each do |item|
-                  %li= item[:name]
-            - else
-              %p No items in your inventory.
+                %li.d-flex.align-items-center.mb-2
+                  %span#teleport-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
+                  %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Teleport
+                %li.d-flex.align-items-center.mb-2
+                  %span#health-potion-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
+                  %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Health Potion
+                %li.d-flex.align-items-center.mb-2
+                  %span#resurrection-token-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
+                  %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Resurrection Token
+
+            / Store Items
+            %div#store-items
+              - if @current_user.store_items.present?
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %ul
+                  - @current_user.store_items.each do |store_item|
+                    %li.d-flex.align-items-center.mb-2
+                      %img{ src: image_path("store_icon_#{store_item.id}.png"), alt: store_item.name, style: "width: 75px; height: 75px; border-radius: 5px; margin-right: 10px;" }
+                      %div
+                        %strong{ style: "color: #ECF0F1;" }= store_item.name
+              - else
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %p{ style: "color: #BDC3C7;" } No items purchased from the store.
+
+            / Found In-Game Items
+            %div#in-game-items
+              - if @equipment_items.present?
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %ul
+                  - @equipment_items.each do |item|
+                    %li{ style: "color: #ECF0F1;" }= item[:name]
+              - else
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %p{ style: "color: #BDC3C7;" } No items in your inventory.
           .modal-footer
-            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal", style: "background-color: #2ECC71; border: none; color: #ECF0F1;" } Close
 
 
 :javascript
