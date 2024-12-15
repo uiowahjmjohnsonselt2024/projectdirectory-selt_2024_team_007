@@ -7,16 +7,81 @@ class GptDmService
     @game = Game.find(game_id) # Ensure @game is accessible here
     @user_id = user_id
     system_prompt = <<~PROMPT
+**System Prompt:**
+
+You are a Dungeon Master for a dynamic, imaginative role-playing game. Your role is to:  
+- Craft an engaging story filled with thrilling encounters, rich lore, and unexpected twists.  
+- Adapt to any genre or setting chosen by the players.  
+- Provide vivid descriptions, balanced challenges, and fair outcomes for player actions.  
+- Enforce game rules and reflect all changes to the game state by calling the provided tool functions.  
+- At the end of processing each turn or action, you **MUST** call the `dungeon_master_text_response` function exactly once, providing the narrative text. Not calling it will result in no player-facing output.
+
+**Key Rules and Instructions:**
+
+0. **At the end of every turn or action:**  
+   **Call `dungeon_master_text_response`** with a narrative text conclusion. This is mandatory.
+
+1.) **Update Players Requirement:**
+  - When calling `update_players`, you must include **all fields for all players** in the game, even if certain fields have not changed. Treat `update_players` as a **set operation**, where you provide the complete state of each player. For example, if a player’s `health` remains 75, include `health: 75` in the `update_players` call for that player. If no changes occur for a player, pass their state exactly as it was. This ensures the entire game state is synchronized correctly.
+
+2. **Consumable Items (Health Potion, Teleport Token, Resurrection Token):**  
+   - These items are in the player’s inventory and can be used if available.  
+   - If a player uses one this turn, set its corresponding `consumables` boolean to `true` in `update_players`.
+   - If not used, set its corresponding `consumables` boolean to `false`.
+   - Always mention by name which of these items were used or not used when calling `update_players`.
+
+   Example:  
+   - If a player uses a health potion, then `health_potion` = `true`. If not, `health_potion` = `false`.  
+   - Same logic applies for `teleport` and `resurrection_token`.
+
+   Default if no items are used:  
+   - `health_potion` = `false`  
+   - `teleport` = `false`  
+   - `resurrection_token` = `false`
+
+3. **Inventory and Equipment Distinction:**  
+   - Inventory = Premium items (e.g., teleport tokens, health potions, resurrection tokens). Cannot be added or removed except by their intended consumption.  
+   - Equipment = Regular non-premium items found or obtained in the world.  
+     - Players can pick up non-premium items and have them added to their `equipment`.  
+     - They can discard equipment, which you can remove from `equipment`.
+
+4. **Movement Rules:**  
+   - Players move on a grid. Adjacent moves are free unless story constraints prevent movement.  
+   - Moving to a non-adjacent tile requires using a teleport token (`teleport` = `true`).  
+   - If a player tries to move non-adjacently without a teleport token, deny the move with a lore reason.  
+   - If story constraints prevent movement (e.g., locked doors, traps), deny the move unless a teleport token is used.
+
+5. **Health and Resurrection:**  
+   - Health potion restores half max health (assume max health = 100, so heals 50).  
+   - If a player is at 0 health, they cannot act unless revived with a resurrection token (`resurrection_token` = `true`).
+
+6. **Quest Integration:**  
+   - Incorporate quests as subtle narrative arcs.  
+   - If quest data is too large, summarize relevant parts.
+
+7. **Updating State:**  
+   After processing actions, call the appropriate functions with updated states:  
+   - `update_map_state` if the map changes.  
+   - `update_quests` if quests update.  
+   - `update_players` if players move, change equipment, health, or use consumables.  
+   - Finally, `dungeon_master_text_response` with the narrative text.
+
+8. **Denying Invalid Actions:**  
+   - Deny usage of inventory items not owned by the player. Provide a narrative reason.  
+   - Deny movement that doesn’t follow rules. Provide a narrative reason.  
+   - Deny attempts to add or remove premium items (inventory) unless they are being properly consumed.
+
+**Remember:**  
+- The last tool call must be `dungeon_master_text_response` with a narrative conclusion.  
+- If no action occurred, still provide a narrative response calling `dungeon_master_text_response`.
+
+    PROMPT
+
+    system_prompt_old = <<~PROMPT
 You are a Dungeon Master for a dynamic and imaginative role-playing game. Your task is to craft an engaging story filled with thrilling encounters, rich lore, and unexpected twists. Players can choose any genre or setting, and your role is to adapt and provide vivid descriptions, balanced challenges, and fair outcomes for player actions.
 
 # IMPORTANT:
-    At the end of processing, you MUST call the `dungeon_master_text_response` tool. If you do not call it, the user will have no narrative text to read. Provide a narrative conclusion in that function call every time. Even if there's no story progress, call `dungeon_master_text_response` with some message.
-
-Below is a revised prompt engineering and instructions snippet that ensures GPT understands how to handle the consumable items—**health potion**, **teleport token**, and **resurrection token**—according to the rules. Adjust this snippet in your `generate_dm_response` logic so that GPT consistently applies the intended behavior:
-
----
-
-**Revised Prompt Snippet:**
+    At the end of processing, you MUST call the `dungeon_master_text_response` tool. If you do not call it, the user will have no narrative text to read. Provide a narrative conclusion in that function call every time. Even if there's no story progress, call `dungeon_master_text_response` with the 
 
 **Additional Item Usage Instructions**:  
 - The following inventory items: **health potion**, **teleport token**, and **resurrection token** are consumable items. If a player uses one of these items during their turn, set the corresponding flag in the `consumables` object to `true` in the `update_players` function call.
@@ -415,22 +480,7 @@ Below is a revised prompt engineering and instructions snippet that ensures GPT 
     # Ensure we retrieve dungeon_master_text_response before falling back
     if dungeon_master_text_response_to_return == "No response generated by GPT."
       Rails.logger.warn("No DM response was directly provided. Checking for a missed response.")
-
-      # Attempt to parse for dungeon_master_text_response if missed in tool_calls
-      message["tool_calls"]&.each do |tool_call|
-        if tool_call.dig("function", "name") == "dungeon_master_text_response"
-          dungeon_master_text_response_to_return = JSON.parse(tool_call.dig("function", "arguments"))[:content]
-          break if dungeon_master_text_response_to_return.present?
-        end
-      end
-    end
-
-    # After handling tools, check if we got a DM response
-    if dungeon_master_text_response_to_return == "No response generated by GPT."
-      Rails.logger.warn("No DM response was provided, attempting fallback DM response.")
-      # Attempt a fallback call to GPT to get a narrative text
-      fallback_text = generate_fallback_dm_response(messages)
-      dungeon_master_text_response_to_return = fallback_text.presence || "The world falls silent, with no further guidance."
+      dungeon_master_text_response_to_return = verify_and_fallback_response(message, messages_array)
     end
 
     # When done calling functions, return DM string so it can be broadcast
@@ -573,27 +623,36 @@ on what has happened so far without reading the entire transcript.
     nil
   end
 
+  private
+
   # Fallback DM response if no response was generated
-  def generate_fallback_dm_response(messages_array)
-    # We'll prompt GPT again to produce a simple narrative closing.
-    # Since we need a narrative response, we can reference the last user action or just close the scenario gracefully.
+  def generate_fallback_dm_response(messages_array, attempted_tool_calls)
+    # Construct a detailed prompt for GPT based on the attempted tool calls and full message history.
+    fallback_prompt = <<~PROMPT
+    You are a Dungeon Master, and a narrative response is missing. GPT attempted to process the following tool calls: 
+    #{attempted_tool_calls.any? ? attempted_tool_calls.join(", ") : "No tool calls were made."}
 
-    fallback_system_prompt = <<~PROMPT
-      You are a Dungeon Master. We attempted to generate a narrative response but did not receive one.
-      Provide a short, conclusive narrative message to the user based on the previous conversation.
-      This message should feel like the DM responding to the last user action, even if minimal.
-      You are NOT calling any tools now; just produce a short narrative as a normal assistant message.
-    PROMPT
+    Based on the full conversation history provided, generate a short and conclusive narrative response that naturally progresses the story. 
+    Use the player's most recent actions and the tool calls as a guide to ensure your response aligns with the story's direction.
 
-    # We'll include the last user message or a snippet from messages_array for context.
-    last_user_message = messages_array.reverse.find { |m| m["role"] == "user" }&.dig("content") || "No specific user request found."
+    This response should:
+    - Feel like a continuation of the existing story.
+    - Resolve any open-ended player actions or events.
+    - Provide closure or guidance for the next steps, even if minimal.
+    - Be concise but engaging, avoiding unnecessary repetition.
+  PROMPT
 
+    # Include the full conversation history for context
+    conversation_history = messages_array.map { |msg| "#{msg['role'].capitalize}: #{msg['content']}" }.join("\n")
+
+    # Messages for GPT
     messages = [
-      { role: "system", content: fallback_system_prompt },
-      { role: "user", content: "The last player action/message was: #{last_user_message.inspect}" }
+      { role: "system", content: fallback_prompt },
+      { role: "user", content: "Conversation history:\n#{conversation_history}" }
     ]
 
     begin
+      # Generate fallback narrative
       response = @client.chat(
         parameters: {
           model: "gpt-4",
@@ -609,7 +668,31 @@ on what has happened so far without reading the entire transcript.
     end
   end
 
-  private
+  def verify_and_fallback_response(message, messages_array)
+    dungeon_master_text_response_to_return = "No response generated by GPT."
+
+    # Check if `dungeon_master_text_response` was called
+    if message["role"] == "assistant" && message["tool_calls"]
+      message["tool_calls"].each do |tool_call|
+        if tool_call.dig("function", "name") == "dungeon_master_text_response"
+          dungeon_master_text_response_to_return = tool_call.dig("function", "arguments", "content")
+          break if dungeon_master_text_response_to_return.present?
+        end
+      end
+    end
+
+    # Generate fallback if no response
+    if dungeon_master_text_response_to_return == "No response generated by GPT."
+      attempted_tool_calls = message["tool_calls"]&.map { |tc| tc.dig("function", "name") } || []
+
+      Rails.logger.warn("DM response missing. Generating fallback narrative.")
+      fallback_narrative = generate_fallback_dm_response(messages_array, attempted_tool_calls)
+      dungeon_master_text_response_to_return = fallback_narrative || "The world falls silent, with no further guidance."
+    end
+
+    dungeon_master_text_response_to_return
+  end
+
 
   def define_tools
     [
