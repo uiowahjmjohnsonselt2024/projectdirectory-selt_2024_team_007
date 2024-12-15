@@ -13,5 +13,6 @@ Feature: Login Redirection
     Then I should be on "/landing"
     When I visit the site
     Then I should be on "/"
-    And I should see "Games:"
+    And I should see "New Game"
+    And I should see "Join Existing Game"
     And I should see "Welcome back, Alice!"

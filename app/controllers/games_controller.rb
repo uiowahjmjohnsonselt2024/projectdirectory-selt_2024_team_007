@@ -33,6 +33,12 @@ class GamesController < ApplicationController
       @game.chat_image_url ||= "login_register_background.jpg"
 
       if @game.save
+        initial_quests = [
+          {"quest_type":1, "refresh_times":1, "condition":3, "reward":3, "progress":0},
+          {"quest_type":2, "refresh_times":1, "condition":2, "reward":4, "progress":0},
+          {"quest_type":3, "refresh_times":1, "condition":2, "reward":5, "progress":0}
+        ]
+        @game.update!(quests: initial_quests.to_json)
          # Deduct 40 shards from the user's balance
         @current_user.decrement!(:shards_balance, 40)
 
@@ -224,8 +230,10 @@ class GamesController < ApplicationController
     # COPY IT ALL separate so we can save it in a smaller form without the game state for history’s sake
     message_to_send_to_gpt_as_user_msg_with_game_state = current_messages_from_db_without_game_state.dup
 
+    old_health = 0
     # Build complex game state prompt
     players = @game.game_users.includes(:user).map do |game_user|
+      old_health = old_health + (game_user.health || 100)
       {
         id: game_user.user_id,
         name: game_user.user.name,
@@ -237,6 +245,7 @@ class GamesController < ApplicationController
       }
     end
 
+    # eq.size
     # Construct map details
     map_tiles = @game.tiles.map do |tile|
       {
@@ -323,6 +332,9 @@ PROMPT
     # Save the generated image URL to the games table
     @game.update!(chat_image_url: image_response)
 
+    old_inventory_count_total = players.sum { |p| p[:inventory]&.size.to_i }
+    old_equipment_count_total = players.sum { |p| p[:equipment]&.size.to_i }
+
     # After GPT response and after updating the @game context
     active_user_ids = $redis.smembers("active_users_#{@game.id}")
     active_user_ids.map!(&:to_i)
@@ -343,9 +355,11 @@ PROMPT
     
     @game.reload # Ensure we have the latest data from the database
 
+    new_health_sum = 0
     # Re-fetch players with updated equipment and health
     updated_players = @game.game_users.includes(:user).map do |game_user|
       user = game_user.user
+      new_health_sum = new_health_sum + (game_user.health || 100)
       {
         id: game_user.user_id,
         name: game_user.user.name,
@@ -360,6 +374,23 @@ PROMPT
       }
     end
 
+    #eq.size check again
+    new_equipment_count_total = updated_players.sum { |p| p[:equipment]&.size.to_i}
+    puts "Debug: Current value of old_equipment_count_total is #{old_equipment_count_total}"
+    puts "Debug: Current value of old_inventory_count_total is #{old_health}"
+    puts "Debug: Current value of new_equipment_count_total is #{new_equipment_count_total}"
+    puts "Debug: Current value of new_inventory_count_total is #{new_health_sum}"
+
+
+    if new_health_sum < old_health
+      update_quests(@game, 2)
+    end
+
+    if new_equipment_count_total > old_equipment_count_total
+      gained_amount = new_equipment_count_total - old_equipment_count_total
+      update_quests(@game, 3)
+    end
+    #
     # Broadcast the GPT response to all connected clients for this game
     ChatChannel.broadcast_to(@game, {
       user: @current_user.name,
@@ -369,6 +400,10 @@ PROMPT
       image_prompt: refined_image_prompt,
       updated_players: updated_players
     })
+
+    # Quest Part:
+    # Update quest progress +1
+    update_quests(@game, 1)
 
     # Respond with a simple success (no need to re-render or return JSON)
     head :ok
@@ -494,6 +529,66 @@ PROMPT
   def fetch_active_quests(game)
     game.quests || "[]" # Return the quests string or an empty array as a string if no quests are set
   end
+
+  #Quest update method
+  def update_quests(game, quest_type)
+    quests = JSON.parse(game.quests) rescue []
+    quest = quests.find { |q| q["quest_type"] == quest_type }
+    return unless quest
+
+    # Progress+1
+    quest["progress"] += 1
+
+    #check if finished the test
+    if quest["progress"] >= quest["condition"]
+      # Reward shards
+      @current_user.update!(shards_balance: @current_user.shards_balance + quest["reward"])
+
+      # Quest refresh
+      quest["refresh_times"] += 1
+      quest["condition"] = new_condition_based_on_refresh(quest["refresh_times"], quest["quest_type"])
+      quest["reward"] = new_reward_based_on_refresh(quest["refresh_times"], quest["quest_type"])
+      quest["progress"] = 0
+    end
+
+    game.update!(quests: quests.to_json)
+    #boardcast
+    QuestsChannel.broadcast_to(game, { quests: quests })
+  end
+
+  def new_condition_based_on_refresh(refresh_times, quest_type)
+    # Define logic to change quest COND,REWARDS
+    case quest_type
+    when 1
+      if refresh_times == 1
+        3
+      elsif refresh_times == 2
+        10
+      else
+        10 * 2**(refresh_times - 2) # 3,10,20,40.....
+      end
+    when 2
+      3 * refresh_times
+    when 3
+      3 * refresh_times
+    else
+      3
+    end
+  end
+
+  def new_reward_based_on_refresh(refresh_times, quest_type)
+    case quest_type
+    when 1
+      3 * refresh_times
+    when 2
+      5 * refresh_times
+    when 3
+      10 * refresh_times
+    else
+      3
+    end
+  end
+
 
   # Provide a default setting for each genre as a fallback if GPT fails
   def default_setting_for_genre(genre)

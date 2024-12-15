@@ -2,3 +2,4 @@
 import "./consumer";
 import "./chat_channel";
 import "./presence_channel";
+import "./quests_channel";

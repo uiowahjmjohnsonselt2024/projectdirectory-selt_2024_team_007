@@ -213,10 +213,11 @@ $body-color: $text-default;
   .content-area {
     .gpt-image-box {
       position: relative;
-      width: 75%;  // Smaller width
-      height: 75%; // Matching height
+      // width: 75%;  // Smaller width
+      // height: 75%; // Matching height
       margin: 0 auto;
       background-color: #ecf0f1;
+      aspect-ratio: 1;
   
       .square-container {
         position: relative;

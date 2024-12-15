@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_15_001953) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
     t.integer "current_tile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "quests", default: []
     t.index ["current_tile_id"], name: "index_game_users_on_current_tile_id"
     t.index ["game_id", "user_id"], name: "index_game_users_on_game_id_and_user_id", unique: true
     t.index ["game_id"], name: "index_game_users_on_game_id"
@@ -89,6 +90,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
     t.index ["current_turn_user_id"], name: "index_games_on_current_turn_user_id"
     t.index ["join_code"], name: "index_games_on_join_code", unique: true
     t.index ["owner_id"], name: "index_games_on_owner_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "item_name"
+    t.string "item_type"
+    t.integer "item_cost"
+    t.datetime "purchased_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "store_items", force: :cascade do |t|
@@ -149,6 +161,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_14_172634) do
   add_foreign_key "game_users", "users"
   add_foreign_key "games", "users", column: "current_turn_user_id"
   add_foreign_key "games", "users", column: "owner_id"
+  add_foreign_key "orders", "users"
   add_foreign_key "tiles", "games"
   add_foreign_key "user_store_items", "store_items"
   add_foreign_key "user_store_items", "users"

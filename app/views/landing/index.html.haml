@@ -33,7 +33,7 @@
 
   / Scrollable Game List
   %div.scrollable-game-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
-    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } My Servers:
     - if @games.any?
       - @games.each do |game|
         %div.game-card{ id: "game-card-#{game.id}", style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }

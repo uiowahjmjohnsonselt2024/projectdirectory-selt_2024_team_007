@@ -19,10 +19,10 @@ class Game < ApplicationRecord
   validate :validate_map_size_format_and_minimum
 
   # Callbacks
-  after_validation :normalize_join_code# Callbacks
+
+  after_validation :normalize_join_code
+  after_create :set_default_quests
   after_create -> { generate_tiles(map_size: map_size) }
-
-
   def non_owner_players_count
     game_users.where.not(user_id: owner_id).count
   end
@@ -190,4 +190,14 @@ class Game < ApplicationRecord
     end
   end
 
+  def set_default_quests
+    default_quests = [
+      {"quest_type":1, "refresh_times":1, "condition":3, "reward":3, "progress":0},
+      {"quest_type":2, "refresh_times":1, "condition":1, "reward":5, "progress":0},
+      {"quest_type":3, "refresh_times":1, "condition":1, "reward":10, "progress":0}
+    ]
+    update!(quests: default_quests.to_json) unless self.quests.present?
+  end
+
 end
+
