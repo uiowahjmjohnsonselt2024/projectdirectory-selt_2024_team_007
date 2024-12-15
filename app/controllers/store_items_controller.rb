@@ -26,9 +26,16 @@ class StoreItemsController < ApplicationController
     if [10, 20, 50].include?(shard_amount)
       if BillingMethod.exists?(user_id: current_user.id)
         user.increment!(:shards_balance, shard_amount)
+        Order.create!(
+          user: user,
+          item_name: "#{shard_amount} Shards",
+          item_type: "Shard Package",
+          item_cost: shard_amount,
+          purchased_at: Time.zone.now
+        )
         flash[:success] = "Purchase successful!"
         redirect_to store_items_path and return
-      elsif
+      else
         flash[:danger] = "Please add a Payment Method"
         redirect_to store_items_path and return
       end
@@ -36,25 +43,28 @@ class StoreItemsController < ApplicationController
 
     # Handle store items based on item_id and item existence
     if item.present?
-      # Use the item's cost, not the passed shard_amount parameter
       actual_cost = item.shards_cost
 
-      # Check if user already owns the item
       if item_id > 3 && user.owns_item?(item_id)
         flash[:warning] = "You already own #{item[:name]}!"
       else
-        # Check for sufficient balance
         if user.shards_balance >= actual_cost
           user.decrement!(:shards_balance, actual_cost)
           user.add_store_item(item_id)
-          flash[:success] = "Successfully purchased #{item[:name]}! Remaining shards: #{user.shards_balance}."
+          Order.create!(
+            user: user,
+            item_name: item.name,
+            item_type: "Store Item",
+            item_cost: actual_cost,
+            purchased_at: Time.zone.now
+          )
+          flash[:success] = "Successfully purchased #{item[:name]}!"
         else
           needed = actual_cost - user.shards_balance
           flash[:danger] = "Insufficient Shard Balance. You need #{needed} more shards."
         end
       end
     else
-      # If it's not a shard package and there's no valid item, mark invalid
       flash[:danger] = "Invalid shard amount! Please select a valid purchase option."
     end
 
