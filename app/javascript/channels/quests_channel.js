@@ -32,9 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     const { quest_type, condition, progress, reward } = quest;
                     let questDescription;
                     switch(quest_type){
+
                         case 1: questDescription = `Type ${condition} times in the chat box`; break
-                        case 2: questDescription = `"Hit someone ${condition} times"`; break
-                        case 3: questDescription = `Pick up new equipments ${condition} times`; break
+                        case 2: questDescription = `A party member takes damage ${condition} times`; break
+                        case 3: questDescription = `Pick up item(s) from a chat ${condition} times`; break
                         default: questDescription = "Unknown quest"
                     }
                     const progressPercentage = (progress / condition) * 100;
