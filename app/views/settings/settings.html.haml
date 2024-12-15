@@ -169,12 +169,14 @@
       "aria-labelledby": "v-pills-billings-tab",
       tabindex: "0",
       class: ("show active" if active_tab == 'v-pills-billings'),
-      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; flex: 1; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;"
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; flex: 1; overflow-y: auto;"
     }
       %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Billing Information
       %div{ style: "margin-top: 20px;" }
         = render 'shared/flash'
-        %ul.list-group
+        %ul.list-group{
+          style: "max-height: 400px; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;"
+        }
           - @billing_methods.each do |method|
             %li.list-group-item{ style: "margin-top: 10px; background: rgba(150, 50, 150, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: none;" }
               %div
@@ -292,12 +294,13 @@
       "aria-labelledby": "v-pills-orders-tab",
       tabindex: "0",
       class: ("show active" if active_tab == 'v-pills-orders'),
-      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; flex: 1; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;"
+      style: "width: 100%; max-width: 800px; padding: 30px; background: rgba(0, 0, 0, 0.8); box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); border-radius: 10px; flex: 1; overflow-y: auto;"
     }
       %h1{ style: "color: #ECF0F1; text-align: center; margin-bottom: 20px;" } Orders
       %p{ style: "color: #BDC3C7; text-align: center; margin-bottom: 20px;" } Here are your order details:
-
-      %ul.list-group
+      %ul.list-group{
+        style: "max-height: 400px; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;"
+      }
         - if @orders.empty?
           %li.list-group-item{ style: "background: rgba(50, 50, 50, 0.8); color: #ECF0F1; text-align: center; border-radius: 10px;" }
             %p{ style: "margin: 0;" } No orders found.
