@@ -3,8 +3,16 @@
 %section.dashboard{ style: " height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
     = render 'shared/navigation'
-  %div{data: {game_id: @game.id}}
-  %div{data: {user_id: @current_user.id}}
+  %div{
+    data: {
+      game_id: @game.id,
+      user_id: @current_user.id,
+      user_teleports: @current_user.teleport,
+      current_turn_user_id: @game.current_turn_user&.id,
+      current_turn_user_name: @game.current_turn_user&.name,
+      user_name: @current_user.name
+    }
+  }
   %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
     / Sidebar
     %aside.sidebar{
@@ -23,12 +31,7 @@
       %p
         %strong Setting:
         = @game.setting
-      %p
-        %strong Current Turn:
-        - if @game.current_turn_user
-          = @game.current_turn_user.name
-        - else
-          Not started
+      
       %h3.mt-4 Players
       %ul#presence-list
 
@@ -82,10 +85,13 @@
         .modal-content
           .modal-header
             %h5#mapModalLabel.modal-title{ style: "color: black;" } Map
+            %div#flash-messages
+              = render 'shared/flash'
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
+            %div#map-flash-messages
             = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
-
+    
           .modal-footer
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
 
@@ -190,6 +196,8 @@
     const responseField = document.getElementById("chatbot-response");
     const gameElement = document.querySelector("[data-game-id]");
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const userElement = document.querySelector("[data-user-name]");
+    const currentUserName = userElement ? userElement.dataset.userName : "";
 
     if (!gameElement || !sendButton || !messageField) return;
 
@@ -215,7 +223,8 @@
     sendButton.addEventListener("click", async () => {
       const flashContainer = document.getElementById("flash-messages");
 
-      const message = messageField.value.trim();
+      const message = `${messageField.value.trim()} - I am ${currentUserName}`;
+
 
       if (!message) {
         // Show a flash message for empty input
@@ -256,9 +265,8 @@
           messageField.value = "";
 
           setTimeout(() => successFlash.remove(), 3000);
-        } else {
-          alert("Failed to send your message. Please try again.");
-        }
+        } 
+        
       } catch (error) {
           console.error("Error sending message:", error);
 

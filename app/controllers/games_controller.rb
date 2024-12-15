@@ -33,8 +33,16 @@ class GamesController < ApplicationController
       @game.chat_image_url ||= "login_register_background.jpg"
 
       if @game.save
-        @current_user.update_column(:shards_balance, @current_user.shards_balance - 40)
-        @game.game_users.create(user: @current_user, health: 100)
+        starting_tile = @game.tiles.find_by(x_coordinate: 0, y_coordinate: 0)
+        Rails.logger.debug "Starting tile: #{starting_tile.inspect}"
+        
+        game_user = @game.game_users.create(
+          user: @current_user, 
+          health: 100,
+          current_tile: starting_tile
+        )
+        Rails.logger.debug "Game user position: (#{game_user.current_tile&.x_coordinate}, #{game_user.current_tile&.y_coordinate})"
+        
         @game.update(context: "[]") if @game.context.blank?
         redirect_to @game, notice: 'Game was successfully created.'
       else
@@ -59,8 +67,21 @@ class GamesController < ApplicationController
       if @game.game_users.exists?(user: @current_user)
         redirect_to @game, notice: 'You have already joined this game.'
       else
-        @game.game_users.create(user: @current_user, health: 100)
-        redirect_to @game, notice: 'You have successfully joined the game.'
+        starting_tile = @game.tiles.find_by(x_coordinate: 0, y_coordinate: 0)
+        Rails.logger.debug "Starting tile for join: #{starting_tile.inspect}"
+        
+        if starting_tile
+          game_user = @game.game_users.create(
+            user: @current_user,
+            health: 100,
+            current_tile: starting_tile
+          )
+          Rails.logger.debug "New game user position: (#{game_user.current_tile&.x_coordinate}, #{game_user.current_tile&.y_coordinate})"
+          redirect_to @game, notice: 'You have successfully joined the game.'
+        else
+          Rails.logger.error "Failed to find starting tile at (0,0) for game #{@game.id}"
+          redirect_to root_path, alert: 'Error finding starting position.'
+        end
       end
     else
       flash[:alert] = 'Invalid join code.'
@@ -72,17 +93,36 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game_user = @game.game_users.find_by(user: @current_user)
     @tile = @game.tiles.find_by(x_coordinate: params[:x], y_coordinate: params[:y])
-
-    if @tile && @game_user.update(current_tile: @tile)
-      ActionCable.server.broadcast "presence_channel_#{@game.id}", {
-        user: @current_user.name,
-        status: 'moved',
-        x: @tile.x_coordinate,
-        y: @tile.y_coordinate
-      }
-      head :ok
+  
+    # Get current position
+    current_tile = @game_user.current_tile
+    
+    # Check if move is to an adjacent tile
+    is_adjacent = if current_tile
+      (current_tile.x_coordinate - @tile.x_coordinate).abs <= 1 &&
+      (current_tile.y_coordinate - @tile.y_coordinate).abs <= 1
     else
-      head :unprocessable_entity
+      true # Allow first move to any tile
+    end
+  
+    if is_adjacent || @current_user.teleport > 0
+      if @tile && @game_user.update(current_tile: @tile)
+        # Only decrement teleport if using non-adjacent movement
+        @current_user.decrement!(:teleport) unless is_adjacent
+        
+        ActionCable.server.broadcast "presence_channel_#{@game.id}", {
+          user: @current_user.name,
+          status: 'moved',
+          x: @tile.x_coordinate,
+          y: @tile.y_coordinate
+        }
+        head :ok
+      else
+        head :unprocessable_entity
+      end
+    else
+      flash[:alert] = 'Can only move to adjacent tiles without teleport'
+      redirect_to game_path(@game)
     end
   end
   
@@ -128,6 +168,24 @@ class GamesController < ApplicationController
 
     # Get the most recent image URL from the game record
     @last_chat_image_url = @game.chat_image_url
+
+    # Get all player positions
+    player_positions = @game.game_users.includes(:user, :current_tile).map do |game_user|
+      {
+        user: game_user.user.name,
+        x: game_user.current_tile&.x_coordinate,
+        y: game_user.current_tile&.y_coordinate,
+        health: game_user.health,
+        profile_image: game_user.user.profile_image.attached? ? 
+          url_for(game_user.user.profile_image) : 
+          ActionController::Base.helpers.asset_path("default_avatar.png")
+      }
+    end
+
+    ActionCable.server.broadcast("presence_channel_#{@game.id}", {
+      action: 'update_positions',
+      positions: player_positions
+    })
   end
 
   # POST /games/:id/chat
@@ -263,6 +321,23 @@ PROMPT
     @game.update!(chat_image_url: image_response)
 
     # After GPT response and after updating the @game context
+    active_user_ids = $redis.smembers("active_users_#{@game.id}")
+    active_user_ids.map!(&:to_i)
+
+    active_users = User.where(id: active_user_ids)
+    if active_users.present?
+      current_index = active_users.index(@game.current_turn_user) || -1
+      next_user = active_users[(current_index + 1) % active_users.length]
+      @game.update(current_turn_user: next_user)
+    end
+
+    # Broadcast the updated current turn
+    ActionCable.server.broadcast("presence_channel_#{@game.id}", {
+      action: 'update_turn',
+      current_turn_user_id: @game.current_turn_user.id,
+      current_turn_user_name: @game.current_turn_user.name
+    })
+    
     @game.reload # Ensure we have the latest data from the database
 
     # Re-fetch players with updated equipment and health
@@ -344,6 +419,8 @@ PROMPT
   end
 
   private
+
+  
 
   # Ensure the user is part of the game
   def authorize_game_user
