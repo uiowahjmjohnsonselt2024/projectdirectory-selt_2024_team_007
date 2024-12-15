@@ -23,7 +23,6 @@ class Game < ApplicationRecord
   after_validation :normalize_join_code
   after_create :set_default_quests
   after_create -> { generate_tiles(map_size: map_size) }
-l
   def non_owner_players_count
     game_users.where.not(user_id: owner_id).count
   end
