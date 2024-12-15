@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe FriendsController, type: :controller do
   let!(:user) { create(:user) }
-  let!(:friend) { create(:user, email: "friend@example.com") }
-  let!(:pending_friend) { create(:user, email: "pending@example.com") }
+  let!(:friend) { create(:user, name: "Alice") }
+  let!(:pending_friend) { create(:user, name: "Bob") }
   let!(:friendship) { create(:friendship, user: user, friend: friend, status: "accepted") }
   let!(:pending_friendship) { create(:friendship, user: user, friend: pending_friend, status: "pending") }
 
@@ -53,7 +53,7 @@ RSpec.describe FriendsController, type: :controller do
 
     context "when the friend request already exists or they are already friends" do
       it "sets a flash alert and redirects" do
-        post :create, params: { friend_email: friend.email }
+        post :create, params: { friend_name: friend.name }
         expect(flash[:alert]).to eq("#{friend.name} is already your friend or has a pending request.")
         expect(response).to redirect_to(friends_path)
       end
