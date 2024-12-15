@@ -6,7 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
-
+*.log
+*.tmp
 # Ignore all environment files (except templates).
 /.env*
 !/.env*.erb
@@ -41,3 +42,4 @@ log/development.log
 # Ignore dependencies files
 node_modules/
 
+/log/*
