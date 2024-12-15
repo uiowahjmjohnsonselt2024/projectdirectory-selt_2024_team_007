@@ -48,6 +48,9 @@
           -# %span.player-count{ style: "float: right; background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px;" }
           -#   = "Players: #{game.users.count}/4"
 
+          %p{ style: "color: #ECF0F1; margin: 10px 0;" }
+            %strong Setting:
+            = game.setting.present? ? game.setting : "No setting available."
 
           .button-container{ style: "display: flex; gap: 10px; margin-top: 10px;" }
             = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "flex: 1; max-width: 150px; max-height: 38px;"
