@@ -14,6 +14,19 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.before(:each) do
+    stub_request(:post, "https://api.openai.com/v1/chat/completions")
+      .to_return(
+        status: 200,
+        body: {
+          choices: [
+            { message: { content: "Default response for all OpenAI requests during tests." } }
+          ]
+        }.to_json,
+        headers: { 'Content-Type' => 'application/json' }
+      )
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

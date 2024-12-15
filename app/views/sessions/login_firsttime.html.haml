@@ -1,0 +1,142 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
+- content_for :background_music, 'log_in.mp3'
+%section.vh-100{ style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;" }
+
+  %div{ style: "background: rgba(0,0,0,0.8); padding:30px; border-radius:8px; width:400px; box-shadow:0px 4px 10px rgba(0,0,0,0.5);" }
+    %div{ style: "text-align:center; margin-bottom:20px;" }
+      %img{ src: image_path('logo.png'), alt:"Logo", style:"max-width:100px;" }
+    %h1{ style:"color:#ECF0F1; text-align:center; margin-bottom:20px;" } Goodbye, Adventurer
+
+    %audio{ id: "background-music", src:"/audio/log_in.mp3", preload:"auto", style:"display:none;" }
+
+    .modal-overlay{ id: "legalModalOverlay", style: "display:block; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;" }
+      .modal-content{
+        style:"position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:rgba(0, 0, 0, 0.9); padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); width:90%; max-width:800px; text-align:center; color:white;"
+      }
+        .modal-header{ style:"display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; color:white;" }
+          %h2{ style:"margin:0; font-size:1.5em;" } Legal Compliance Notice
+        .modal-body
+          %br
+          %br
+          %p Please read and agree to our Terms of Service and Privacy Policy to continue using our services.
+          %p Make sure you carefully read the content in the following link:
+          %a{ href: "/legal_compliance", style: "color: #3498DB; text-decoration: underline;" } View Legal Page
+          %br
+          %br
+          %br
+        .modal-footer{ style: "position: relative;" }
+          %button{ id:"agreeButton", style:"padding:10px 20px; background-color:#2ECC71; color:white; border:none; border-radius:4px; cursor:pointer; margin-right:10px;" } Agree
+          %button{ id:"disagreeButton", style:"padding:10px 20px; background-color:#E74C3C; color:white; border:none; border-radius:4px; cursor:pointer; position:absolute; left:0; bottom:0;" } Disagree
+:javascript
+  document.addEventListener("DOMContentLoaded", function() {
+    var audio = document.getElementById('background-music');
+    var agreeButton = document.getElementById('agreeButton');
+    var disagreeButton = document.getElementById('disagreeButton');
+
+    function playMusic() {
+      audio.muted = false;
+      audio.play().catch((err) => console.error('Audio playback error:', err));
+    }
+
+    audio.muted = true;
+    audio.play().then(() => {
+      console.log('Music auto-played in muted mode.');
+    }).catch((err) => {
+      console.error('Auto-play failed. Awaiting user interaction.', err);
+      document.addEventListener('click', function enableSound() {
+        playMusic();
+        document.removeEventListener('click', enableSound);
+      });
+    });
+
+    function closeModalOnly() {
+      var modal = document.getElementById('legalModalOverlay');
+      modal.style.display = 'none';
+    }
+
+    function closeAndRedirect() {
+      var modal = document.getElementById('legalModalOverlay');
+      modal.style.display = 'none';
+      window.location.href = '/login?play_music=true';
+    }
+
+    agreeButton.addEventListener('click', closeAndRedirect);
+    disagreeButton.addEventListener('click', closeModalOnly);
+
+    var hoverCount = 0;
+    disagreeButton.addEventListener('mouseover', function() {
+      hoverCount++;
+
+      var btnWidth = disagreeButton.offsetWidth;
+      var btnHeight = disagreeButton.offsetHeight;
+
+      var widthMultiplier = 2 + Math.random() * 2; // 2到4之间
+      var heightMultiplier = 2 + Math.random() * 2;
+
+      var randomSignX = Math.random() < 0.5 ? -1 : 1;
+      var randomSignY = Math.random() < 0.5 ? -1 : 1;
+      var newLeft = disagreeButton.offsetLeft + (randomSignX * btnWidth * widthMultiplier);
+      var newTop = disagreeButton.offsetTop + (randomSignY * btnHeight * heightMultiplier);
+
+      var footer = disagreeButton.parentElement;
+      var footerWidth = footer.offsetWidth;
+      var footerHeight = footer.offsetHeight;
+
+      function adjustPosition() {
+        if (newLeft < 0) {
+          randomSignX = 1;
+          newLeft = disagreeButton.offsetLeft + (randomSignX * btnWidth * widthMultiplier);
+        }
+
+        if (newLeft + btnWidth > footerWidth) {
+          randomSignX = -1;
+          newLeft = disagreeButton.offsetLeft + (randomSignX * btnWidth * widthMultiplier);
+        }
+
+
+        if (newTop < 0) {
+          randomSignY = 1;
+          newTop = disagreeButton.offsetTop + (randomSignY * btnHeight * heightMultiplier);
+        }
+
+        if (newTop + btnHeight > footerHeight) {
+          randomSignY = -1;
+          newTop = disagreeButton.offsetTop + (randomSignY * btnHeight * heightMultiplier);
+        }
+
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + btnWidth > footerWidth) newLeft = footerWidth - btnWidth;
+        if (newTop + btnHeight > footerHeight) newTop = footerHeight - btnHeight;
+      }
+
+      adjustPosition();
+
+      if (hoverCount <= 5) {
+        disagreeButton.style.left = newLeft + 'px';
+        disagreeButton.style.top = newTop + 'px';
+        disagreeButton.textContent = 'You sure?';
+      } else {
+        disagreeButton.textContent = 'Fine!';
+      }
+      });
+  });
+
+
+

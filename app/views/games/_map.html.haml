@@ -1,9 +1,28 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
 - tiles = game.tiles
 - game_users = game.game_users.includes(:user, :current_tile)
 - rows, columns = game.map_size.split('x').map(&:to_i)
 - grid_style = "grid-template-columns: repeat(#{columns}, 1fr); grid-template-rows: repeat(#{rows}, 1fr);"
+- disable_grid = @current_user.teleport <= 0
 
-%div.grid-map{ style: "#{grid_style};" }
+#map-flash-messages
+%div.grid-map{ style: grid_style, data: { disable: disable_grid } }
   - tile_hash = tiles.index_by { |t| [t.x_coordinate, t.y_coordinate] }
   - player_positions = {}
   - game_users.each do |gu|
@@ -11,17 +30,17 @@
       - key = [gu.current_tile.x_coordinate, gu.current_tile.y_coordinate]
       - player_positions[key] ||= []
       - player_positions[key] << gu
+
   - (0...rows).each do |y|
     - (0...columns).each do |x|
       - tile = tile_hash[[x, y]]
-      - tile_classes = 'tile d-flex align-items-center justify-content-center'
-      - tile_content = ''
-      - if tile
-        - tile_content = tile.tile_type.capitalize
-        - if player_positions[[x, y]]
-          - players = player_positions[[x, y]].map { |gu| gu.user.name }.join(', ')
-          - tile_content += " (#{players})"
-      - else
-        - tile_content = 'Unknown'
-      %div{ class: tile_classes }
+      - tile_classes = 'tile d-flex flex-column align-items-center justify-content-center'
+      - image_path = case tile&.tile_type when "grassland" then image_path('map_grassland.webp') when "lake" then image_path('map_lake.webp') when "tundra" then image_path('map_tundra.webp') when "mountains" then image_path('map_mountains.webp') when "foothills" then image_path('map_foothills.webp') when "desert" then image_path('map_desert.webp') when "forest" then image_path('map_forest.webp') when "hold_capital" then image_path('map_city.webp') else image_path('map_unknown.webp') end
+      - tile_content = tile ? tile.tile_type.capitalize : 'Unknown'
+      %div{ class: tile_classes, data: { x: x, y: y }, style: "color: black;" }
+        %img.map-icon{ src: image_path, alt: tile_content, style: "width: 60px; height: 60px;" }
         = tile_content
+        - if player_positions[[x, y]]
+          .players
+            - player_positions[[x, y]].each do |gu|
+              %span.player-name{ data: { player: gu.user.name } }= "(#{gu.user.name})"

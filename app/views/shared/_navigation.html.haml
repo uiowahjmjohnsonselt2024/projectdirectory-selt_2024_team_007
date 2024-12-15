@@ -1,3 +1,20 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
 %nav.navigation-bar{ style: "position: relative; width: 100%; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
   / Store Button (Left Side)
   %div.store-button-container{ style: "position: absolute; top: 10px; left: 20px;" }
@@ -8,7 +25,7 @@
     %div.profile
       %div.dropdown.custom-dropdown{ style: "text-align: center;" }
         %img{
-          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('logo.png'),
+          src: @current_user.profile_image.attached? ? url_for(@current_user.profile_image) : image_path('default_avatar.png'),
           alt: "Profile Picture",
           style: "width: 75px; height: 75px; border-radius: 50%; margin-top: 10px; margin-right: 15px; cursor: pointer; box-sizing: border-box",
           "data-bs-toggle" => "dropdown",
@@ -21,5 +38,7 @@
             = link_to 'Friends', friends_path, class: 'dropdown-item custom-dropdown-item'
           %li
             = link_to 'Dashboard', landing_path, class: 'dropdown-item custom-dropdown-item'
+          %li.nav-item
+            = link_to 'User Guide', user_guide_path, class: 'dropdown-item custom-dropdown-item' # Add the User Guide link
           %li
             = button_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item custom-dropdown-item', id: 'logout_button'

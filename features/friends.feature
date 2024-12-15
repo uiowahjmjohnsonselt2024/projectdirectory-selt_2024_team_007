@@ -1,3 +1,15 @@
+# *********************************************************************
+# This file was crafted using assistance from Generative AI Tools.
+# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November 4th 2024 to December 15, 2024.
+# The AI Generated code was not sufficient or functional outright nor was it copied at face value.
+# Using our knowledge of software engineering, ruby, rails, web development, and the constraints of
+# our customer, SELT Team 007 (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson, and Sheng Wang)
+# used GAITs responsibly; verifying that each line made sense in the context of the app,
+# conformed to the overall design, and was testable.
+# We maintained a strict peer review process before any code changes were merged into the development
+# or production branches. All code was tested with BDD and TDD tests as well as empirically tested
+# with local run servers and Heroku deployments to ensure compatibility.
+# *********************************************************************
 Feature: Friends Management
   As a user,
   I want to manage my friends,
@@ -19,20 +31,20 @@ Feature: Friends Management
 
   Scenario: Send a Friend Request
     Given I am on the friends page
-    When I fill in "Friend's Email" with "jane@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JaneSmith"
     And I press "Send Friend Request"
     Then I should see "Friend request sent to JaneSmith!"
     And "JaneSmith" should be in "Sent Friend Requests"
 
   Scenario: Prevent Sending Friend Request to Nonexistent User
     Given I am on the friends page
-    When I fill in "Friend's Email" with "nonexistent@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "nonexistentUser"
     And I press "Send Friend Request"
-    Then I should see "No user found with the email nonexistent@example.com."
+    Then I should see "No user found with the name nonexistentUser."
 
   Scenario: Prevent Sending Friend Request to Oneself
     Given I am on the friends page
-    When I fill in "Friend's Email" with "john@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JohnDoe"
     And I press "Send Friend Request"
     Then I should see "You cannot send a friend request to yourself."
 
@@ -52,7 +64,7 @@ Feature: Friends Management
 
   Scenario: Cancel a Sent Friend Request
     Given I am on the friends page
-    When I fill in "Friend's Email" with "jane@example.com"
+    When I fill in "Friend's User Name: (Case sensitive)" with "JaneSmith"
     And I press "Send Friend Request"
     Then I should see "Friend request sent to JaneSmith!"
     And "JaneSmith" should be in "Sent Friend Requests"

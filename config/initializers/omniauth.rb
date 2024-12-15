@@ -1,7 +1,7 @@
 # OAuth Middleware
 OmniAuth.config.logger = Rails.logger
-OmniAuth.config.allowed_request_methods = [:get, :post]
 OmniAuth.config.request_validation_phase = nil
+OmniAuth.config.allowed_request_methods = [:post]
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do

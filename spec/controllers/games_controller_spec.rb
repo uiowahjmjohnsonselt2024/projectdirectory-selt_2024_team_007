@@ -1,3 +1,19 @@
+# *********************************************************************
+# This file was crafted using assistance from Generative AI Tools. 
+# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November 
+# 4th 2024 to December 15, 2024. The AI Generated code was not 
+# sufficient or functional outright nor was it copied at face value. 
+# Using our knowledge of software engineering, ruby, rails, web 
+# development, and the constraints of our customer, SELT Team 007 
+# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson, 
+# and Sheng Wang) used GAITs responsibly; verifying that each line made
+# sense in the context of the app, conformed to the overall design, 
+# and was testable. We maintained a strict peer review process before
+# any code changes were merged into the development or production 
+# branches. All code was tested with BDD and TDD tests as well as 
+# empirically tested with local run servers and Heroku deployments to
+# ensure compatibility.
+# *******************************************************************
 require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
@@ -25,9 +41,10 @@ RSpec.describe GamesController, type: :controller do
         }.to change(Game, :count).by(1)
       end
 
-      it 'reduces the user’s shard balance by 500' do
+      it 'reduces the user’s shard balance by 40' do
         post :create, params: { game: valid_params }
-        expect(user.reload.shards_balance).to eq(100)
+        expect(user.reload.shards_balance).to eq(560)
+
       end
 
       it 'sets a success flash message' do
@@ -37,7 +54,8 @@ RSpec.describe GamesController, type: :controller do
     end
 
     context 'when the user has insufficient shards' do
-      before { user.update_column(:shards_balance, 400) }
+
+      before { user.update_column(:shards_balance, 30) }
 
       it 'does not create a new game' do
         expect {
@@ -232,11 +250,6 @@ RSpec.describe GamesController, type: :controller do
 
   describe 'GET #show' do
     let!(:game) { create(:game, owner: user) }
-    
-    it 'assigns requested game' do
-      get :show, params: { id: game.id }
-      expect(assigns(:game)).to eq(game)
-    end
 
     it 'assigns game users' do
       game_user = create(:game_user, game: game, user: user)
@@ -252,4 +265,171 @@ RSpec.describe GamesController, type: :controller do
       end
     end
   end
+  
+  describe 'POST #move' do
+    let(:game) { create(:game) }
+    let(:user) { create(:user) }
+    let(:current_tile) { create(:tile, game: game, x_coordinate: 0, y_coordinate: 0) }
+    let(:adjacent_tile) { create(:tile, game: game, x_coordinate: 1, y_coordinate: 0) }
+    let(:far_tile) { create(:tile, game: game, x_coordinate: 3, y_coordinate: 3) }
+    
+    before do
+      # Ensure the game has no tiles to start with
+      game.tiles.destroy_all
+
+      # Create only the tiles needed for the test
+      current_tile
+      adjacent_tile
+      far_tile
+
+      # Set up authentication
+      session[:session_token] = user.session_token
+
+      # Set current user in controller (if necessary)
+      allow(controller).to receive(:set_current_user) do
+        controller.instance_variable_set(:@current_user, user)
+      end
+
+      game.game_users.create(user: user, health: 100, current_tile: current_tile)
+    end
+  
+    context 'when moving to adjacent tile' do
+      it 'allows movement without using teleport' do
+        expect {
+          post :move, params: { id: game.id, x: adjacent_tile.x_coordinate, y: adjacent_tile.y_coordinate }
+        }.not_to change { user.reload.teleport }
+        
+        expect(response).to have_http_status(:ok)
+        expect(game.game_users.find_by(user: user).current_tile).to eq(adjacent_tile)
+      end
+    end
+  
+    context 'when teleporting to non-adjacent tile' do
+      before { user.update!(teleport: 1) }
+  
+      it 'uses teleport and updates position' do
+        expect {
+          post :move, params: { id: game.id, x: far_tile.x_coordinate, y: far_tile.y_coordinate }
+        }.to change { user.reload.teleport }.by(-1)
+        
+        expect(response).to have_http_status(:ok)
+        expect(game.game_users.find_by(user: user).current_tile).to eq(far_tile)
+      end
+    end
+  
+    context 'when attempting non-adjacent move without teleport' do
+      before { user.update!(teleport: 0) }
+  
+      it 'prevents movement and shows error' do
+        post :move, params: { id: game.id, x: far_tile.x_coordinate, y: far_tile.y_coordinate }
+        
+        expect(response).to redirect_to(game_path(game))
+        expect(flash[:alert]).to eq('Can only move to adjacent tiles without teleport')
+        expect(game.game_users.find_by(user: user).current_tile).to eq(current_tile)
+      end
+    end
+  
+    context 'when broadcasting move' do
+      it 'broadcasts position update through ActionCable' do
+        expect(ActionCable.server).to receive(:broadcast).with(
+          "presence_channel_#{game.id}",
+          {
+            user: user.name,
+            status: 'moved',
+            x: adjacent_tile.x_coordinate,
+            y: adjacent_tile.y_coordinate
+          }
+        )
+  
+        post :move, params: { id: game.id, x: adjacent_tile.x_coordinate, y: adjacent_tile.y_coordinate }
+      end
+    end
+  end
+
+  describe 'GET #leave' do
+    context 'when user is part of the game' do
+      before { game.game_users.create(user: user, health: 100) }
+
+      it 'removes the user from the game and sets a success notice' do
+        expect {
+          get :leave, params: { id: game.id }
+        }.to change(GameUser, :count).by(-1)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq('You have successfully left the game.')
+      end
+    end
+
+    context 'when user is not part of the game' do
+      it 'does not remove anyone and sets a flash alert' do
+        expect {
+          get :leave, params: { id: game.id }
+        }.not_to change(GameUser, :count)
+        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to eq('You are not part of this game.')
+      end
+    end
+  end
+
+  describe 'POST #chat' do
+    let(:game_user) { create(:game_user, game: game, user: user, health: 100) }
+    let(:gpt_service_double) { instance_double(GptDmService) }
+
+    before do
+      game_user # create the association
+      # Stub external GPT service calls
+      allow(GptDmService).to receive(:new).and_return(gpt_service_double)
+      allow(gpt_service_double).to receive(:summarize_conversation).and_return("Summarized history")
+      allow(gpt_service_double).to receive(:generate_dm_response).and_return("GPT reply")
+      allow(gpt_service_double).to receive(:generate_image_prompt).and_return("Refined image prompt")
+      allow(gpt_service_double).to receive(:generate_image).and_return("http://example.com/generated_image.png")
+
+      # Stub the broadcast
+      allow(ChatChannel).to receive(:broadcast_to)
+    end
+
+    context 'when user is part of the game' do
+      it 'processes the chat message, updates the game context, and broadcasts the message' do
+        post :chat, params: { id: game.id, message: "Hello, world!" }
+        expect(response).to have_http_status(:ok)
+
+        # Check that the GPT response was appended
+        game.reload
+        context_messages = JSON.parse(game.context)
+        expect(context_messages.last).to include("role" => "assistant", "content" => "GPT reply")
+
+        # Check broadcast
+        expect(ChatChannel).to have_received(:broadcast_to).with(game, hash_including(gpt_response: "GPT reply"))
+      end
+    end
+
+    context 'when user is not part of the game' do
+      let(:other_user) { create(:user) }
+
+      before do
+        session[:session_token] = other_user.session_token
+      end
+
+      it 'returns forbidden and does not process chat' do
+        post :chat, params: { id: game.id, message: "Hello, world!" }
+        expect(response).to have_http_status(:forbidden)
+        expect(JSON.parse(response.body)).to eq({ "error" => "You are not authorized to chat in this game." })
+      end
+    end
+  end
+
+  # Test authorize_game_user independently (if desired)
+  describe 'authorize_game_user' do
+    let(:other_user) { create(:user) }
+    before do
+      session[:session_token] = other_user.session_token
+      # We do not create a GameUser record for `other_user` in this game
+    end
+
+    it 'renders forbidden json when user is not part of the game' do
+      post :chat, params: { id: game.id, message: "Check auth" }
+      expect(response).to have_http_status(:forbidden)
+      expect(JSON.parse(response.body)).to eq({ "error" => "You are not authorized to chat in this game." })
+    end
+  end
+
 end

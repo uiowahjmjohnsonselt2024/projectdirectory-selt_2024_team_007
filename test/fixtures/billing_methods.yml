@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  card_number: MyString
+  card_holder_name: MyString
+  expiration_date: 2024-11-28
+
+two:
+  user: two
+  card_number: MyString
+  card_holder_name: MyString
+  expiration_date: 2024-11-28

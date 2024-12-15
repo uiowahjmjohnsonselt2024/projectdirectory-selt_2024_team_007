@@ -1,86 +1,343 @@
-= render 'shared/flash'
-%section.game-container.d-flex.h-100.overflow-hidden
-  / Sidebar
-  %aside.sidebar.bg-dark.text-white.p-3.d-flex.flex-column
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
+- content_for :mute_background_music, true
+
+%section.dashboard{ style: "height: 100vh; background-image: url(#{image_path('game_page_background.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+  %div{data: {
+      game_id: @game.id,
+      user_id: @current_user.id,
+      user_teleports: @current_user.teleport,
+      current_turn_user_id: @game.current_turn_user&.id,
+      current_turn_user_name: @game.current_turn_user&.name,
+      user_name: @current_user.name
+    }
+  }
+    = render 'shared/flash'
     
 
-    %h2.mb-3 Game Info
-    %p
-      %strong Game Name:
-      = @game.name
-    %p
-      %strong Join Code:
-      = @game.join_code
-    %p
-      %strong Current Turn:
-      - if @game.current_turn_user
-        = @game.current_turn_user.name
-      - else
-        Not started
 
-    %h3.mt-4 Players
-    %ul
-      - @game_users.each do |game_user|
-        %li= "#{game_user.user.name} (Health: #{game_user.health})"
 
-    %button#inventory_button.btn.btn-secondary.mt-3{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal" }
-      Inventory
-    
-    = link_to 'Back to Landing Page', landing_path
+  %div{ data: { game_id: @game.id } }
+  %div{ data: { user_id: @current_user.id } }
 
-    / GPT Response Field
-    %div.gpt-response.bg-secondary.text-white.p-3.mt-4.flex-grow-1.overflow-auto
-      %h4 GPT Response
-      %p#chatbot-response.mb-0
-        -# Placeholder for GPT response text
-        No response yet.
+  %section.game-container.d-flex.h-100.overflow-hidden{ "data-game-id" => @game.id }
+    / Sidebar
+    %aside.sidebar{ style: "background: rgba(0, 0, 0, 0.9); width: 300px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 80px; overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none;" }
+      %h2.mb-3 Game Info
+      %p
+        %strong Game Name:
+        = @game.name
+      %p
+        %strong Join Code:
+        = @game.join_code
+      %p
+        %strong Genre:
+        = @game.genre
 
-  / Main Content Area
-  %main.content-area.flex-grow-1.p-3.d-flex.flex-column
-    / GPT Image Placeholder
-    %div.gpt-image-box.position-relative.mb-3.bg-light
-      %button#map_button.btn.btn-primary.position-absolute.top-0.end-0.m-2{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal" }
-        View Map
-      %div.square-container.d-flex.align-items-center.justify-content-center
-        %p.text-muted.mb-0 GPT-generated images will appear here.
+      = render 'quests', quests: JSON.parse(@game.quests || "[]")
+      %button#quest_button.btn.btn-warning{ type: "button",
+        style: "width: 80px; height: 50px; display: flex; align-items: center; justify-content: center;"
+      }
+        Quest
+      
 
-    / Editable User Input Field
-    %div.user-input.mt-3
-      = form_with url: '#', local: true do |form|
+      / Player Health Section
+      %h3.mt-4 Party:
+      %ul#player-health-list
+        - @game.game_users.includes(:user).each do |game_user|
+          - current_health = game_user.health || 100
+          - max_health = 100
+          - health_percentage = (current_health.to_f / max_health) * 100
+
+          %li{ style: "margin-bottom: 20px; display: inline-block;", "data-player-id" => game_user.user.id }
+            %span{ style: "color: #ECF0F1; display: block; margin-bottom: 5px; text-align: left;" }
+              = "#{game_user.user.name} (#{current_health}/#{max_health})"
+
+            %span{ style: "display: inline-block; width: 150px; border: 1px solid #FFFFFF; background-color: #2c3e50; position: relative; vertical-align: middle;" }
+              %span{ style: "display: block; height: 10px; width: #{health_percentage}%; background-color: red;" }
+
+      %h3.mt-4 Online:
+      %ul#presence-list
+
+      %div{ style: "text-align: center;" }
+        %button#inventory_button.btn.mt-3.inventory-btn{ "data-bs-toggle" => "modal", "data-bs-target" => "#inventoryModal",
+          style: "border: none; background: transparent; padding: 0; width: 75px; height: 75px; display: inline-block;"
+        }
+          %img{ src: image_path("inventory_icon.png"), alt: "Inventory", style: "width: 100%; height: 100%; object-fit: cover;" }
+
+        %button#map_button.btn.btn-primary.m-2.map-btn{ "data-bs-toggle" => "modal", "data-bs-target" => "#mapModal",
+          style: "border: none; background: transparent; padding: 0; width: 100px; height: 100px; display: inline-block;"
+        }
+          %img{ src: image_path("map_icon.png"), alt: "Map", style: "width: 100%; height: 100%; object-fit: cover;" }
+
+      %div#flash-messages
+
+      / Send Button Area
+      %div.user-input.mt-3{ style: "padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.2);" }
         .mb-3
-          = form.label :message, 'Your Response', class: 'form-label fw-bold'
-          = form.text_area :message, id: 'user-message', class: 'form-control', rows: 3, placeholder: 'Type your message here...'
-        = form.submit 'Send', class: 'btn btn-primary'
+          %label.form-label.fw-bold Your Response
+          %textarea#user-message.form-control{ rows: 3, placeholder: 'Type your message here...' }
+        %button#send-message.btn.btn-primary Send
 
-  / Map Modal
-  .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
-    .modal-dialog.modal-lg
-      .modal-content
-        .modal-header
-          %h5#mapModalLabel.modal-title Map
-          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-        .modal-body
-          = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
-
-        .modal-footer
-          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
-
-  / Inventory Modal
-  .modal.fade#inventoryModal{ tabindex: "-1", "aria-labelledby" => "inventoryModalLabel", "aria-hidden" => "true" }
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %h5#inventoryModalLabel.modal-title Inventory
-          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
-        .modal-body
-          / Inventory Items
-          - current_game_user = @game_users.find_by(user: @current_user)
-          - if current_game_user && current_game_user.equipment.present?
-            %ul
-              - current_game_user.equipment.each do |item|
-                %li= item
+    / Main Content Area
+    %main.content-area.flex-grow-1.p-3.d-flex.flex-column.align-items-center
+      / GPT Image Placeholder (on top)
+      %div.gpt-image-box.position-relative.bg-light.square-container
+        %div#gpt-image-box.image-container.square-container.d-flex.align-items-center.justify-content-center
+          - if @last_chat_image_url.present?
+            = image_tag @last_chat_image_url, alt: "GPT Generated Image", class: "img-fluid h-100 w-auto"
           - else
-            %p No items in your inventory.
-        .modal-footer
-          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+            %p.text-muted.mb-0 No image generated yet.
 
+
+      / GPT Response Field (below the image)
+      %div.gpt-response-container.bg-secondary.text-white.p-3.mt-4
+        %h4 GPT Response
+        %div#chatbot-response.gpt-response.bg-secondary.text-white.p-3.overflow-auto
+          - if @last_assistant_message.present?
+            %p= @last_assistant_message
+          - else
+            %p.text-muted No chat yet.
+
+    / Map Modal
+    .modal.fade#mapModal{ tabindex: "-1", "aria-labelledby" => "mapModalLabel", "aria-hidden" => "true" }
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %h5#mapModalLabel.modal-title{ style: "color: black;" } Map
+            %div#flash-messages
+              = render 'shared/flash'
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+          .modal-body
+            %div#map-flash-messages
+            = render partial: 'map', locals: { game: @game, tiles: @tiles, game_users: @game_users }
+    
+          .modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+
+    / Inventory Modal
+    .modal.fade#inventoryModal{ tabindex: "-1", "aria-labelledby" => "inventoryModalLabel", "aria-hidden" => "true" }
+      .modal-dialog
+        .modal-content{ style: "background: rgba(0, 0, 0, 0.6); border-radius: 5px;" }
+          .modal-header
+            %h5#inventoryModalLabel.modal-title{ style: "color: #ECF0F1;" } Inventory
+            %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close", style: "color: #BDC3C7;" }
+          .modal-body{ style: "color: #ECF0F1; padding: 20px; overflow-y: auto; max-height: 70vh;" }
+            / Consumable Items
+            %div#consumable-items
+              %h6.mb-3{ style: "color: #ECF0F1;" } Consumable Items
+              %ul
+                %li.d-flex.align-items-center.mb-2
+                  %span#teleport-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.teleport
+                  %img{ src: image_path("store_icon_1.png"), alt: "Teleport", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Teleport
+                %li.d-flex.align-items-center.mb-2
+                  %span#health-potion-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.health_potion
+                  %img{ src: image_path("store_icon_2.png"), alt: "Health Potion", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Health Potion
+                %li.d-flex.align-items-center.mb-2
+                  %span#resurrection-token-quantity{ style: "color: #FFFFFF; margin-right: 10px; font-weight: bold; transform: translateX(-10px);" }= @current_user.resurrection_token
+                  %img{ src: image_path("store_icon_3.png"), alt: "Resurrection Token", style: "width: 75px; height: 75px; border-radius: 5px; transform: translateX(-15px);" }
+                  %div{ style: "margin-left: -10px;" }
+                    %strong{ style: "color: #ECF0F1;" } Resurrection Token
+
+            / Store Items
+            %div#store-items
+              - if @current_user.store_items.present?
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %ul
+                  - @current_user.store_items.each do |store_item|
+                    %li.d-flex.align-items-center.mb-2
+                      %img{ src: image_path("store_icon_#{store_item.id}.png"), alt: store_item.name, style: "width: 75px; height: 75px; border-radius: 5px; margin-right: 10px;" }
+                      %div
+                        %strong{ style: "color: #ECF0F1;" }= store_item.name
+              - else
+                %h6.mb-3{ style: "color: #ECF0F1;" } Store-Owned Items
+                %p{ style: "color: #BDC3C7;" } No items purchased from the store.
+
+            / Found In-Game Items
+            %div#in-game-items
+              - if @equipment_items.present?
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %ul
+                  - @equipment_items.each do |item|
+                    %li{ style: "color: #ECF0F1;" }= item[:name]
+              - else
+                %h6.mt-4.mb-3{ style: "color: #ECF0F1;" } Found In-Game Items
+                %p{ style: "color: #BDC3C7;" } No items in your inventory.
+          .modal-footer
+            %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal", style: "background-color: #2ECC71; border: none; color: #ECF0F1;" } Close
+
+
+:javascript
+  document.addEventListener("DOMContentLoaded", () => {
+    const questButton = document.getElementById("quest_button");
+    const questOverlay = document.querySelector(".quest-overlay");
+    const closeQuestOverlay = document.getElementById("close-quest-overlay");
+
+    if (questButton && questOverlay) {
+      questButton.addEventListener("click", () => {
+        questOverlay.style.display = (questOverlay.style.display === "none" || questOverlay.style.display === "") ? "block" : "none";
+      });
+
+      if (closeQuestOverlay) {
+        closeQuestOverlay.addEventListener("click", () => {
+          questOverlay.style.display = "none";
+        });
+      }
+    }
+  });
+
+  // Inline ActionCable consumer setup
+  const ActionCable = (() => {
+    function createWebSocketURL(url) {
+      if (url && !url.match(/^wss?:\/\//)) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.href = a.href; // Ensures the URL is absolute
+        a.protocol = a.protocol.replace("http", "ws");
+        return a.href;
+      }
+      return url;
+    }
+
+    class Consumer {
+      constructor(url) {
+        this.url = createWebSocketURL(url);
+        this.subscriptions = [];
+      }
+
+      connect() {
+        this.connection = new WebSocket(this.url);
+        this.connection.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          this.subscriptions.forEach((sub) => sub.received(data));
+        };
+      }
+
+      subscribe(channel, params, received) {
+        const subscription = { channel, params, received };
+        this.subscriptions.push(subscription);
+      }
+    }
+
+    return {
+      createConsumer: (url) => new Consumer(url || "/cable"),
+    };
+  })();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const sendButton = document.getElementById("send-message");
+    const messageField = document.getElementById("user-message");
+    const responseField = document.getElementById("chatbot-response");
+    const gameElement = document.querySelector("[data-game-id]");
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    const userElement = document.querySelector("[data-user-name]");
+    const currentUserName = userElement ? userElement.dataset.userName : "";
+
+    if (!gameElement || !sendButton || !messageField) return;
+
+    const gameId = gameElement.dataset.gameId;
+
+    // Set up Action Cable consumer
+    const consumer = ActionCable.createConsumer();
+
+    // Subscribe to the ChatChannel
+    consumer.subscribe("ChatChannel", { game_id: gameId }, (data) => {
+      if (responseField) {
+        const newMessage = `
+          <p><strong>${data.user}:</strong> ${data.message}</p>
+          <p><em>GPT:</em> ${data.gpt_response}</p>
+          <p><em>GPT:</em> ${data.gpt_img_resp}</p>
+        `;
+        responseField.innerHTML += newMessage;
+        responseField.scrollTop = responseField.scrollHeight; // Auto-scroll to bottom
+      }
+    });
+
+    // Handle message sending via fetch
+    sendButton.addEventListener("click", async () => {
+      const flashContainer = document.getElementById("flash-messages");
+
+      const message = `${messageField.value.trim()} - I am ${currentUserName}`;
+
+
+      if (!message) {
+        // Show a flash message for empty input
+        const flashDiv = document.createElement("div");
+        flashDiv.className = "alert alert-warning";
+        flashDiv.textContent = "Please enter a message.";
+        flashContainer.appendChild(flashDiv);
+        setTimeout(() => flashDiv.remove(), 3000); // Auto-clear message
+        return;
+      }
+
+      // Show "sending" flash message
+      const sendingFlash = document.createElement("div");
+      sendingFlash.className = "alert alert-info";
+      sendingFlash.textContent = "Message sent! Please wait for a response...";
+      flashContainer.appendChild(sendingFlash);
+      setTimeout(() => sendingFlash.remove(), 3000); // Auto-clear message
+
+      try {
+        const response = await fetch(`/games/${gameId}/chat`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-Token": csrfToken,
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        if (response.ok) {
+          // Show success flash message
+          const successFlash = document.createElement("div");
+          successFlash.className = "alert alert-success";
+          successFlash.textContent = "Message sent successfully!";
+          flashContainer.appendChild(successFlash);
+
+          // Clear the input field
+          messageField.value = "";
+
+          setTimeout(() => successFlash.remove(), 3000);
+        } else {
+          alert(`Failed to send your message. Please try again. (Error: ${response.status})`);
+        }
+      } catch (error) {
+          console.error("Error sending message:", error);
+
+          // Remove "sending" flash message
+          sendingFlash.remove();
+
+          // Show error flash message
+          const errorFlash = document.createElement("div");
+          errorFlash.className = "alert alert-danger";
+          errorFlash.textContent = "An error occurred while sending your message.";
+          flashContainer.appendChild(errorFlash);
+
+          setTimeout(() => errorFlash.remove(), 3000); // Auto-clear error message
+      }
+    });
+
+
+  });

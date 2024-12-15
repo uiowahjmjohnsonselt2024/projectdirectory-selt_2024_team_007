@@ -1,3 +1,19 @@
+# *********************************************************************
+# This file was crafted using assistance from Generative AI Tools. 
+# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November 
+# 4th 2024 to December 15, 2024. The AI Generated code was not 
+# sufficient or functional outright nor was it copied at face value. 
+# Using our knowledge of software engineering, ruby, rails, web 
+# development, and the constraints of our customer, SELT Team 007 
+# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson, 
+# and Sheng Wang) used GAITs responsibly; verifying that each line made
+# sense in the context of the app, conformed to the overall design, 
+# and was testable. We maintained a strict peer review process before
+# any code changes were merged into the development or production 
+# branches. All code was tested with BDD and TDD tests as well as 
+# empirically tested with local run servers and Heroku deployments to
+# ensure compatibility.
+# *******************************************************************
 require 'rails_helper.rb'
 
 RSpec.describe User, type: :model do
@@ -41,6 +57,19 @@ RSpec.describe User, type: :model do
     user = User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password")
     expect(user.session_token).to_not be_nil
   end
+
+  describe "Item management" do
+    let(:user) { User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
+    let(:store_item) { StoreItem.new(id: 1, name: "Teleport", description: "Instantly teleport to any location.", shards_cost: 2) }
+
+
+    it "increments item count when purchasing an item" do
+      user.add_store_item(store_item.id)
+      expect(user.item_count(store_item.id)).to eq(1)
+    end
+
+  end
+
   describe "Password reset functionality" do
     let(:user) { User.create(name: "JohnDoe", email: "john@example.com", password: "password", password_confirmation: "password") }
 
@@ -191,4 +220,48 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  let(:user) { create(:user, shards_balance: 100) }
+
+  describe "#add_store_item" do
+    context "when adding a unique, non-consumable item" do
+      let(:store_item) { create(:store_item, id: 4, name: "Exclusive Item", shards_cost: 30) }
+
+      it "adds the item to the user's owned items" do
+        user.add_store_item(store_item.id)
+        expect(user.owns_item?(store_item.id)).to be true
+      end
+    end
+
+    context "when adding a consumable item" do
+      it "increments teleport count" do
+        user.add_store_item(1)
+        expect(user.teleport).to eq(1)
+      end
+
+      it "increments health potion count" do
+        user.add_store_item(2)
+        expect(user.health_potion).to eq(1)
+      end
+
+      it "increments resurrection token count" do
+        user.add_store_item(3)
+        expect(user.resurrection_token).to eq(1)
+      end
+    end
+  end
+
+  describe "#owns_item?" do
+    let(:store_item) { create(:store_item, id: 4, name: "Exclusive Item", shards_cost: 30) }
+
+    it "returns true if the user owns the item" do
+      user.add_store_item(store_item.id)
+      expect(user.owns_item?(store_item.id)).to be true
+    end
+
+    it "returns false if the user does not own the item" do
+      expect(user.owns_item?(store_item.id)).to be false
+    end
+  end
+
 end

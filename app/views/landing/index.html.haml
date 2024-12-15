@@ -1,3 +1,20 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
 %section.dashboard{ style: "display: flex; height: 100vh; background-image: url(#{image_path('landing_page.png')}); background-repeat: no-repeat; background-position: center center; background-size: cover; color: #ECF0F1; font-family: sans-serif; overflow: hidden;" }
   %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
     = render 'shared/navigation'
@@ -33,7 +50,7 @@
 
   / Scrollable Game List
   %div.scrollable-game-list{ style: "flex: 1; padding: 20px; overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;" }
-    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } Games:
+    %h2{ style: "color: #ECF0F1; margin-bottom: 20px;" } My Servers:
     - if @games.any?
       - @games.each do |game|
         %div.game-card{ id: "game-card-#{game.id}", style: "background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 5px; margin-bottom: 10px;" }
@@ -42,12 +59,25 @@
             - if game.owner == @current_user
               %span.owner-flair{ style: "background-color: #F39C12; color: #ECF0F1; padding: 2px 5px; border-radius: 3px; margin-left: 10px;" }
                 Owner
-          %p{ style: "color: #ECF0F1;" }
-            = game.context
-          = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "margin-top: 10px;"
-          - if game.owner == @current_user
-            %button.btn.btn-primary{ "data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: 'margin-top: 10px; margin-left: 10px;' } Add Friends
+            %span.player-count{ style: "background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px; margin-left: 10px;" }
+              = "Players: #{game.users.count}/4"
+                
+          -# %span.player-count{ style: "float: right; background-color: #2ECC71; color: #ECF0F1; padding: 2px 8px; border-radius: 3px;" }
+          -#   = "Players: #{game.users.count}/4"
 
+          %p{ style: "color: #ECF0F1; margin: 10px 0;" }
+            %strong Setting:
+            = game.setting.present? ? game.setting : "No setting available."
+
+          .button-container{ style: "display: flex; gap: 10px; margin-top: 10px;" }
+            = link_to 'View Game', game_path(game), class: 'btn btn-success', style: "flex: 1; max-width: 150px; max-height: 38px;"
+            
+            = button_to 'Leave Game', leave_game_path(game), class: 'btn btn-danger', data: { confirm: "Are you sure you want to leave this game?" }
+            - if game.owner == @current_user
+              %button.btn.btn-primary{"data-bs-toggle" => "modal", "data-bs-target" => "#addFriendsModal-#{game.id}", style: "flex: 1; max-width: 150px; max-height: 38px;"}
+                Add Friends
+          
+            / You can add hidden fields here if needed
             / Add Friends Modal
             .modal.fade{ :id => "addFriendsModal-#{game.id}", tabindex: "-1", "aria-labelledby" => "addFriendsModalLabel-#{game.id}", "aria-hidden" => "true" }
               .modal-dialog
@@ -70,7 +100,8 @@
                             = label_tag "friend_ids_#{game.id}_#{friend.id}", friend.name, class: 'form-check-label', style: "color: black;"
                       .modal-footer
                         = f.submit 'Invite Friends', class: 'btn btn-primary'
-                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+                        %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close 
+            
     - else
       %p{ style: "color: #BDC3C7;" } No games available. Create one!
 
@@ -83,7 +114,7 @@
         - game_object = @game || Game.new
         = form_with model: game_object, url: games_path, local: true do |form|
           .modal-header
-            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 500 Shards!)
+            %h5.modal-title#createGameModalLabel{ style: "color: black;" } Create a New Game (Costs 50 Shards!)
             %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
           .modal-body
             - if game_object.errors.any?
@@ -101,6 +132,24 @@
             .mb-3
               = form.label :map_size, 'Map Size (e.g., 6x6)', class: 'form-label', style: 'color: black;', for: 'game_map_size'
               = form.text_field :map_size, id: 'game_map_size', class: 'form-control', required: true, placeholder: '6x6'
+            .mb-3
+              %label.form-label{ for: 'game_genre', style: 'color: black;' } Genre
+              %div{style: 'color: black;'}
+                %div.form-check
+                  = form.radio_button :genre, 'High fantasy', id: 'genre_high_fantasy', class: 'form-check-input'
+                  = form.label :genre_high_fantasy, 'High fantasy', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Realistic Medieval', id: 'genre_realistic_medieval', class: 'form-check-input'
+                  = form.label :genre_realistic_medieval, 'Realistic Medieval', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'American West', id: 'genre_american_west', class: 'form-check-input'
+                  = form.label :genre_american_west, 'American West', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Nuclear Apocalypse', id: 'genre_nuclear_apocalypse', class: 'form-check-input'
+                  = form.label :genre_nuclear_apocalypse, 'Nuclear Apocalypse', class: 'form-check-label'
+                %div.form-check
+                  = form.radio_button :genre, 'Zombie Apocalypse', id: 'genre_zombie_apocalypse', class: 'form-check-input'
+                  = form.label :genre_zombie_apocalypse, 'Zombie Apocalypse', class: 'form-check-label'
           .modal-footer
             = form.submit 'Create Game', class: 'btn btn-primary'
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
@@ -124,6 +173,20 @@
           .modal-footer
             = form.submit 'Join Game', class: 'btn btn-primary'
             %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+  /==============================
+  / Message Modal
+  /==============================
+  .modal.fade#messageModal{ tabindex: "-1", "aria-labelledby" => "messageModalLabel", "aria-hidden" => "true" }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title#messageModalLabel{ style: "color: black;" } Welcome Google User!
+          %button.btn-close{ type: "button", "data-bs-dismiss" => "modal", "aria-label" => "Close" }
+        .modal-body
+          %p{ style: "color: black;" } Exclusive for Google users: 20% off everything in the store!
+        .modal-footer
+          %button.btn.btn-secondary{ type: "button", "data-bs-dismiss" => "modal" } Close
+          = link_to 'Go to Store', '/store_items', class: 'btn btn-primary'
 
 -# JavaScript to keep the modal open if there are validation errors
 - if game_object.errors.any?
@@ -132,3 +195,28 @@
       var createGameModal = new bootstrap.Modal(document.getElementById('createGameModal'));
       createGameModal.show();
     });
+
+- if session[:oauth_login]
+  :javascript
+    document.addEventListener('DOMContentLoaded', function() {
+      var messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+      messageModal.show();
+    });
+  - session.delete(:oauth_login)
+:javascript
+  document.addEventListener('DOMContentLoaded', function () {
+    const backgroundMusic = document.getElementById('background-music');
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (backgroundMusic.paused) {
+          backgroundMusic.play().catch((error) => {
+            console.error('Error playing audio:', error);
+          });
+        }
+      });
+    });
+  });
+
+

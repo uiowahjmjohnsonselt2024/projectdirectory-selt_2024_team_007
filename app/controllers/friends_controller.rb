@@ -1,3 +1,19 @@
+# *********************************************************************
+# This file was crafted using assistance from Generative AI Tools.
+#   Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+# 4th 2024 to December 15, 2024. The AI Generated code was not
+# sufficient or functional outright nor was it copied at face value.
+# Using our knowledge of software engineering, ruby, rails, web
+# development, and the constraints of our customer, SELT Team 007
+# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+# and Sheng Wang) used GAITs responsibly; verifying that each line made
+# sense in the context of the app, conformed to the overall design,
+# and was testable. We maintained a strict peer review process before
+# any code changes were merged into the development or production
+# branches. All code was tested with BDD and TDD tests as well as
+# empirically tested with local run servers and Heroku deployments to
+# ensure compatibility.
+# *******************************************************************
 class FriendsController < ApplicationController
   before_action :set_current_user
   before_action :set_user
@@ -9,11 +25,11 @@ class FriendsController < ApplicationController
   end
 
   def create
-    friend = User.find_by(email: params[:friend_email].downcase)
+    friend = User.find_by(name: params[:friend_name])
 
     # Check if the user exists
     if friend.nil?
-      flash[:alert] = "No user found with the email #{params[:friend_email]}."
+      flash[:alert] = "No user found with the name #{params[:friend_name]}."
       redirect_to friends_path
       return
     end
@@ -71,6 +87,19 @@ class FriendsController < ApplicationController
     else
       flash[:error] = 'Unable to cancel friend request.'
     end
+    redirect_to friends_path
+  end
+
+  def unfriend
+    friendship = @user.friendships.find_by(friend_id: params[:id]) ||
+      @user.inverse_friendships.find_by(user_id: params[:id])
+
+    if friendship&.destroy
+      flash[:notice] = 'Friend removed successfully.'
+    else
+      flash[:error] = 'Unable to remove friend.'
+    end
+
     redirect_to friends_path
   end
 

@@ -1,3 +1,21 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
+- content_for :background_music, 'log_in.mp3'
 %section.vh-100{
   style: "background-image: url('#{image_path('login_register_background.jpg')}'); background-size: cover; background-position: center; height: 100vh; width: 100vw; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center;"
 }
@@ -15,3 +33,7 @@
         = f.text_field :email, required: true, id: "email_field", class: "form-control", placeholder: "Enter your email", style: "width: 100%; padding: 10px; border: 1px solid #1ABC9C; border-radius: 5px;"
       %div.actions{ style: "margin-top: 20px;" }
         = f.submit "Send Reset Email", class: "btn btn-primary", style: "width: 100%; padding: 10px; background-color: #1ABC9C; border: none; border-radius: 5px; color: white; font-weight: bold;"
+
+    %p{ style: "text-align: center; margin-top: 20px; color: #BDC3C7;" }
+      Already have an account?
+      = link_to "Log in here", login_path, style: "color: #1ABC9C;"

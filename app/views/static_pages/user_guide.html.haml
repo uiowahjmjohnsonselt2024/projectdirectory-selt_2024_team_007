@@ -1,0 +1,64 @@
+-# *********************************************************************
+-# This file was crafted using assistance from Generative AI Tools.
+-# Open AI's ChatGPT o1, 4o, and 4o-mini models were used from November
+-# 4th 2024 to December 15, 2024. The AI Generated code was not
+-# sufficient or functional outright nor was it copied at face value.
+-# Using our knowledge of software engineering, ruby, rails, web
+-# development, and the constraints of our customer, SELT Team 007
+-# (Cody Alison, Yusuf Halim, Ziad Hasabrabu, Bradley Johnson,
+-# and Sheng Wang) used GAITs responsibly; verifying that each line made
+-# sense in the context of the app, conformed to the overall design,
+-# and was testable. We maintained a strict peer review process before
+-# any code changes were merged into the development or production
+-# branches. All code was tested with BDD and TDD tests as well as
+-# empirically tested with local run servers and Heroku deployments to
+-# ensure compatibility.
+-# *******************************************************************
+
+%section.user-guide{ style: "padding: 20px; background-image: url(#{image_path('user-guide-background.png')}); background-repeat: no-repeat; background-attachment: fixed; background-position: center center; background-size: cover; background-color: rgba(0, 0, 0, 0.8); min-height: 100vh; overflow: hidden;" }
+  / Hide scrollbar for this section
+  :css
+    ::-webkit-scrollbar {
+      display: none; /* For Chrome, Safari, and Opera */
+    }
+    * {
+      scrollbar-width: none; /* For Firefox */
+    }
+
+  %div.nav-container{ style: "position: fixed; top: 0; width: 100%; height: 80px; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;" }
+    = render 'shared/navigation'
+  %h1{ style: "text-align: center; margin-bottom: 20px; font-size: 2rem; color: #FFFFFF; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);" } User Guide
+
+  %div.text-container{ style: "max-width: 800px; margin: 0 auto; padding: 20px; background: rgba(0, 0, 0, 0.6); border-radius: 10px; color: #FFFFFF; line-height: 1.8; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);" }
+    %h2 Getting Started
+    %p Welcome to the game! Here's how you can get started:
+    %ul
+      %li Register and log in to access your dashboard.
+      %li Explore the settings to customize your profile.
+      %li Purchase shards or items from the store to enhance your experience.
+
+    %h2 Game Rules
+    %p The rules of the game are simple:
+    %ul
+      %li Navigate the grid map and complete objectives.
+      %li Use items like teleport tokens to gain an advantage.
+      %li Avoid hazards and manage your resources wisely.
+
+    %h2 Tips and Tricks
+    %ul
+      %li Plan your moves strategically to maximize efficiency.
+      %li Use health potions sparingly to avoid running out in critical moments.
+      %li Collaborate with other players to achieve common goals.
+
+    %h2 Frequently Asked Questions
+    %p Have questions? We've got answers:
+    %dl
+      %dt How do I purchase shards?
+      %dd Navigate to the store, select a shard package, and confirm your purchase.
+      %dt How can I reset my password?
+      %dd Go to the settings page and click "Reset Password."
+      %dt What should I do if I encounter a bug?
+      %dd Contact support or report the issue via the "Help" link in the navigation bar.
+
+  %div{ style: "text-align: center; margin-top: 30px;" }
+    = link_to 'Back to Home', root_path, class: 'btn btn-primary', style: "color: #FFFFFF; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);"
