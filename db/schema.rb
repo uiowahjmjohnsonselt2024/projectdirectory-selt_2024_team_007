@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_13_171223) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_15_001953) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_13_171223) do
     t.integer "current_tile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "quests", default: []
     t.index ["current_tile_id"], name: "index_game_users_on_current_tile_id"
     t.index ["game_id", "user_id"], name: "index_game_users_on_game_id_and_user_id", unique: true
     t.index ["game_id"], name: "index_game_users_on_game_id"

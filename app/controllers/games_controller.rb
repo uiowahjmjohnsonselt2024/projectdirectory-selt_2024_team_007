@@ -145,6 +145,7 @@ class GamesController < ApplicationController
       }
     end
 
+    # eq.size
     # Construct map details
     map_tiles = @game.tiles.map do |tile|
       {
@@ -244,6 +245,8 @@ PROMPT
       }
     end
 
+    #eq.size check again
+    #
     # Broadcast the GPT response to all connected clients for this game
     ChatChannel.broadcast_to(@game, {
       user: @current_user.name,
