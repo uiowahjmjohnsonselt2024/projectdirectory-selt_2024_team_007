@@ -16,8 +16,10 @@
     - (0...columns).each do |x|
       - tile = tile_hash[[x, y]]
       - tile_classes = 'tile d-flex flex-column align-items-center justify-content-center'
+      - image_path = case tile&.tile_type when "grassland" then image_path('map_grassland.webp') when "lake" then image_path('map_lake.webp') when "tundra" then image_path('map_tundra.webp') when "mountains" then image_path('map_mountains.webp') when "foothills" then image_path('map_foothills.webp') when "desert" then image_path('map_desert.webp') when "forest" then image_path('map_forest.webp') when "hold_capital" then image_path('map_city.webp') else image_path('map_unknown.webp') end
       - tile_content = tile ? tile.tile_type.capitalize : 'Unknown'
       %div{ class: tile_classes, data: { x: x, y: y }, style: "color: black;" }
+        %img.map-icon{ src: image_path, alt: tile_content, style: "width: 60px; height: 60px;" }
         = tile_content
         - if player_positions[[x, y]]
           .players
