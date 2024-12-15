@@ -33,6 +33,9 @@ class GamesController < ApplicationController
       @game.chat_image_url ||= "login_register_background.jpg"
 
       if @game.save
+         # Deduct 40 shards from the user's balance
+        @current_user.decrement!(:shards_balance, 40)
+
         starting_tile = @game.tiles.find_by(x_coordinate: 0, y_coordinate: 0)
         Rails.logger.debug "Starting tile: #{starting_tile.inspect}"
         
